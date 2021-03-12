@@ -17,16 +17,16 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-
+author: Yauhen Pyl
 title: Yauhen Pyl blog
 email: yauhen.pyl@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Set of notes and articles created and/or formatted by Yauhen Pyl. It contains
-  different topics mainly related to programming or managing.
+  Set of personal notes and articles.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 linkedin_username: yauhenpyl
 github_username: ypyl
+
 
 # Build settings
 theme: minima
