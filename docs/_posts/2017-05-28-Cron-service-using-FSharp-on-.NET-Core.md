@@ -4,7 +4,7 @@ title: "Cron service using F# on .NET Core"
 date: 2017-05-28
 categories: dotnet fsharp programming
 ---
-As continuation for [my previous post](@/Daemon-cron-using-FSharp.md) I want to create a nancy service to run my cron jobs.
+As continuation for [my previous post]({% post_url 2017-06-01-Cron-schedule-using-FSharp %}) I want to create a nancy service to run my cron jobs.
 
 The source is [here](https://github.com/eapyl/fsharp-nancy-service).
 
