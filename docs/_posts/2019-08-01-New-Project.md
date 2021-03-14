@@ -118,11 +118,11 @@ This chapter should cover all the customer and operations scenarios that define 
 
 Each use case description should cover the following topics:
 
-1. Business Requirement
+### Business Requirement
 
 This paragraph contains description of the use case purpose. It covers and describes the behinds why it is important to have the particular functionality or feature from business perspective. Consider describing the value added to end user or customer.
 
-2. Customer View
+### Customer View
 
 This part of the document describes the workflow of the use case from user perspective, it should cover the following topics:
 
@@ -131,11 +131,11 @@ This part of the document describes the workflow of the use case from user persp
 
 Ideally it should contain a list of sequential commands that can be executed by end user and mapped to a function test.
 
-3. Data Flow
+### Data Flow
 
 This paragraph contains information about data flows besides the use case, which components/services are used. Any type of diagrams, like a call sequence diagram, can be added here and will be useful.
 
-4. Common Incidents
+### Common Incidents
 
 This paragraph contains the list of the most frequent types of incidents related to this customer scenario. It can just contain a set of notes or records that might be helpful during troubleshooting of the issue related to the used case. Any of the following entities can be added here:
 
@@ -161,7 +161,7 @@ The ideal end-state of the current view of the product should be described here.
 
 The following topics should be covered in more details if possible:
 
-1. Complexity reduction
+### Complexity reduction
 
 The list of all the things that should be done to reduce operational complexity, e.g.
 
@@ -170,7 +170,7 @@ The list of all the things that should be done to reduce operational complexity,
 - component consolidation
 - component elimination
 
-2. Cost reduction
+### Cost reduction
 
 The list of all the things that should be done to the product to reduce operational costs, e.g.
 
@@ -179,7 +179,7 @@ The list of all the things that should be done to the product to reduce operatio
 - component elimination
 - replacing services
 
-3. Performance improvement
+### Performance improvement
 
 The list of all the things that should be done to the product to improve scalability, resilience, uptime.
 
