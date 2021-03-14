@@ -4,7 +4,7 @@ title: "Daemon cron using F#"
 date: 2017-05-19
 categories: dotnet fsharp programming
 ---
-As continuation for [my previous post]({% post 2017-06-01-Cron-schedule-using-FSharp %}) I want to create a daemon which runs jobs using created cron code.
+As continuation for [my previous post]({% post_url 2017-06-01-Cron-schedule-using-FSharp %}) I want to create a daemon which runs jobs using created cron code.
 
 {% highlight fsharp %}
 module Daemon =
