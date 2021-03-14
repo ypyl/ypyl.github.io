@@ -10,30 +10,30 @@ I am using sample application created by `dotnet run`.
 
 To run dotnet core application on Ubuntu with **compilation**:
 
-{% highlight docker %}
+```docker
 dotnet run -p {pathToFolderWithProjectJson} -- {arguments}
-{% endhighlight %}
+```
 
 To run compiled application:
 
-{% highlight bat %}
+```bat
 dotnet {pathToCompiledDll} {arguments}
-{% endhighlight %}
+```
 where `pathToCompiledDll` is a path to dll (it is in `/bin/Debug/netcoreapp1.1/` be default).
 
 ### Bash commands
 
 To add dotnet alias (shortcut) to bash set of commands:
 
-{% highlight bat %}
+```bat
 nano ~/.bash_aliases
-{% endhighlight %}
+```
 
 And you need to add the next line to this file (bash_aliases):
 
-{% highlight bat %}
+```bat
 alias helloWorld="dotnet run -p ~/projects/helloWorld -- ~/Peter"
-{% endhighlight %}
+```
 where 
 * ~/projects/helloWorld is path to the project;
 * ~/Peter is an argument passed to the application;

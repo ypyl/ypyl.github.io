@@ -16,13 +16,13 @@ So there is implementation in F# below:
 
 Let's start with two helper objects: `String.split` and `TooMuchArgumentsException` exception.
 
-{% highlight fsharp %}
+```fsharp
 type System.String with 
     static member split c (value: string) =
         value.Split c
 
 exception TooMuchArgumentsException of int
-{% endhighlight %}
+```
 
 `String.split` is just wrapper for `String.Split` method. Exception is needed to show when cron expression contains too much parts.
 
@@ -33,7 +33,7 @@ My internal cron supports the next template: 'minute hour dayOfMonth month dayOf
 4. '5' - one value only, e.g. only at 5th minute
 5. '5,10,15,45' - list value, e.g. run at 5th, 10th, 15th and 45th minutes
 
-{% highlight fsharp %}
+```fsharp
 open System
 open System.Text.RegularExpressions
 
@@ -139,7 +139,7 @@ module Schedule =
         List.exists ((=) dateTime.Day) schedueSet.DayOfMonth &&
         List.exists ((=) dateTime.Month) schedueSet.Months &&
         List.exists ((=) (int dateTime.DayOfWeek)) schedueSet.DayOfWeek
-{% endhighlight %}
+```
 
 So Schedule module contains two methods and one type: 
 * ISchedueSet is a container for parsed cron expression;
@@ -148,7 +148,7 @@ So Schedule module contains two methods and one type:
 
 Small sets of unit tests written using mstest:
 
-{% highlight fsharp %}
+```fsharp
 namespace FsharpTest
 
 open System
@@ -213,7 +213,7 @@ type ScheduleTests () =
         let dateTime = DateTime(2000, 1, 1, 0, 0, 0)
         let schedule = { Minutes = [0]; Hours = [0]; DayOfWeek = [0 .. 6]; DayOfMonth = [1]; Months = [1]}
         Assert.IsTrue(Schedule.isTime schedule dateTime)
-{% endhighlight %}
+```
 
 Quite simple implementation of cron schedule part of mentioned service.
 

@@ -14,7 +14,7 @@ That is a manual how to create simple ping-pong discord bot using javascript (no
 * Install [Discrod.js](https://discord.js.org/#/): `npm install --save discordjs`
 * Create index.js in this folder:
 
-{% highlight js %}
+```js
 /*
   A ping pong bot, whenever you send "ping", it replies "pong".
 */
@@ -45,7 +45,7 @@ bot.on('message', message => {
 
 // log our bot in
 bot.login(token);
-{% endhighlight bat %}
+```
 
 * Got to https://discordapp.com/developers/applications/me and create your bot
 * Put all needed values, click "Create Application". On the next page scroll down until you see "Create a bot user", click that.
@@ -59,7 +59,7 @@ Well done! You created your Discord bot! Thank you.
 
 Here is a simple rss bot for discord:
 
-{% highlight js %}
+```js
 const Discord = require('discord.js');
 var Store = require("jfs"); // using jfs to save already posted rss news
 var db = new Store("rssfeeds");
@@ -163,7 +163,7 @@ function rssfeed(url) {
         }
     });
 }
-{% endhighlight %}
+```
 
 Links:
 * [Creating a discord bot & getting a token](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token)

@@ -7,7 +7,7 @@ categories: programming
 ---
 As continuation for [my previous post]({% post_url 2017-06-01-Cron-schedule-using-FSharp %}) I want to create a daemon which runs jobs using created cron code.
 
-{% highlight fsharp %}
+```fsharp
 module Daemon =
     [<Literal>]
     let INTERVAL = 30000
@@ -45,11 +45,11 @@ module Daemon =
     let now = fun () -> DateTime.UtcNow
     // public method to call
     let run jobs = internalRun INTERVAL now jobs
-{% endhighlight %}
+```
 
 How to use the daemon above:
 
-{% highlight fsharp %}
+```fsharp
 type Job = { action: Async<unit>; cron: string }
 
 let act id =
@@ -62,7 +62,7 @@ let jobs = [|1; 2|] |> Array.map (fun id ->
         cron = "* * * * *"
     })
 let daemon = run jobs
-{% endhighlight %}
+```
 
 Unfortunately I don't see the good way to wtite unit test for this code as there is hardcoded dependency to System.Threading.Timer.
 

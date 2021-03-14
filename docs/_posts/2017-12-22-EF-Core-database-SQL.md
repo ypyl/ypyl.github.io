@@ -7,7 +7,7 @@ categories: programming
 ---
 It is possible to generate EF Core model from existing database without some of tables. There is very simple and small SQL query which generated a content of C# file.
 
-{% highlight sql %}
+```sql
 USE <<MyDatabase>>
 
 DECLARE @classNames VARCHAR(MAX);
@@ -154,7 +154,7 @@ CLOSE CLASS_NAME
 DEALLOCATE CLASS_NAME
 
 PRINT '}'
-{% endhighlight %}
+```
 
 Unfortunately it is not generating any foreign keys for tables. So you have to add them using partial class if needed.
 So current sample will generate a model with 3 entities.

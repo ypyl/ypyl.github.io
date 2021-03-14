@@ -15,7 +15,7 @@ Unfortunately there is no SQLCover package in NuGet, but we can download it from
 
 Create a new command line application, add references to SQLCover.dll and Microsoft.SqlServer.TransactSql.ScriptDom.dll.
 After that there is an example of Program.cs:
-{% highlight cs %}
+```cs
     private const string RunAllSqlTestsCommand = "exec tSQLt.RunAll;";
     private const string DefaultDatabaseName = "MyDB";
 
@@ -29,7 +29,7 @@ After that there is an example of Program.cs:
         var updatedResult =  result.Html();
         File.WriteAllText(ReportName, updatedResult);
     }
-{% endhighlight %}
+```
 
 After execution you will see SQLCoverage.html with code coverage statistics in the same folder.
 

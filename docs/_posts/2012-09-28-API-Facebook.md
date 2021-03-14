@@ -32,7 +32,7 @@ You see there is secret key and application key. We need them to working with fa
 
 There is the step 4 (we get the code from redirecting response).
 
-{% highlight csharp %}
+```cs
 public void GetAccessToken()
 {
     if (HttpContext.Current.Request.Params.AllKeys.Contains("code"))
@@ -61,11 +61,11 @@ public void GetAccessToken()
     }
     throw new HttpException();
 }
-{% endhighlight %}
+```
 
 That is my facebook controller
 
-{% highlight csharp %}
+```cs
 public ActionResult Index()
 {
     if (!Client.IsAuthorizated)
@@ -80,11 +80,11 @@ public ActionResult Authorizate()
     Client.GetAccessToken();
     return RedirectToAction("Index");
 }
-{% endhighlight %}
+```
 
 After getting code we need to get the id of the page:
 
-{% highlight csharp %}
+```cs
 private void GetUserInformation()
 {
     string request = "https://graph.facebook.com/me?access_token=" + accessToken;
@@ -103,11 +103,11 @@ private void GetPagesInformation()
     userPages = JObject.Parse(response);
     page = userPages.SelectToken("data").First(x => x.SelectToken("name").ToString().Equals(_pageName));
 }
-{% endhighlight %}
+```
 
 3. OK, let's start to posting something. Here is my configuration:
 
-{% highlight csharp %}
+```cs
 private static readonly Dictionary<string, string> Config = new Dictionary<string, string>
 {
     {"AuthorizationEndpoint", "https://graph.facebook.com/oauth/authorize?client_id={0}&redirect_uri={1}&scope=manage_pages,create_event,publish_stream"},
@@ -117,11 +117,11 @@ private static readonly Dictionary<string, string> Config = new Dictionary<strin
     {"RedirectTo", "http://localhost:4769/Facebook/Authorizate"},
     {"PageName", "TesterMyRest Community"}
 };
-{% endhighlight %}
+```
 
 Posting video.
 
-{% highlight csharp %}
+```cs
 public string CreateVideo(MemoryStream imageMemoryStream, string title, string fileName)
 {
     string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
@@ -181,12 +181,12 @@ public string CreateVideo(MemoryStream imageMemoryStream, string title, string f
     }
     return string.Empty;
 }
-{% endhighlight %}
+```
 
 4. Change the information about the page.
 
 WebHelper class:
-{% highlight csharp %}
+```cs
 public static class WebWorker
 {
     private static void AddPostParameter(Dictionary<string, string> values, StringBuilder postBody)
@@ -216,12 +216,12 @@ public static class WebWorker
         return webClient.UploadString(requstUrl, postBody.ToString());
     }
 }
-{% endhighlight %}
-{% highlight csharp %}
+```
+```cs
 private string CreateStatus(Dictionary<string, string> values)
 {
     string request = "https://graph.facebook.com/" + page.SelectToken("id") + "/feed?access_token=" +
                         page.SelectToken("access_token");
     return WebWorker.UploadString(request, values);
 }
-{% endhighlight %}
+```

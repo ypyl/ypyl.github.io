@@ -12,16 +12,16 @@ In this small article I will describer how to create a small console application
 
 One note: each SP, function and view should have the next comment in their code:
 
-{% highlight sql %}
+```sql
 -- =============================================
 -- Author:      FirstName LastName
 -- Create date = "yyyyMMdd
 -- Description: Short description
 -- =============================================
-{% endhighlight %}
+```
 
 SQL query which shows information about SP, functions and views is:
-{% highlight cs %}
+```cs
 const string GetAllObjects = @"
 DECLARE @StopString nvarchar(MAX) = '-- =============================================';
 
@@ -46,10 +46,10 @@ WHERE
     s.name = 'dbo' and
     (o.type_desc = 'VIEW' or o.type_desc = 'SQL_STORED_PROCEDURE' or o.type_desc = 'SQL_INLINE_TABLE_VALUED_FUNCTION' or o.type_desc = 'SQL_SCALAR_FUNCTION')
 ";
-{% endhighlight %}
+```
 
 As I usully use [Dapper](https://github.com/StackExchange/Dapper) to work with DB there is a list of DTOs:
-{% highlight cs %}
+```cs
 internal class DBObject
 {
     public string Name { get; set; }
@@ -92,10 +92,10 @@ internal class Table
     public string FixedLenNullInSource { get; set; }
     public string Collation { get; set; }
 }
-{% endhighlight %}
+```
 
 And to get the list of SP, functions and views we can use the next method:
-{% highlight cs %}
+```cs
 public IEnumerable<(DBObject Object, HelpInfo Info, IEnumerable<Parameter> Parameters, IEnumerable<Table> OutputTables)> GetAllDbObjects()
 {
     var objs = _sqlExecutor.Query<DBObject>(GetAllObjects);
@@ -156,7 +156,7 @@ public (T, IEnumerable<K>, IEnumerable<M>) QueryMultiple<T, K, M>(string query, 
         }
     }
 }
-{% endhighlight %}
+```
 
 So mentioned GetAllDbObjects returns a list of tuples, where DBObject contains general information about SP, function or view; HelpInfo contains additional information about DBObject; IEnumerable<Parameter> contains information about input/output parameters for SP and functions; IEnumerable<Table> contains information about a view design (as view returns data in table format).
 

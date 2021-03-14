@@ -20,7 +20,7 @@ And backup all existing reports to local folder:
 > exRSConsole.exe -b
 
 To configure exRS you need to change configuration file:
-{% highlight bat %}
+```bat
 <applicationSettings>
     <exRS.Properties.Settings>
         <!-- URI of SSRS server -->
@@ -73,7 +73,7 @@ To configure exRS you need to change configuration file:
         </setting>
     </exRS.Properties.Settings>
 </userSettings>
-{% endhighlight %}
+```
 
 After deployment you should see 3 folders in SSRS: "Data Sources", "Datasets" and "SampleReport".
 Please find the source code [here](https://github.com/eapyl/exRS).

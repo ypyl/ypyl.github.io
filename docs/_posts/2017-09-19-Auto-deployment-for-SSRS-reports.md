@@ -13,7 +13,7 @@ So you will have the next types of files in your project:
 3. *.rds - shared datasources
 
 To deploy them to clean SSRS server we can use [RS tool](https://docs.microsoft.com/en-us/sql/reporting-services/tools/rs-exe-utility-ssrs). And that is a bat file to call it:
-{% highlight bat %}
+```bat
 REM SSRS server, you can provide also user and password to RS tool if you can't use Windows credentials (default behaviour)
 set varServerPath=http://desktop-h33a7aa/reportserver
 REM name of folder at SSRS server for reports
@@ -26,11 +26,11 @@ REM path to a folder with reports, datasets and datasources
 set varReportFilePath=.\Project\Reports\My_Reports
 
 "C:\Program Files\Microsoft SQL Server Reporting Services\Shared Tools\rs.exe" -i Commonscript.rss -s %varServerPath% -v ReportFolder="%varReportFolder%" -v DataSetFolder="%varDatasetFolder%" -v DataSourceFolder="%varDataSourceFolder%" -v filePath="%varReportFilePath%" -e Mgmt2010
-{% endhighlight %}
+```
 
 All logic is described in Commonscript.rss. It creates folders in SSRS server for reports, datasets and datasources (using CreateFolders method), later it reads all *.rds files in varReportFilePath and create datasources for each file if it doesn't exist. After it reads all *.rsd files in varReportFilePath, create datasets and connects a dataset with a datasource. In the end it read all *.rdl files in varReportFilePath, create reports and connects a report with a dataset.
 
-{% highlight vb %}
+```vb
 Dim definition As [Byte]() = Nothing
 Dim bytedefinition as [Byte]() = nothing
 Dim warnings As Warning() = Nothing
@@ -353,7 +353,7 @@ Private Function GetDataSource(sharedDataSourcePath as string, dataSourceName as
     Console.WriteLine("Attempting to Publish Data Source {0}", ds.Name)
     GetDataSource=ds
 End Function
-{% endhighlight %}
+```
 
 This script is based on [this article](https://blogs.msdn.microsoft.com/johndesch/2012/12/17/using-the-rs-exe-utility-to-deploy-a-report-server-project-and-shared-dataset/).
 

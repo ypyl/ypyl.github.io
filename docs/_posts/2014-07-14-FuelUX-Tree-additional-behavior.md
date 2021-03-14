@@ -11,7 +11,7 @@ Add "Show All" to the FuelUX Tree like this.
 ![example](/images/fuelux-tree.gif)
 
 There is the [tree plugin](https://exacttarget.github.io/fuelux/#tree). You can add the next code after initialization of the tree:
-{% highlight js %}
+```js
 scope.find('#MyTree').on('selected', function (event, data) {
     if (data.target.additionalParameters.id == 0) {
         scope.find('#MyTree').find('.tree-item').removeClass('tree-selected').find('i').removeClass('icon-ok').addClass('tree-dot');
@@ -26,4 +26,4 @@ scope.find('#MyTree').on('selected', function (event, data) {
     }
     
 });
-{% endhighlight %}
+```

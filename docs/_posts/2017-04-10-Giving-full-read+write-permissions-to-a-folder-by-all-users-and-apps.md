@@ -7,6 +7,6 @@ tags: linux
 categories: administration
 ---
 Allows delete, write and edit all files in a particular folder:
-{% highlight bat %}
+```bat
 chmod -R 777 <desired folder>
-{% endhighlight %}
+```

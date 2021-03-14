@@ -12,9 +12,9 @@ I m using ASP.NET MVC. And work with my view, where I have the View
 
 It gives me the exception
 
-{% highlight text %}
+```text
 The call is ambiguous between the following methods or properties: 'GMP.MvcWebSite.StringExtensions.TrimOrEmpty(string)' and 'System.StringHelper.TrimOrEmpty(string)'
-{% endhighlight %}
+```
 
 So i just rebuild my view as
 

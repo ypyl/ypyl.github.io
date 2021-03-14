@@ -11,7 +11,7 @@ Later I will just describe how I am doing backup to local folder instead of S3 s
 
 It is my docker-compose:
 
-{% highlight docker %}
+```docker
     db:
         image: "influxdb:1.2"
         restart: always
@@ -31,11 +31,11 @@ It is my docker-compose:
         environment:
             INFLUX_HOST: db
             DATABASES: entity_db
-{% endhighlight %}
+```
 
 So there are two containers: influxdb is the standard [InfluxDB](https://docs.influxdata.com/influxdb/v1.2/introduction/getting_started/) and influxdb-backup:1.2 (see dockerfile for this image below).
 
-{% highlight docker %}
+```docker
 FROM influxdb:1.2-alpine
 
 # Backup the following databases, separator ":"
@@ -56,18 +56,18 @@ COPY cron.conf /var/spool/cron/crontabs/root
 
 # Run Cron in foreground
 CMD crond -l 0 -f
-{% endhighlight %}
+```
 
 So we are running cron job to run our `backup.sh`. The configuration (cron.conf):
-{% highlight bat %}
+```bat
 # do daily/weekly/monthly maintenance
 # min	hour	day	month	weekday	command
 0 0 * * * /bin/backup.sh
 # run every day at 00:00:00
-{% endhighlight %}
+```
 
 There is backup.sh with the next content:
-{% highlight bat %}
+```bat
 #!/bin/bash
 set -e
 
@@ -93,7 +93,7 @@ for db in ${DATABASES//:/ }; do
   echo "Creating backup for $db"
   influxd backup -database $db -host $INFLUX_HOST:8088 /backup/$DATE
 done
-{% endhighlight %}
+```
 
 Please find an image [here](/assets/inluxDbBackupDocker.zip).
 

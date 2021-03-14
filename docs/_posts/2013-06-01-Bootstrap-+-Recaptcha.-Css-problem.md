@@ -9,8 +9,8 @@ If you use bootstrap and recaptcha, you may face a problem like wrong padding or
 
 You should add next css style to yours:
 
-{% highlight css %}
+```css
 body{ line-height:1}
-{% endhighlight %}
+```
 
 And all will be OK ! Enjoy!

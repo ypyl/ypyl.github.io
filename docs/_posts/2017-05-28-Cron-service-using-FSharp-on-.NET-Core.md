@@ -10,7 +10,7 @@ As continuation for [my previous post]({% post_url 2017-06-01-Cron-schedule-usin
 The source is [here](https://github.com/eapyl/fsharp-nancy-service).
 
 A service to run jobs:
-{% highlight fsharp %}
+```fsharp
 module Service =
     let start (logger:ILogger) (items:Item[]) =
         let version = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion
@@ -29,7 +29,7 @@ module Service =
         let daemon = run jobs
         logger.LogInformation("Started service")
         daemon
-{% endhighlight %}
+```
 
 It contains only method `start` to create cron daemon.
 
