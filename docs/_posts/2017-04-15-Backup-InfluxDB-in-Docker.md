@@ -2,7 +2,8 @@
 layout: post
 title: "Backup InfluxDB in Docker"
 date: 2017-04-15
-categories: programming docker
+tags: docker
+categories: programming
 ---
 If you want to backup your InfluxDB in Docker you can probably can start with this wonderful [article](https://devblog.digimondo.io/how-to-backup-influxdb-running-in-a-docker-container-615938dbab90?gi=78ccabcf77cf).
 

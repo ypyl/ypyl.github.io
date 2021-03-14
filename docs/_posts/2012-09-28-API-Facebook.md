@@ -2,7 +2,8 @@
 layout: post
 title: "API Facebook"
 date: 2012-09-28
-categories: dotnet programming
+tags: dotnet
+categories: programming
 ---
 
 I know there are a lot of information about working with Facebook API, but... I just think more information is better then less.

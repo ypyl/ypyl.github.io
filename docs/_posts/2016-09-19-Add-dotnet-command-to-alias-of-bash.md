@@ -2,7 +2,8 @@
 layout: post
 title: "Add dotnet command to alias of bash"
 date: 2016-09-19
-categories: linux dotnet programming
+tags: linux dotnet
+categories: programming
 ---
 ### Dotnet commands
 I am using sample application created by `dotnet run`.

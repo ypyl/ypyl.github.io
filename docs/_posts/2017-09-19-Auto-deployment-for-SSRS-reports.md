@@ -2,7 +2,8 @@
 layout: post
 title: "Auto deployment for SSRS reports"
 date: 2017-09-19
-categories: ssrs reports programming
+tags: ssrs reports
+categories: programming
 ---
 If you work with SSRS it is not so easy to create CI build for SSRS project. It looks like the best approach is to use shared datasources, shared datasets and embedded datasets in reports which use shared datasets. Shared datasets should use stored procedures to receive data so you will be able to cover your SQL logic by unit tests.
 

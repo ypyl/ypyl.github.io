@@ -2,7 +2,8 @@
 layout: post
 title: "Avoid Ambiguous invocation for extension methods"
 date: 2012-09-14
-categories: dotnet asp net mvc programming
+tags: dotnet asp net mvc
+categories: programming
 ---
 
 I m using ASP.NET MVC. And work with my view, where I have the View

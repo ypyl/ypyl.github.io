@@ -2,7 +2,8 @@
 layout: post
 title: "0x80004005 Failed to Execute URL"
 date: 2011-09-12
-categories: dotnet
+tags: linux dotnet
+categories: programming
 ---
 
 The error was connected with GET requests. ApplicationPool was set in Classic mode.

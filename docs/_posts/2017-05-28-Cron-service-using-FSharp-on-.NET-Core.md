@@ -2,7 +2,8 @@
 layout: post
 title: "Cron service using F# on .NET Core"
 date: 2017-05-28
-categories: dotnet fsharp programming
+tags: dotnet fsharp
+categories: programming
 ---
 As continuation for [my previous post]({% post_url 2017-06-01-Cron-schedule-using-FSharp %}) I want to create a nancy service to run my cron jobs.
 

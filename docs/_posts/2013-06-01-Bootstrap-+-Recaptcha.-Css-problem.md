@@ -2,7 +2,8 @@
 layout: post
 title: "Bootstrap + Recaptcha. Css problem"
 date: 2013-06-01
-categories: javascript programming
+tags: javascript
+categories: programming
 ---
 If you use bootstrap and recaptcha, you may face a problem like wrong padding or margin.
 

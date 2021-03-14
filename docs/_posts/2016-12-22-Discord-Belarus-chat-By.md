@@ -2,7 +2,8 @@
 layout: post
 title: "Discord Belarus chat By"
 date: 2016-12-22
-categories: dotnet discord other
+tags: dotnet discord
+categories: other
 ---
 # Discord Belarus chat By
 
