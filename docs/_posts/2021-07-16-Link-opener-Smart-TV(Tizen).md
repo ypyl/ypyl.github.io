@@ -27,7 +27,7 @@ Open Apps and enter '12345'. Enable developer mode and enter the ip address of y
 
 # Template
 
-`dotnet tizen new Tizen.NUI.Template55.Single` to create [NUI template](https://docs.tizen.org/application/dotnet/guides/nui/overview/).
+`dotnet tizen new Tizen.NET.Template55.Cross.NETStandard -v tizen-5.5` to create Xamarin.Forms application. Remove all projects which are not connected to TV.
 
 # Add smart TV device
 
@@ -45,7 +45,7 @@ Check that `C:\tizen-studio\tools\ide\bin` is in Path of environment settings.
 
 Build the project by `tizen build-cs` and run `tizen install -n <path-to-tpk>` where `<path-to-tpk>` is showed during the building.
 
-Application should be install on smart TV.
+The installation of an application should be started.
 
 # Link opener
 
