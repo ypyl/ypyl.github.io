@@ -9,7 +9,7 @@ categories: visual studio code extension file line link programming
 
 ## Start
 
-To create initial structure of the project, need to visit and follow instructions from [Your First Extension](https://code.visualstudio.com/api/get-started/your-first-extension).
+To create initial structure of the project need to visit and follow instructions from [Your First Extension](https://code.visualstudio.com/api/get-started/your-first-extension).
 
 ## Package.json
 
@@ -76,7 +76,7 @@ The package json nodes should be updated:
 
 ## Extension code
 
-The following code get the active text editor, grab its relative path and selected line, and combine these inputs to relative file line link, like `folder/subfolder/file-name.ext:line-number`. After it put the result to the clipboard.
+The following code gets the active text editor, grabs its relative path and selected line, and combine these inputs to relative file line link, like `folder/subfolder/file-name.ext:line-number`. After this, it puts the result to the clipboard.
 
 ```ts
 import * as vscode from 'vscode';
@@ -123,4 +123,4 @@ To publish extension need to follow instructions from [Publishing Extensions](ht
 
 ## Summary
 
-These simple and straightforward steps allowed to create a small extension to copy the file line link to the clipboard.
+These simple and straightforward steps allow to create a small extension to copy the file line link to the clipboard.
