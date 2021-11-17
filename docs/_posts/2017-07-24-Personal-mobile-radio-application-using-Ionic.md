@@ -86,7 +86,7 @@ export class Html5Audio {
 ```
 4. It has been imported to /src/app/app.module.
 5. There is only one page with a list of stations (I have [only 3](https://github.com/eapyl/radioon/blob/master/src/pages/home/home.ts) which I listen). Click on a station - starting this station, and there is one button to stop music([link](https://github.com/eapyl/radioon/blob/master/src/pages/home/home.html)). That is all. Simple!
-6. After that we need to prepare icon and splash image for application. I am using [game-icons](http://game-icons.net) to create an icon and [unspalsh](https://unsplash.com/) to find full size images. Moreover, I have received a feedback about `game-icons` and I believe it can be useful:
+6. After that we need to prepare icon and splash image for application. I am using [game-icons](http://game-icons.net) to create an icon and [unspalsh](https://unsplash.com/) to find full size images. Moreover, I have received a feedback about [game-icons](http://game-icons.net) and I believe it can be useful:
     > many of the icons from `game-icons` featured have restrictions on commercial use
     > Anyway, while checking elsewhere online, I found [this list of websites](https://www.websiteplanet.com/blog/free-icons-for-commercial-use/) with icons that are free for commercial use. It was incredibly helpful.
 
