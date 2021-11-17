@@ -86,7 +86,10 @@ export class Html5Audio {
 ```
 4. It has been imported to /src/app/app.module.
 5. There is only one page with a list of stations (I have [only 3](https://github.com/eapyl/radioon/blob/master/src/pages/home/home.ts) which I listen). Click on a station - starting this station, and there is one button to stop music([link](https://github.com/eapyl/radioon/blob/master/src/pages/home/home.html)). That is all. Simple!
-6. After that we need to prepare icon and splash image for application. I am using [game-icons](http://game-icons.net) to create an icon and [unspalsh](https://unsplash.com/) to find full size images.
+6. After that we need to prepare icon and splash image for application. I am using [game-icons](http://game-icons.net) to create an icon and [unspalsh](https://unsplash.com/) to find full size images. Moreover, I have received a feedback about `game-icons` and I believe it can be useful for the reader:
+    > many of the icons from `game-icons` featured have restrictions on commercial use
+    > Anyway, while checking elsewhere online, I found [this list of websites](https://www.websiteplanet.com/blog/free-icons-for-commercial-use/) with icons that are free for commercial use. It was incredibly helpful.
+
 7. Need to put created icon.png and splash.png to /resources/icon.png and /resources/splash.png and run the next command `ionic cordova resources` (you have to have an account in Ionic portal and it is free).
 8. To [deploy](http://ionicframework.com/docs/intro/deploying/) our application need to run `ionic cordova build android --prod --release` and it will create *.apk file. We need to sign it using 'Sign Android APK' section from [here](http://ionicframework.com/docs/intro/deploying/).
 9. That is all. We have signed apk which we can copy on our device and install.
