@@ -53,5 +53,17 @@ Software architect has the following responsibilities within an organization:
 - business domain understanding
 - identifying and clarifying requirements to a software system
 
+## Domain
+
+Understanding the domain is a key part of being software architect. It is required to have general business knowledge and a good understanding of the organization's business. So it will be possible to design software architecture that solves business problems effectively.
+
+DDD is a proven approach to modeling the domain:
+
+- creating ubiquitous language to simplify and improve communication between everyone
+- identify entities, value objects, aggregates, and root entities
+- separating domain into subdomains and creating bounded contexts
+
+Moreover, proper requirements engineering is an important part of creating a software architecture. Usually, it is not easy to get and elicit all requirements from stakeholders, but knowing requirements is crucial to designing a good solution.
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
