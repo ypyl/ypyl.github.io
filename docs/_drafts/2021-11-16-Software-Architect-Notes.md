@@ -65,5 +65,22 @@ DDD is a proven approach to modeling the domain:
 
 Moreover, proper requirements engineering is an important part of creating a software architecture. Usually, it is not easy to get and elicit all requirements from stakeholders, but knowing requirements is crucial to designing a good solution.
 
+## Quality attributes
+
+The software must match the designed quality attributes, so software architect should properly identify and specify them so they can be tested and measured.
+
+There are two main types of quality attributes: functional and non-functional.
+
+Some important non-functional attributes:
+
+- maintainability
+- usability
+- availability
+- portability
+- interoperability
+- testability
+- security
+- performance
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
