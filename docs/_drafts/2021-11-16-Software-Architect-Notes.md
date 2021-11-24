@@ -82,5 +82,47 @@ Some important non-functional attributes:
 - security
 - performance
 
+## Design
+
+Software architecture design is an important part of the creation of software architectures. A good design can be validated, formally documented, and used by a development team.
+
+There are two (three) main approaches:
+
+- top-down
+- bottom-up
+- mix of the first two approaches
+
+Architectural drivers guide the software architecture design and are inputs for the process of designing:
+
+- design objectives (why the software is being designed?)
+- primary functional requirements
+- quality attributes scenarios (measurable properties of a software system)
+- constraints (properties that must be satisfied)
+- architectural concerns (interests of the software architect)
+
+The following instruments can be used to design software architecture:
+
+- patterns
+- reference architectures (a template for an architecture)
+- tactics (proven techniques to achieve required quality attribute)
+- externally developed software
+
+Documentation is another important phase of designing software architecture.
+
+Architecture design is an iterative process:
+
+- architectural analysis
+- architectural synthesis
+- architectural evaluation (and go back to the first step if required)
+
+There are a set of architecture design processes that can be used:
+
+- attribute-driven design (ADD)
+- microsoft's technique for architecture and design
+- architecture-centric design method (ACDM)
+- architecture development method (ADM)
+
+Tracking the progress of the designing process is important and can be combined with the creation of the documentation.
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
