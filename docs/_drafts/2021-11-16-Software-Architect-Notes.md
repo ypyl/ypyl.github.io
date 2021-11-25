@@ -124,5 +124,29 @@ There are a set of architecture design processes that can be used:
 
 Tracking the progress of the designing process is important and can be combined with the creation of the documentation.
 
+## Principles and practices
+
+There are some principles and practices that will help to design orthogonal system which is extendable without breaking the existing functionality:
+
+- loose coupling
+- high cohesion
+
+To reduce complexity of the system the following principles can be used and followed:
+
+- KISS
+- DRY
+- information hiding
+- YAGNI
+- SoC (Separation of Concerns)
+- SOLID (SRP, OCP, LSP, ISP, DIP)
+
+To improve quality of the system the following practices can be used:
+
+- unit testing
+- pair programming
+- reviewing artifacts
+
+Also, software architecture patterns can be used to solve the common recurring problems.
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
