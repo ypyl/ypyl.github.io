@@ -148,5 +148,19 @@ To improve quality of the system the following practices can be used:
 
 Also, software architecture patterns can be used to solve the common recurring problems.
 
+## Software architecture patterns
+
+Software architecture patterns provide solutions for common and recurring problems in software designing process. They give the high level structure of the system that can be understandable by other developers as such patterns are commonly used.
+
+There are a lot of patterns, but the most commonly used:
+
+- layered architecture
+- event-driven architecture
+- model-view-controller pattern (MVC)
+- model-view-presenter pattern (MVP)
+- model-view-viewmodel pattern (MVVM)
+- command query responsibility segregation pattern (CQRS)
+- service-oriented architecture (SOA)
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
