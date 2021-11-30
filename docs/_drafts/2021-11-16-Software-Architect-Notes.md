@@ -162,5 +162,12 @@ There are a lot of patterns, but the most commonly used:
 - command query responsibility segregation pattern (CQRS)
 - service-oriented architecture (SOA)
 
+There are a set of quite 'new' architectures and principles which are worked well for applications deployed to the cloud:
+
+- monolithic architecture
+- microservice architecture
+- serverless architecture (FaaS, BaaS)
+- cloud-native applications (twelve-factor app methodology)
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
