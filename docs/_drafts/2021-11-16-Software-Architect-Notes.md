@@ -150,24 +150,36 @@ Also, software architecture patterns can be used to solve the common recurring p
 
 ## Software architecture patterns
 
-Software architecture patterns provide solutions for common and recurring problems in software designing process. They give the high level structure of the system that can be understandable by other developers as such patterns are commonly used.
+[Software architecture patterns](https://en.wikipedia.org/wiki/Architectural_pattern) provide solutions for common and recurring problems in software designing process. They give the high level structure of the system that can be understandable by other developers as such patterns are commonly used.
 
 There are a lot of patterns, but the most commonly used:
 
-- layered architecture
-- event-driven architecture
-- model-view-controller pattern (MVC)
-- model-view-presenter pattern (MVP)
-- model-view-viewmodel pattern (MVVM)
-- command query responsibility segregation pattern (CQRS)
-- service-oriented architecture (SOA)
+- [layered architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
+- [event-driven architecture](https://en.wikipedia.org/wiki/Event-driven_architecture)
+- [model-view-controller pattern (MVC)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+- [model-view-presenter pattern (MVP)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter)
+- [model-view-viewmodel pattern (MVVM)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
+- [command query responsibility segregation pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs) (CQRS)
+- [service-oriented architecture (SOA)](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/service-oriented-architecture)
 
 There are a set of quite 'new' architectures and principles which are worked well for applications deployed to the cloud:
 
-- monolithic architecture
-- microservice architecture
-- serverless architecture (FaaS, BaaS)
-- cloud-native applications (twelve-factor app methodology)
+- [monolithic architecture](https://docs.microsoft.com/en-us/dotnet/architecture/containerized-lifecycle/design-develop-containerized-apps/monolithic-applications)
+- [microservice](https://en.wikipedia.org/wiki/Microservices) architecture
+- [serverless architecture](https://docs.microsoft.com/en-us/dotnet/architecture/serverless/serverless-architecture) (FaaS, BaaS)
+- [cloud-native applications](https://azure.microsoft.com/en-us/overview/cloudnative/) ([twelve-factor app methodology](https://12factor.net/))
+
+## Cross-cutting concerns
+
+[Cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern) represent functionality which are used by multiple part/layers of the application (e.g. security, logging, caching, error handling, configuration, monitoring). So logic of such concerns are called by different components.
+
+The following methods are used to implement and use the logic of cross-cutting concerns:
+
+- [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection)
+- [decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern)
+- [aspect-oriented programming](https://en.wikipedia.org/wiki/Aspect-oriented_programming)
+- [sidecar pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar) for microservices
+- ready-to-use solutions like [Darp](https://dapr.io/) for mircoservices
 
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
