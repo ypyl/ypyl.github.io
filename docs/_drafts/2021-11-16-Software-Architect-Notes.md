@@ -181,5 +181,31 @@ The following methods are used to implement and use the logic of cross-cutting c
 - [sidecar pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar) for microservices
 - ready-to-use solutions like [Darp](https://dapr.io/) for mircoservices
 
+## Performance
+
+Before working on [performance](https://en.wikipedia.org/wiki/Performance_engineering) improvement and optimizations, need to make sure that the code is correct. But the software system should be enough fast as it affects user experience.
+
+Performance is one of the quality attributes and it should be documented. It also should be testable and measurable. Usually improving performance is done using an iterative way: monitoring, profiling, analyzing, implementing.
+
+There are a set of terms related to performance:
+
+- [latency](https://en.wikipedia.org/wiki/Latency_%28engineering%29)
+- [throughput](https://en.wikipedia.org/wiki/Throughput)
+- [bandwidth](https://en.wikipedia.org/wiki/Bandwidth_(computing))
+- processing time
+- [response time](https://en.wikipedia.org/wiki/Response_time_(technology))
+- [workload](https://en.wikipedia.org/wiki/Workload)
+- utilization
+
+There are a couple of standard mechanics and ways to improve performance:
+
+- [server-side caching](https://docs.microsoft.com/en-us/azure/architecture/best-practices/caching)
+- [HTTP caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
+- [compression](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression)
+- [minifying and bundling](https://docs.microsoft.com/en-us/aspnet/mvc/overview/performance/bundling-and-minification)
+- [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2/)
+- [CDN](https://en.wikipedia.org/wiki/Content_delivery_network)
+- [tweaking database performance](https://en.wikipedia.org/wiki/Database_tuning)
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
