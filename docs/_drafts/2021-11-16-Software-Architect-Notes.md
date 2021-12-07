@@ -207,5 +207,44 @@ There are a couple of standard mechanics and ways to improve performance:
 - [CDN](https://en.wikipedia.org/wiki/Content_delivery_network)
 - [tweaking database performance](https://en.wikipedia.org/wiki/Database_tuning)
 
+## Security
+
+[Security](https://en.wikipedia.org/wiki/Computer_security) is important part of any software application. There is [CIA triad](https://en.wikipedia.org/wiki/Information_security) which summarize the attributes that the system can have:
+
+- confidentiality
+- integrity
+- availability
+
+Software architect should try to keep a balance between these attributes.
+
+There is [threat modeling](https://en.wikipedia.org/wiki/Threat_model) which is structured approach to analyzing security for an application (STRIDE threat model, [DREAD risk assessment model](https://en.wikipedia.org/wiki/DREAD_(risk_assessment_model))). Also there are techniques to create an application that are secure by design:
+
+- minimize [attack surface](https://en.wikipedia.org/wiki/Attack_surface)
+- [defence in depth](https://en.wikipedia.org/wiki/Defense_in_depth_(computing))
+- [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege)
+- [avoiding security by obscurity](https://en.wikipedia.org/wiki/Security_through_obscurity)
+- [keep software designs simple](https://en.wikipedia.org/wiki/KISS_principle)
+- [security by default](https://en.wikipedia.org/wiki/Secure_by_default)
+- [default deny](https://en.wikipedia.org/wiki/Computer_access_control)
+- [validating input](https://en.wikipedia.org/wiki/Data_validation)
+- secure the weakest link
+- security must be usable
+- [fail securely](https://en.wikipedia.org/wiki/Fail-safe)
+
+[Cryptography](https://en.wikipedia.org/wiki/Cryptography) is the study which allows to keep information in secret. [IAM (Identity and access management)](https://en.wikipedia.org/wiki/Identity_management) allows to centralize information related to the application security.
+
+[Most common web application risks](https://owasp.org/Top10/):
+- [injection](https://owasp.org/Top10/A03_2021-Injection/)
+- [broken authentication](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/)
+- sensitive data exposure
+- XML external entity (XXE) attack
+- [broken access control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
+- [security misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)
+- cross-site scripting (XSS)
+- insecure deserialization
+- [using components with known vulnerable components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
+- [insufficient logging and monitoring](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/)
+- unvalidated redirects and forwards
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
