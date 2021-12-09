@@ -240,11 +240,25 @@ There is [threat modeling](https://en.wikipedia.org/wiki/Threat_model) which is 
 - XML external entity (XXE) attack
 - [broken access control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
 - [security misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)
-- cross-site scripting (XSS)
-- insecure deserialization
+- [cross-site scripting (XSS)](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
+- [insecure deserialization](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html)
 - [using components with known vulnerable components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
 - [insufficient logging and monitoring](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/)
-- unvalidated redirects and forwards
+- [unvalidated redirects and forwards](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)
+
+## Documenting and reviewing
+
+Documenting is an important part of delivering architecture. It allows to educate, train other team members, share architectural knowledge and provide entry points for review.
+
+There are a set of techniques to describe an architecture in an understandable way, e.g using UML and architectural view models (like [4 + 1](https://en.wikipedia.org/wiki/4%2B1_architectural_view_model)). Some additional information can be found [here](https://ypyl.github.io/documentation/2019/08/01/New-Project.html#architecture).
+
+Reviewing architecture methods:
+
+- [software architecture analysis method (SAAM)](https://en.wikipedia.org/wiki/Software_architecture_analysis_method)
+- [architecture tradeoff analysis method (ATAM)](https://en.wikipedia.org/wiki/Architecture_tradeoff_analysis_method)
+- active design review (ADR)
+- [active reviews of intermediate designs (ARID)](https://en.wikipedia.org/wiki/ARID)
+
 
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
