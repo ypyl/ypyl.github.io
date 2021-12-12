@@ -260,5 +260,27 @@ Reviewing architecture methods:
 - [active reviews of intermediate designs (ARID)](https://en.wikipedia.org/wiki/ARID)
 
 
+## DevOps
+
+[DevOps](https://en.wikipedia.org/wiki/DevOps) allows to build, integrate, deploy and deliver the application in fast, automatic and incremental way. It allows to follow 'fail fast' principle during releasing a new version of the application and roll back to the previous version quickly in case of the failed released version.
+
+- [Continuous integration](https://en.wikipedia.org/wiki/Continuous_integration), with automatic builds and tests, allows to validate changes quickly.
+- [Continuous delivery](https://en.wikipedia.org/wiki/Continuous_delivery) allows to deliver artifacts that can be deployed to the production at any time automatically.
+- [Continuous deploy](https://en.wikipedia.org/wiki/Continuous_deployment) allows to push new versions of the application to the production in automatic way.
+
+Needs of DevOps should be considered during the building of software application design. The following [quality attributes](https://en.wikipedia.org/wiki/DevOps#Architecturally_significant_requirements) are important for DevOps:
+
+- testability
+- deployability
+- maintainability
+
+## [Cloud models](https://en.wikipedia.org/wiki/Cloud_computing#Service_models)
+
+- Infrastructure as a Service (IaaS)
+- Containers as a Service (CaaS)
+- Platform as a Service (PaaS)
+- Serverless/Function as a Service
+- Software as a Service (SaaS)
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
