@@ -282,5 +282,20 @@ Needs of DevOps should be considered during the building of software application
 - Serverless/Function as a Service
 - Software as a Service (SaaS)
 
+## Legacy architecture
+
+There are a lot of challenges in maintaining, improving, and extending [legacy applications](https://en.wikipedia.org/wiki/Legacy_system). Software architects should be able to refactor the legacy application to make it easier to extend, modify or fix.
+
+The following actions and techniques should be considered to do [refactoring](https://en.wikipedia.org/wiki/Code_refactoring):
+
+- making the code of the legacy application (or a part of it) testable
+- [removing redundant code](https://en.wikipedia.org/wiki/Dead_code_elimination) (dead, unreachable, commented-out code)
+- using the tools to do refactoring
+- making small incremental changes
+- extract functionalities into separate components or microservices
+- prepare [migration to the cloud](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-best-practices/contoso-migration-overview)
+- modernizing build and deployment process
+
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
