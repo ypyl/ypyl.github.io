@@ -296,6 +296,13 @@ The following actions and techniques should be considered to do [refactoring](ht
 - prepare [migration to the cloud](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-best-practices/contoso-migration-overview)
 - modernizing build and deployment process
 
+## Soft skills
+
+[Soft skills](https://en.wikipedia.org/wiki/Soft_skills) are important for the software architect role. It is hard to define and measure such skills, but it is impossible to train them and enhance:
+
+- [communication](https://en.wikipedia.org/wiki/Communication_skill)
+- [leadership](https://en.wikipedia.org/wiki/Leadership)
+- [negotiation](https://en.wikipedia.org/wiki/Negotiation)
 
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
