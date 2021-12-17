@@ -304,5 +304,13 @@ The following actions and techniques should be considered to do [refactoring](ht
 - [leadership](https://en.wikipedia.org/wiki/Leadership)
 - [negotiation](https://en.wikipedia.org/wiki/Negotiation)
 
+## [Software evolution](https://en.wikipedia.org/wiki/Software_evolution)
+
+Software architecture should be designed to make applications extendable and changeable. So software architects should expect that there will be changes in the application. There is [Lehman's laws of software evolution](https://en.wikipedia.org/wiki/Lehman%27s_laws_of_software_evolution).
+
+[Fitness function](https://en.wikipedia.org/wiki/Fitness_function) is a type of objective function that is used to determine how close a given solution is to achieving the desired result.
+
+Making incremental changes, using standards, following the last responsible moment strategy, and designing loosely coupled applications allows making changes more easily in the future. It is a good practice to follow [robustness principle](https://en.wikipedia.org/wiki/Robustness_principle) during the designing API.
+
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
