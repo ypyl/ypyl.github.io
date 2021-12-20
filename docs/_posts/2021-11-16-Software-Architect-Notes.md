@@ -6,11 +6,9 @@ tags: software architect
 categories: programming
 ---
 
-# Software Architecture
-
 ## What is software architecture
 
-Software architecture is the foundation for the software system.
+[Software architecture](https://en.wikipedia.org/wiki/Software_architecture) is the foundation for the software system.
 
 It consists of different aspects:
 
@@ -56,7 +54,7 @@ Software architect has the following responsibilities within an organization:
 
 Understanding the domain is a key part of being software architect. It is required to have general business knowledge and a good understanding of the organization's business. So it will be possible to design software architecture that solves business problems effectively.
 
-DDD is a proven approach to modeling the domain:
+[DDD](https://en.wikipedia.org/wiki/Domain-driven_design) is a proven approach to modeling the domain:
 
 - creating ubiquitous language to simplify and improve communication between everyone
 - identify entities, value objects, aggregates, and root entities
@@ -64,13 +62,13 @@ DDD is a proven approach to modeling the domain:
 
 Moreover, proper requirements engineering is an important part of creating a software architecture. Usually, it is not easy to get and elicit all requirements from stakeholders, but knowing requirements is crucial to designing a good solution.
 
-## Quality attributes
+## [Quality attributes](https://en.wikipedia.org/wiki/List_of_system_quality_attributes)
 
 The software must match the designed quality attributes, so software architect should properly identify and specify them so they can be tested and measured.
 
 There are two main types of quality attributes: functional and non-functional.
 
-Some important non-functional attributes:
+Some important [non-functional attributes](https://en.wikipedia.org/wiki/Non-functional_requirement):
 
 - maintainability
 - usability
