@@ -2,7 +2,6 @@
 layout: post
 title: "Software Architect Notes"
 date: 2010-10-16
-draft: true
 tags: software architect
 categories: programming
 ---
@@ -311,6 +310,20 @@ Software architecture should be designed to make applications extendable and cha
 [Fitness function](https://en.wikipedia.org/wiki/Fitness_function) is a type of objective function that is used to determine how close a given solution is to achieving the desired result.
 
 Making incremental changes, using standards, following the last responsible moment strategy, and designing loosely coupled applications allows making changes more easily in the future. It is a good practice to follow [robustness principle](https://en.wikipedia.org/wiki/Robustness_principle) during the designing API.
+
+## Continuous improvement
+
+Software architects should improve their skills continuously. There are a set of activities that allows to do it:
+
+- continuous learning
+- writing blog
+- teaching others
+- trying new technologies
+- writing code
+- attending meet-ups
+- taking responsibilities
+- following the work-life balance
+- being proud of the work
 
 Notes have been created after reading [Software Architect's Handbook](https://www.amazon.com/Software-Architects-Handbook-implementing-architecture/dp/1788624068)
 []
