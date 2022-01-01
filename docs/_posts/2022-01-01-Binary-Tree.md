@@ -27,7 +27,7 @@ class Node:
 
 ## Depth First
 
-## Stack based implementation
+### Stack based implementation
 
 ```python
 def depthFirst(root):
@@ -48,7 +48,7 @@ def depthFirst(root):
   return results
 ```
 
-## Recursion based implementation
+### Recursion based implementation
 
 ```python
 def depthFirst(root):
@@ -59,7 +59,7 @@ def depthFirst(root):
   return [root.val, *leftValues, *rightValues]
 ```
 
-# Breadth First
+## Breadth First
 
 ```python
 from queue import Queue
