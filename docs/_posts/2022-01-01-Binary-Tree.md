@@ -40,6 +40,7 @@ def depthFirst(root):
     current = stack.pop()
     results.append(current.val)
 
+    # need to start with right, so it will go to the bot of the stack
     if current.right is not None:
       stack.append(current.right)
     if current.left is not None:
@@ -74,10 +75,10 @@ def breadthFirst(root):
     current = queue.get()
     results.append(current.val)
 
-    if current.right is not None:
-      queue.put(current.right)
     if current.left is not None:
       queue.put(current.left)
+    if current.right is not None:
+      queue.put(current.right)
   return results
 ```
 
