@@ -45,6 +45,31 @@ If you like what you are doing, you will feel happiness and satisfaction. It is 
 
 # Invest
 
+## Ask questions
+
+Don't hesitate and ask questions. If you did your research and wasn't able to find answers, you have to escalate and ask questions to your team. Even if you will find out that the answer is simple, you need to ask questions and be prepared to explain them. Avoid [XY problem](https://xyproblem.info/).
+
+## Understand your product niche
+
+Understanding the business problems which are solved by the product you are working on allows to make less errors and ask a bunch of questions. It will help you to show your interest in what you are doing, broad your knowledge and increase your productivity.
+
+## Find a teacher or become a teacher
+
+If you don't know the product well or business of the product, try to find the person who wish and will help you to understand it. So you will become the expert in the topic. If you knows a lot about the product already, become a teacher! It will help you to structurize your knowledge and fill gaps in it.
+
+## Practice in what you are learning
+
+Knowledge without practicing costs cheap. Find possibility to use your knowledge and practicing new frameworks, libraries or approaches.
+
+## Learn and understand other's code
+
+Today software applications are created by many different people, so ability to understand and read other's code is crucial. Review, ask and suggest improvements in other's code if you have a possibility to do that. It will make you better programmer and also improve your communication skills.
+
+## Automation
+
+If you are doing the same task twice - automate it if possible! It will save your time next time, allow to 'record' the procedure to avoid potential mistakes and allow to share it with others.
+
+
 # Execution
 
 # Marketing
