@@ -69,8 +69,52 @@ Today software applications are created by many different people, so ability to 
 
 If you are doing the same task twice - automate it if possible! It will save your time next time, allow to 'record' the procedure to avoid potential mistakes and allow to share it with others.
 
-
 # Execution
+
+## Do what you can do
+
+Even if the area of work is very big, you need to start working on something. So find a small task that you can complete right now and start with it.
+
+## Predict others requests
+
+Thinking about any future requests or possible changes or feature that might be requests is a good way to do your job right. If you know what to expect, you can prepare yourself and your working environment to upcoming changes and make your life easier.
+
+## Record your daily achievements
+
+Having the list of what you did and what you achieved is important to be self-motivated and check the progress. It will allow you to stay focused.
+
+## Remember who is your boss
+
+You always have to remember who is your boss and what he expects from you. Your boss can be anything: business, clients or yourself. All your work should help achieving the main goal of your boss.
+
+## Be on your spot
+
+Look forward to new opportunities, but do your current job well. If you don't want to do your current assignment, it is better to find a new job!
+
+## Nobody cares
+
+You should accept and always remember that you are not important for business as a person or individual. Even if you are very good at current assignment, you can be replaced at any time. Do not forget it and be careful!
+
+## Take a break
+
+Developing yourself as a programmer and specialist is not a sprint, it is a marathon. Take a break if you need it. Mental health (and health in general) is more important than any type of work.
+
+## Lose is ok
+
+Do not afraid to miss something or be wrong. Nobody is perfect. If you are not doing mistakes, it means you do nothing. And there is no win without loses (otherwise, you are extremely lucky guy and you should start gambling :))
+
+## Start saying 'NO'
+
+It is more connected with managing your time and fear to disappoint others. You can't do all work and can't be nice to everyone - accept it! And start saying 'NO'.
+
+## No panic
+
+Long story short - panicking is a waste of time. Just remember it and your first thought in critical situation should be 'No panic'.
+
+## Say, do, show
+
+Announce your promises, fulfill it and report results is the best strategy to be promoted. It shows that you can plan ahead, do job in time and be transparent. 
+
 
 # Marketing
 
