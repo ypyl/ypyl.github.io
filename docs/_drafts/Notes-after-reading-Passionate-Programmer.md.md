@@ -115,7 +115,50 @@ Long story short - panicking is a waste of time. Just remember it and your first
 
 Announce your promises, fulfill it and report results is the best strategy to be promoted. It shows that you can plan ahead, do job in time and be transparent. 
 
-
 # Marketing
 
+## Reputation matters
+
+Reputation is important in your life and it is important in your career. Be careful what you saying publicly (and even privately) as today your bad reputation can ruin your life.
+
+## You are what you can explain
+
+Others can understand you only if you will be able to explain your thoughts and ideas. So practicing in public speaking and doing presentations.
+
+## Know with whom you are working
+
+Today it is almost impossible to work alone. So knowing your colleagues will help you to do your job better via sharing and getting knowledge about the product domain.
+
+## Talk with others
+
+If you are interested in any topic, try to find a group of people who is also interested in it. Or try to find specialists in this topic/framework/library and follow them!
+
 # Outdated
+
+## Your knowledge are outdated already
+
+There are a tone of new technologies coming each quarter. Try to follow trends and be familiar with the most interesting and promising ones.
+
+## The final goal is important, but the steps to it are more important
+
+The outcome of each work is a result which is valuable. But all steps/subtasks are important to have a well-designed, high-quality result.
+
+## Follow the plan
+
+It is very easy to waste time on doing non-important work without good plan. So there should be always a plan how to achieve the goal.
+
+## Look at the market
+
+You need to know what vacancies are open now and what requirements are applied to them. Go to interviews at least once a year to check yourself.
+
+## Do yourself evaluation
+
+Evaluate yourself as much as possible to find the weakest parts to be able to improve them. It is much more easy to accept such evaluation from yourself than from others.
+
+## Better than yesterday
+
+Each day is 24 hour. Spend this time to be better version of yourself than you was yesterday.
+
+## Be independent and enjoy your life
+
+We have only one life, so happiness and independent are very important to be a good programmer, specialist or human.
