@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tracker booл"
+title: "Tracker book"
 date: 2022-03-01
 tags: csharp dotnet avalonia
 categories: programming
