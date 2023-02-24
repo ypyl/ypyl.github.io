@@ -15,9 +15,9 @@ categories: programming
 
 🪟 You can create multiple views of your model to better understand and communicate the relationships within your software system
 
-🔎 Our graphical interface enables you to create and edit views, layout elements and edges, zoom, scroll, and navigate through the selected view
+🔎 Graphical interface enables you to create and edit views, layout elements and edges, zoom, scroll, and navigate through the selected view
 
-💣 Our application highlights any inconsistencies in the model and views using error messages, ensuring your software architecture is clear and consistent
+💣 Application highlights any inconsistencies in the model and views using error messages, ensuring your software architecture is clear and consistent
 
 ☝ The C4 model is a powerful tool for understanding and communicating the structure of your software system, and our application supports the four main types of entities in the model: actors, systems, containers, and components
 
