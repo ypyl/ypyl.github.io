@@ -3,7 +3,7 @@ layout: post
 title: "Hiring globally companies"
 date: 2023-02-24
 tags: hiring, remote, job, programming
-categories: job, work
+categories: work
 ---
 
 - https://upstackhq.com/
