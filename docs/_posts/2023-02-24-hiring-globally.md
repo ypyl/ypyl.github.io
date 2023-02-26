@@ -86,3 +86,9 @@ categories: work
 - https://www.bairesdev.com/
 - https://teamway.io/
 - https://ibench.net/
+- virtualvocations.com
+- freshersworld.com
+- justremote.co
+- simplyhired.com
+- remote.co
+- dice.com
