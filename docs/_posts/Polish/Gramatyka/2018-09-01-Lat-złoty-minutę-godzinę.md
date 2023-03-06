@@ -7,6 +7,7 @@ tags: polish gramatyka
 categories: learning
 ---
 ## Lat czy lata?
+
 |||
 |-|-|
 |1|rok|
@@ -14,6 +15,7 @@ categories: learning
 |x2, x3, x4| lata|
 
 ## Złoty czy złotych
+
 |||||
 |-|-|-|-|
 |1|złoty|1|grosz|
@@ -21,6 +23,7 @@ categories: learning
 |x1, x5-x9|złotych|x1, x5-x9|groszy|
 
 ## Jak dlugo?
+
 |||
 |-|-|
 |1 (jedną)|minutę/godzinę|
