@@ -22,4 +22,4 @@ categories: learning
 |(on/ona/ono) -Ø|je|wie|chodzi|chce|pisze|może|pracuje|idzie|jedzie|jeździ|bierze|pije|umrze|
 |(my) -my|jemy|wiemy|chodzimy|chcemy|piszemy|możemy|pracujemy|idziemy|jedziemy|jeżdzimy|bierzemy|pijemy|umrzemy|
 |(wy) -cie|jecie|wiecie|chodzicie|chcecie|piszecie|możecie|pracujecie|idziecie|jedziecie|jeżdzicie|bierzecie|pijecie|umrzecie|
-|(oni/one) -ą, -ją|jedzą|wiedzą|chodzą|chcą|piszą|mogą|pracują|idą|jadą|jeżdżą|bierzą|piją|umrą||
+|(oni/one) -ą, -ją|jedzą|wiedzą|chodzą|chcą|piszą|mogą|pracują|idą|jadą|jeżdżą|bierzą|piją|umrą|
