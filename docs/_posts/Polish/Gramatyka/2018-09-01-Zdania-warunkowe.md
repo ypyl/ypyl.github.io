@@ -15,4 +15,4 @@ categories: learning
 |on/ona/ono|miałby|miałaby|miałoby|
 |my|mielibyśmy|miałybyśmy||
 |wy|mielibyście|miałybyście||
-|oni/one|mieliby|miałyby|||
+|oni/one|mieliby|miałyby||
