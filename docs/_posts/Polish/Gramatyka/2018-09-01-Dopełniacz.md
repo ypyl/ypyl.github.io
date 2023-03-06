@@ -16,7 +16,7 @@ jakiego? jakiej? jakiego?
 |nie lubię:|żółtego sera, makaronu||||
 ||mojego kuzyna|-ego|-a|rodzaj męski żywotny|
 ||dobrej restauracji|-ej|-y /(-k, -g, -j, miękkie) -i|rodzaj żenski|
-||nowego kina|-ego|-a|rodzaj nijaki||
+||nowego kina|-ego|-a|rodzaj nijaki|
 
 # Dopełniacz (kogo? czego?), liczba mnoga
 
@@ -28,4 +28,4 @@ jakiego? jakiej? jakiego?
 |-ów:|(mianownik liczba pojedyncza spółgłoska - ziemniak, pomidor, banan)|
 ||kilo ziemniaków, pomidorów, bananów|
 |-Ø|(mianownik liczba pojedyncza -a, -i, -e, -o - cytryna, jabłko, jajko)|
-||kiło cytryn, jabłek, jajek||
+||kiło cytryn, jabłek, jajek|
