@@ -31,4 +31,5 @@ categories: learning
 |gość-goście|-ść|-e|
 |nauczyciel-nauczyciele|-l|-e|
 |Amerykanin-Amerykanie|-anin -anie|-e|
+
 > mężczyzna - mężczyzni, brat - bracia, ksiądz - księża
