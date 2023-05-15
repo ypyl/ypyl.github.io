@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+@using Microsoft.AspNetCore.Components
+
 <PageTitle>Index</PageTitle>
 
-@* @TestGenerator.TestGeneratorNameMine.BlogHtml() *@
+@(new MarkupString(TestGenerator.TestGeneratorNameMine.BlogHtml()))

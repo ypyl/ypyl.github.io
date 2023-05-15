@@ -1,0 +1,7 @@
+To reload source Generator
+
+```
+dotnet build-server shutdown; dotnet clean; dotnet run
+```
+
+[More info](https://github.com/dotnet/roslyn/issues/67388)

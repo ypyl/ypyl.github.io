@@ -16,14 +16,21 @@ namespace SourceGenerator
 
         public void Execute(GeneratorExecutionContext context)
         {
-            var html = "<span>My name is</span>"; //Markdig.Markdown.ToHtml(File.ReadAllText("../Blog/2010-10-16-Linq-and-Group.md"), MarkdownPipeline);
-            context.AddSource("TestGeneratorName.g.cs", $$"""
-namespace TestGenerator;
-public static class TestGeneratorNameMine
-{
-    public static string BlogHtml() => "{{html}}";
-}
-""");
+            foreach (AdditionalText additionalFile in context.AdditionalFiles)
+            {
+                // Process the additional file
+                var filePath = additionalFile.Path;
+                var fileName = Path.GetFileName(filePath);
+                var fileContent = additionalFile.GetText(context.CancellationToken);
+                var html = Markdig.Markdown.ToHtml(fileContent.ToString(), MarkdownPipeline);
+                context.AddSource($"{fileName}.g.cs", $$"""
+                    namespace TestGenerator;
+                    public static class TestGeneratorNameMine
+                    {
+                        public static string BlogHtml() => "{{html}}";
+                    }
+                    """);
+            }
         }
 
         public void Initialize(GeneratorInitializationContext context)
