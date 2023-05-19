@@ -18,6 +18,9 @@ jobs:
       with:
         dotnet-version: 7.0.x
 
+    - name: Build
+      run: dotnet build
+
     # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
       run: dotnet publish BlazorBlog/BlazorBlog.csproj -c Release -o release --nologo
