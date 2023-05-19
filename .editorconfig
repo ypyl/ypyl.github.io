@@ -1,4 +1,0 @@
-﻿[*.cs]
-
-# RS1035: Do not use APIs banned for analyzers
-dotnet_diagnostic.RS1035.severity = warning

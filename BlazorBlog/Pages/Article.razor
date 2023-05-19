@@ -1,17 +1,12 @@
-﻿@page "/"
+﻿@page "/{articleName}"
 @inject HttpClient Http
 @using Microsoft.AspNetCore.Components
 @using Markdig
 @using Markdown.ColorCode
-@inject NavigationManager Navigation
 
 <PageTitle>Index</PageTitle>
 
-<button class="btn btn-primary" @onclick="NavigateToCounterComponent">
-    Navigate to the Artcile
-</button>
-
-
+@(new MarkupString(Blog.Articles.Content()[ArticleName]))
 @* <br/>
 @(new MarkupString(rowString))
 @code {
@@ -29,8 +24,6 @@
 } *@
 
 @code {
-    private void NavigateToCounterComponent()
-    {
-        Navigation.NavigateTo($"2010-10-16-Linq-and-Group");
-    }
+    [Parameter]
+    public string? ArticleName { get; set; }
 }
