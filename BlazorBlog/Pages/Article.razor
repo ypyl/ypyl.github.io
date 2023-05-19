@@ -1,27 +1,10 @@
 ﻿@page "/{articleName}"
 @inject HttpClient Http
 @using Microsoft.AspNetCore.Components
-@using Markdig
-@using Markdown.ColorCode
 
 <PageTitle>Index</PageTitle>
 
 @(new MarkupString(Blog.Articles.Content()[ArticleName]))
-@* <br/>
-@(new MarkupString(rowString))
-@code {
-    private string rowString = "";
-
-    protected override async Task OnInitializedAsync()
-    {
-        var data = await Http.GetStringAsync("2010-10-16-Linq-and-Group.md");
-        var MarkdownPipeline = new MarkdownPipelineBuilder()
-                .UseAdvancedExtensions()
-                .UseColorCode()
-                .Build();
-        rowString = Markdig.Markdown.ToHtml(data, MarkdownPipeline);
-    }
-} *@
 
 @code {
     [Parameter]
