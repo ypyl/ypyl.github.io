@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\Blog\2010-10-16-Linq-and-Group.md" />
+    <AdditionalFiles Include="..\Blog\*.md" />
   </ItemGroup>
 
 </Project>

@@ -4,9 +4,12 @@
 
 <PageTitle>Index</PageTitle>
 
-<button class="btn btn-primary" @onclick="NavigateToCounterComponent">
-    Navigate to the Artcile
-</button>
+@foreach (var articleName in Blog.Articles.Content().Keys)
+{
+    <button class="btn btn-primary" @onclick="() => NavigateToCounterComponent(articleName)">
+        @articleName
+    </button>
+}
 
 
 @* <br/>
@@ -26,8 +29,8 @@
 } *@
 
 @code {
-    private void NavigateToCounterComponent()
+    private void NavigateToCounterComponent(string articleName)
     {
-        Navigation.NavigateTo($"2010-10-16-Linq-and-Group");
+        Navigation.NavigateTo(articleName);
     }
 }
