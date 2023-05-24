@@ -1,0 +1,6 @@
+<MudNavMenu>
+    @foreach (var articleName in Blog.Articles.Content().Keys)
+    {
+        <MudNavLink Href="@articleName" Match="NavLinkMatch.Prefix">@articleName</MudNavLink>
+    }
+</MudNavMenu>
