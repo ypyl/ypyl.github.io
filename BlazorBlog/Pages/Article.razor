@@ -1,10 +1,15 @@
 ﻿@page "/{articleName}"
+@page "/"
 @inject HttpClient Http
 @using Microsoft.AspNetCore.Components
 
 <PageTitle>Index</PageTitle>
+@if (ArticleName == null) {
+    @(new MarkupString(Blog.Articles.Content()[Blog.Articles.Content().Keys.First()]))
+} else {
+    @(new MarkupString(Blog.Articles.Content()[ArticleName]))
+}
 
-@(new MarkupString(Blog.Articles.Content()[ArticleName]))
 
 @code {
     [Parameter]
