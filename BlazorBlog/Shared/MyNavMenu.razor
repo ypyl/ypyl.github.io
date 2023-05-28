@@ -1,14 +1,14 @@
 <MudNavMenu>
-    <MudList DisablePadding="true" Dense="true">
+    <MudList DisablePadding="true" Dense="true" >
         <MudListSubheader>
-            <MudTextField @bind-Value="@searchTerm" Immediate="true" />
+            <MudTextField @bind-Value="@searchTerm" Immediate="true" Margin="Margin.Dense" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" />
         </MudListSubheader>
 
-        @foreach (var articleName in Blog.Articles.Content().Keys.Where(x => x.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))
+        @foreach (var articleName in ArticleNames())
         {
-            <MudListItem @key="articleName">
+            <MudListItem @key="articleName" Class="pa-0 ma-0">
                 <MudNavLink Href="@articleName" Match="NavLinkMatch.Prefix">
-                    <MudHighlighter Text="@CleanArticleName(articleName)" HighlightedText="@searchTerm" />
+                    <MudHighlighter Text="@CleanArticleName(articleName)" HighlightedText="@searchTerm"/>
                 </MudNavLink>
             </MudListItem>
         }
@@ -17,6 +17,20 @@
 
 @code {
     string searchTerm = "";
+
+    public IEnumerable<string> ArticleNames()
+    {
+        var result = new List<(int, string)>();
+        foreach (var articleName in Blog.Articles.Content().Keys.Where(x => x.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))
+        {
+            var parser = articleName.Split("-");
+            var year = Convert.ToInt32(parser[0]);
+            var month = Convert.ToInt32(parser[1]);
+            var day = Convert.ToInt32(parser[2]);
+            result.Add((year * 10000 + month * 100 + day, articleName));
+        }
+        return result.OrderByDescending(x => x.Item1).Select(x => x.Item2);
+    }
 
     public string CleanArticleName(string articleName)
     {
