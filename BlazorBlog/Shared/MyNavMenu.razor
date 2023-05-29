@@ -1,3 +1,7 @@
+@using Services
+
+@inject ArticleService articleService
+
 <MudNavMenu>
     <MudList DisablePadding="true" Dense="true" >
         <MudListSubheader>
@@ -20,16 +24,7 @@
 
     public IEnumerable<string> ArticleNames()
     {
-        var result = new List<(int, string)>();
-        foreach (var articleName in Blog.Articles.Content().Keys.Where(x => x.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))
-        {
-            var parser = articleName.Split("-");
-            var year = Convert.ToInt32(parser[0]);
-            var month = Convert.ToInt32(parser[1]);
-            var day = Convert.ToInt32(parser[2]);
-            result.Add((year * 10000 + month * 100 + day, articleName));
-        }
-        return result.OrderByDescending(x => x.Item1).Select(x => x.Item2);
+        return articleService.ArticleNames();
     }
 
     public string CleanArticleName(string articleName)

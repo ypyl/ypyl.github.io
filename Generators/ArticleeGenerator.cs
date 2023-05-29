@@ -7,11 +7,11 @@ using Microsoft.CodeAnalysis;
 namespace SourceGenerator
 {
     [Generator]
-    public class MineSourceGenerator : ISourceGenerator
+    public class ArticleeGenerator : ISourceGenerator
     {
         public void Execute(GeneratorExecutionContext context)
         {
-            var MarkdownPipeline = new MarkdownPipelineBuilder()
+            var markdownPipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
                 .UseColorCode()
                 .Build();
@@ -22,7 +22,7 @@ using System.Collections.Generic;
 namespace Blog;
 public static class Articles
 {
-    public static IReadOnlyDictionary<string, string> Content()
+    public static IReadOnlyDictionary<string, string> Value()
     {
         return new Dictionary<string, string>
         {
@@ -33,7 +33,7 @@ public static class Articles
                 var filePath = additionalFile.Path;
                 var fileName = Path.GetFileNameWithoutExtension(filePath);
                 var fileContent = additionalFile.GetText(context.CancellationToken);
-                var html = Markdig.Markdown.ToHtml(fileContent.ToString(), MarkdownPipeline);
+                var html = Markdig.Markdown.ToHtml(fileContent.ToString(), markdownPipeline);
                 var content =
 $$"""""""""
             ["""{{fileName}}"""] =

@@ -8,4 +8,4 @@ categories: documentation
 ---
 [link](http://burba.pro/presentation_structure/)
 
-![image](/images/presentation_structure.png)
+![image](./images/presentation_structure.png)

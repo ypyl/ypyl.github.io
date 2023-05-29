@@ -22,6 +22,11 @@
 
   <ItemGroup>
     <AdditionalFiles Include="..\Blog\*.md" />
+    <ContentWithTargetPath Include="..\Blog\images\*.*">
+      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>wwwroot/images/%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath >
   </ItemGroup>
 
 </Project>
