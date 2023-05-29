@@ -13,6 +13,7 @@ namespace SourceGenerator
         {
             var markdownPipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
+                .UseSoftlineBreakAsHardlineBreak()
                 .UseColorCode()
                 .Build();
             var code = new StringBuilder();
