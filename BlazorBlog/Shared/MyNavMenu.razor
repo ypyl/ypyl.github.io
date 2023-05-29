@@ -24,7 +24,7 @@
 
     public IEnumerable<string> ArticleNames()
     {
-        return articleService.ArticleNames();
+        return articleService.ArticleNames().Where(x => x.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
     }
 
     public string CleanArticleName(string articleName)
