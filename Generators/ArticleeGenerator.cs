@@ -24,9 +24,9 @@ using System.Collections.Generic;
 namespace Blog;
 public static class Articles
 {
-    public static IReadOnlyDictionary<string, string> Value()
+    public static Dictionary<string, (Dictionary<string, string>, string)> Value()
     {
-        return new Dictionary<string, string>
+        return new Dictionary<string, (Dictionary<string, string>, string)>
         {
 """"""""");
             foreach (AdditionalText additionalFile in context.AdditionalFiles)
@@ -37,12 +37,25 @@ public static class Articles
                 var fileContent = additionalFile.GetText(context.CancellationToken);
                 var parsedContext = MetaDataAndMarkdown(fileContent.ToString());
                 var html = Markdig.Markdown.ToHtml(parsedContext.Item2, markdownPipeline);
+                var meta = new StringBuilder();
+                foreach (var (key, value) in parsedContext.Item1)
+                {
+                    var singleMeta =
+$$"""""""""
+["""{{key}}"""] =
+"""""
+{{value}}
+""""",
+""""""""";
+                    meta.AppendLine(singleMeta);
+                }
                 var content =
 $$"""""""""
-            ["""{{fileName}}"""] =
+            ["""{{fileName}}"""] = (new Dictionary<string, string> { {{meta}} },
 """""
 {{html}}
-""""",
+"""""
+),
 """"""""";
                 code.AppendLine(content);
             }

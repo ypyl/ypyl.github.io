@@ -18,6 +18,6 @@ class ArticleService
 
     public string Content(string articleName)
     {
-        return Blog.Articles.Value()[articleName];
+        return Blog.Articles.Value()[articleName].Item2;
     }
 }
