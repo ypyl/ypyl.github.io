@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Linq;
 using Markdig;
 using Markdown.ColorCode;
 using Microsoft.CodeAnalysis;
@@ -13,7 +15,6 @@ namespace SourceGenerator
         {
             var markdownPipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
-                .UseSoftlineBreakAsHardlineBreak()
                 .UseColorCode()
                 .Build();
             var code = new StringBuilder();
@@ -34,7 +35,8 @@ public static class Articles
                 var filePath = additionalFile.Path;
                 var fileName = Path.GetFileNameWithoutExtension(filePath);
                 var fileContent = additionalFile.GetText(context.CancellationToken);
-                var html = Markdig.Markdown.ToHtml(fileContent.ToString(), markdownPipeline);
+                var parsedContext = MetaDataAndMarkdown(fileContent.ToString());
+                var html = Markdig.Markdown.ToHtml(parsedContext.Item2, markdownPipeline);
                 var content =
 $$"""""""""
             ["""{{fileName}}"""] =
@@ -51,6 +53,40 @@ $$"""""""""
 }
 """"""""");
             context.AddSource($"ArtcilesContent.g.cs", code.ToString());
+        }
+
+        private (Dictionary<string, string>, string) MetaDataAndMarkdown(string context)
+        {
+            var keys = new [] {"title", "date", "categories", "tags"};
+            var lines = context.Split('\n');
+            if (lines.Length == 0)
+            {
+                return (new Dictionary<string, string>(), context);
+            }
+            if (lines[0].Trim()!= "---")
+            {
+                return (new Dictionary<string, string>(), context);
+            }
+            var i = 1;
+            var meta = new Dictionary<string, string>();
+            while (i < lines.Length && lines[i].Trim() != "---")
+            {
+                var line = lines[i].Trim();
+                var splitted = line.Split(':');
+                var key = splitted[0].Trim();
+                if (!keys.Any(x => x == key))
+                {
+                    i++;
+                    continue;
+                }
+                var value = string.Join(':', splitted.Skip(1));
+                meta.Add(key, value);
+                i++;
+            }
+            return (meta, string.Join('\n', lines.Skip(i + 1).Select(x =>
+            {
+                return x.Trim();
+            })));
         }
 
         public void Initialize(GeneratorInitializationContext context)
