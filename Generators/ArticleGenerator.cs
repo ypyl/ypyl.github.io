@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis;
 namespace SourceGenerator
 {
     [Generator]
-    public class ArticleeGenerator : ISourceGenerator
+    public class ArticleGenerator : ISourceGenerator
     {
         public void Execute(GeneratorExecutionContext context)
         {
