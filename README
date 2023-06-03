@@ -16,3 +16,8 @@ https://stackoverflow.com/questions/66944569/how-to-fix-c-sharp-source-generator
 
 
 ----
+
+
+```
+dotnet watch --non-interactive
+```

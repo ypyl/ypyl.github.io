@@ -6,13 +6,17 @@
 
 @inject ArticleService articleService
 
-<PageTitle>Index</PageTitle>
-@if (ArticleName is null && articleService.ArticleNames().Any()) {
-    @(new MarkupString(articleService.Content(articleService.ArticleNames().First())))
-} else if (ArticleName is null) {
-    <span>There is no content.</span>
-} else {
+<PageTitle>Yauhen Pyl Blog</PageTitle>
+@if (articleService.IsThereArticleWithName(ArticleName)) {
     @(new MarkupString(articleService.Content(ArticleName)))
+}
+else if (articleService.IsThereAnyArticle())
+{
+    @(new MarkupString(articleService.Content(articleService.ArticleNames().First())))
+}
+else
+{
+    <span>There is no content.</span>
 }
 
 

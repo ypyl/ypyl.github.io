@@ -20,4 +20,14 @@ class ArticleService
     {
         return Blog.Articles.Value()[articleName].Item2;
     }
+
+    public bool IsThereArticleWithName(string? name)
+    {
+        return name is not null && Blog.Articles.Value().ContainsKey(name);
+    }
+
+    public bool IsThereAnyArticle()
+    {
+        return Blog.Articles.Value().Any();
+    }
 }
