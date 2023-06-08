@@ -8,15 +8,16 @@ categories: programming
 
 # [Binary tree](https://en.wikipedia.org/wiki/Binary_tree)
 
-* at most 2 children per node
-* exactly one root
-* exactly one path between root and any node
+- at most 2 children per node
+- exactly one root
+- exactly one path between root and any node
 
 Leaf node is a node without any child node.
 
 ## Node
 
 There is node implementation:
+
 ```python
 class Node:
   def __init__(self, val):
@@ -45,7 +46,7 @@ def depthFirst(root):
       stack.append(current.right)
     if current.left is not None:
       stack.append(current.left)
-  
+
   return results
 ```
 

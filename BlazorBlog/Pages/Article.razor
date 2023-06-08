@@ -7,7 +7,7 @@
 @inject ArticleService articleService
 
 <PageTitle>Yauhen Pyl Blog</PageTitle>
-@if (articleService.IsThereArticleWithName(ArticleName)) {
+@if (articleService.IsThereArticleWithName(ArticleName) && ArticleName is not null) {
     @(new MarkupString(articleService.Content(ArticleName)))
 }
 else if (articleService.IsThereAnyArticle())

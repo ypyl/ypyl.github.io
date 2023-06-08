@@ -98,7 +98,7 @@ $$"""""""""
             }
             return (meta, string.Join('\n', lines.Skip(i + 1).Select(x =>
             {
-                return x.Trim();
+                return x;
             })));
         }
 
