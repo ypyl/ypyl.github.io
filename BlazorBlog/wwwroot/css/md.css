@@ -115,3 +115,11 @@
 .article li > ul {
   padding-left: 1rem;
 }
+
+.article p:only-child > img {
+  display: flex;
+}
+
+.article p > img {
+  width: auto;
+}
