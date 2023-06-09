@@ -116,7 +116,7 @@
   padding-left: 1rem;
 }
 
-.article p:only-child > img {
+.article p:has(> img) {
   display: flex;
 }
 
