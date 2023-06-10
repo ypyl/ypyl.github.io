@@ -45,7 +45,7 @@
 - market cap - how big company
 - beta (5Y monthly) - measure of risk
     - 1.0 - same price movements as the wider market)
-    - > 1.0 swings wider up/down than the market
+    - \> 1.0 swings wider up/down than the market
     - < 1.0 sings less up/down than the market
 - PE ratio (TTM) - price to earning
 - EPS (TTM) - earning per share
