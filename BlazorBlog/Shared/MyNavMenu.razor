@@ -3,14 +3,19 @@
 @inject ArticleService articleService
 
 <MudNavMenu>
-    <MudList DisablePadding="true" Dense="true" >
+    <MudList DisablePadding="true" Dense="true" Clickable="true">
         <MudListSubheader>
             <MudTextField @bind-Value="@searchTerm" Immediate="true" Margin="Margin.Dense" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" />
         </MudListSubheader>
 
-        @foreach (var articleName in ArticleNames())
+        @foreach (var folder in articleService.Articles().Folders)
         {
-            <MudListItem @key="articleName" Class="pa-0 ma-0">
+            <FolderComponent FolderValue="@folder" SearchTerm="@searchTerm"></FolderComponent>
+        }
+
+        @foreach (var articleName in articleService.ArticleNames(Root, searchTerm))
+        {
+            <MudListItem @key="@articleName">
                 <MudNavLink Href="@articleName" Match="NavLinkMatch.Prefix">
                     <MudHighlighter Text="@CleanArticleName(articleName)" HighlightedText="@searchTerm"/>
                 </MudNavLink>
@@ -22,10 +27,12 @@
 @code {
     string searchTerm = "";
 
-    public IEnumerable<string> ArticleNames()
+    protected override void OnInitialized()
     {
-        return articleService.ArticleNames().Where(x => x.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+        Root = articleService.Articles();
     }
+
+    private Folder Root { get; set; }
 
     public string CleanArticleName(string articleName)
     {

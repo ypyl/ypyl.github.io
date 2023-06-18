@@ -15,6 +15,7 @@ namespace SourceGenerator
         {
             var markdownPipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
+                .UseMathematics()
                 .UseColorCode()
                 .Build();
             var code = new StringBuilder();
@@ -38,6 +39,8 @@ public static class Articles
                 var parsedContext = MetaDataAndMarkdown(fileContent.ToString());
                 var html = Markdig.Markdown.ToHtml(parsedContext.Item2, markdownPipeline);
                 var meta = new StringBuilder();
+                var categories = string.Join("|", Categories(filePath));
+                meta.Append($"[\"path\"]=\"{categories}\",");
                 foreach (var (key, value) in parsedContext.Item1)
                 {
                     var singleMeta =
@@ -105,6 +108,30 @@ $$"""""""""
         public void Initialize(GeneratorInitializationContext context)
         {
             // No initialization required for this one
+        }
+
+        private string[] Categories(string filepath)
+        {
+            const string block = "Blog";
+            var splitted = filepath.Split(Path.DirectorySeparatorChar);
+            var result = new List<string>();
+            var i = 0;
+            while (i < 6)
+            {
+                if (splitted.Length - 2 - i <= 0)
+                {
+                    break;
+                }
+                var current = splitted[splitted.Length - 2 - i];
+                if (current == block)
+                {
+                    break;
+                }
+                result.Add(current);
+                i++;
+            }
+            result.Reverse();
+            return result.ToArray();
         }
     }
 }

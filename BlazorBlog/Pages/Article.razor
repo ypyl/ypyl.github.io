@@ -12,7 +12,7 @@
 }
 else if (articleService.IsThereAnyArticle())
 {
-    @(new MarkupString(articleService.Content(articleService.ArticleNames().First())))
+    @(new MarkupString(articleService.AnyContent()))
 }
 else
 {

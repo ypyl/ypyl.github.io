@@ -137,3 +137,14 @@
 .article ul {
   list-style-type: revert;
 }
+
+.article table th {
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: #dee2e6
+}
+
+.article td, .article th {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+}

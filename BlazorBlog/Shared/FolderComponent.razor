@@ -1,0 +1,32 @@
+@using Services
+@inject ArticleService articleService
+
+<MudListItem @key="FolderValue.Name" Text="@FolderValue.Name" InitiallyExpanded="true">
+    <NestedList>
+        @foreach (var folder in FolderValue.Folders)
+        {
+            <FolderComponent FolderValue="@folder" SearchTerm="@SearchTerm"></FolderComponent>
+        }
+        @foreach (var articleName in articleService.ArticleNames(FolderValue, SearchTerm))
+        {
+            <MudListItem @key="@articleName">
+                <MudNavLink Href="@articleName" Match="NavLinkMatch.Prefix">
+                    <MudHighlighter Text="@CleanArticleName(articleName)" HighlightedText="@SearchTerm"/>
+                </MudNavLink>
+            </MudListItem>
+        }
+    </NestedList>
+</MudListItem>
+
+@code {
+    [Parameter]
+    public Folder? FolderValue { get; set; }
+
+    [Parameter]
+    public string? SearchTerm { get; set; }
+
+    public string CleanArticleName(string articleName)
+    {
+        return string.Join(' ', articleName.Split("-").Skip(3));
+    }
+}
