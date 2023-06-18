@@ -1,9 +1,13 @@
-.article p {
+.article p, .article ol {
   margin-top: 8px;
 }
 
 .article li {
   margin-top: 4px;
+}
+
+.article ol {
+  padding-left: 1.2rem;
 }
 
 .article pre {
@@ -28,9 +32,9 @@
   color: #2980b9;
 }
 
-.article p, .article ul {
+.article p, .article ul, .article ol {
   font-size: 1rem;
-  margin-bottom: 1.3rem;
+  margin-bottom: 1.1rem;
 }
 
 .article li > p {
@@ -56,10 +60,12 @@
 
 .article h2 {
   font-size: 1.4135rem;
+  margin-top: 1rem;
 }
 
 .article h3 {
   font-size: 1.2rem;
+  margin-top: 0.8rem;
 }
 
 .article h4 {
