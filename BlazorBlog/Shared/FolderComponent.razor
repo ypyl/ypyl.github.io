@@ -1,22 +1,25 @@
 @using Services
 @inject ArticleService articleService
 
-<MudListItem @key="FolderValue.Name" Text="@FolderValue.Name" InitiallyExpanded="true">
-    <NestedList>
-        @foreach (var folder in FolderValue.Folders)
-        {
-            <FolderComponent FolderValue="@folder" SearchTerm="@SearchTerm"></FolderComponent>
-        }
-        @foreach (var articleName in articleService.ArticleNames(FolderValue, SearchTerm))
-        {
-            <MudListItem @key="@articleName">
-                <MudNavLink Href="@articleName" Match="NavLinkMatch.Prefix">
-                    <MudHighlighter Text="@CleanArticleName(articleName)" HighlightedText="@SearchTerm"/>
-                </MudNavLink>
-            </MudListItem>
-        }
-    </NestedList>
-</MudListItem>
+@if (FolderValue is not null && Filtered().Any())
+{
+    <MudListItem @key="FolderValue.Name" Text="@FolderValue.Name" InitiallyExpanded="true">
+        <NestedList>
+            @foreach (var folder in FolderValue.Folders)
+            {
+                <FolderComponent FolderValue="@folder" SearchTerm="@SearchTerm"></FolderComponent>
+            }
+            @foreach (var articleName in articleService.ArticleNames(FolderValue, SearchTerm))
+            {
+                <MudListItem @key="@articleName">
+                    <MudNavLink Href="@articleName" Match="NavLinkMatch.Prefix">
+                        <MudHighlighter Text="@CleanArticleName(articleName)" HighlightedText="@SearchTerm"/>
+                    </MudNavLink>
+                </MudListItem>
+            }
+        </NestedList>
+    </MudListItem>
+}
 
 @code {
     [Parameter]
@@ -24,6 +27,11 @@
 
     [Parameter]
     public string? SearchTerm { get; set; }
+
+    public IEnumerable<string> Filtered()
+    {
+        return articleService.ArticleNames(FolderValue, SearchTerm);
+    }
 
     public string CleanArticleName(string articleName)
     {

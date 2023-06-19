@@ -32,7 +32,7 @@
         Root = articleService.Articles();
     }
 
-    private Folder Root { get; set; }
+    private Folder Root { get; set; } = new Folder();
 
     public string CleanArticleName(string articleName)
     {

@@ -2,7 +2,7 @@ namespace Services;
 
 public class Folder
 {
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public List<Folder> Folders { get; set; } = new List<Folder>();
     public List<(int, string)> Files { get; set; } = new List<(int, string)>();
 }
@@ -26,9 +26,13 @@ class ArticleService
         return resultFolder;
     }
 
-    public IEnumerable<string> ArticleNames(Folder folder, string searchTerm)
+    public IEnumerable<string> ArticleNames(Folder? folder, string? searchTerm)
     {
-        return folder.Files.OrderByDescending(x => x.Item1).Select(x => x.Item2).Where(x => x.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+        if (folder is null)
+        {
+            return Enumerable.Empty<string>();
+        }
+        return folder.Files.OrderByDescending(x => x.Item1).Select(x => x.Item2).Where(x => x.Contains(searchTerm ?? string.Empty, StringComparison.OrdinalIgnoreCase));
     }
 
     private Folder GetTargetFolder(Folder root, string[] categories)
