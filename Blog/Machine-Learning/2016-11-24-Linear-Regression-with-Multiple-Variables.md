@@ -34,7 +34,7 @@ Two techniques to help with this are feature scaling and mean normalization. Fea
 
 $$\[x_i := \dfrac{x_i - \mu_i}{s_i}\]$$
 
-Where $$\(μ_i\)$$ is the average of all the values for feature (i) and $$\(s_i\)$$ is the range of values (max - min), or $$\(s_i\)$$ is the standard deviation.
+Where $μ_i$ is the average of all the values for feature (i) and $s_i$ is the range of values (max - min), or $s_i$ is the standard deviation.
 
 ### Normal Equation
 

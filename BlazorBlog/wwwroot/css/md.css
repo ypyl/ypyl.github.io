@@ -115,7 +115,7 @@
 
 .article blockquote {
   border-left: 8px solid #fafafa;
-  padding: 1rem;
+  padding-left: 1rem;
 }
 
 .article li > ul {

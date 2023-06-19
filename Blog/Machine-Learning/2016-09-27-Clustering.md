@@ -91,7 +91,7 @@ The goal of PCA is to reduce the average of all the distances of every feature t
 
 $$\[\mu_j = \dfrac{1}{m}\sum^m_{i=1}x_j^{(i)}\]$$
 
-* Replace each $$\(x_j^{(i)}\)$$ with $$\(x_j^{(i)} - \mu_j\)$$
+* Replace each $x_j^{(i)}$ with $x_j^{(i)} - \mu_j$
 * If different features on different scales (e.g., x1 = size of house, x2 = number of bedrooms), scale features to have comparable range of values.
 
 1. Compute "covariance matrix"
@@ -124,7 +124,7 @@ $$\[x_{approx}^{(1)} = U_{reduce} \cdot z^{(1)}\]$$
 Algorithm for choosing k
 
 1. Try PCA with k=1,2,…
-2. Compute $$\(U_{reduce}, z, x\)$$
+2. Compute $U_{reduce}, z, x$
 3. Check the formula given above that 99% of the variance is retained. If not, go to step one and increase k.
 
 ### Advice for Applying PCA
@@ -134,7 +134,7 @@ Algorithm for choosing k
 * Speed up algorithm
 * Visualization of data
 
-**Bad use of PCA**: trying to prevent overfitting. 
+**Bad use of PCA**: trying to prevent overfitting.
 
 Don't assume you need to do PCA. **Try your full machine learning algorithm without PCA first**. Then use PCA if you find that you need it.
 

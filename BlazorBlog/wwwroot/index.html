@@ -39,7 +39,8 @@
             var tex = document.getElementsByClassName("math");
             Array.prototype.forEach.call(tex, function(el) {
                 const txt = el.textContent.trim().replace(/^\\\(/, '').replace(/\\\)$/, '').replace(/^\\\[/, '').replace(/\\\]$/, '');
-                katex.render(txt, el);
+                const displayMode = txt.indexOf('begin') > -1;
+                katex.render(txt, el, { displayMode: displayMode });
             });
         };
       </script>

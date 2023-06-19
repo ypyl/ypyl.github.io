@@ -5,7 +5,7 @@ date: 2022-02-20
 tags: programming notes
 categories: programming
 ---
-# Notes after reading [https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic/dp/1934356344](https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic/dp/1934356344)
+# Notes after reading [Passionate Programmer](https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic/dp/1934356344)
 
 There are a lot of useful notes and bits of advice that are useful at any point in time in an IT career.
 
@@ -15,7 +15,7 @@ There are a lot of useful notes and bits of advice that are useful at any point 
 
 It is important to have broad-minded about technologies and follow the trends in IT. It will help to find a new job, learn something new, suggest a new product/technology when it will be required. On the other hand, there are too much different types of new software, libraries, and frameworks, so it will be great to have knowledge or to be familiar, with the most popular ones. There is a great list of GitHub repositories that allows to quickly identify the most popular libraries and frameworks, e.g. [https://github.com/kamranahmedse/developer-roadmap](https://github.com/kamranahmedse/developer-roadmap).
 
-## Only writing code is not enough 
+## Only writing code is not enough
 
 Currently, in pandemic time, you will have to start working remotely at least from time to time. So your communication skills, your additional knowledge outside of the programming area, your certifications, your ability to self-learning, and find the answers by yourself are starting to play a more important role. I think it is important to have some additional hobbies related to programming or areas of business that are not directly connected with your current job.
 
@@ -113,7 +113,7 @@ Long story short - panicking is a waste of time. Just remember it and your first
 
 ## Say, do, show
 
-Announcing your promises, fulfilling them, and reporting results is the best strategy to be promoted. It shows that you can plan ahead, do your job on time and be transparent. 
+Announcing your promises, fulfilling them, and reporting results is the best strategy to be promoted. It shows that you can plan ahead, do your job on time and be transparent.
 
 # Marketing
 

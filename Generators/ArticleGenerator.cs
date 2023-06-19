@@ -34,7 +34,7 @@ public static class Articles
             {
                 // Process the additional file
                 var filePath = additionalFile.Path;
-                var fileName = Path.GetFileNameWithoutExtension(filePath);
+                var fileName = Path.GetFileNameWithoutExtension(filePath).Replace(".", string.Empty);
                 var fileContent = additionalFile.GetText(context.CancellationToken);
                 var parsedContext = MetaDataAndMarkdown(fileContent.ToString());
                 var html = Markdig.Markdown.ToHtml(parsedContext.Item2, markdownPipeline);

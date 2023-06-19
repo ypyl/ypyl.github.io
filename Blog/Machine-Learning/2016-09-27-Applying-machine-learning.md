@@ -33,11 +33,11 @@ With the Validation Set (note: this method presumes we do not also use the CV se
 
 1. Optimize the parameters in Θ using the training set for each polynomial degree.
 2. Find the polynomial degree d with the least error using the cross validation set.
-3. Estimate the generalization error using the test set with $$\(J_{test}(\Theta^{(d)})\)$$, (d = theta from polynomial with lower error).
+3. Estimate the generalization error using the test set with $J_{test}(\Theta^{(d)})$, (d = theta from polynomial with lower error).
 
 ### Diagnosing Bias vs. Variance
 
-High bias is underfitting and high variance is overfitting. 
+High bias is underfitting and high variance is overfitting.
 
 ![image](./images/features-and-polynom-degree.png)
 
@@ -54,12 +54,12 @@ In order to choose the model and the regularization λ, we need:
 2. Select a lambda to compute;
 3. Create a model set like degree of the polynomial or others;
 4. Select a model to learn Θ;
-5. Learn the parameter Θ for the model selected, using $$\(J_{train}(\Theta)\)$$ with λ selected (this will learn Θ for the next step);
-6. Compute the train error using the learned Θ (computed with λ ) on the $$\(J_{train}(\Theta)\)$$ without regularization or λ = 0;
-7. Compute the cross validation error using the learned Θ (computed with λ) on the $$\(J_{CV}(\Theta)\)$$ without regularization or λ = 0;
+5. Learn the parameter Θ for the model selected, using $J_{train}(\Theta)$ with λ selected (this will learn Θ for the next step);
+6. Compute the train error using the learned Θ (computed with λ ) on the $J_{train}(\Theta)$ without regularization or λ = 0;
+7. Compute the cross validation error using the learned Θ (computed with λ) on the $J_{CV}(\Theta)$ without regularization or λ = 0;
 8. Do this for the entire model set and lambdas, then select the best combo that produces the lowest error on the cross validation set;
-9. Now if you need visualize to help you understand your decision, you can plot to the figure like above with: (λ x Cost $$\(J_{train}(\Theta)\)$$ and (λ x Cost $$\(J_{CV}(\Theta)\)$$);
-10. Now using the best combo Θ and λ, apply it on $$\(J_{test}(\Theta)\)$$ to see if it has a good generalization of the problem.
+9. Now if you need visualize to help you understand your decision, you can plot to the figure like above with: (λ x Cost $J_{train}(\Theta)$ and (λ x Cost $J_{CV}(\Theta)$);
+10. Now using the best combo Θ and λ, apply it on $J_{test}(\Theta)$ to see if it has a good generalization of the problem.
 11. To help decide the best polynomial degree and λ to use, we can diagnose with the learning curves.
 
 ### Learning Curves
