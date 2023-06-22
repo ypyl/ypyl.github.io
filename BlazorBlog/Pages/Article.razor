@@ -10,7 +10,7 @@
 
 @if (articleService.IsThereArticleWithName(SelectedArticleName)) {
     @(new MarkupString(articleService.Content(SelectedArticleName)))
-    <MudPaper Class="d-flex pa-4 flex-row-reverse" Elevation="0">
+    <MudPaper Class="d-flex pa-4 flex-row-reverse flex-wrap" Elevation="0">
         @if (!string.IsNullOrEmpty(Date))
         {
             <MudChip Size="Size.Small">@Date</MudChip>
