@@ -30,7 +30,7 @@
     <ContentWithTargetPath Include="..\Blog\assets\*.*">
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>wwwroot/assets/%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+      <TargetPath>wwwroot./assets/%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
 

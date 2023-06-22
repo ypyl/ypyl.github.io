@@ -15,7 +15,7 @@ It is my docker-compose:
     db:
         image: "influxdb:1.2"
         restart: always
-        ports: 
+        ports:
             - "8086:8086"
         volumes:
             - /etc/influxdb:/var/lib/ #folder with db data
@@ -42,7 +42,7 @@ FROM influxdb:1.2-alpine
 ENV DATABASES=entity_db
 ENV INFLUX_HOST=influxdb
 
-# Some tiny helpers 
+# Some tiny helpers
 RUN apk update && apk add ca-certificates && update-ca-certificates && apk add openssl
 RUN apk add --no-cache bash py2-pip py-setuptools ca-certificates
 RUN pip install python-magic
@@ -95,6 +95,6 @@ for db in ${DATABASES//:/ }; do
 done
 ```
 
-Please find an image [here](/assets/inluxDbBackupDocker.zip).
+Please find an image [here](./assets/inluxDbBackupDocker.zip).
 
 Thank you!

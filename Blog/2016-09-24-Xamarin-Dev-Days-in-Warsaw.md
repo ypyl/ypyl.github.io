@@ -48,7 +48,7 @@ The last one is about distributing and monitoring. I can’t say a lot about dis
     * Only Android and IOS (UWP in future)
 
 Here I want to show the main ways to build mobile application.
-    
+
 1. Of course, firstly it is native apps. It is clear. Swift, object-C for IOS, java is for Android, C# is  for Windows Phone. It means you should have and support many projects and many teams. It is a good option if you are planning to build complex and big mobile application. The best scenario is if this application has only mobile version.
 2. Universal solution. You are able to use Cordova and build you application using JavaScript. Personally I really like this approach as you are able to build almost any type of application using Javascript now. To execute javascript on server - NodeJs. For desktop application there is Electron framework. Cordova is to create mobile applications. The problem here is performance. The resulting applications are hybrid, meaning that they are neither truly native mobile application (because all layout rendering is done via Web views instead of the platform's native UI framework) nor purely Web-based (because they are not just Web apps, but are packaged as apps for distribution and have access to native device APIs). [[link](https://en.wikipedia.org/wiki/Apache_Cordova)]
 3. And Xamarin. It looks like win-win strategy if you already have web or desktop application written on .NET. You are able to share code, get native performance (almost, depends how you are creating application, Xamarin.Forms, for example, can create non the best implementation), access to all native API (almost). If there is a new version of OS, need to wait implementation in Xamarin up to one month.
@@ -68,7 +68,7 @@ Here I put the main interesting features of Xamarin:
 
 1. Xamarin [allows](https://www.xamarin.com/download-it#ios) to ship native app bundles on the App Store. Ahead-of-Time (AOT) compiler compiles Xamarin.iOS apps directly to native ARM assembly code, meaning your app is a native platform binary.
 2. As for Android, Xamarin.Android uses just-in-time compilation for sophisticated runtime optimization of your app’s performance, meaning your app is a native Android APK.
-3. Also I talked that we are able to use only one IDE to develop applications in theory. 
+3. Also I talked that we are able to use only one IDE to develop applications in theory.
 4. Microsoft Visual Studio 2015 includes an Android emulator that you can use as a target for debugging your Xamarin.Android app: Visual Studio Emulator for Android. This emulator uses the Hyper-V capabilities of your development computer, resulting in faster launch and execution times than the default emulator that comes with the Android SDK. Also it is possible to debug IOS in Windows using remote simulator.
 5. Visual Studio supports also visual designers to build UI. It works almost the same like it works for WPF.
 6. Also there is [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/).
@@ -99,7 +99,7 @@ Another one nice feature of Xamarin is Xamarin [plugins](https://github.com/xama
 You are able to find the whole list of plugins [here](https://components.xamarin.com/?category=plugins).
 
 ### [Xamarin.Forms](https://developer.xamarin.com/guides/xamarin-forms/)
-* Shared UI 
+* Shared UI
 * [Pages, layouts, controls](https://developer.xamarin.com/guides/xamarin-forms/controls/)
 * [Two-ways data binding](https://blog.xamarin.com/introduction-to-data-binding/)
 * [Navigation](https://developer.xamarin.com/guides/xamarin-forms/user-interface/navigation/)
@@ -158,7 +158,7 @@ Want to mention two nice libraries/ applications:
 
 ### Sample application
 
-I have created a small sample application. The source code is available [here](/assets/WakeUp.zip). It is simple carousel application that shows information about morning exercises.  
+I have created a small sample application. The source code is available [here](./assets/WakeUp.zip). It is simple carousel application that shows information about morning exercises.
 
 ### References:
 There are a list of references and interesting information about Xamarin. Thank you for reading. [Please feel free to ask](mailto:gromkaktus@gmail.com) any questions, I will try to answer.
