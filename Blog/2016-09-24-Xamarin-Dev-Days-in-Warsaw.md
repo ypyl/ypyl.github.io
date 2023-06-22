@@ -19,7 +19,7 @@ Some time ago I had a chance to visit Xamarin Dev Days event in Warsaw. It was o
 * Sample application
 * Resources
 
-![Xamarin Platform](/images/xam_dev_days_platform.png)
+![Xamarin Platform](./images/xam_dev_days_platform.png)
 
 The first thing that you should keep in mind when you are talking about Xamarin is that you are able to write application not using Visual Studio on Windows only, but also [Xamarin Studio](https://www.xamarin.com/studio) on Mac. As I understand, usually people are using Visual Studio to develop Android and Phone applications and Xamarin Studio on Mac to develop IOS application. But, of course, the team is using one code base. The reason of this approach, that it is much more quicker to build IOS application on MAC directly, without remote building using Visual Studio on Windows.
 
@@ -126,7 +126,7 @@ Use the Xamarin.Forms API provides a way to quickly build native apps for iOS, A
 
 ### [Azure Mobile Apps](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-value-prop/)
 
-![Azure Mobile](/images/azure_mob_structure.png)
+![Azure Mobile](./images/azure_mob_structure.png)
 
 * Stable backend
 * Offline sync

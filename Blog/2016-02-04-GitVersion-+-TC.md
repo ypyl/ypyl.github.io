@@ -14,9 +14,9 @@ So you will be able to set up GitVersion build step which just gran information 
 
 TC to build only commits with tags (RC-*). VCS Root set up:
 
-![Image One](/images/git_version_step3.PNG)
-![Image Two](/images/git_version_step3_2.PNG)
+![Image One](./images/git_version_step3.PNG)
+![Image Two](./images/git_version_step3_2.PNG)
 
 Trigger:
 
-![Image Three](/images/git_version_step3_3.PNG)
+![Image Three](./images/git_version_step3_3.PNG)

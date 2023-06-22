@@ -13,7 +13,7 @@ So I decided to create a simple radio mobile application by myself. I thought ab
 
 I am using Ubuntu 16.04.
 
-Please find the steps below:  
+Please find the steps below:
 1. I have installed ionic framework using this [link](http://ionicframework.com/docs/intro/installation/) and create blank application: `ionic start radioOn blank`.
 2. And that is all, to start our application need to run `ionic serve`.
 3. As I want to listen an online radio, I need to create a provider to listen online stream: Html5Audio:
@@ -96,7 +96,7 @@ export class Html5Audio {
 
 Please find my project [here](https://github.com/eapyl/radioon). Signed apk file [here](https://mega.nz/#!edsTXT6L).
 
-How it looks like:  
-![image](/images/radio-on-screenshot.png)
+How it looks like:
+![image](./images/radio-on-screenshot.png)
 
 Cheers,

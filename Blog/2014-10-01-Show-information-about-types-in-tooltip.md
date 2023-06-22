@@ -11,7 +11,7 @@ The value of a point is the sum of values of types ('one', 'two').
 
 [Additional info](http://api.highcharts.com/highcharts#tooltip.formatter)
 
-![image](/images/highchart_add_info.png)
+![image](./images/highchart_add_info.png)
 
 The code:
 ```js
@@ -20,7 +20,7 @@ $(function () {
         chart: {
             type: 'column'
         },
- 
+
         tooltip: {
             formatter: function () {
                 var typeInf = '';
@@ -28,16 +28,16 @@ $(function () {
                 $.each(types, function (index) {
                     typeInf += '<b>' + types[index][0] + '</b> ' + types[index][1] + '<br/>';
                 });
- 
+
                 return 'The value for <b>' + this.x +
                     '</b> is <b>' + this.y + '</b><br/>' + typeInf;
             }
         },
- 
+
         xAxis: {
             categories: ['Green', 'Pink']
         },
- 
+
         series: [{
             data: [{
                 name: 'Point 1',

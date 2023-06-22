@@ -11,8 +11,8 @@ I have found that log4net and log2console don't work correctly (using IISExpress
 
 But i have found new configuration for log4net and log2console ([log4net](http://logging.apache.org/log4net/release/config-examples.html#udpappender)) and
 
-![example1](/images/log2net1.png)
+![example1](./images/log2net1.png)
 
 Seems work fine:
 
-![example2](/images/log2net2.png)
+![example2](./images/log2net2.png)

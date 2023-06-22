@@ -38,6 +38,6 @@ $$
 
 We can define our set of resulting classes as y:
 
-![Neur_multi_res](./images/multi_neur_res.png)
+![Neur_multi_res](../images/multi_neur_res.png)
 
 Our final value of our hypothesis for a set of inputs will be one of the elements in y.

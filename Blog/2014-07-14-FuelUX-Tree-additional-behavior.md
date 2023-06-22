@@ -8,7 +8,7 @@ categories: programming
 ---
 Add "Show All" to the FuelUX Tree like this.
 
-![example](/images/fuelux-tree.gif)
+![example](./images/fuelux-tree.gif)
 
 There is the [tree plugin](https://exacttarget.github.io/fuelux/#tree). You can add the next code after initialization of the tree:
 ```js
@@ -24,6 +24,6 @@ scope.find('#MyTree').on('selected', function (event, data) {
             data.element.closest('.tree-folder-content').find('.tree-item:gt(0)').removeClass('tree-selected').find('i').removeClass('icon-ok').addClass('tree-dot');
         }
     }
-    
+
 });
 ```

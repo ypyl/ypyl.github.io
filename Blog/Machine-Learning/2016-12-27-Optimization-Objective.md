@@ -12,8 +12,8 @@ The Support Vector Machine (SVM) is yet another type of supervised machine learn
 
 $\text{cost}_1(z)$ and $\text{cost}_0(z)$ (respectively, note that $\text{cost}_1(z)$ is the cost for classifying when y=1, and $\text{cost}_0(z)$ is the cost for classifying when y=0)
 
-![image](/images/Svm_hing.png)
-![image](/images/Svm_hinge_negative_class.png)
+![image](./images/Svm_hing.png)
+![image](./images/Svm_hinge_negative_class.png)
 
 $$
 [J(\theta) = C\sum_{i=1}^m y^{(i)} \ \text{cost}_1(\theta^Tx^{(i)}) + (1 - y^{(i)}) \ \text{cost}_0(\theta^Tx^{(i)}) + \dfrac{1}{2}\sum_{j=1}^n \Theta^2_j]

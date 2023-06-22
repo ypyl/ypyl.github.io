@@ -8,7 +8,7 @@ categories: programming
 ---
 Extension for [Fiddler](http://www.fiddler2.com/Fiddler/dev/).
 
-![example](/images/zip_fiddler.jpg)
+![example](./images/zip_fiddler.jpg)
 
 The source code: [FiddlerZip](https://drive.google.com/file/d/0BwVmorgjT-W1NDFlZDZkMDItMWMxMS00NzU2LTg3NDUtYTYzOWVhOGMyMzRj/view).
 
@@ -21,16 +21,16 @@ using System.Linq;
 using System.Text;
 using Fiddler;
 using System.Windows.Forms;
- 
+
 // It is important !!! see the current version of fiddler
 [assembly: Fiddler.RequiredVersion("2.3.4.4")]
- 
+
 namespace FiddlerZip
 {
     /// <summary>
     /// Zip extension
     /// </summary>
-    public class Zip : IFiddlerExtension 
+    public class Zip : IFiddlerExtension
     {
         /// <summary>
         /// page for extesnion
@@ -41,12 +41,12 @@ namespace FiddlerZip
         /// </summary>
         private ZipControl oAppConsole;
         #region IFiddlerExtension Members
- 
+
         public void OnBeforeUnload()
         {
-            
+
         }
- 
+
         public void OnLoad()
         {
             // create tab with name "Zip"
@@ -59,7 +59,7 @@ namespace FiddlerZip
             oAppConsole.Dock = DockStyle.Fill;
             FiddlerApplication.UI.tabsViews.TabPages.Add(oPage);
         }
- 
+
         #endregion
     }
 }

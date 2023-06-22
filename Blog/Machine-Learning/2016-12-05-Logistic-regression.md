@@ -14,7 +14,7 @@ Hypothesis Representation:
 
 $$\[\begin{align*}& h_\theta (x) =  g ( \theta^T x ) \newline \newline& z = \theta^T x \newline& g(z) = \dfrac{1}{1 + e^{-z}}\end{align*}\]$$
 
-![Logistic_hyp](/images/logisticfunction.png)
+![Logistic_hyp](./images/logisticfunction.png)
 
 ### Decision Boundary
 

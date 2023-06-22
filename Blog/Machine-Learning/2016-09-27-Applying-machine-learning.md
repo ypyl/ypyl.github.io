@@ -39,14 +39,14 @@ With the Validation Set (note: this method presumes we do not also use the CV se
 
 High bias is underfitting and high variance is overfitting.
 
-![image](./images/features-and-polynom-degree.png)
+![image](../images/features-and-polynom-degree.png)
 
 ## Regularization and Bias/Variance
 
 * Large λ: High bias (underfitting)
 * Small λ: High variance (overfitting)
 
-![image](./images/features-and-polynom-degree-fix2.png)
+![image](../images/features-and-polynom-degree-fix2.png)
 
 In order to choose the model and the regularization λ, we need:
 
@@ -67,8 +67,8 @@ In order to choose the model and the regularization λ, we need:
 If a learning algorithm is suffering from high variance, getting more training data is likely to help.
 If a learning algorithm is suffering from high bias, getting more training data will not (by itself) help much.
 
-![image](./images/Learning1.png)
-![image](./images/Learning2.png)
+![image](../images/Learning1.png)
+![image](../images/Learning2.png)
 
 ### Deciding What to Do Next Revisited
 

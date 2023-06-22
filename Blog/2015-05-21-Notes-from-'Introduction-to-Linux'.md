@@ -18,9 +18,9 @@ Linux [Filesystem](http://www.tldp.org/LDP/sag/html/filesystems.html)
 [Partitions](https://en.wikipedia.org/wiki/Disk_partitioning)
 
 1. Windows
-    * Partition: Disk1 
+    * Partition: Disk1
     * Filesystem type: NTFS/FAT32
-    * Mounting Parameters: DriveLetter 
+    * Mounting Parameters: DriveLetter
     * Base Folder of OS: C drive
 2. Linux
     * Partition: /dev/sda1
@@ -30,12 +30,12 @@ Linux [Filesystem](http://www.tldp.org/LDP/sag/html/filesystems.html)
 
 [The Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
 
-![File System](/images/linux_foundation_filesystem.jpg)
+![File System](./images/linux_foundation_filesystem.jpg)
 
 The Boot Process
 
-![Boot Process](/images/linux_foundation_boot_process.jpg)
+![Boot Process](./images/linux_foundation_boot_process.jpg)
 
 Choosing a [Linux Distribution](https://en.wikipedia.org/wiki/Linux_distribution)
 
-![Choose](/images/linux_foundation_choose.jpg)
+![Choose](./images/linux_foundation_choose.jpg)
