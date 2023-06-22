@@ -43,6 +43,10 @@ public static class Articles
                 meta.Append($"[\"path\"]=\"{categories}\",");
                 foreach (var (key, value) in parsedContext.Item1)
                 {
+                    if (string.IsNullOrWhiteSpace(value))
+                    {
+                        continue;
+                    }
                     var singleMeta =
 $$"""""""""
 ["""{{key}}"""] =

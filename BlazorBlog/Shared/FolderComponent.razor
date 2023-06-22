@@ -3,7 +3,7 @@
 
 @if (FolderValue is not null && Filtered().Any())
 {
-    <MudListItem @key="FolderValue.Name" Text="@FolderValue.Name" InitiallyExpanded="true">
+    <MudListItem @key="FolderValue.Name" Text="@FolderValue.Name">
         <NestedList>
             @foreach (var folder in FolderValue.Folders)
             {
