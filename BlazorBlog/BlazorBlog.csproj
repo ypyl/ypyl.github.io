@@ -26,7 +26,12 @@
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>wwwroot/images/%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
-    </ContentWithTargetPath >
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\Blog\assets\*.*">
+      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>wwwroot/assets/%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
   </ItemGroup>
 
 </Project>
