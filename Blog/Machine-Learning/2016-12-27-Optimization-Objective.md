@@ -22,7 +22,7 @@ $$
 Note that the hypothesis of the Support Vector Machine is not interpreted as the probability of y being 1 or 0 (as it is for the hypothesis of logistic regression). Instead, it outputs either 1 or 0. (In technical terms, it is a discriminant function.)
 
 $$
-[h_\theta(x) =\begin{cases}    1 & \text{if} \ \Theta^Tx \geq 0 \\    0 & \text{otherwise}\end{cases}]
+[h_\theta(x) =\begin{cases}1 & \text{if} \Theta^Tx \geq 0 \\0 & \text{otherwise}\end{cases}]
 $$
 
 

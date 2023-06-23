@@ -3,7 +3,7 @@
 @inject HttpClient Http
 @using Microsoft.AspNetCore.Components
 @using Services
-
+@inject IJSRuntime JSRuntime
 @inject ArticleService articleService
 
 <PageTitle>Yauhen Pyl Blog</PageTitle>
@@ -40,4 +40,9 @@ else
     string Categories => articleService.Categories(SelectedArticleName);
     IEnumerable<string> Tags => articleService.Tags(SelectedArticleName);
     string Date => articleService.Date(SelectedArticleName);
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("callKatex");
+    }
 }

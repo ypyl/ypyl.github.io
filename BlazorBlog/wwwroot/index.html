@@ -36,12 +36,12 @@
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
     <script>
         window.callKatex = function() {
-            var tex = document.getElementsByClassName("math");
-            Array.prototype.forEach.call(tex, function(el) {
+            var tex =  document.querySelectorAll('.math');
+            for (const el of tex) {
                 const txt = el.textContent.trim().replace(/^\\\(/, '').replace(/\\\)$/, '').replace(/^\\\[/, '').replace(/\\\]$/, '');
                 const displayMode = txt.indexOf('begin') > -1;
                 katex.render(txt, el, { displayMode: displayMode });
-            });
+            }
         };
       </script>
 </body>
