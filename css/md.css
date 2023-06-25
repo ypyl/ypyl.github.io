@@ -1,0 +1,150 @@
+.article p, .article ol {
+  margin-top: 8px;
+}
+
+.article li {
+  margin-top: 4px;
+}
+
+.article ol {
+  padding-left: 1.2rem;
+}
+
+.article pre {
+  padding: 0.5rem;
+  line-height: 1.25;
+  overflow-x: scroll;
+}
+
+.article pre,
+.article code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+.article a,
+.article a:visited {
+  color: #3498db;
+}
+
+.article a:hover,
+.article a:focus,
+.article a:active {
+  color: #2980b9;
+}
+
+.article p, .article ul, .article ol {
+  font-size: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.article li > p {
+  margin-bottom: 0;
+}
+
+.article li {
+    font-size: 1rem;
+}
+
+.article h1,
+.article h2,
+.article h3,
+.article h4 {
+  font-weight: inherit;
+  line-height: 1.42;
+}
+
+.article h1 {
+  margin-top: 0;
+  font-size: 1.999rem;
+}
+
+.article h2 {
+  font-size: 1.4135rem;
+  margin-top: 1rem;
+}
+
+.article h3 {
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+.article h4 {
+  font-size: 1.1rem;
+}
+
+.article h5 {
+  font-size: 1.05rem;
+}
+
+.article h6 {
+  font-size: 1.01rem;
+}
+
+.article small {
+  font-size: 0.707em;
+}
+
+.article img,
+.article canvas,
+.article iframe,
+.article video,
+.article svg,
+.article select,
+.article textarea {
+  max-width: 100%;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+
+@import url(http://fonts.googleapis.com/css?family=Arimo:700,700italic);
+
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  font-family: Arimo, Helvetica, sans-serif;
+}
+
+.article h1,
+.article h2,
+.article h3 {
+  padding-bottom: .5rem;
+}
+
+.article blockquote {
+  border-left: 8px solid #fafafa;
+  padding-left: 1rem;
+}
+
+.article li > ul {
+  padding-left: 1rem;
+}
+
+.article p:has(> img) {
+  display: flex;
+}
+
+.article p > img {
+  width: auto;
+}
+
+.article > ul {
+  margin-left: 1rem;
+}
+
+.article ul {
+  list-style-type: revert;
+}
+
+.article table th {
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: #dee2e6
+}
+
+.article td, .article th {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+}
