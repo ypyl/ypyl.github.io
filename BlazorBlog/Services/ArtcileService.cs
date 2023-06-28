@@ -14,18 +14,24 @@ class ArticleService
         var resultFolder = new Folder();
         foreach (var articleName in Blog.Articles.Value().Keys)
         {
-            var parser = articleName.Split("-");
-            var year = Convert.ToInt32(parser[0]);
-            var month = Convert.ToInt32(parser[1]);
-            var day = Convert.ToInt32(parser[2]);
-
-            var createdDate = new DateTime(year, month, day);
+            var createdDate = CreatedDate(articleName);
 
             var categories = Blog.Articles.Value()[articleName].Item1["path"].Split("|", StringSplitOptions.RemoveEmptyEntries);
             var targetFolder = GetTargetFolder(resultFolder, categories);
             targetFolder.Files.Add((createdDate, articleName));
         }
         return resultFolder;
+    }
+
+    private static DateTime CreatedDate(string articleName)
+    {
+        var parser = articleName.Split("-");
+        var year = Convert.ToInt32(parser[0]);
+        var month = Convert.ToInt32(parser[1]);
+        var day = Convert.ToInt32(parser[2]);
+
+        var createdDate = new DateTime(year, month, day);
+        return createdDate;
     }
 
     public IEnumerable<string> ArticleNames(Folder? folder, string? searchTerm)
@@ -130,6 +136,29 @@ class ArticleService
 
     public string FirstArticle()
     {
-        return Blog.Articles.Value().First().Key;
+        return Blog.Articles.Value().Keys.OrderByDescending(x => CreatedDate(x)).First();
     }
+
+    private string _articleName;
+    public event Action OnArticleChange;
+    public string ArticleName
+    {
+        get { return _articleName; }
+        set {
+            if (_articleName != value)
+            {
+                if (Blog.Articles.Value()[value].Item1.TryGetValue("title", out var title))
+                {
+                    _articleName = title;
+                }
+                else
+                {
+                    _articleName = value;
+                }
+                NotifyArticleNameChanged();
+            }
+        }
+    }
+
+    private void NotifyArticleNameChanged() => OnArticleChange?.Invoke();
 }
