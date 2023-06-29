@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Applying machine learning"
+title: Applying machine learning
 date: 2016-09-27
 
 tags: machine learning

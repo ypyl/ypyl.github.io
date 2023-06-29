@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Lat|lata, złoty|złotych, minutę|minuty, godzinę|godziny"
+title: Lat|lata, złoty|złotych, minutę|minuty, godzinę|godziny
 date: 2018-09-01
 
 tags: polish gramatyka

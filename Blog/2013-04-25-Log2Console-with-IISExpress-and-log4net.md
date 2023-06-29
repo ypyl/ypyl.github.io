@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Log2Console with IISExpress and log4net"
+title: Log2Console with IISExpress and log4net
 date: 2013-04-25
 
 tags: dotnet

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bootstrap datepicker Week mode view"
+title: Bootstrap datepicker Week mode view
 date: 2013-07-28
 tags: javascript
 categories: programming

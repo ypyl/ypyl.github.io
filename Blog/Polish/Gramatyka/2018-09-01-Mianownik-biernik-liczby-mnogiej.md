@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mianownik i biernik"
+title: Mianownik i biernik
 date: 2018-09-01
 
 tags: polish gramatyka

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Clustering"
+title: Clustering
 date: 2016-09-27
 
 tags: machine learning

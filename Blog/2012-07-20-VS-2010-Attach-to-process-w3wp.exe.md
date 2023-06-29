@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "VS 2010 Attach to process w3wp.exe"
+title: VS 2010 Attach to process w3wp.exe
 date: 2012-07-20
 
 tags: vs

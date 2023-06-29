@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SMO Scripter. Create script of DB"
+title: SMO Scripter. Create script of DB
 date: 2013-06-25
 
 tags: dotnet

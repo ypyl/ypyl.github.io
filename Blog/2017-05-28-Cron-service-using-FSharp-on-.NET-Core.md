@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cron service using F# on .NET Core"
+title: Cron service using F# on .NET Core
 date: 2017-05-28
 tags: dotnet fsharp
 categories: programming

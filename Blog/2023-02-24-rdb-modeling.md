@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "RDB modeling. A way to simplify your C4 model"
+title: RDB modeling. A way to simplify your C4 model
 date: 2023-02-24
 tags: architecture, c4, model, design, elm
 categories: programming

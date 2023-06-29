@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tryb rozkazujący"
+title: Tryb rozkazujący
 date: 2018-09-01
 
 tags: polish gramatyka

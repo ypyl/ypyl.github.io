@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "WinRT Checksum for large files"
+title: WinRT Checksum for large files
 date: 2014-09-29
 
 tags: dotnet winrt

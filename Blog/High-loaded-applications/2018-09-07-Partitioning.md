@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Partitioning"
+title: Partitioning
 date: 2018-09-07
 
 tags: high-load

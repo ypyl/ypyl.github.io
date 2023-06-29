@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Get information about all stored procedures, views and functions"
+title: Get information about all stored procedures, views and functions
 date: 2017-12-18
 
 tags: dotnet sql
@@ -35,14 +35,14 @@ o.modify_date as Modified,
 CASE WHEN CHARINDEX(@StopString, m.definition, CHARINDEX(@StopString, m.definition, 0)+1)-CHARINDEX(@StopString, m.definition, 0)-LEN(@StopString) > CHARINDEX(@StopString, m.definition, 0) + LEN(@StopString)
     THEN
         SUBSTRING(m.definition, CHARINDEX(@StopString, m.definition, 0) + LEN(@StopString), CHARINDEX(@StopString, m.definition, CHARINDEX(@StopString, m.definition, 0)+1)-CHARINDEX(@StopString, m.definition, 0)-LEN(@StopString))
-    ELSE 
+    ELSE
         'No description'
 END
 AS Description
-FROM sys.sql_modules m 
+FROM sys.sql_modules m
     INNER JOIN sys.objects o ON m.object_id = o.object_id
     INNER JOIN sys.schemas s ON o.schema_id = s.schema_id
-WHERE 
+WHERE
     s.name = 'dbo' and
     (o.type_desc = 'VIEW' or o.type_desc = 'SQL_STORED_PROCEDURE' or o.type_desc = 'SQL_INLINE_TABLE_VALUED_FUNCTION' or o.type_desc = 'SQL_SCALAR_FUNCTION')
 ";

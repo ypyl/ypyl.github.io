@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "exRS tool to deploy SSRS reports and subscriptions"
+title: exRS tool to deploy SSRS reports and subscriptions
 date: 2018-01-24
 tags: dotnet ssrs mssql
 categories: programming
 ---
-There is a nice tool to deploy reports and/or subscription to SSRS - [RS tool](https://docs.microsoft.com/en-us/sql/reporting-services/tools/rs-exe-utility-ssrs). And I described a way to use this tool [here]({% post_url 2017-09-19-Auto-deployment-for-SSRS-reports %}). 
+There is a nice tool to deploy reports and/or subscription to SSRS - [RS tool](https://docs.microsoft.com/en-us/sql/reporting-services/tools/rs-exe-utility-ssrs). And I described a way to use this tool [here]({% post_url 2017-09-19-Auto-deployment-for-SSRS-reports %}).
 
 But it is not so easy to support VB scripts, so there is a new tool [exRS](https://github.com/eapyl/exRS). This tool helps to deploy reports and create subscriptions for reports.
 

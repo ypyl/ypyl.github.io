@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Binary tree"
+title: Binary tree
 date: 2022-01-01
 tags: algorithm binary tree structure
 categories: programming

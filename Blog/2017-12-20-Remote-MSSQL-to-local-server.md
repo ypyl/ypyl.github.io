@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Copy remote MSSQL DB to local server"
+title: Copy remote MSSQL DB to local server
 date: 2017-12-20
 
 tags: dotnet mssql

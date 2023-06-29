@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Structure of presentation"
+title: Structure of presentation
 date: 2013-04-10
 
 tags: presentation

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Use ZadGraph"
+title: Use ZadGraph
 date: 2011-05-05
 
 tags: dotnet

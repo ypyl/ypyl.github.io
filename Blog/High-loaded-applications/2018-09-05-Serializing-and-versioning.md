@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Serializing and versioning"
+title: Serializing and versioning
 date: 2018-09-05
 
 tags: high-load

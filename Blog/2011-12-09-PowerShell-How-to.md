@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "PowerShell How to"
+title: PowerShell How to
 date: 2011-12-09
 
 tags: powershell
@@ -22,7 +22,7 @@ Get-ChildItem .\ -include bin,obj -Recurse | foreach ($_) { remove-item $_.fulln
  $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
  $Principal = new-object security.principal.ntaccount $currentUser
  $path = Join-Path $pathToSystemRoot \temp
- 
+
  $code = @"
 using System;
 using System.Runtime.InteropServices;
@@ -100,7 +100,7 @@ public class PermissionsSetter
   public const string SE_TIME_ZONE_NAME = "SeTimeZonePrivilege";
   public const string SE_TRUSTED_CREDMAN_ACCESS_NAME = "SeTrustedCredManAccessPrivilege";
   public const string SE_UNDOCK_NAME = "SeUndockPrivilege";
-  public const string SE_UNSOLICITED_INPUT_NAME = "SeUnsolicitedInputPrivilege";       
+  public const string SE_UNSOLICITED_INPUT_NAME = "SeUnsolicitedInputPrivilege";
 
 
   public static bool AddPrivilege(string privilege)
@@ -152,9 +152,9 @@ public class PermissionsSetter
 }
 }
 "@
- 
+
  add-type $code
- 
+
  $acl = Get-Acl $Path
  $acl.psbase.SetOwner($principal)
  $Ar = New-Object  system.security.accesscontrol.filesystemaccessrule("IIS_IUSRS","FullControl", "Allow")
@@ -183,7 +183,7 @@ public class PermissionsSetter
  {
   $pathToFramework = "$env:windir\Microsoft.NET\Framework64"
  }
- 
+
  #start aspnet_regiis and ServiceModelReg
  $aspNet2 = Test-Path "$pathToFramework\v2.0.50727\aspnet_regiis.exe" -pathType leaf
  if (($aspNet2 -eq $true) -and ($aspNet2Reg -eq $false))
@@ -198,7 +198,7 @@ public class PermissionsSetter
   Write-Host -ForegroundColor green "`r`nInstall ServiceModelReg.exe v3.0"
   & "$pathToFramework\v3.0\Windows Communication Foundation\ServiceModelReg.exe" -iru
  }
-  
+
  $ServModReg4 = Test-Path "$pathToFramework\v4.0.30319\ServiceModelReg.exe" -pathType leaf
  if ($ServModReg4 -eq $true)
  {
@@ -219,13 +219,13 @@ public class PermissionsSetter
 ```powershell
  #check the windows features
  $features = @(("IIS-ASPNET", "unknown"), ("IIS-HttpCompressionDynamic", "unknown"), ("IIS-ManagementScriptingTools", "unknown"), ("IIS-IIS6ManagementCompatibility", "unknown"), ("IIS-Metabase", "unknown"), ("IIS-WMICompatibility", "unknown"), ("IIS-LegacyScripts", "unknown"), ("IIS-LegacySnapIn", "unknown"))
- 
+
  $dismPath = "$env:windir\System32\Dism.exe"
  if(test-path "$env:windir\Sysnative\Dism.exe")
  {
   $dismPath = "$env:windir\Sysnative\Dism.exe"
  }
- 
+
  Write-Host -ForegroundColor green "`r`nGet windows features"
  $res = & "$dismPath" /online /Get-Features
  #take feature's states
@@ -242,7 +242,7 @@ public class PermissionsSetter
    }
   }
  }
- 
+
  #show results
  Write-Host -ForegroundColor green "`r`nPlease see the states of features`r`n"
  foreach($feature in $features)
@@ -250,7 +250,7 @@ public class PermissionsSetter
   Write-Host -ForegroundColor yellow "$feature"
  }
  Write-Host -ForegroundColor green "`r`n"
- 
+
  #enable features
  $needToRestart = $false
  Write-Host -ForegroundColor green "Started to enable all features`r`n"

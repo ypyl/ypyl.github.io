@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Persistence.js insert empty values in web sql"
+title: Persistence.js insert empty values in web sql
 date: 2013-04-04
 
 tags: javascript

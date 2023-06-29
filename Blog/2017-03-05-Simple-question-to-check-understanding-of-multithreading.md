@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Simple question to check understanding of multithreading"
+title: Simple question to check understanding of multithreading
 date: 2017-03-05
 
 tags: dotnet interview

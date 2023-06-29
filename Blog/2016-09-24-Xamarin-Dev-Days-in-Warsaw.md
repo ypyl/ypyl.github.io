@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Xamarin Dev Days in Warsaw"
+title: Xamarin Dev Days in Warsaw
 date: 2016-09-24
 
 tags: xamarin

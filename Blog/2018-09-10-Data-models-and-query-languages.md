@@ -1,5 +1,5 @@
 ---
-title: "Data models and query languages"
+title: Data models and query languages
 date: 2018-09-10
 tags: ["high-load"]
 categories: ["learning"]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Neural Networks"
+title: Neural Networks
 date: 2016-12-06
 
 tags: machine learning

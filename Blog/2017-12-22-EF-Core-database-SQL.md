@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Generate EF Core model from database using SQL script"
+title: Generate EF Core model from database using SQL script
 date: 2017-12-22
 tags: dotnet sql ef
 categories: programming
@@ -25,7 +25,7 @@ PRINT 'using System.ComponentModel.DataAnnotations;'
 PRINT 'using System.ComponentModel.DataAnnotations.Schema;'
 PRINT 'using System.Configuration;'
 
-PRINT 'namespace Model.'+ DB_NAME() 
+PRINT 'namespace Model.'+ DB_NAME()
 PRINT '{'
 PRINT '    public class '+ DB_NAME() +'Context : DbContext {'
 
@@ -56,7 +56,7 @@ FETCH NEXT FROM CLASS_NAME INTO @className
 WHILE @@FETCH_STATUS = 0
 BEGIN
     PRINT '        public DbSet<'+@className+'> '+@className+'s { get; set; }'
-    
+
     FETCH NEXT FROM CLASS_NAME INTO @className
 END
 CLOSE CLASS_NAME
@@ -87,7 +87,7 @@ BEGIN
     PRINT '            modelBuilder.Entity<'+@className+'>().HasKey(x => new {'+@Result+'});'
     IF @Result = 'x.ID' OR @Result = 'x.Id' OR @Result = 'x.id'
         PRINT '            modelBuilder.Entity<'+@className+'>().Property(x => '+@Result+').ValueGeneratedNever();'
-    
+
     FETCH NEXT FROM CLASS_NAME INTO @className
 END
 CLOSE CLASS_NAME
@@ -105,17 +105,17 @@ FETCH NEXT FROM CLASS_NAME INTO @className
 WHILE @@FETCH_STATUS = 0
 BEGIN
     SET @tableName = UPPER(@className)
-    
+
     DECLARE tableColumns CURSOR LOCAL FOR
     SELECT DISTINCT cols.name, cols.system_type_id, cols.is_nullable
     FROM sys.columns cols
     JOIN sys.tables tbl ON cols.object_id = tbl.object_id
     WHERE tbl.name = @tableName
 
-    PRINT '    [Table("'+@tableName+'")]' 
+    PRINT '    [Table("'+@tableName+'")]'
     PRINT '    public partial class ' + @className
     PRINT '    {'
- 
+
     OPEN tableColumns
     DECLARE @name NVARCHAR(MAX), @typeId INT, @isNullable BIT, @typeName NVARCHAR(MAX)
     FETCH NEXT FROM tableColumns INTO @name, @typeId, @isNullable
@@ -145,7 +145,7 @@ BEGIN
 
     PRINT '    }'
     PRINT ''
- 
+
     CLOSE tableColumns
     DEALLOCATE tableColumns
     FETCH NEXT FROM CLASS_NAME INTO @className

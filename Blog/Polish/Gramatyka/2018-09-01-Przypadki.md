@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Przypadki"
+title: Przypadki
 date: 2018-09-01
 
 tags: polish gramatyka

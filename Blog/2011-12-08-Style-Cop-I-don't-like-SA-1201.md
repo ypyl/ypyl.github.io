@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Style Cop I don't like SA 1201"
+title: Style Cop I don't like SA 1201
 date: 2011-12-08
 
 tags: dotnet
@@ -36,7 +36,7 @@ You can see the rule that changes the order of document's element to the next:
 <element name="EmptyElement" order="20"></element>
 ```
 
-It saves in configuration file, so it is possible to change it in any time. 
+It saves in configuration file, so it is possible to change it in any time.
 Further the source code of my rule. You can see the original source code of SA1201 using the [DotPeek](http://www.jetbrains.com/decompiler/) for example:
 
 ```cs
@@ -45,13 +45,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Configuration;
 using System.Linq;
- 
+
 using StyleCop;
 using StyleCop.CSharp;
 using System.Xml.Serialization;
 using System.IO;
- 
- 
+
+
 namespace Wsg.Rules
 {
     /// <summary>
@@ -61,7 +61,7 @@ namespace Wsg.Rules
     public class WsgStyleCopCustomRules : SourceAnalyzer
     {
         private Rule ws1000 = null;
- 
+
         public Rule Ws1000
         {
             get
@@ -73,18 +73,18 @@ namespace Wsg.Rules
                         if (ws1000 == null)
                         {
                             XmlSerializer serializer = new XmlSerializer(typeof(Rule));
- 
+
                             TextReader tr = new StreamReader(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "WS1000.config"));
                             ws1000 = (Rule)serializer.Deserialize(tr);
                             tr.Close();
                         }
                     }
                 }
- 
+
                 return ws1000;
             }
         }
- 
+
         public override void AnalyzeDocument(CodeDocument document)
         {
             Param.RequireNotNull((object)document, "document");
@@ -101,7 +101,7 @@ namespace Wsg.Rules
             }
             this.CheckUsingDirectiveOrder((CsElement)csDocument.RootElement);
         }
- 
+
         public override bool DoAnalysis(CodeDocument document)
         {
             Param.RequireNotNull((object)document, "document");
@@ -111,7 +111,7 @@ namespace Wsg.Rules
             else
                 return true;
         }
- 
+
         private bool ProcessElements(CsElement element, bool checkGeneratedCode)
         {
             if (this.Cancel)
@@ -119,7 +119,7 @@ namespace Wsg.Rules
             this.CheckElementOrder(element, checkGeneratedCode);
             return true;
         }
- 
+
         private void CheckElementOrder(CsElement element, bool checkGeneratedCode)
         {
             if (!element.Generated && (element.ElementType == ElementType.Class || element.ElementType == ElementType.Field || (element.ElementType == ElementType.Enum || element.ElementType == ElementType.Struct) || (element.ElementType == ElementType.Interface || element.ElementType == ElementType.Delegate || (element.ElementType == ElementType.Event || element.ElementType == ElementType.Property)) || (element.ElementType == ElementType.Indexer || element.ElementType == ElementType.Method || (element.ElementType == ElementType.Constructor || element.ElementType == ElementType.Accessor))))
@@ -127,7 +127,7 @@ namespace Wsg.Rules
             this.CheckUsingDirectivePlacement(element);
             this.CheckChildElementOrdering(element, checkGeneratedCode);
         }
- 
+
         private void CheckChildElementOrdering(CsElement element, bool checkGeneratedCode)
         {
             if (element.ChildElements.Count <= 0)
@@ -138,7 +138,7 @@ namespace Wsg.Rules
             for (int index1 = 0; index1 < array.Length; ++index1)
             {
                 CsElement csElement = array[index1];
-               
+
                 for (int index2 = index1 + 1; index2 < array.Length; ++index2)
                 {
                     CsElement second = array[index2];
@@ -164,11 +164,11 @@ namespace Wsg.Rules
                         }
                     }
                 }
- 
+
                 this.CheckElementOrder(csElement, checkGeneratedCode);
             }
         }
- 
+
         public bool CompareElementType(ElementType first, ElementType second)
         {
             if (Ws1000 != null)
@@ -177,7 +177,7 @@ namespace Wsg.Rules
             }
             return false;
         }
- 
+
         private bool CompareItems(CsElement first, CsElement second, bool foundFirst)
         {
             if (first.ElementType != ElementType.EmptyElement && second.ElementType != ElementType.EmptyElement && (first.ElementType != ElementType.Accessor || second.ElementType != ElementType.Accessor))
@@ -280,7 +280,7 @@ namespace Wsg.Rules
         label_31:
             return true;
         }
- 
+
         private static string AccessModifierTypeString(AccessModifierType type)
         {
             switch (type)
@@ -299,7 +299,7 @@ namespace Wsg.Rules
                     throw new InvalidOperationException();
             }
         }
- 
+
         private void CheckUsingDirectivePlacement(CsElement element)
         {
             if (element.Generated || element.ElementType != ElementType.UsingDirective)
@@ -312,7 +312,7 @@ namespace Wsg.Rules
                 this.AddViolation((ICodeElement)element, "UsingDirectivesMustBePlacedWithoutNamespace", new object[0]);
             }
         }
- 
+
         private void CheckDeclarationKeywordOrder(CsElement element)
         {
             int num1 = -1;
@@ -417,7 +417,7 @@ namespace Wsg.Rules
                 }
             }
         }
- 
+
         private void CheckUsingDirectiveOrder(CsElement rootElement)
         {
             if (rootElement.Generated)
@@ -429,7 +429,7 @@ namespace Wsg.Rules
                     this.CheckUsingDirectiveOrder(rootElement1);
             }
         }
- 
+
         private void CheckOrderOfUsingDirectivesUnderElement(CsElement element)
         {
             List<UsingDirective> usings = (List<UsingDirective>)null;
@@ -448,7 +448,7 @@ namespace Wsg.Rules
                 return;
             this.CheckOrderOfUsingDirectivesInList(usings);
         }
- 
+
         private void CheckOrderOfUsingDirectivesInList(List<UsingDirective> usings)
         {
             for (int index1 = 0; index1 < usings.Count; ++index1)
@@ -462,7 +462,7 @@ namespace Wsg.Rules
                 }
             }
         }
- 
+
         private bool CompareOrderOfUsingDirectives(UsingDirective firstUsing, UsingDirective secondUsing)
         {
             if (string.IsNullOrEmpty(firstUsing.Alias))
@@ -495,7 +495,7 @@ namespace Wsg.Rules
             }
             return true;
         }
- 
+
         private static bool CheckNamespaceOrdering(string namespace1, string namespace2)
         {
             string[] strArray1 = namespace1.Split(new char[1] {'.'});

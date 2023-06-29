@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Optimization Objective"
+title: Optimization Objective
 date: 2016-12-27
 
 tags: machine learning

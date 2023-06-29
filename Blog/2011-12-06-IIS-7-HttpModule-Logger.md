@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "IIS 7 HttpModule Logger"
+title: IIS 7 HttpModule Logger
 date: 2011-12-06
 
 tags: iis
@@ -21,18 +21,18 @@ using System.Net;
 using ReutersKnowledge.Web.Services.Util;
 using System.Collections.Specialized;
 using System.Reflection;
- 
+
 namespace IISWsgLogger
 {
     public class IISLoggerModule : IHttpModule
     {
         private static string fileName = "D:\\Log.txt";
- 
+
         private static ConcurrentQueue<string> logRecords = new ConcurrentQueue<string>();
- 
+
         private static object syncTask = new object();
         private static Task taskLog;
- 
+
         public void Init(HttpApplication context)
         {
             if (taskLog == null)
@@ -48,7 +48,7 @@ namespace IISWsgLogger
             context.BeginRequest += new EventHandler(OnPreRequestHandlerExecute);
             context.EndRequest += new EventHandler(OnPostReleaseRequestState);
         }
- 
+
         private void StartLog()
         {
             var t = File.AppendText(fileName);
@@ -70,20 +70,20 @@ namespace IISWsgLogger
             {
                 t.Close();
             }
- 
+
         }
- 
+
         public void Dispose()
         {
         }
- 
+
         public void OnPreRequestHandlerExecute(Object source, EventArgs e)
         {
             HttpApplication app = (HttpApplication)source;
             var guid = Guid.NewGuid().ToString();
             app.Context.RewritePath(app.Context.Request.FilePath, app.Context.Request.PathInfo, "guid=" + guid);
         }
- 
+
         public void OnPostReleaseRequestState(Object source, EventArgs e)
         {
             HttpApplication app = (HttpApplication)source;
@@ -102,10 +102,10 @@ namespace IISWsgLogger
             {
                 cookies += cookies;
             }
- 
+
             logRecords.Enqueue(string.Format("{0} {1} {3} {4} {5} {6} {7} {8} {9} {10}", time, guid, port, typeOfRequest, host, rawUrl, status, agent, timeStamp, contentRequestLength));
         }
- 
+
     }
 }
 ```

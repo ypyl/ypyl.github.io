@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to use wait-for-it with docker compose"
+title: How to use wait-for-it with docker compose
 date: 2018-09-15
 
 tags: docker

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Notes about passionate programmer"
+title: Notes about passionate programmer
 date: 2022-02-20
 tags: programming notes
 categories: programming

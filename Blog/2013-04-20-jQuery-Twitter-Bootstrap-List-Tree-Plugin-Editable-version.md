@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "jQuery Twitter Bootstrap List Tree Plugin Editable version"
+title: jQuery Twitter Bootstrap List Tree Plugin Editable version
 date: 2013-04-20
 
 tags: javascript

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fiddler Zip extension"
+title: Fiddler Zip extension
 date: 2011-12-08
 
 tags: dotnet

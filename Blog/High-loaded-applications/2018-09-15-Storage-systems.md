@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Storage systems"
+title: Storage systems
 date: 2018-09-15
 
 tags: high-load

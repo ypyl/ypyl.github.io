@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Use LogParser"
+title: Use LogParser
 date: 2011-05-05
 
 tags: dotnet

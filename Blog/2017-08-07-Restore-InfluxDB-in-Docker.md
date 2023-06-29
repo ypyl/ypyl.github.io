@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Restore InfluxDB in Docker"
+title: Restore InfluxDB in Docker
 date: 2017-08-07
 
 tags: docker influxdb

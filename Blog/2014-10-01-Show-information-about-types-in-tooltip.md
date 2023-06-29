@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Show information about types in tooltip"
+title: Show information about types in tooltip
 date: 2014-10-01
 
 tags: javascript

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Understanding Docker"
+title: Understanding Docker
 date: 2017-01-21
 
 tags: docker

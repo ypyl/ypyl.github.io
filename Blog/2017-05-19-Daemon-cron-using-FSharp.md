@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Daemon cron using F#"
+title: Daemon cron using F#
 date: 2017-05-19
 tags: dotnet fsharp
 categories: programming
@@ -19,26 +19,26 @@ module Daemon =
                 new IDisposable with
                     member x.Dispose() = f()
             }
-        
+
         // event fot Timer
         let timerElapsed obj =
             let checkJob = () |> now |> Schedule.isTime
-            jobs 
+            jobs
             |> Seq.map (fun x ->
                 let schedule = Schedule.generate x.cron
                 (schedule, x.action)
-            ) 
+            )
             |> Seq.filter (fun (x, y) -> checkJob x)
-            |> Seq.map (fun (x, y) -> y) 
-            |> Async.Parallel 
+            |> Seq.map (fun (x, y) -> y)
+            |> Async.Parallel
             |> Async.RunSynchronously
             |> ignore
-        
+
         // timer
         let localTimer = new Timer(timerElapsed, null, Timeout.Infinite, interval)
         // start timer
         localTimer.Change(0, interval) |> ignore
-        // return timer as IDisposable 
+        // return timer as IDisposable
         createDisposable (fun() -> localTimer.Dispose())
 
     // get DateTime

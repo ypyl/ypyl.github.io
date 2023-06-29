@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "API Facebook"
+title: API Facebook
 date: 2012-09-28
 tags: dotnet
 categories: programming

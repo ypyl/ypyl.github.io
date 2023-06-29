@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "English minute"
+title: English minute
 date: 2017-01-09
 
 tags: english

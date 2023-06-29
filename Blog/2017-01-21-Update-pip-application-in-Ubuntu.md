@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Update pip application in Ubuntu"
+title: Update pip application in Ubuntu
 date: 2017-01-21
 
 tags: linux

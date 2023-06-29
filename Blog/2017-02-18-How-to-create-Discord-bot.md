@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to create Discord bot"
+title: How to create Discord bot
 date: 2017-02-18
 
 tags: javascript discord

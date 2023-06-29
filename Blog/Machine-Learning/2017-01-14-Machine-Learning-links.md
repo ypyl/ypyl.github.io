@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Machine Learning links"
+title: Machine Learning links
 date: 2017-01-14
 
 tags: machine learning

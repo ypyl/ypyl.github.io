@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Auto deployment for SSRS reports"
+title: Auto deployment for SSRS reports
 date: 2017-09-19
 tags: ssrs reports
 categories: programming
@@ -54,7 +54,7 @@ Public Sub Main()
     ReadFiles(filepath, "*.rsd")
     ReadFiles(filepath, "*.rdl")
 End Sub
- 
+
 'Utility for creation of folders
 Public Sub CreateFolders(ByVal folderName as string, ByVal parentPath as string, ByVal description as String, ByVal visible as string)
     Console.WriteLine()
@@ -78,7 +78,7 @@ Public Sub CreateFolders(ByVal folderName as string, ByVal parentPath as string,
         End If
     End Try
 End Sub
- 
+
 'Utility for reading files from the Report Sevices Project
 Public sub ReadFiles(filepath as string, fileextension as string)
     Console.WriteLine()
@@ -104,7 +104,7 @@ Public sub ReadFiles(filepath as string, fileextension as string)
         Console.WriteLine("In ReadFiles " + goof.message)
     End Try
 End Sub
- 
+
 'Utility for Creating Shared Data Sets contained in the project
 Public Sub CreateDataSet(ByVal filename as string)
     Dim valstart as integer
@@ -166,7 +166,7 @@ Public Sub CreateDataSet(ByVal filename as string)
         End If
     End Try
 End Sub
- 
+
 'Utility for creating Data Sources on the Server
 Public Sub CreateDataSource(filename as string)
     'Define the data source definition.
@@ -243,7 +243,7 @@ Public Sub CreateDataSource(filename as string)
         End If
     End Try
 End Sub
- 
+
 'Utility to Publish the Reports
 Public Sub PublishReport(ByVal reportName As String)
     Console.WriteLine("Publishing " + reportName)
@@ -267,7 +267,7 @@ Public Sub PublishReport(ByVal reportName As String)
         item=rs.CreateCatalogItem("Report",reportname, "/" + ReportFolder, false, definition,nothing, warnings)
         'warnings = rs.CreateCatalogItem(reportName, "/" + ReportFolder, False, definition, Nothing)
         If Not (warnings Is Nothing) Then
-            If item.Name <> "" then 
+            If item.Name <> "" then
                 Console.WriteLine("Report: {0} published successfully with warnings", reportName)
                 UpdateDataSources_report(reportName)
                 UpdateDataSet_report(reportName, DSDefinitionStr)
@@ -329,10 +329,10 @@ Public Sub UpdateDataSet_report(ReportName as string, DSDefinitionStr as string)
                 End If
                 Dim sharedDataSetName as String = dataSets(i).Name
                 Dim references(0) as ItemReference
-                Dim sharedDataSet = New ItemReference() 
+                Dim sharedDataSet = New ItemReference()
                 sharedDataSet.Name = sharedDataSetName
                 Console.WriteLine("Attempting to Link Dataset {0}", sharedDataSetName)
-                sharedDataSet.Reference = "/" + DataSetFolder + "/" + sharedDataSetReference 
+                sharedDataSet.Reference = "/" + DataSetFolder + "/" + sharedDataSetReference
                 references(0)=sharedDataSet
                 rs.SetItemReferences("/" + ReportFolder + "/" + ReportName, references)
                 Console.WriteLine("Report " + ReportName + " Linked to data set " + "/" + DataSetFolder + "/" + Convert.ToString(sharedDataSet.Name))
@@ -342,7 +342,7 @@ Public Sub UpdateDataSet_report(ReportName as string, DSDefinitionStr as string)
         Console.WriteLine(goof.Detail.InnerXml.ToString())
     End Try
 End Sub
- 
+
 'Function to Reference Data Sources
 Private Function GetDataSource(sharedDataSourcePath as string, dataSourceName as String) as DataSource
     Dim reference As New DataSourceReference()

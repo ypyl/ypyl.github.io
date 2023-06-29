@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Octave Tutorial"
+title: Octave Tutorial
 date: 2016-10-26
 
 tags: octava
@@ -11,7 +11,7 @@ Information is from this wonderful [course](https://www.coursera.org/learn/machi
 ### Basic operations
 
 ```none
-%% Change Octave prompt  
+%% Change Octave prompt
 PS1('>> ');
 %% Change working directory in windows example:
 cd 'c:/path/to/desired/directory name'
@@ -58,12 +58,12 @@ v = 1:6       % from 1 to 6, assumes stepsize of 1 (row vector)
 C = 2*ones(2,3) % same as C = [2 2 2; 2 2 2]
 w = ones(1,3)   % 1x3 vector of ones
 w = zeros(1,3)
-w = rand(1,3) % drawn from a uniform distribution 
+w = rand(1,3) % drawn from a uniform distribution
 w = randn(1,3)% drawn from a normal distribution (mean=0, var=1)
 w = -6 + sqrt(10)*(randn(1,10000));  % (mean = -6, var = 10) - note: add the semicolon
 hist(w)    % plot histogram using 10 bins (default)
 hist(w,50) % plot histogram using 50 bins
-% note: if hist() crashes, try "graphics_toolkit('gnu_plot')" 
+% note: if hist() crashes, try "graphics_toolkit('gnu_plot')"
 
 I = eye(4)   % 4x4 identity matrix
 
@@ -85,12 +85,12 @@ length(v) % size of longest dimension
 
 %% loading data
 pwd   % show current directory (current path)
-cd 'C:\Users\ang\Octave files'  % change directory 
-ls    % list files in current directory 
+cd 'C:\Users\ang\Octave files'  % change directory
+ls    % list files in current directory
 load q1y.dat   % alternatively, load('q1y.dat')
 load q1x.dat
 who   % list variables in workspace
-whos  % list variables in workspace (detailed view) 
+whos  % list variables in workspace (detailed view)
 clear q1y      % clear command without any args clears all vars
 v = q1x(1:10); % first 10 elements of q1x (counts down the columns)
 save hello.mat v;  % save variable v into file hello.mat
@@ -99,7 +99,7 @@ save hello.txt v -ascii; % save as ascii
 
 %% indexing
 A(3,2)  % indexing is (row,col)
-A(2,:)  % get the 2nd row. 
+A(2,:)  % get the 2nd row.
         % ":" means every element along that dimension
 A(:,2)  % get the 2nd col
 A([1 3],:) % print all  the elements of rows 1 and 3
@@ -108,7 +108,7 @@ A(:,2) = [10; 11; 12]     % change second column
 A = [A, [100; 101; 102]]; % append column vec
 A(:) % Select all elements as a column vector.
 
-% Putting data together 
+% Putting data together
 A = [1 2; 3 4; 5 6]
 B = [11 12; 13 14; 15 16] % same dims as A
 C = [A B]  % concatenating A and B matrices side by side
@@ -131,13 +131,13 @@ A .* B % element-wise multiplication
 % A .* C  or A * B gives error - wrong dimensions
 A .^ 2 % element-wise square of each element in A
 1./v   % element-wise reciprocal
-log(v)  % functions like this operate element-wise on vecs or matrices 
+log(v)  % functions like this operate element-wise on vecs or matrices
 exp(v)
 abs(v)
 
 -v  % -1*v
 
-v + ones(length(v), 1)  
+v + ones(length(v), 1)
 % v + 1  % same
 
 A'  % matrix transpose
@@ -179,7 +179,7 @@ pinv(A)        % inv(A'*A)*A'
 ```none
 %% plotting
 t = [0:0.01:0.98];
-y1 = sin(2*pi*4*t); 
+y1 = sin(2*pi*4*t);
 plot(t,y1);
 y2 = cos(2*pi*4*t);
 hold on;  % "hold off" to turn off
@@ -199,10 +199,10 @@ subplot(1,2,2);  % Divide plot into 1x2 grid, access 2nd element
 plot(t,y2);
 axis([0.5 1 -1 1]);  % change axis scale
 
-%% display a matrix (or image) 
+%% display a matrix (or image)
 figure;
 imagesc(magic(15)), colorbar, colormap gray;
-% comma-chaining function calls.  
+% comma-chaining function calls.
 a=1,b=2,c=3
 a=1;b=2;c=3;
 ```
@@ -211,20 +211,20 @@ a=1;b=2;c=3;
 
 ```none
 v = zeros(10,1);
-for i=1:10, 
+for i=1:10,
     v(i) = 2^i;
 end;
 % Can also use "break" and "continue" inside for and while loops to control execution.
 
 i = 1;
 while i <= 5,
-  v(i) = 100; 
+  v(i) = 100;
   i = i+1;
 end
 
 i = 1;
-while true, 
-  v(i) = 999; 
+while true,
+  v(i) = 999;
   i = i+1;
   if i == 6,
     break;

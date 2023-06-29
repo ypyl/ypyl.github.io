@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Math in our life"
+title: Math in our life
 date: 2022-09-21
 tags: math
 categories: math

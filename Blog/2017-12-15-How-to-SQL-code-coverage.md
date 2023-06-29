@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to set up SQL code coverage"
+title: How to set up SQL code coverage
 date: 2017-12-15
 
 tags: dotnet sql

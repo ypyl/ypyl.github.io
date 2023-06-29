@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "MVC indefinitely loads the page and call the controller cyclical"
+title: MVC indefinitely loads the page and call the controller cyclical
 date: 2012-01-31
 
 tags: dotnet web
@@ -15,7 +15,7 @@ So the solution of the problem to add the next code to rendered view:
       Layout = null;
 }
 ```
- 
+
 As I understand, MVC try to load the next without this code:
 
 Layout -> MyView -> Layout -> MyView -> ....

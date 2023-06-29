@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Simplest syslog server for rfc5424 (TCP)"
+title: Simplest syslog server for rfc5424 (TCP)
 date: 2017-09-12
 
 tags: dotnet docker
@@ -24,7 +24,7 @@ So docker-compose configuration looks like:
       - logcollector
   logcollector:
     image: eapyl/syslog-collector
-    volumes: 
+    volumes:
       - $PWD/../logs:/log/logs
 ```
 

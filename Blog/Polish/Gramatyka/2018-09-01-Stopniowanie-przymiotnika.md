@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stopniowanie przymiotnika"
+title: Stopniowanie przymiotnika
 date: 2018-09-01
 
 tags: polish gramatyka

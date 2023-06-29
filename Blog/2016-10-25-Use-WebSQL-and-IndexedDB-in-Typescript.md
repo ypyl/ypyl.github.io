@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Use WebSQL and IndexedDB in Typescript"
+title: Use WebSQL and IndexedDB in Typescript
 date: 2016-10-25
 
 tags: javascript

@@ -1,5 +1,5 @@
 ---
-title: "Personal mobile radio application using Ionic"
+title: Personal mobile radio application using Ionic
 date: 2017-07-24
 
 tags: javascript

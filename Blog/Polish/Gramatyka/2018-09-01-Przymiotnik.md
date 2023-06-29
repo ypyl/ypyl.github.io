@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Przymiotnik"
+title: Przymiotnik
 date: 2018-09-01
 
 tags: polish gramatyka

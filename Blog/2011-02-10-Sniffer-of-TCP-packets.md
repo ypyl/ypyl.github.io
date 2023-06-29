@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Sniffer of TCP packets"
+title: Sniffer of TCP packets
 date: 2011-02-10
 
 tags: dotnet
@@ -12,13 +12,13 @@ categories: programming
 
 Важно! Библиотека SharpPcap уже давно имеет новый интерфейс.
 
-Далее в тексте, под соединением я понимаю соответствие адресов и портов на клиенте и сервере. 
+Далее в тексте, под соединением я понимаю соответствие адресов и портов на клиенте и сервере.
 
 Для работы необходима открытая библиотека SharpPcap, она предоставляет удобный интерфейс для работы с приложением WinPcap ([Sharppcap](http://sourceforge.net/projects/sharppcap/)).
 
 Класс соединения используется для хранения информации об адресе клиента и сервера, о портах, а так же об текущем ожидаемом tcp-пакете.
 
-Больше о флагах tcp-пакета можно посмотреть [http://www.firewall.cx.](http://www.firewall.cx/) 
+Больше о флагах tcp-пакета можно посмотреть [http://www.firewall.cx.](http://www.firewall.cx/)
 
 ```cs
 ///<summary>
@@ -38,24 +38,24 @@ internal class Connection
     public bool ClientClosed;
     public long TimeIdentifier;
     public bool ThreeWayCompleted = false; // three way connection is completed
- 
+
     // Fragments , used when we get newer packets that expected.
     // so we need to wait for expected before adding them.
     public SortedDictionary<long, TcpPacket> HostFragments = new SortedDictionary<long, TcpPacket>();
     public SortedDictionary<long, TcpPacket> ClientFragments = new SortedDictionary<long, TcpPacket>();
- 
+
     // returns client ip:client port as a string
     public string GetClientAddressPort()
     {
         return string.Format("{0}:{1}", new IPAddress(ClientAddress).ToString(), ClientPort);
     }
- 
+
     // returns host ip:host port as a string
     public string GetHostAddressPort()
     {
         return string.Format("{0}:{1}", new IPAddress(HostAddress).ToString(), HostPort);
     }
- 
+
     // packet is from host
     public bool IsFromHost(TcpPacket tcp)
     {
@@ -64,7 +64,7 @@ internal class Connection
         HostAddress == ((IpPacket)tcp.ParentPacket).SourceAddress.Address &&
         HostPort == tcp.SourcePort;
     }
- 
+
     // packet is from client
     public bool IsFromClient(TcpPacket tcp)
     {
@@ -73,7 +73,7 @@ internal class Connection
         HostAddress == ((IpPacket)tcp.ParentPacket).DestinationAddress.Address &&
         HostPort == tcp.DestinationPort;
     }
- 
+
     public Connection(long clientAddress, int clientPort, long hostAddress, int hostPort, long clientSyn)
     {
         this.ClientAddress = clientAddress;
@@ -89,7 +89,7 @@ internal class Connection
 
 Больше о TCP пакетах [wikipedia.org](http://ru.wikipedia.org/wiki/TCP).
 
-Методы RunSniffer и StopSniffer - запускают и останавливают сниффер соответственно. Метод AssemblePacket на вход получает tcp-пакет, и проверяет существует ли соединение, которому "принадлежит" этот пакет. Если нет - создается, если да - то работает логика по упорядочиванию пакетов. Два абстрактных метода позволяют получить доступ к "полезным" данным последовательно (AddHostData и AddClientData) 
+Методы RunSniffer и StopSniffer - запускают и останавливают сниффер соответственно. Метод AssemblePacket на вход получает tcp-пакет, и проверяет существует ли соединение, которому "принадлежит" этот пакет. Если нет - создается, если да - то работает логика по упорядочиванию пакетов. Два абстрактных метода позволяют получить доступ к "полезным" данным последовательно (AddHostData и AddClientData)
 
 ```cs
 /// <summary>
@@ -98,32 +98,32 @@ internal class Connection
 /// <remarks>
 /// 1. I see that there is new version of SharpPcap library with new interface (29/11/2011)
 /// So i just try to update some useful information about this class
-/// 
-/// 2. I believe that SynchronizatedConnection class is just 
+///
+/// 2. I believe that SynchronizatedConnection class is just
 /// class SynchronizatedConnection : Connection
 /// {
 ///     private object syncObject = new object();
-///     
+///
 ///     public Synchro {get {return syncObject;}}
 /// }
-/// 
+///
 /// 3. Coordinator is class with constants.
 /// </remarks>
-internal abstract class Sniffer 
+internal abstract class Sniffer
 {
     private Timer timer;
     private object synchronizationObjectForConnection = new object();
     private List<SynchronizatedConnection> Connections = new List<SynchronizatedConnection>();
     private LibPcapLiveDevice _device;
     private readonly List<System.Net.IPAddress> _hosts;
- 
+
     // when connected
     public abstract void Connected(Object conn);
     // when disconnected
     public abstract void Disconnected(Object conn);
     public abstract void AddHostData(byte[] data, string host);
     public abstract void AddClientData(byte[] data, string client);
- 
+
     private void ClearConnections(object source)
     {
         //sometimes purely the collection, just in case
@@ -135,7 +135,7 @@ internal abstract class Sniffer
             }
         }
     }
- 
+
     /// <summary>
     /// Create the exemplare of the class
     /// </summary>
@@ -144,7 +144,7 @@ internal abstract class Sniffer
         timer = new Timer(ClearConnections, null, Coordinator.Config.HowLongWeSaveTransaction, Coordinator.Config.HowLongWeSaveTransaction);
         _hosts = hosts;
     }
- 
+
     /// <summary>
     /// Start the tracing
     /// </summary>
@@ -164,7 +164,7 @@ internal abstract class Sniffer
         // Start capture packets
         _device.StartCapture();
     }
- 
+
     /// <summary>
     /// Stop the tracing
     /// </summary>
@@ -173,7 +173,7 @@ internal abstract class Sniffer
         _device.StopCapture();
         _device.Close();
     }
- 
+
     /// <summary>
     /// Catch the packet
     /// </summary>
@@ -199,13 +199,13 @@ internal abstract class Sniffer
                 }
             }
         }
- 
+
         // sometimes converting doesn't work - don't worry about it
         catch (InvalidOperationException ex)
         {
         }
     }
- 
+
     /// <summary>
     /// Parse TCP packet
     /// </summary>
@@ -224,7 +224,7 @@ Initially, we choose to do all the settings using a simple SQL query.ate void As
             SynchronizatedConnection conn;
             // try to find connection in collection
             bool? res = IsTcpFromClient(tcp, out conn);
-                
+
             if (res == null)
             {
                 // connection is new
@@ -293,7 +293,7 @@ Initially, we choose to do all the settings using a simple SQL query.        els
                             // remove fragment
                             if (tcp.PayloadData.Length == 0)
                                 break;
-                            // new NextClientSeq for client packet 
+                            // new NextClientSeq for client packet
                             conn.NextClientSeq = conn.NextClientSeq + tcp.PayloadData.Length;
                             // data should be valid here.
                             AddClientData(GetUsefulData(tcp), GetIdOfConnection(conn));
@@ -357,13 +357,13 @@ Initially, we choose to do all the settings using a simple SQL query.        els
             }
         }
     }
- 
+
     private static string GetIdOfConnection(SynchronizatedConnection conn)
     {
         return conn.ClientAddress.ToString() + conn.ClientPort.ToString() + conn.HostAddress.ToString()
         + conn.HostPort.ToString();
     }
- 
+
     private bool? IsTcpFromClient(TcpPacket tcp, out SynchronizatedConnection conn)
     {
         conn = null;
@@ -385,7 +385,7 @@ Initially, we choose to do all the settings using a simple SQL query.        els
         }
         return null;
     }
- 
+
     /// <summary>
     /// Get Payload Data from tcp packet
     /// </summary>
@@ -409,7 +409,7 @@ Initially, we choose to do all the settings using a simple SQL query.        els
 3. Все манипуляции (приведение, извлечение TCP пакета из IP пакета, работа с этим пакетом) довольно времяемкие операции. Необходимо задавать хороший фильтр
 
 ```cs
-(public void RunSniffer(string filter)) 
+(public void RunSniffer(string filter))
 ```
 
 или советую отказаться от этого решения для наблюдения за высоконагруженным сетевым траффиком.

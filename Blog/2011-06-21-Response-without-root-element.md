@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Response without root element"
+title: Response without root element
 date: 2011-06-21
 
 tags: wcf
@@ -15,7 +15,7 @@ Write WCF web-service that accepts SOAP 1.2 and SOAP 1.1 requests. Service shoul
     <element1>text3</element1>
     <element2>textn</element2><!-- at least 1 "element2" -->
     <element2>textn+1</element2>
-    <element2>textn+2</element2>     
+    <element2>textn+2</element2>
 </GetResponse_Request_1>
 ```
 

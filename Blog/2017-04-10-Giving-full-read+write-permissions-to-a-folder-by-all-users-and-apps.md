@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Giving full read+write permissions to a folder by all users and apps"
+title: Giving full read+write permissions to a folder by all users and apps
 date: 2017-04-10
 
 tags: linux

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Create line chart use .net 2.0"
+title: Create line chart use .net 2.0
 date: 2011-05-06
 tags: dotnet
 categories: programming

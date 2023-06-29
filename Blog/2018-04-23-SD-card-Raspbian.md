@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Prepare SD card for Raspbian"
+title: Prepare SD card for Raspbian
 date: 2018-04-23
 
 tags: raspberrypi

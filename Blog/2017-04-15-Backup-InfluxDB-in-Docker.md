@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Backup InfluxDB in Docker"
+title: Backup InfluxDB in Docker
 date: 2017-04-15
 tags: docker
 categories: programming

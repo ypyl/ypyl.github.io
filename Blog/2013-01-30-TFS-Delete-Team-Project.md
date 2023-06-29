@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "TFS Delete Team Project"
+title: TFS Delete Team Project
 date: 2013-01-30
 
 tags: tfs

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rzeczownik"
+title: Rzeczownik
 date: 2018-09-01
 
 tags: polish gramatyka

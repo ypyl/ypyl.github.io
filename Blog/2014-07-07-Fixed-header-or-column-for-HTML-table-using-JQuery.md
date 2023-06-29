@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fixed header or column for HTML table using JQuery"
+title: Fixed header or column for HTML table using JQuery
 date: 2014-07-07
 
 tags: javascript

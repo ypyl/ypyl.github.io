@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Notes from 'Introduction to Linux'"
+title: Notes from 'Introduction to Linux'
 date: 2015-05-21
 
 tags: linux

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Discord Belarus chat By"
+title: Discord Belarus chat By
 date: 2016-12-22
 tags: dotnet discord
 categories: other
@@ -15,5 +15,5 @@ categories: other
 
 На данный момент этот сервер не очень известен и популярен, но, надеюсь, общими усилиями мы сделаем его приятным и интересным местом для нас всех! Заранее спасибо!
 
-С уважением,  
+С уважением,
 Discord Chat By

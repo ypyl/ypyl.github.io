@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Implementing async.queue using rxjs"
+title: Implementing async.queue using rxjs
 date: 2016-12-18
 
 tags: javascript
@@ -11,7 +11,7 @@ There is an example of queue using rxjs:
 ```js
 Rx.Observable.from(['foo', 'bar', 'baz', 'bay', 'bax', 'bar', 'cat'])
     .do(x => console.log((new Date).toLocaleTimeString() + " " + x))
-    // grouping by 2 
+    // grouping by 2
     .bufferCount(2)
     // concat received results
     .concatMap((data) => {
@@ -25,7 +25,7 @@ Rx.Observable.from(['foo', 'bar', 'baz', 'bay', 'bax', 'bar', 'cat'])
                 }, 2000);
             })
         });
-    }) 
+    })
     .subscribe(
         result => console.log((new Date).toLocaleTimeString() + " finished " + result),
         error => console.error(error),

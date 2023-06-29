@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "InfluxDB can't be started as a service"
+title: InfluxDB can't be started as a service
 date: 2016-12-21
 
 tags: indluxdb

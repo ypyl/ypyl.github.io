@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "GitVersion + TC"
+title: GitVersion + TC
 date: 2016-02-04
 
 tags: git

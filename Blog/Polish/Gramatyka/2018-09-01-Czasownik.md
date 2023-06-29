@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Czasownik"
+title: Czasownik
 date: 2018-09-01
 
 tags: polish gramatyka

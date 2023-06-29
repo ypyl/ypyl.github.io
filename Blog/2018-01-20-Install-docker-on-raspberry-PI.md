@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Install docker on raspberry PI"
+title: Install docker on raspberry PI
 date: 2018-01-20
 
 tags: docker

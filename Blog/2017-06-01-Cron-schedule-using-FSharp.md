@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cron schedule using F#"
+title: Cron schedule using F#
 date: 2017-06-01
 tags: dotnet fsharp
 categories: programming
@@ -17,7 +17,7 @@ So there is implementation in F# below:
 Let's start with two helper objects: `String.split` and `TooMuchArgumentsException` exception.
 
 ```fsharp
-type System.String with 
+type System.String with
     static member split c (value: string) =
         value.Split c
 
@@ -26,7 +26,7 @@ exception TooMuchArgumentsException of int
 
 `String.split` is just wrapper for `String.Split` method. Exception is needed to show when cron expression contains too much parts.
 
-My internal cron supports the next template: 'minute hour dayOfMonth month dayOfWeek'. And the next type of cron expressions: 
+My internal cron supports the next template: 'minute hour dayOfMonth month dayOfWeek'. And the next type of cron expressions:
 1. '*' - wildcard;
 2. '*/5' - every 5th, e.g. every five minutes;
 3. '10-20/5' - range value, e.g. every from 10 till 20, e.g. every minute from 10 till 20. '/5' is optional and it works the same as previous one, so '10-20/5' for minutes means run at 10, 15 and 20;
@@ -56,18 +56,18 @@ module Schedule =
 
     // internal record to parsed cron expression, so it contains minutes,
     // hours, days of month, months and day of week when we should run our jobs
-    type ISchedueSet = 
-        { 
+    type ISchedueSet =
+        {
             Minutes: int list;
             Hours: int list;
             DayOfMonth: int list;
             Months: int list;
             DayOfWeek: int list
         }
-    
+
     // method to generate ISchedueSet record from cron expression
     let generate expression =
-        // internal method to parse */5 
+        // internal method to parse */5
         let dividedArray (m:string) start max =
             let divisor = m |>  String.split [|'/'|] |> Array.skip 1 |> Array.head |> Int32.Parse
             [start .. max] |> List.filter (fun x -> x % divisor = 0)
@@ -87,7 +87,7 @@ module Schedule =
         // internal method to parse list value
         let listArray (m:string) =
             m |> String.split [|','|] |> Array.map Int32.Parse |> Array.toList
-        
+
         // we need to set minimum and maximum value for every part of date time
         let getStartAndMax i =
             match i with
@@ -103,19 +103,19 @@ module Schedule =
             | 4 -> (0, 6)
             // throw an exception if don't know for what part of date time we need values
             | _ -> raise (TooMuchArgumentsException i)
-        
+
         // active pattern to match regexp
         let (|MatchRegex|_|) pattern input =
             let m = Regex.Match(input, pattern)
             if m.Success then Some (m.ToString()) else None
-        
+
         // parsing cron expression and create a array of lists which contains all possibles values
         // for every part of daytime
         let parts =
-            expression 
+            expression
             |> String.split [|' '|]
             |> Array.mapi (fun i x ->
-                let (start, max) = getStartAndMax i 
+                let (start, max) = getStartAndMax i
                 match x with
                     | MatchRegex DividePattern x -> dividedArray x start max
                     | MatchRegex RangePattern x -> rangeArray x
@@ -125,7 +125,7 @@ module Schedule =
                     | _ -> []
             )
         // convert list of array to ISchedueSet
-        { 
+        {
             Minutes = parts.[0];
             Hours = parts.[1];
             DayOfMonth = parts.[2];
@@ -134,17 +134,17 @@ module Schedule =
         }
     // method to check date time via generated ISchedueSet
     let isTime schedueSet (dateTime : DateTime) =
-        List.exists ((=) dateTime.Minute) schedueSet.Minutes && 
+        List.exists ((=) dateTime.Minute) schedueSet.Minutes &&
         List.exists ((=) dateTime.Hour) schedueSet.Hours &&
         List.exists ((=) dateTime.Day) schedueSet.DayOfMonth &&
         List.exists ((=) dateTime.Month) schedueSet.Months &&
         List.exists ((=) (int dateTime.DayOfWeek)) schedueSet.DayOfWeek
 ```
 
-So Schedule module contains two methods and one type: 
+So Schedule module contains two methods and one type:
 * ISchedueSet is a container for parsed cron expression;
 * generate is to generate ISchedueSet record from cron expression. This record contains all possible values of minutes, hours, months, days of month, days of week for particular cron expression;
-* isTime is to check if we need to run a job in passed date time 
+* isTime is to check if we need to run a job in passed date time
 
 Small sets of unit tests written using mstest:
 

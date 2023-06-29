@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Useful LINQ extensions"
+title: Useful LINQ extensions
 date: 2013-04-26
 
 tags: dotnet linq

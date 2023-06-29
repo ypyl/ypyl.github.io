@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Add dotnet command to alias of bash"
+title: Add dotnet command to alias of bash
 date: 2016-09-19
 tags: linux dotnet
 categories: programming
@@ -34,7 +34,7 @@ And you need to add the next line to this file (bash_aliases):
 ```bat
 alias helloWorld="dotnet run -p ~/projects/helloWorld -- ~/Peter"
 ```
-where 
+where
 * ~/projects/helloWorld is path to the project;
 * ~/Peter is an argument passed to the application;
 

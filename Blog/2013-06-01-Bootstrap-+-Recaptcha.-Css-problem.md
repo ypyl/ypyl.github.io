@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bootstrap + Recaptcha. Css problem"
+title: Bootstrap + Recaptcha. Css problem
 date: 2013-06-01
 tags: javascript
 categories: programming

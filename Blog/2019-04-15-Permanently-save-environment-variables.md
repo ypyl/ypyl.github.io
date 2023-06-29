@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Permanently save environment variables"
+title: Permanently save environment variables
 date: 2019-04-15
 
 tags: linux

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "TFS Exclude binding from solution"
+title: TFS Exclude binding from solution
 date: 2013-04-24
 
 tags: tfs

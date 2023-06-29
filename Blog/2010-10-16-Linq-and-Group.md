@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linq and Group"
+title: Linq and Group
 date: 2010-10-16
 
 tags: dotnet

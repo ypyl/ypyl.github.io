@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Light version of Monodruid"
+title: Light version of Monodruid
 date: 2014-06-04
 
 tags: dotnet winrt

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Zaimki osobowe"
+title: Zaimki osobowe
 date: 2018-09-01
 
 tags: polish gramatyka
