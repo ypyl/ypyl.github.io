@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Smart TV (Tizen) Link opener'
+title: Smart TV (Tizen) Link opener
 date: 2021-07-16
 categories: documentation
 ---

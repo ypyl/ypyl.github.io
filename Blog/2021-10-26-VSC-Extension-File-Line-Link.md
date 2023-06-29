@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'VSC File Line link'
+title: VSC File Line link
 date: 2021-10-26
 categories: visual studio code extension file line link programming
 ---

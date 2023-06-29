@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Backtracking problem'
+title: Backtracking problem
 date: 2021-10-08
 categories: backtracking programming
 ---

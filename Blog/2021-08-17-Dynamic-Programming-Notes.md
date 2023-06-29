@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Dynamic programming'
+title: Dynamic programming
 date: 2021-08-17
 categories: dynamic programming
 ---

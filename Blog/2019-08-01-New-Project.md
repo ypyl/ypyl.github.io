@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'New project'
+title: New project
 date: 2019-08-01
 categories: documentation
 ---

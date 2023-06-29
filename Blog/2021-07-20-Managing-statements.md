@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Managing statements'
+title: Managing statements
 date: 2021-07-20
 categories: managing short statement
 ---
