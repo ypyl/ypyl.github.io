@@ -7,7 +7,7 @@ public class Folder
     public List<(DateTime, string)> Files { get; set; } = new List<(DateTime, string)>();
 }
 
-class ArticleService
+internal class ArticleService
 {
     public Folder Articles()
     {
@@ -139,8 +139,8 @@ class ArticleService
         return Blog.Articles.Value().Keys.OrderByDescending(x => CreatedDate(x)).First();
     }
 
-    private string _articleName;
-    public event Action OnArticleChange;
+    private string _articleName = string.Empty;
+    public event Action OnArticleChange = () => {};
     public string ArticleName
     {
         get { return _articleName; }
