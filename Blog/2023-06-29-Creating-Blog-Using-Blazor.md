@@ -3,7 +3,7 @@ layout: post
 title: Creating Blog using Blazor
 date: 2023-06-29
 categories: programming
-tags: VScode blazor dotnet SourceGenerator
+tags: VSCode blazor dotnet SourceGenerator
 ---
 
 # Introduction
