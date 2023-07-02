@@ -16,7 +16,25 @@ This article is not a step-by-step guide on how to build the website/blog. You c
 
 # Create projects and solution
 
+## Used version of dotnet and VScode
+
+[Dotnet version 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) has been used and [VSCode](https://code.visualstudio.com/) has been the chosen development tool for creating the app. However, it's worth noting that there have been some challenges when developing Blazor apps using VSCode. For a smoother experience and full support of all Blazor features, it is recommended to use Visual Studio as the integrated development environment (IDE).
+
+## How to create blazor wasm solution
+
+## Why source generator feature as it still doesn't generate separate pages for each blog post
+
 # SourceGenerator
+
+## How to start with it and examples
+
+- https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview
+- https://github.com/dotnet/roslyn/blob/main/docs/features/source-generators.cookbook.md
+- https://devblogs.microsoft.com/dotnet/new-c-source-generator-samples/
+
+## Source generator reload - dotnet build-server shutdown; dotnet clean; dotnet run
+
+## Issue with debugging and tracing
 
 ## Using SourceGenerator to create Html from Md files
 
