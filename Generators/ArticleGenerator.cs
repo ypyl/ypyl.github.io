@@ -37,6 +37,10 @@ public static class Articles
                 var fileName = Path.GetFileNameWithoutExtension(filePath).Replace(".", string.Empty);
                 var fileContent = additionalFile.GetText(context.CancellationToken);
                 var parsedContext = MetaDataAndMarkdown(fileContent.ToString());
+                if (!parsedContext.Item1.Any())
+                {
+                    continue;
+                }
                 var html = Markdig.Markdown.ToHtml(parsedContext.Item2, markdownPipeline);
                 var meta = new StringBuilder();
                 var categories = string.Join("|", Categories(filePath));

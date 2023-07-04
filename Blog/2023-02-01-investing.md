@@ -536,6 +536,11 @@ stock price X number of shares
             - it is calculated as enterprise value/revenue, where enterprise value = market capitalization + debt - cash and cash equivalents; revenue = total annual revenue
             - this multiple is commonly used for early stage or high-growth business that do not yet have positive earnings, alternative to ratios as P/E, PEG and EV/EBITDA
     - profitability
+        - return on asset (ROA)
+            - a company buys assets in order to conduct its business. ROA tells how good the company is at using its assets to make money.
+        - return on equity (ROE)
+            - equity is another word for ownership ROE tells you how good company is at rewarding its shareholders for their investment.
+            - higher is better
     - liquidity
     - debt (solvency)
     - efficiency (operating)
