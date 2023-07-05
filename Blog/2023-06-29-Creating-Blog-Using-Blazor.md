@@ -22,6 +22,12 @@ This article is not a step-by-step guide on how to build the website/blog. You c
 
 ## How to create blazor wasm solution
 
+To create a Blazor app, you can start by running the following command `dotnet new blazorwasm`. This command will generate a new Blazor application.
+
+To create a project that generates HTML code from Markdown, you can use `dotnet new console` command. After creating the console project, you can follow the instructions provided in the [Source Generators article](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview) to implement the necessary functionality.
+
+Both of these projects can be combined in a single solution, allowing you to have a Blazor app alongside the project that generates HTML code from Markdown.
+
 ## Why source generator feature as it still doesn't generate separate pages for each blog post
 
 # SourceGenerator
