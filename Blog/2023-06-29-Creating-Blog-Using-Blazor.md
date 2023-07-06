@@ -28,7 +28,9 @@ To create a project that generates HTML code from Markdown, you can use `dotnet 
 
 Both of these projects can be combined in a single solution, allowing you to have a Blazor app alongside the project that generates HTML code from Markdown.
 
-## Why source generator feature as it still doesn't generate separate pages for each blog post
+## Why source generator feature as it doesn't generate separate pages for each blog post
+
+In the beginning, the idea was to generate a separate Blazor component page for each Markdown file. However, it was discovered that source generators do not support the generation of non-C# files. As a result, the decision was made to generate a single file that contains a map with the blog post names and their corresponding HTML content.
 
 # SourceGenerator
 
