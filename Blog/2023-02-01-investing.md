@@ -541,6 +541,31 @@ stock price X number of shares
         - return on equity (ROE)
             - equity is another word for ownership ROE tells you how good company is at rewarding its shareholders for their investment.
             - higher is better
+        - profit margin
+            - how much of company total sales flow through to the bottom line
+            - higher is better
+            - important to compare between companies within one category
     - liquidity
+        - current and quick ratio
+            - can a company covers their short-term debts (bills)
+        - what can companies do if cannot cover their debts?
+            - reduce expenses
+            - selll off assets
+            - take on more debts
+            - cot or eliminate their dividend
+        - what can happen if cannot cover their debts?
+            - stock price down
+            - bankruptcy
+        - current ratio
+            - current assets / current liabilities
+            - assets - cash, accounts receivable, inventory, all stuff expected turned into cach in less than one year
+            - liabilities - one year payments
+            - bigger than 1 value is good (can cover debts)
+        - quick ratio
+            - higher is better
+            - more conservative that current
+            - looks at assets that are more liquid
+            - best to compare against peers
+            - https://finviz.com/
     - debt (solvency)
     - efficiency (operating)

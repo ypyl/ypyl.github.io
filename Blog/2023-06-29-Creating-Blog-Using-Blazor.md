@@ -36,9 +36,7 @@ In the beginning, the idea was to generate a separate Blazor component page for 
 
 ## How to start with it and examples
 
-- https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview
-- https://github.com/dotnet/roslyn/blob/main/docs/features/source-generators.cookbook.md
-- https://devblogs.microsoft.com/dotnet/new-c-source-generator-samples/
+Source generators were [introduced in .NET 5](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/). They are a type of code that runs during compilation and enables the creation of additional files that are compiled alongside the rest of the code. There is useful [cookbook](https://github.com/dotnet/roslyn/blob/main/docs/features/source-generators.cookbook.md) available that can be used to learn more about source generators.
 
 ## Source generator reload - dotnet build-server shutdown; dotnet clean; dotnet run
 
@@ -71,3 +69,5 @@ In the beginning, the idea was to generate a separate Blazor component page for 
 # GitHub actions to deplot blog to GitHub pages
 
 # Summary
+
+Source code is available by [link](https://github.com/ypyl/ypyl.github.io).
