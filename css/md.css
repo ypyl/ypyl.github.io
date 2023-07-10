@@ -1,4 +1,5 @@
-.article p, .article ol {
+.article p,
+.article ol {
   margin-top: 8px;
 }
 
@@ -32,7 +33,9 @@
   color: #2980b9;
 }
 
-.article p, .article ul, .article ol {
+.article p,
+.article ul,
+.article ol {
   font-size: 1rem;
   margin-bottom: 1.1rem;
 }
@@ -42,7 +45,7 @@
 }
 
 .article li {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .article h1,
@@ -110,7 +113,7 @@
 .article h1,
 .article h2,
 .article h3 {
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 
 .article blockquote {
@@ -138,13 +141,55 @@
   list-style-type: revert;
 }
 
-.article table th {
-  color: #495057;
-  background-color: #e9ecef;
-  border-color: #dee2e6
+.article table {
+  width: 100%;
+  border-spacing: 0;
 }
 
-.article td, .article th {
-  border: 1px solid #dee2e6;
-  padding: 0.75rem;
+.article thead {
+  display: table-header-group;
+}
+
+.article thead > tr {
+  color: inherit;
+  display: table-row;
+  outline: 0;
+  vertical-align: middle;
+}
+
+.article thead > tr > th {
+  color: var(--mud-palette-text-primary);
+  font-weight: 500;
+  line-height: 1.5rem;
+  display: table-cell;
+  padding: 16px;
+  font-size: 0.875rem;
+  text-align: start;
+  border-bottom: 1px solid var(--mud-palette-table-lines);
+  letter-spacing: 0.01071em;
+  vertical-align: inherit;
+}
+
+.article tbody {
+  display: table-row-group;
+}
+
+.article tbody > tr {
+  color: inherit;
+  display: table-row;
+  outline: 0;
+  vertical-align: middle;
+}
+
+.article tbody > tr > td {
+  display: table-cell;
+  padding: 16px;
+  font-size: 0.875rem;
+  text-align: start;
+  font-weight: 400;
+  line-height: 1.43;
+  border-bottom: 1px solid var(--mud-palette-table-lines);
+  letter-spacing: 0.01071em;
+  vertical-align: inherit;
+  color: var(--mud-palette-text-primary);
 }
