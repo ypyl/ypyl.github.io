@@ -40,6 +40,12 @@ Source generators were [introduced in .NET 5](https://devblogs.microsoft.com/dot
 
 ## Source generator reload - dotnet build-server shutdown; dotnet clean; dotnet run
 
+There is an interesting behavior regarding how source generators work. If you make changes to the code in the source generator project and expect those changes to immediately reflect in the project that uses the generated code, you will be disappointed. By simply running `dotnet build`` or `dotnet run``, the generated code in the target project will not be updated. In order to see the changes, you will need to execute the command dotnet build-server shutdown to clear the cache.
+
+I encountered this issue and found a solution [here](https://learn.microsoft.com/en-us/answers/questions/1184090/looking-for-assistance-clearing-the-cache-for-upda).
+
+To provide further context, the way it works is that the C# compiler, `csc.exe`, typically starts a "compilation server" named `VBCSCompiler.exe` to avoid the overhead of starting the process repeatedly. `csc.exe` forwards the parameters to `VBCSCompiler.exe` via interprocess communication (IPC) to perform the compilation. The compiler process, once loaded, will not pick up changes to the source generator DLL because it is loaded dynamically. Shutting down the `VBCSCompiler.exe` process or waiting for the idle timeout is necessary to load the updated DLL.
+
 ## Issue with debugging and tracing
 
 ## Using SourceGenerator to create Html from Md files
