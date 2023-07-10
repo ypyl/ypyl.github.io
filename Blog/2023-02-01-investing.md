@@ -568,4 +568,10 @@ stock price X number of shares
             - best to compare against peers
             - https://finviz.com/
     - debt (solvency)
+        - debt to equity
+            - measures the relationship between the amount of capital that has been borrowed and the amount of capital contributed by shareholders
+            - higher is bad
+        - interest coverage ratio
+            - how well a company can meet its interest payment obligitations
+            - lower than 1 is usually a sign of trouble
     - efficiency (operating)
