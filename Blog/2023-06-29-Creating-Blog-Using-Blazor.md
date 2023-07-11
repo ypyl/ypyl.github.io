@@ -48,6 +48,29 @@ To provide further context, the way it works is that the C# compiler, `csc.exe`,
 
 ## Issue with debugging and tracing
 
+Debugging source generators can be challenging, but there is a trick that can help:
+
+1. Add the following code at the beginning of the `Execute` method:
+
+```csharp
+while (!System.Diagnostics.Debugger.IsAttached)
+    System.Threading.Thread.Sleep(500);
+```
+
+2. Ensure that your `launch.json` file has a configuration to attach to the running dotnet process. Add the following configuration:
+
+```json
+{
+    "name": ".NET Core Attach",
+    "type": "coreclr",
+    "request": "attach"
+},
+```
+
+3. Rebuild the entire project by running `dotnet build-server shutdown; dotnet clean; dotnet run` for your Blog web app. This command will pause at the building phase, allowing you time to attach to the building process. The process that needs to be attached to is typically `dotnet.exe`, which executes (`exec`) the VBCSCompiler.dll. For example, it could be something like `dotnet.exe exec C:\Program Files\dotnet\sdk\7.0.203\Roslyn\bincore\VBCSCompiler.dll`.
+
+The solution was found on [StackOverflow](https://stackoverflow.com/questions/67227370/c-sharp-source-generators-debug-in-vscode).
+
 ## Using SourceGenerator to create Html from Md files
 
 ## Using TargetPathWithTargetPlatformMoniker
