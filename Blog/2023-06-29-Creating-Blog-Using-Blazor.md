@@ -95,7 +95,7 @@ The solution was found on [StackOverflow](https://stackoverflow.com/questions/67
 
 ## Using MarkupString to render blog html
 
-# GitHub actions to deplot blog to GitHub pages
+# GitHub actions to deploy blog to GitHub pages
 
 # Summary
 
