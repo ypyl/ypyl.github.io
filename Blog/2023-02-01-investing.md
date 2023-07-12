@@ -563,6 +563,7 @@ stock price X number of shares
             - bigger than 1 value is good (can cover debts)
         - quick ratio
             - higher is better
+            - A good ratio to see if a company can pay its current bills or debts that are coming
             - more conservative that current
             - looks at assets that are more liquid
             - best to compare against peers
@@ -575,3 +576,7 @@ stock price X number of shares
             - how well a company can meet its interest payment obligitations
             - lower than 1 is usually a sign of trouble
     - efficiency (operating)
+        - assent turnover ratio
+            - like return on assets, the asset turnover ratio tells you how good the company is at using its assets to make products to sell
+        - invetory turnover ratio
+            - measures the effeciency selling products in cycling inventory
