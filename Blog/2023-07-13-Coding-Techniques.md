@@ -6,8 +6,6 @@ categories: programming
 tags: interview coding pattern
 ---
 
-There are some techniques which are used to solve interview/coding chellenges:
-
 # Sliding Window
 
 ![./images/52s4F62R2c.png](./images/52s4F62R2c.png)
