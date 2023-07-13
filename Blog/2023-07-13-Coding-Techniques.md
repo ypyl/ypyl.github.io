@@ -114,6 +114,7 @@ Array
 
 # In-place Reversal of a LinkedList
 
+![./images/52s4F62R2c.png](./images/reverse-linked-list.gif)
 
 ## Usage
 
