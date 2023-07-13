@@ -111,7 +111,7 @@ internal class ArticleService
         }
         if (Blog.Articles.Value()[articleName].Item1.TryGetValue("tags", out var categories))
         {
-            return categories.Split(",", StringSplitOptions.RemoveEmptyEntries);
+            return categories.Split(" ", StringSplitOptions.RemoveEmptyEntries);
         }
         return Enumerable.Empty<string>();
     }
