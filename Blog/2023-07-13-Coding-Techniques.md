@@ -8,7 +8,7 @@ tags: interview coding pattern
 
 # Sliding Window
 
-![./images/52s4F62R2c.png](./images/52s4F62R2c.png)
+![sliding-window](./images/52s4F62R2c.png)
 
 ## Usage
 
@@ -20,12 +20,12 @@ Array, String, HashTable
 
 ## Sample Problems
 
-- Longest Substring with 'K' Distinct Characters
-- Fruits into Baskets
+- [Longest Substring with 'K' Distinct Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+- [Fruits into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
 
 # Islands (Matrix Traversal)
 
-![./images/52s4F62R2c.png](./images/DPPj8CoBIl.png)
+![island](./images/DPPj8CoBIl.png)
 
 ## Usage
 
@@ -37,13 +37,13 @@ Matrix, Queue
 
 ## Sample Problems
 
-- Number of Islands
-- Flood Fill
-- Cycle in a Matrix
+- [Number of Islands](https://leetcode.com/problems/number-of-islands/)
+- [Flood Fill](https://leetcode.com/problems/flood-fill/)
+- [Cycle in a Matrix](https://leetcode.com/problems/detect-cycles-in-2d-grid/)
 
 # Two Pointers
 
-![./images/52s4F62R2c.png](./images/OKJsB0cjio.png)
+![two-pointers](./images/OKJsB0cjio.png)
 
 ## Usage
 
@@ -55,13 +55,13 @@ Array, String, LinkedList
 
 ## Sample Problems
 
-- Squaring a Sorted Array
-- Dutch National Flag Problem
-- Minimum Window Sort
+- [Squaring a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)
+- [Dutch National Flag Problem](https://leetcode.com/problems/sort-colors/solutions/1505473/dutch-national-flag-problem/)
+- [Minimum Window Sort](https://leetcode.com/problems/minimum-window-substring/)
 
 # Fast & Slow Pointers
 
-![./images/52s4F62R2c.png](./images/fUvRwuxhNX.png)
+![fast-and-slow-pointers](./images/fUvRwuxhNX.png)
 
 ## Usage
 
@@ -73,13 +73,13 @@ Array, String, LinkedList
 
 ## Sample Problems
 
-- Middle of the LinkedList
-- Happy Number
-- Cycle in a Circular Array
+- [Middle of the LinkedList](https://leetcode.com/problems/middle-of-the-linked-list/)
+- [Happy Number](https://leetcode.com/problems/happy-number/)
+- [Cycle in a Circular Array](https://leetcode.com/problems/circular-array-loop/)
 
 # Merge Intervals
 
-![./images/52s4F62R2c.png](./images/x2PtTNmFVR.png)
+![merge-intervals](./images/x2PtTNmFVR.png)
 
 ## Usage
 
@@ -91,12 +91,12 @@ Array, Heap
 
 ## Sample Problems
 
-- Conflicting Appointments
-- Minimum Meeting Rooms
+- [Conflicting Appointments](https://leetcode.com/problems/non-overlapping-intervals/)
+- [Minimum Meeting Rooms](https://leetcode.com/problems/meeting-rooms-iii/)
 
 # Cyclic Sort
 
-![./images/52s4F62R2c.png](./images/6HAc3A1uk.webp)
+![cyclic-sort](./images/6HAc3A1uk.webp)
 
 ## Usage
 
@@ -108,13 +108,13 @@ Array
 
 ## Sample Problems
 
-- Find all Missing Numbers
-- Find all Duplicate Numbers
-- Find the First K Missing Positive Numbers
+- [Find all Missing Numbers](https://leetcode.com/problems/missing-number/)
+- [Find all Duplicate Numbers](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
+- [Find the First K Missing Positive Numbers](https://leetcode.com/problems/kth-missing-positive-number/)
 
 # In-place Reversal of a LinkedList
 
-![./images/52s4F62R2c.png](./images/reverse-linked-list.gif)
+![in-place-reversal](./images/reverse-linked-list.gif)
 
 ## Usage
 
@@ -126,10 +126,12 @@ LinkedList
 
 ## Sample Problems
 
-- Reverse every K-element Sub-list
-- Rotate a LinkedList
+- [Reverse every K-element Sub-list](https://leetcode.com/problems/reverse-nodes-in-k-group/)
+- [Rotate a LinkedList](https://leetcode.com/problems/rotate-list/)
 
-#  Breadth-First Search
+# Breadth-First Search
+
+![bfs](./images/Animated_BFS.gif)
 
 ## Usage
 
@@ -141,12 +143,13 @@ Tree, Graph, Matrix, Queue
 
 ## Sample Problems
 
-- Binary Tree Level Order Traversal
-- Minimum Depth of a Binary Tree
+- [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+- [Minimum Depth of a Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
 - Connect Level Order Siblings
 
 # Depth First Search
 
+![dfs](./images/Depth-First-Search.gif)
 
 ## Usage
 
@@ -163,6 +166,7 @@ Tree, Graph, Matrix
 
 # Two Heaps
 
+![two-heaps](./images/zLvR1ypcKJ.png)
 
 ## Usage
 
@@ -177,8 +181,9 @@ Heap, Array
 - Find the Median of a Number Stream
 - Next Interval
 
-#  Subsets
+# Subsets
 
+![subsets](./images/2019-11-19-subsets-example.png)
 
 ## Usage
 
@@ -238,7 +243,7 @@ Array, Heap, Queue
 - 'K' Closest Points to the Origin
 - Maximum Distinct Elements
 
-# 15. K-way Merge
+# K-way Merge
 
 ## Usage
 
@@ -331,3 +336,4 @@ Array, HashTable
 # Resources
 
 [DesignGurus.org](https://www.designgurus.io/)
+[emre.me](https://emre.me/categories/#coding-patterns)
