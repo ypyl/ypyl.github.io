@@ -20,8 +20,13 @@ Array, String, HashTable
 
 ## Sample Problems
 
-- [Longest Substring with 'K' Distinct Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
-- [Fruits into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
+### [Longest Substring with 'K' Distinct Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+
+The solution to this problem is to use the sliding window technique. The idea is to maintain a window of size k and slide it over the string. At each step, we check if the current window contains k distinct characters. If it does, we update the maximum length of the substring. If it doesn’t, we slide the window to the right until we find a window that contains k distinct characters again. We repeat this process until we reach the end of the string
+
+### [Fruits into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
+
+It is a sliding window problem where we are given an input array representing different types of fruits and two baskets. We want to collect some fruits from a subarray. However, each basket can only hold one type of fruit. In other words, we can collect at most 2 types of fruits. The picked fruits must fit in one of your baskets. Once you reach a tree with fruit that cannot fit in your baskets, you must stop.
 
 # Islands (Matrix Traversal)
 
