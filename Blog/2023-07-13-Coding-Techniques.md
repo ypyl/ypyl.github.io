@@ -6,7 +6,7 @@ categories: programming
 tags: interview coding pattern
 ---
 
-# Sliding Window
+# [Sliding Window](https://de.wikipedia.org/wiki/Sliding_Window)
 
 ![sliding-window](./images/52s4F62R2c.png)
 
@@ -16,17 +16,12 @@ The Sliding Window coding technique is a strategy used in computer programming t
 
 ## Data Structures Involved
 
-Array, String, HashTable
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [String](https://en.wikipedia.org/wiki/String_%28computer_science%29), [HashTable](https://en.wikipedia.org/wiki/Hash_table)
 
 ## Sample Problems
 
-### [Longest Substring with 'K' Distinct Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
-
-The solution to this problem is to use the sliding window technique. The idea is to maintain a window of size k and slide it over the string. At each step, we check if the current window contains k distinct characters. If it does, we update the maximum length of the substring. If it doesn’t, we slide the window to the right until we find a window that contains k distinct characters again. We repeat this process until we reach the end of the string
-
-### [Fruits into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
-
-It is a sliding window problem where we are given an input array representing different types of fruits and two baskets. We want to collect some fruits from a subarray. However, each basket can only hold one type of fruit. In other words, we can collect at most 2 types of fruits. The picked fruits must fit in one of your baskets. Once you reach a tree with fruit that cannot fit in your baskets, you must stop.
+- [Longest Substring with 'K' Distinct Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+- [Fruits into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
 
 # Islands (Matrix Traversal)
 
@@ -38,7 +33,7 @@ The Islands (Matrix Traversal) technique is a coding strategy used to solve prob
 
 ## Data Structures Involved
 
-Matrix, Queue
+[Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)), [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)
 
 ## Sample Problems
 
@@ -56,11 +51,11 @@ The Two Pointers technique is a coding strategy used to efficiently solve proble
 
 ## Data Structures Involved
 
-Array, String, LinkedList
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [String](https://en.wikipedia.org/wiki/String_%28computer_science%29), [LinkedList](https://en.wikipedia.org/wiki/Linked_list)
 
 ## Sample Problems
 
-- [Squaring a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)
+- [Squaring a Sorted [Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29)](https://leetcode.com/problems/squares-of-a-sorted-array/)
 - [Dutch National Flag Problem](https://leetcode.com/problems/sort-colors/solutions/1505473/dutch-national-flag-problem/)
 - [Minimum Window Sort](https://leetcode.com/problems/minimum-window-substring/)
 
@@ -74,13 +69,13 @@ The Fast & Slow Pointers technique is a coding strategy that involves using two 
 
 ## Data Structures Involved
 
-Array, String, LinkedList
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [String](https://en.wikipedia.org/wiki/String_%28computer_science%29), [LinkedList](https://en.wikipedia.org/wiki/Linked_list)
 
 ## Sample Problems
 
-- [Middle of the LinkedList](https://leetcode.com/problems/middle-of-the-linked-list/)
+- [Middle of the [LinkedList](https://en.wikipedia.org/wiki/Linked_list)](https://leetcode.com/problems/middle-of-the-linked-list/)
 - [Happy Number](https://leetcode.com/problems/happy-number/)
-- [Cycle in a Circular Array](https://leetcode.com/problems/circular-array-loop/)
+- [Cycle in a Circular [Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29)](https://leetcode.com/problems/circular-array-loop/)
 
 # Merge Intervals
 
@@ -92,7 +87,7 @@ The Merge Intervals technique is a coding strategy that involves combining and c
 
 ## Data Structures Involved
 
-Array, Heap
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [Heap](https://en.wikipedia.org/wiki/Heap_(data_structure))
 
 ## Sample Problems
 
@@ -109,7 +104,7 @@ The Cyclic Sort technique is a coding strategy used to solve problems involving 
 
 ## Data Structures Involved
 
-Array
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29)
 
 ## Sample Problems
 
@@ -127,12 +122,12 @@ The In-place Reversal of a LinkedList technique is a coding strategy used to rev
 
 ## Data Structures Involved
 
-LinkedList
+[LinkedList](https://en.wikipedia.org/wiki/Linked_list)
 
 ## Sample Problems
 
 - [Reverse every K-element Sub-list](https://leetcode.com/problems/reverse-nodes-in-k-group/)
-- [Rotate a LinkedList](https://leetcode.com/problems/rotate-list/)
+- [Rotate a [LinkedList](https://en.wikipedia.org/wiki/Linked_list)](https://leetcode.com/problems/rotate-list/)
 
 # Breadth-First Search
 
@@ -144,13 +139,13 @@ The Breadth-First Search (BFS) technique is a coding strategy used to traverse o
 
 ## Data Structures Involved
 
-Tree, Graph, Matrix, Queue
+Tree, Graph, [Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)), [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)
 
 ## Sample Problems
 
 - [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 - [Minimum Depth of a Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
-- Connect Level Order Siblings
+- [Connect Level Order Siblings](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
 
 # Depth First Search
 
@@ -162,12 +157,12 @@ The Depth First Search (DFS) technique is a coding strategy used to traverse or 
 
 ## Data Structures Involved
 
-Tree, Graph, Matrix
+Tree, Graph, [Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics))
 
 ## Sample Problems
 
-- Path With Given Sequence
-- Count Paths for a Sum
+- [Path With Given Sequence](https://leetcode.com/problems/binary-tree-paths/)
+- [Count Paths for a Sum](https://leetcode.com/problems/path-sum-iii/)
 
 # Two Heaps
 
@@ -179,12 +174,12 @@ The Two Heaps technique is a coding strategy that utilizes two separate heaps, a
 
 ## Data Structures Involved
 
-Heap, Array
+[Heap](https://en.wikipedia.org/wiki/Heap_(data_structure)), [Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29)
 
 ## Sample Problems
 
-- Find the Median of a Number Stream
-- Next Interval
+- [Find the Median of a Number Stream](https://leetcode.com/problems/find-median-from-data-stream/)
+- [Next Interval](https://leetcode.com/problems/find-right-interval/)
 
 # Subsets
 
@@ -196,7 +191,7 @@ The Subsets technique is a coding strategy used to generate all possible subsets
 
 ## Data Structures Involved
 
-Queue, Array, String
+[Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)), [Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [String](https://en.wikipedia.org/wiki/String_%28computer_science%29)
 
 ## Sample Problems
 
@@ -211,7 +206,7 @@ The Modified Binary Search technique is a coding strategy used to efficiently se
 
 ## Data Structures Involved
 
-Array
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29)
 
 ## Sample Problems
 
@@ -226,7 +221,7 @@ The Bitwise XOR (exclusive OR) technique is a coding strategy used to perform lo
 
 ## Data Structures Involved
 
-Array, Bits
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [Bits](https://en.wikipedia.org/wiki/Bit)
 
 ## Sample Problems
 
@@ -241,7 +236,7 @@ The Top 'K' Elements technique is a coding strategy used to efficiently identify
 
 ## Data Structures Involved
 
-Array, Heap, Queue
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [Heap](https://en.wikipedia.org/wiki/Heap_(data_structure)), [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type))
 
 ## Sample Problems
 
@@ -256,7 +251,7 @@ The K-way Merge technique is a coding strategy used to merge K sorted arrays or 
 
 ## Data Structures Involved
 
-Array, Queue, Heap
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)), [Heap](https://en.wikipedia.org/wiki/Heap_(data_structure))
 
 ## Sample Problems
 
@@ -271,7 +266,7 @@ The Topological Sort technique is a coding strategy used to order the vertices o
 
 ## Data Structures Involved
 
-Array, HashTable, Queue, Graph
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [HashTable](https://en.wikipedia.org/wiki/Hash_table), [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type), Graph
 
 ## Sample Problems
 
@@ -286,7 +281,7 @@ The 0/1 Knapsack technique is a coding strategy used to solve problems that invo
 
 ## Data Structures Involved
 
-Array, HashTable
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [HashTable](https://en.wikipedia.org/wiki/Hash_table)
 
 ## Sample Problems
 
@@ -301,7 +296,7 @@ The Fibonacci Numbers technique is a coding strategy used to efficiently calcula
 
 ## Data Structures Involved
 
-Array, HashTable
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [HashTable](https://en.wikipedia.org/wiki/Hash_table)
 
 ## Sample Problems
 
@@ -316,12 +311,12 @@ The Palindromic Subsequence technique is a coding strategy used to identify and 
 
 ## Data Structures Involved
 
-Array, HashTable
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [HashTable](https://en.wikipedia.org/wiki/Hash_table)
 
 ## Sample Problems
 
 - Longest Palindromic Subsequence
-- Minimum Deletions in a String to make it a Palindrome
+- Minimum Deletions in a [String](https://en.wikipedia.org/wiki/String_%28computer_science%29) to make it a Palindrome
 
 # Longest Common Substring
 
@@ -331,7 +326,7 @@ The Longest Common Substring technique is a coding strategy used to find the lon
 
 ## Data Structures Involved
 
-Array, HashTable
+[Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29), [HashTable](https://en.wikipedia.org/wiki/Hash_table)
 
 ## Sample Problems
 
