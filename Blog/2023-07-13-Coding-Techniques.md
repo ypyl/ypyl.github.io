@@ -33,7 +33,7 @@ The Islands (Matrix Traversal) technique is a coding strategy used to solve prob
 
 ## Data Structures Involved
 
-[Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)), [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)
+[Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)), [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type))
 
 ## Sample Problems
 

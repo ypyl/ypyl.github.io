@@ -580,3 +580,18 @@ stock price X number of shares
             - like return on assets, the asset turnover ratio tells you how good the company is at using its assets to make products to sell
         - invetory turnover ratio
             - measures the effeciency selling products in cycling inventory
+
+# Picking stacks
+
+## Fundamental investing
+
+- udnerstand the business model
+- differentiation
+- features & benefits
+- is there a first mover advantage
+- barries to entry or copying from others
+- are they in it for the long-term?
+- ratios
+- measure business
+    - current/past performance
+    - predict feature?
