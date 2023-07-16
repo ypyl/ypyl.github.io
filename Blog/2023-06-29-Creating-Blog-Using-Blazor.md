@@ -71,9 +71,15 @@ while (!System.Diagnostics.Debugger.IsAttached)
 
 The solution was found on [StackOverflow](https://stackoverflow.com/questions/67227370/c-sharp-source-generators-debug-in-vscode).
 
-## Using SourceGenerator to create Html from Md files
+## Using SourceGenerator to create Html from MD files
+
+The `ArticleGenerator`` class contains the logic to convert Markdown files to their HTML representation. When the main project is built, a dictionary is created with article names as keys and HTML content and metadata as values. The [Markdig](https://github.com/xoofx/markdig) library is utilized to perform the conversion from Markdown to HTML.
 
 ## Using TargetPathWithTargetPlatformMoniker
+
+Since Markdig is used in the source generator project, it is necessary to inform the main project during the build process that Markdig is required. This can be accomplished by following a similar approach as shown in this [sample](https://github.com/dotnet/roslyn-sdk/blob/main/samples/CSharp/SourceGenerators/SourceGeneratorSamples/CSharpSourceGeneratorSamples.csproj#L27).
+
+To achieve this, the NuGet reference needs to be marked with `GeneratePathProperty="true"`, and the generated names, such as `PKGMarkdig`, `PKGMarkdown_ColorCode`, `PKGColorCode_Core`, and `PKGColorCode_Html`, should be used in the `TargetPathWithTargetPlatformMoniker` property. Note that the names should have a PKG prefix, and any dots should be replaced with underscores.
 
 ## Reference SourceGenerator from Blazor app
 
