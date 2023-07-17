@@ -81,7 +81,17 @@ Since Markdig is used in the source generator project, it is necessary to inform
 
 To achieve this, the NuGet reference needs to be marked with `GeneratePathProperty="true"`, and the generated names, such as `PKGMarkdig`, `PKGMarkdown_ColorCode`, `PKGColorCode_Core`, and `PKGColorCode_Html`, should be used in the `TargetPathWithTargetPlatformMoniker` property. Note that the names should have a PKG prefix, and any dots should be replaced with underscores.
 
-## Reference SourceGenerator from Blazor app
+## Referencing SourceGenerator from Blazor app
+
+To reference a source generator project in the project that will use it, you need to add manually additional attributes to the reference definition. These attributes include `ReferenceOutputAssembly` and `OutputItemType`. Additionally, the `IncludeAssets` attribute should have a value `all`.
+
+```xml
+<ProjectReference Include="..\Generators\Generators.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer">
+    <IncludeAssets>all</IncludeAssets>
+</ProjectReference>
+```
+
+By including these attributes and setting `IncludeAssets` to `all`, you ensure that the source generator project is properly referenced and that its assets are available for use in the consuming project.
 
 ## Use AdditionalFiles to provide access to blogs from SourceGenerator
 
