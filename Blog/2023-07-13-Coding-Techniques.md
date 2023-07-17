@@ -195,8 +195,8 @@ The Subsets technique is a coding strategy used to generate all possible subsets
 
 ## Sample Problems
 
-- String Permutations by changing case
-- Unique Generalized Abbreviations
+- [String Permutations by changing case](https://leetcode.com/problems/letter-case-permutation/)
+- [Unique Generalized Abbreviations](https://leetcode.com/problems/generalized-abbreviation/)
 
 # Modified Binary Search
 
