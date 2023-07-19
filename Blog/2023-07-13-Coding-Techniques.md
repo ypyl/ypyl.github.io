@@ -210,8 +210,8 @@ The Modified Binary Search technique is a coding strategy used to efficiently se
 
 ## Sample Problems
 
-- Ceiling of a Number
-- Bitonic Array Maximum
+- [Ceiling of a Number](https://leetcode.com/problems/search-insert-position/description/)
+- [Bitonic Array Maximum](https://www.geeksforgeeks.org/maximum-length-bitonic-subarray/)
 
 # Bitwise XOR
 
@@ -225,8 +225,8 @@ The Bitwise XOR (exclusive OR) technique is a coding strategy used to perform lo
 
 ## Sample Problems
 
-- Two Single Numbers
-- Flip and Invert an Image
+- [Two Single Numbers](https://leetcode.com/problems/single-number-ii/)
+- [Flip and Invert an Image](https://leetcode.com/problems/flipping-an-image/)
 
 # Top 'K' Elements
 
@@ -240,7 +240,7 @@ The Top 'K' Elements technique is a coding strategy used to efficiently identify
 
 ## Sample Problems
 
-- 'K' Closest Points to the Origin
+- ['K' Closest Points to the Origin](https://leetcode.com/problems/k-closest-points-to-origin/)
 - Maximum Distinct Elements
 
 # K-way Merge
@@ -255,8 +255,8 @@ The K-way Merge technique is a coding strategy used to merge K sorted arrays or 
 
 ## Sample Problems
 
-- Kth Smallest Number in M Sorted Lists
-- Kth Smallest Number in a Sorted Matrix
+- [Kth Smallest Number in M Sorted Lists](https://www.youtube.com/watch?v=942B92CrTtQ)
+- [Kth Smallest Number in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
 
 # Topological Sort
 
@@ -270,8 +270,8 @@ The Topological Sort technique is a coding strategy used to order the vertices o
 
 ## Sample Problems
 
-- Tasks Scheduling
-- Alien Dictionary
+- [Tasks Scheduling](https://leetcode.com/problems/task-scheduler/)
+- [Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/)
 
 # 0/1 Knapsack
 
@@ -285,8 +285,8 @@ The 0/1 Knapsack technique is a coding strategy used to solve problems that invo
 
 ## Sample Problems
 
-- Equal Subset Sum Partition
-- Minimum Subset Sum Difference
+- [Equal Subset Sum Partition](https://leetcode.com/problems/partition-equal-subset-sum/)
+- [Minimum Subset Sum Difference](https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/)
 
 # Fibonacci Numbers
 
@@ -300,8 +300,8 @@ The Fibonacci Numbers technique is a coding strategy used to efficiently calcula
 
 ## Sample Problems
 
-- Staircase
-- House Thief
+- [Staircase](https://leetcode.com/problems/climbing-stairs/)
+- [House Thief](https://leetcode.com/problems/house-robber/)
 
 # Palindromic Subsequence
 
@@ -315,8 +315,8 @@ The Palindromic Subsequence technique is a coding strategy used to identify and 
 
 ## Sample Problems
 
-- Longest Palindromic Subsequence
-- Minimum Deletions in a [String](https://en.wikipedia.org/wiki/String_%28computer_science%29) to make it a Palindrome
+- [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/)
+- [Minimum Deletions in a String to make it a Palindrome](https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/)
 
 # Longest Common Substring
 
@@ -330,10 +330,10 @@ The Longest Common Substring technique is a coding strategy used to find the lon
 
 ## Sample Problems
 
-- Maximum Sum Increasing Subsequence
-- Edit Distance
+- [Maximum Sum Increasing Subsequence](https://leetcode.com/problems/maximum-alternating-subsequence-sum/)
+- [Edit Distance](https://leetcode.com/problems/edit-distance/)
 
 # Resources
 
-[DesignGurus.org](https://www.designgurus.io/)
-[emre.me](https://emre.me/categories/#coding-patterns)
+- [DesignGurus.org](https://www.designgurus.io/)
+- [emre.me](https://emre.me/categories/#coding-patterns)

@@ -595,3 +595,18 @@ stock price X number of shares
 - measure business
     - current/past performance
     - predict feature?
+
+## Technical analysis
+
+- charting (aka)
+- looking for repeatable patterns
+- 'herd mentality'
+
+### Core concepts
+
+- repeatable behaviors under repeatable circumstances
+    - predictability
+    - not guesswork ... strategy
+- the trend is you friend
+    - identify trend after breakout
+    - get in and out (trading)
