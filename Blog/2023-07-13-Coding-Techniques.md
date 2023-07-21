@@ -332,7 +332,7 @@ The Palindromic Subsequence technique is a coding strategy used to identify and 
 
 # [Longest Common Substring](https://en.wikipedia.org/wiki/Longest_common_substring)
 
-![longest-common-substring](./images/OIP (1).jpg)
+![longest-common-substring](./images/longest-common-string.jpg)
 
 ## Description
 
