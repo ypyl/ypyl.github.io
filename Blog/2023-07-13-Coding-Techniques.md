@@ -351,3 +351,6 @@ The Longest Common Substring technique is a coding strategy used to find the lon
 
 - [DesignGurus.org](https://www.designgurus.io/)
 - [emre.me](https://emre.me/categories/#coding-patterns)
+- [wiki](https://www.wikipedia.org/)
+- [geeksforgeeks](https://www.geeksforgeeks.org)
+- [ChatGPT](https://chat.openai.com/)
