@@ -23,7 +23,7 @@ The Sliding Window coding technique is a strategy used in computer programming t
 - [Longest Substring with 'K' Distinct Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
 - [Fruits into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
 
-# Islands (Matrix Traversal)
+# [Islands (Matrix Traversal)](https://levelup.gitconnected.com/grokking-the-coding-interview-pattern-island-dc9c7def6b54#:~:text=We%20can%20traverse%20the%20matrix%20linearly%20to%20find,to%20find%20all%20of%20its%20connected%20land%20cells.)
 
 ![island](./images/DPPj8CoBIl.png)
 
@@ -41,7 +41,7 @@ The Islands (Matrix Traversal) technique is a coding strategy used to solve prob
 - [Flood Fill](https://leetcode.com/problems/flood-fill/)
 - [Cycle in a Matrix](https://leetcode.com/problems/detect-cycles-in-2d-grid/)
 
-# Two Pointers
+# [Two Pointers](https://www.geeksforgeeks.org/two-pointers-technique/)
 
 ![two-pointers](./images/OKJsB0cjio.png)
 
@@ -59,7 +59,7 @@ The Two Pointers technique is a coding strategy used to efficiently solve proble
 - [Dutch National Flag Problem](https://leetcode.com/problems/sort-colors/solutions/1505473/dutch-national-flag-problem/)
 - [Minimum Window Sort](https://leetcode.com/problems/minimum-window-substring/)
 
-# Fast & Slow Pointers
+# [Fast & Slow Pointers](https://techbum.io/slow-fast-pointers-linked-list/)
 
 ![fast-and-slow-pointers](./images/fUvRwuxhNX.png)
 
@@ -77,7 +77,7 @@ The Fast & Slow Pointers technique is a coding strategy that involves using two 
 - [Happy Number](https://leetcode.com/problems/happy-number/)
 - [Cycle in a Circular [Array](https://en.wikipedia.org/wiki/Array_%28data_structure%29)](https://leetcode.com/problems/circular-array-loop/)
 
-# Merge Intervals
+# [Merge Intervals](https://www.geeksforgeeks.org/merging-intervals/)
 
 ![merge-intervals](./images/x2PtTNmFVR.png)
 
@@ -94,7 +94,7 @@ The Merge Intervals technique is a coding strategy that involves combining and c
 - [Conflicting Appointments](https://leetcode.com/problems/non-overlapping-intervals/)
 - [Minimum Meeting Rooms](https://leetcode.com/problems/meeting-rooms-iii/)
 
-# Cyclic Sort
+# [Cyclic Sort](https://en.wikipedia.org/wiki/Cycle_sort)
 
 ![cyclic-sort](./images/6HAc3A1uk.webp)
 
@@ -112,7 +112,7 @@ The Cyclic Sort technique is a coding strategy used to solve problems involving 
 - [Find all Duplicate Numbers](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
 - [Find the First K Missing Positive Numbers](https://leetcode.com/problems/kth-missing-positive-number/)
 
-# In-place Reversal of a LinkedList
+# [In-place Reversal of a LinkedList](https://emre.me/coding-patterns/in-place-reversal-of-a-linked-list/)
 
 ![in-place-reversal](./images/reverse-linked-list.gif)
 
@@ -129,7 +129,7 @@ The In-place Reversal of a LinkedList technique is a coding strategy used to rev
 - [Reverse every K-element Sub-list](https://leetcode.com/problems/reverse-nodes-in-k-group/)
 - [Rotate a [LinkedList](https://en.wikipedia.org/wiki/Linked_list)](https://leetcode.com/problems/rotate-list/)
 
-# Breadth-First Search
+# [Breadth-First Search](https://en.wikipedia.org/wiki/Breadth-first_search)
 
 ![bfs](./images/Animated_BFS.gif)
 
@@ -147,7 +147,7 @@ Tree, Graph, [Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)), [Queu
 - [Minimum Depth of a Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
 - [Connect Level Order Siblings](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
 
-# Depth First Search
+# [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)
 
 ![dfs](./images/Depth-First-Search.gif)
 
@@ -164,7 +164,7 @@ Tree, Graph, [Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics))
 - [Path With Given Sequence](https://leetcode.com/problems/binary-tree-paths/)
 - [Count Paths for a Sum](https://leetcode.com/problems/path-sum-iii/)
 
-# Two Heaps
+# [Two Heaps](https://algodaily.com/lessons/two-heaps-technique)
 
 ![two-heaps](./images/zLvR1ypcKJ.png)
 
@@ -181,7 +181,7 @@ The Two Heaps technique is a coding strategy that utilizes two separate heaps, a
 - [Find the Median of a Number Stream](https://leetcode.com/problems/find-median-from-data-stream/)
 - [Next Interval](https://leetcode.com/problems/find-right-interval/)
 
-# Subsets
+# [Subsets](https://en.wikipedia.org/wiki/Subset)
 
 ![subsets](./images/2019-11-19-subsets-example.png)
 
@@ -198,7 +198,7 @@ The Subsets technique is a coding strategy used to generate all possible subsets
 - [String Permutations by changing case](https://leetcode.com/problems/letter-case-permutation/)
 - [Unique Generalized Abbreviations](https://leetcode.com/problems/generalized-abbreviation/)
 
-# Modified Binary Search
+# [Modified Binary Search](https://ashutosh-kumar.medium.com/modified-binary-search-algorithm-to-solve-tricky-problems-92399b193206)
 
 ## Description
 
@@ -213,7 +213,9 @@ The Modified Binary Search technique is a coding strategy used to efficiently se
 - [Ceiling of a Number](https://leetcode.com/problems/search-insert-position/description/)
 - [Bitonic Array Maximum](https://www.geeksforgeeks.org/maximum-length-bitonic-subarray/)
 
-# Bitwise XOR
+# [Bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation)
+
+![bitwise-xor](./images/how-Bitwise-XOR-Operator-works.webp)
 
 ## Description
 
@@ -243,7 +245,9 @@ The Top 'K' Elements technique is a coding strategy used to efficiently identify
 - ['K' Closest Points to the Origin](https://leetcode.com/problems/k-closest-points-to-origin/)
 - Maximum Distinct Elements
 
-# K-way Merge
+# [K-way Merge](https://en.wikipedia.org/wiki/K-way_merge_algorithm)
+
+![k-way-merge](./images/maxresdefault (1).jpg)
 
 ## Description
 
@@ -258,7 +262,9 @@ The K-way Merge technique is a coding strategy used to merge K sorted arrays or 
 - [Kth Smallest Number in M Sorted Lists](https://www.youtube.com/watch?v=942B92CrTtQ)
 - [Kth Smallest Number in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
 
-# Topological Sort
+# [Topological Sort](https://en.wikipedia.org/wiki/Topological_sorting)
+
+![topological-sort](./images/Q3MA6dZ.png)
 
 ## Description
 
@@ -273,7 +279,9 @@ The Topological Sort technique is a coding strategy used to order the vertices o
 - [Tasks Scheduling](https://leetcode.com/problems/task-scheduler/)
 - [Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/)
 
-# 0/1 Knapsack
+# [0/1 Knapsack](https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/)
+
+![knacksack](./images/maxresdefault.jpg)
 
 ## Description
 
@@ -288,7 +296,9 @@ The 0/1 Knapsack technique is a coding strategy used to solve problems that invo
 - [Equal Subset Sum Partition](https://leetcode.com/problems/partition-equal-subset-sum/)
 - [Minimum Subset Sum Difference](https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/)
 
-# Fibonacci Numbers
+# [Fibonacci Numbers](https://en.wikipedia.org/wiki/Fibonacci_sequence)
+
+![fibonacci](./images/fibonacci_diagram.svg)
 
 ## Description
 
@@ -303,7 +313,9 @@ The Fibonacci Numbers technique is a coding strategy used to efficiently calcula
 - [Staircase](https://leetcode.com/problems/climbing-stairs/)
 - [House Thief](https://leetcode.com/problems/house-robber/)
 
-# Palindromic Subsequence
+# [Palindromic Subsequence](https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/)
+
+![fibonacci](./images/OIP.jpg)
 
 ## Description
 
@@ -318,7 +330,9 @@ The Palindromic Subsequence technique is a coding strategy used to identify and 
 - [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/)
 - [Minimum Deletions in a String to make it a Palindrome](https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/)
 
-# Longest Common Substring
+# [Longest Common Substring](https://en.wikipedia.org/wiki/Longest_common_substring)
+
+![longest-common-substring](./images/OIP (1).jpg)
 
 ## Description
 
