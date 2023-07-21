@@ -247,7 +247,7 @@ The Top 'K' Elements technique is a coding strategy used to efficiently identify
 
 # [K-way Merge](https://en.wikipedia.org/wiki/K-way_merge_algorithm)
 
-![k-way-merge](./images/maxresdefault (1).jpg)
+![k-way-merge](./images/k-way-merge.jpg)
 
 ## Description
 
