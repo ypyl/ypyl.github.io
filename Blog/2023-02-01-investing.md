@@ -19,6 +19,9 @@
 
 - finance.yahoo.com
 - investing.com
+- finviz.com
+- marketwatch.com (comparing mutual funds)
+- utifm.com (mutual funds) (India funds)
 
 # investment
 
@@ -610,3 +613,208 @@ stock price X number of shares
 - the trend is you friend
     - identify trend after breakout
     - get in and out (trading)
+
+### Line charts
+
+### Candlestick
+
+## Drawing trends lines and channels
+
+### Moving Average
+
+### Chart Patterns: Rectangles
+
+- Trading range bounded by:
+    - support line (bottom)
+    - resistance line (top)
+- until there is a breakout of the rectangle
+- After breakout usually moves in direction on previous trend but not always
+
+### Chart Patterns: Triangles (Continuation and Descending)
+
+- converging support and resistance levels
+    -either rising or declining prices
+- trading price range narrows
+- breakout usually occurs in direction of the original trend
+- Descending (don't buy or sell holding)
+
+### Chart Patterns: Flags
+
+- looks like a flog (pennant) on a flagpole
+- similiar to triangle
+- sharp rise or fall
+- lots of trading volume at the flag pole
+
+### Chart Patterns: Head And Shoulders
+
+- see support/resistance breaks
+- see trend
+- inverse head and shoulder
+
+### Chart Patterns: Cup with handle
+
+- combines price pattern and volume levels and moving averages
+- looks like a cup
+
+## Risk Measures
+
+- risk = reward
+- volatility - the degree to which a stock's price move
+
+### Pair stock this with your own personal view of risk
+
+### Sharpe ratio
+
+- adjusts a portfolio past performance - or expercted future performance - for the excess risk that was taken by the investor
+- removing the rate of return on a 'risk-free' investment, as US treasure bond or t-bill, from the expreienced rate of return
+- how much more risk will be taken comparing with 'risk-free' investment
+- above 1.0 is good  you are getting excess returns relative to its volatility. But consider the peers in its class
+- sortino ratio (more conservative type)
+- treynor ratio (how successful an investmetn is in providing compensation to investors for taking on investment risk)
+
+### Beta
+
+- measures the amount of risk (volatility) an individual security, mutual fund or ETF has relative to a broder index
+- cash has Beta 0
+
+### Alpha
+
+- more of a performance measure
+- refers to excess returns earned on an investment above the benchmark or index return
+- positive means outperformed the broadex index
+- you could have situation where you have a high alpha, but the beta vilatility is too much for your investment tastes or goals
+
+### R-Squared
+
+- is a statistical measure that represents the percentage of a mutual fund portfolio or a security movements that **can be explained by or attributed** to movements in a benchmark index
+- between 85 and 100 has a performance record that is closely correlated to the index
+- less 70 does not perform like the index
+
+### Standard deviation
+
+- statically, measures the dispertion of data from its expetected value
+- higher standard diviations, the greated the possible outcomes, high and low, thus more volatility
+
+### Broader risk categories: systematic and un-systematic risk
+
+- systematic risk is associated with the broader market
+- un-systematic risk is assosiated with a particular company, industry or secor
+
+# Screening stocks
+
+- finance.yahoo.com/screener
+- finviz.com/screener.ashx
+- investing.com/stock-screener
+- tradingview.com
+
+# How to buy stocks
+
+## Full Service Stock Brokers
+
+## Discount (Online) Stock Brokers
+
+## Financial Planner/Advisor
+
+## Robot Advisor
+
+https://seekingalpha.com/article/4076396-will-robo-advisors-disrupt-conventional-wealth-management-state-of-robo-advisory-landscape
+
+- https://www.wealthfront.com/
+- https://www.betterment.com/
+
+## Mutual Funds and ETF
+
+## Dividend Reinvestment Program
+
+# Stock Order Types
+
+## Practise
+
+- tradingview.com
+
+## How to choose an online stock broker
+
+## The Spread: When investing and trading stocks
+
+## Order types
+
+- market order
+- limit order
+- all or none
+- fill or kill
+- immediate or cancel
+- day orders
+- good till cancelled
+- short sell order
+- buy to cover
+- stop orders: loss, linit, trailing
+- bracketed orders
+
+## Fractional Shares
+
+# IPO (initial public offering)
+
+## DLP (direct listing placement)
+
+## SPAC (special purpose acquisition companies)
+
+# Internation Stocks
+
+## Depository Receipts
+
+- foreign company lists stocks on a local stock exchange
+
+## Global Depository Receipts (GDR)
+
+## Foreign Direct Investment (FDI)
+
+## Using Mutual Funds and ETF
+
+- janushenderson.com
+
+# Unusual situataions with stocks
+
+## Preferred stocks
+
+- fixed vs variable dividends
+- ahead of common stock holder in event of liquidation
+- non-voting
+- callable-company can buy back at any time
+- act more like a bond and susceptible to interest rate risk
+
+## Stocks splits
+
+## Stock Buybacks
+
+- Company thinks it is really undervalued
+
+## Merge and Acquisitions
+
+## Spinoffs
+
+## Insider trading
+
+- insdertracking.com
+
+## Emotional investing
+
+# Taxes
+
+- tax gain when you sell
+- transaction fee to buy/sell
+- tax income from dividend
+- buy effecient funds
+- buy and hold
+- tax advantages accounts
+- have a variety of accounts particularly if want to retire early
+- use investment losses to offset gains
+- do: sell depreciated investments that don't fir your startegy, research your records and cost basis carefully before you sell any investment
+- don't: undermine long-term investing goals for tax purposes, but a substantially identical security within 30 days before or after the sale
+
+# Summary
+
+- review investment goals
+- start small
+- diversify
+- invest regularly
+- continue education
