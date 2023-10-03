@@ -1,29 +1,4 @@
-# High level check:
-
-- competitive advantage
-    - is it low cost or hig quality?
-    - brand name
-
-# Ratio
-
-- is the price I am paying for a stock good in relation to ???
-    - price/earning (P/E) (lower is better, less than 25 is good)
-    - price/sales (P/S) ( lower is better, less that 2.0 is good)
-
-# Technical analysis
-
-- moving average
-    - check how chart is working
-
-# Tools
-
-- finance.yahoo.com
-- investing.com
-- finviz.com
-- marketwatch.com (comparing mutual funds)
-- utifm.com (mutual funds) (India funds)
-
-# investment
+# Investment
 
 - cash (low return & low risk)
 - bonds|fixed interest (average return & avergae risk)
@@ -78,7 +53,7 @@ stock price X number of shares
 ## Why care?
 
 - portfolio composition
-- deiversity inside the Asser Class
+- deiversity inside the Assert Class
 - reduce risk
 - narrow research
 
