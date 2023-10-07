@@ -3,7 +3,7 @@ layout: post
 title: Investment instruments
 date: 2023-10-07
 categories: investing
-tags: stocks overview
+tags: stocks overview portfolio
 ---
 
 # Investment instruments
@@ -54,8 +54,6 @@ Key Characteristics:
 
 - Tax Considerations: It's important to note that depending on the specific account, the dividends and returns from an income portfolio can be taxable, which is a factor to consider when assessing the overall return.
 
-Income portfolios have demonstrated their ability to provide stable returns over time, making them a suitable choice for investors looking to generate income while managing risk. The allocation between bonds and stocks allows for customization based on individual risk tolerance and investment goals.
-
 ## Balanced Portfolio
 
 A balanced portfolio strikes a middle ground between risk and potential return by investing in both stocks and bonds. This approach is suitable for investors who can tolerate short-term price fluctuations, seek moderate growth, and have a mid- to long-range investment horizon.
@@ -66,8 +64,6 @@ Key Characteristics:
 
 - Risk Tolerance: Investors seeking a balanced portfolio are comfortable with some degree of risk and are willing to weather short-term market volatility in exchange for the potential for moderate growth over time.
 
-Balanced portfolios aim to provide a mix of stability and growth potential, making them suitable for investors with moderate risk tolerance and medium to long-term investment goals. The allocation between stocks and bonds can be adjusted to align with an investor's risk profile and objectives, offering a balanced approach to wealth accumulation.
-
 ## Growth Portfolio
 
 A growth portfolio is designed for investors seeking significant long-term capital appreciation. It primarily consists of stocks expected to appreciate over time, but it also comes with the potential for substantial short-term price fluctuations. Investors in a growth portfolio typically have a high risk tolerance and a long-term investment horizon, with generating current income as a secondary objective.
@@ -77,8 +73,6 @@ Key Characteristics:
 - Asset Allocation: Growth portfolios are heavily weighted toward stocks, with minimal exposure to bonds. Common allocations include 70% stocks and 30% bonds, 80% stocks and 20% bonds, or even 100% stocks.
 
 - Risk Tolerance: Investors in a growth portfolio are comfortable with high levels of risk and are willing to withstand significant short-term market volatility. They prioritize long-term wealth accumulation over current income.
-
-Growth portfolios aim for substantial long-term capital growth, making them suitable for investors with a high risk tolerance and a focus on accumulating wealth over an extended period. The high allocation to stocks provides the potential for impressive returns, but investors should be prepared for significant market volatility and short-term losses along the way.
 
 ## References
 
