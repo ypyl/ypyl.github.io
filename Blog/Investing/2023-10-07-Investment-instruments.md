@@ -24,13 +24,13 @@ Bonds typically provide investors with a relatively stable and predictable sourc
 
 ## Property or Real Estate
 
-Real estate investments can carry a higher level of risk compared to some other investment options. This risk can stem from various factors, including market volatility, economic conditions, location-specific risks, and property management challenges. Real estate markets can experience fluctuations, and property values may not always appreciate as expected. Additionally, property investments may require ongoing maintenance and management, adding to the potential risks.
+Real estate investments can carry a higher level of risk compared to some other investment options. This risk can come from various factors, including market volatility, economic conditions, location-specific risks, and property management challenges. Real estate markets can experience fluctuations, and property values may not always appreciate as expected. Additionally, property investments may require ongoing maintenance and management, adding to the potential risks.
 
 Despite the higher risk, real estate has the potential to offer better returns compared to lower-risk assets like bonds or cash. Real estate investors can generate income through rental payments, and property values can appreciate over time, providing capital gains. In some cases, real estate investments can outperform traditional assets over the long term, especially in growing or high-demand markets.
 
 ## Shares or Equity Stocks
 
-Investing in shares or equity stocks is often associated with much higher risk compared to other investment options. Several factors contribute to this increased risk, including market volatility, economic conditions, and company-specific factors. Stock prices can fluctuate significantly in response to market sentiment, news, and events, leading to potential short-term losses. Additionally, individual companies can face financial challenges or even go bankrupt, resulting in a complete loss of investment in that stock.
+Investing in shares or equity stocks is often associated with much higher risk compared to other investment options. Several factors contribute to this increased risk, including market volatility, economic conditions, and company-specific factors. Stock prices can fluctuate significantly in response to market feeling, news, and events, leading to potential short-term losses. Additionally, individual companies can face financial challenges or even go bankrupt, resulting in a complete loss of investment in that stock.
 
 The trade-off for the higher risk associated with stocks is the potential for much better returns. Historically, stocks have delivered some of the highest long-term returns among various asset classes. Over time, stock markets tend to appreciate, and investors can benefit from capital gains as stock prices increase. Furthermore, many companies distribute dividends to shareholders, providing an additional source of income. Over the long term, the combination of price appreciation and dividends can result in substantial returns.
 
@@ -38,7 +38,7 @@ The trade-off for the higher risk associated with stocks is the potential for mu
 
 Investing in alternatives, particularly cryptocurrencies like Bitcoin and Ethereum, is associated with very high levels of risk. This heightened risk is due to several factors. Cryptocurrencies are highly volatile, and their prices can experience extreme fluctuations over short periods. Regulatory uncertainty in many countries adds to the risk, as governments may impose restrictions or regulations on the use and trading of cryptocurrencies. Additionally, the lack of a centralized authority means there's no recourse for investors in case of fraud, hacking, or loss of access to digital wallets.
 
-The allure of cryptocurrencies lies in their potential for very high returns. Historically, some cryptocurrencies have witnessed astonishing price growth, leading to substantial profits for early investors. The decentralized nature of cryptocurrencies and their limited supply contribute to the perception of scarcity, which can drive up prices when demand surges. Investors who entered the cryptocurrency market during its early stages have seen significant returns on their investments.
+The attraction of cryptocurrencies lies in their potential for very high returns. Historically, some cryptocurrencies have witnessed astonishing price growth, leading to substantial profits for early investors. The decentralized nature of cryptocurrencies and their limited supply contribute to the perception of scarcity, which can drive up prices when demand surges. Investors who entered the cryptocurrency market during its early stages have seen significant returns on their investments.
 
 # Types of portfolio
 
