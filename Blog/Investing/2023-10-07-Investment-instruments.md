@@ -46,7 +46,7 @@ The allure of cryptocurrencies lies in their potential for very high returns. Hi
 
 An income portfolio is tailored for investors seeking a balance between steady returns and minimal risk. It primarily consists of dividend-paying stocks and coupon-yielding bonds, making it suitable for those with a short- to midrange investment horizon.
 
-Key Characteristics:
+### Key Characteristics
 
 - Asset Allocation: Income portfolios are typically composed of a significant allocation to bonds, often 100% bonds, or a mix of stocks and bonds, such as 20% stocks and 80% bonds or 30% stocks and 70% bonds.
 
@@ -58,7 +58,7 @@ Key Characteristics:
 
 A balanced portfolio strikes a middle ground between risk and potential return by investing in both stocks and bonds. This approach is suitable for investors who can tolerate short-term price fluctuations, seek moderate growth, and have a mid- to long-range investment horizon.
 
-Key Characteristics:
+### Key Characteristics
 
 - Asset Allocation: Balanced portfolios typically consist of a combination of stocks and bonds, with various allocation ratios. Common allocations include 40% stocks and 60% bonds, 50% stocks and 50% bonds, or 60% stocks and 40% bonds.
 
@@ -68,7 +68,7 @@ Key Characteristics:
 
 A growth portfolio is designed for investors seeking significant long-term capital appreciation. It primarily consists of stocks expected to appreciate over time, but it also comes with the potential for substantial short-term price fluctuations. Investors in a growth portfolio typically have a high risk tolerance and a long-term investment horizon, with generating current income as a secondary objective.
 
-Key Characteristics:
+### Key Characteristics
 
 - Asset Allocation: Growth portfolios are heavily weighted toward stocks, with minimal exposure to bonds. Common allocations include 70% stocks and 30% bonds, 80% stocks and 20% bonds, or even 100% stocks.
 
