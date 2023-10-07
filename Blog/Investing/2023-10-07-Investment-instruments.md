@@ -8,4 +8,4 @@ tags: stocks overview
 
 # Investment instruments
 
-![example](./images/investment-instruments.png.png)
+![Investment instruments](./images/investment-instruments.png)
