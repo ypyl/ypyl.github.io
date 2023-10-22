@@ -140,3 +140,69 @@ sudo chown -R pi:pi /home/pi/.config/transmission-daemon/
 sudo systemctl start transmission-daemon
 sudo shutdown -r now
 ```
+
+
+# Syncthings
+
+```
+sudo apt update
+sudo apt full-upgrade
+
+sudo apt install apt-transport-https
+
+curl -s https://syncthing.net/release-key.txt | gpg --dearmor | sudo tee /usr/share/keyrings/syncthing-archive-keyring.gpg >/dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+
+sudo apt update
+
+sudo apt install syncthing
+
+hostname -I
+
+sudo mkdir /home/pi/.config/syncthing
+chmod -R 777 /home/pi/.config/syncthing
+syncthing
+```
+
+After the initial run, kill the application by pressing CTRL + C.
+
+```
+nano ~/.config/syncthing/config.xml
+<address>127.0.0.1:8384</address>
+```
+
+```
+sudo nano /lib/systemd/system/syncthing.service
+```
+
+```
+[Unit]
+Description=Syncthing - Open Source Continuous File Synchronization
+Documentation=man:syncthing(1)
+After=network.target
+
+[Service]
+User=pi
+ExecStart=/usr/bin/syncthing -no-browser -no-restart -logflags=0
+Restart=on-failure
+RestartSec=5
+SuccessExitStatus=3 4
+RestartForceExitStatus=3 4
+
+# Hardening
+ProtectSystem=full
+PrivateTmp=true
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+sudo systemctl enable syncthing
+sudo systemctl start syncthing
+sudo systemctl status syncthing
+```
