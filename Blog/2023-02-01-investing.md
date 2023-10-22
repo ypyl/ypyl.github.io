@@ -1,37 +1,3 @@
-# Investment
-
-- cash (low return & low risk)
-- bonds|fixed interest (average return & avergae risk)
-- property|real estate (better return & higher risk)
-- shares|equite stocks (much better return & much higher risk)
-- alternatives| crypto (very high return & very high risk)
-
-- reference
-    https://investor.vanguard.com/investor-resources-education/education/model-portfolio-allocation
-
-# Stock quote
-
-- previous close - price of stock when day end
-- open - open price when day open
-- bid - what is the highest price that people want to buy
-- ask - what is lowest price that people want to sale
-- day's range - range of the price during the day
-- 52 week range - range of the price during the 52 weeks
-- volume - current number of transactions
-- avg. volume - average number of day transactions
-
-- market cap - how big company
-- beta (5Y monthly) - measure of risk
-    - 1.0 - same price movements as the wider market
-    - \> 1.0 swings wider up/down than the market
-    - < 1.0 sings less up/down than the market
-- PE ratio (TTM) - price to earning
-- EPS (TTM) - earning per share
-- earning date - how company is doing
-- forward divident & yield - how much company pays per share as divident
-- ex-divident - next divident date
-- 1y Target est - expected price in one year
-
 # Stock diversification options
 
 ## Size categories
