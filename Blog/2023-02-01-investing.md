@@ -1,28 +1,3 @@
-# Stock diversification options
-
-## Size categories
-
-- small cap
-- mid cap
-- big cap
-
-### how is Cap calculated ?
-
-stock price X number of shares
-
-### general cap ranges
-
-- large cap $10 billion+
-- mid cap: $2-10 billins
-- small cap: <$2 billins
-
-## Why care?
-
-- portfolio composition
-- deiversity inside the Assert Class
-- reduce risk
-- narrow research
-
 # how are stocks organized?
 
 - size
