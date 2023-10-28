@@ -3,7 +3,7 @@ layout: post
 title: Stock diversification. Size
 date: 2023-10-22
 categories: investing
-tags: stocks overview
+tags: stocks portfolio diversification
 ---
 
 # Stock diversification

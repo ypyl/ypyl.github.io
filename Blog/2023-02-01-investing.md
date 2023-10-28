@@ -1,38 +1,18 @@
+I am writing an article about investment. I am trying to keep it simple and straightforward.
+
+Currently, I am writing about stock diversification by sector. There are my topics that I want to cover in the article:
+
+```
+
+```
+
+Please help me to write an article that cover mentioned topics and expand them with additional information.
+
 # how are stocks organized?
 
 - size
 - style
 - sector
-
-# growth stocks
-
-- high-flier that keep climbing
-- earning grow faster than industry and market
-    - revenue and/or cash flow
-    - higher price to earning (P/E)
-    - higher price to sales
-- typically no dividend and focus on re-invest cach in growing
-
-# income stocks (value)
-
-- pay divident (income)
-- still want growth
-    - price increase
-    - divident increase
-- sometimes labeled value stocs
-    - mutual fund style box to differentiate from growth
-    - value more an insetment strategy
-    - (find undervalued stocks with a lower price relative to a companies true value)
-
-# value stocks
-
-- many times associated with income
-- lower price relative to fundamentals
-- 'bargain hunting'
-- great companies at discounted rates
-- higher long-term gain
-- greater risk
-- may just be a dog and never recover
 
 # stock sectors
 
