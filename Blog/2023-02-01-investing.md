@@ -3,22 +3,14 @@ I am writing an article about investment. I am trying to keep it simple and stra
 Currently, I am writing about stock diversification by sector. There are my topics that I want to cover in the article:
 
 ```
-
-```
-
-Please help me to write an article that cover mentioned topics and expand them with additional information.
-
-# how are stocks organized?
-
-- size
-- style
-- sector
-
 # stock sectors
 
 - what part of the economy
-- what is their primary busibess
+- what is their primary business
 - important for comparison to competitors (Ratios)
+```
+
+Please help me to write an article that cover mentioned topics and expand them with additional information.
 
 # indivisual stocks
 
@@ -127,7 +119,7 @@ Please help me to write an article that cover mentioned topics and expand them w
 - pay commission to a broker
 - can buy 1 share
 
-# Buy and Hold vs Active trafing
+# Buy and Hold vs Active trading
 
 ## Buy and hold
 
