@@ -155,3 +155,44 @@
     - Event Grid
 - DevOps
     - DevTest Labs
+
+# Security
+
+- Defense in Depth
+    - layers:
+        - physical
+        - identity and access
+        - perimeter
+        - network
+        - compute
+        - gateway and firewalls
+        - data
+- Securing Network Connectivity
+    - firewalls
+    - ddos protection service
+    - network security group
+        - application security groups
+- Public and Private endpoints
+    - service endpoint
+    - private endpoint
+- Microsoft Defender for Cloud
+- Azure Key Vault
+- Azure Information Protection
+- Azure Sentinel
+- Azure Dedicated Hosts
+- Microsoft Defender for Identity
+
+# Monitoring and Management
+
+- Governance
+    - Azure Policy (set of rules)
+    - Role Based Access Control (security principles, role definition and scope)
+    - locks
+    - azure blueprints
+- Azure Monitor
+- Monitoring Tools
+    - log analytics
+    - application insights
+    - azure monitor alerts
+- Azure Service Health
+- Azure Arc

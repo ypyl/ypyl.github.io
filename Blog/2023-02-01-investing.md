@@ -1,17 +1,8 @@
 I am writing an article about investment. I am trying to keep it simple and straightforward.
 
-Currently, I am writing about stock diversification by sector. There are my topics that I want to cover in the article:
+Currently, I am writing about individual stocks. There are my topics that I want to cover in the article:
 
 ```
-# stock sectors
-
-- what part of the economy
-- what is their primary business
-- important for comparison to competitors (Ratios)
-```
-
-Please help me to write an article that cover mentioned topics and expand them with additional information.
-
 # indivisual stocks
 
 - more control
@@ -26,7 +17,11 @@ Please help me to write an article that cover mentioned topics and expand them w
 - to be more diversified look at a variety company
     - industry
     - size
-    - style (growth/income/value)
+    - style
+```
+
+Write an article that cover mentioned topics and expand them with additional information.
+
 
 # Strategy: Mutual Fund or ETF core
 
