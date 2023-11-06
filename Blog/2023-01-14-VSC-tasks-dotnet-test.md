@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Visual Studio Code tasks. Run dotnet test with xUnit, coverlet and reportgenerator.
+title: Visual Studio Code tasks. Run dotnet test with xUnit, coverlet and reportgenerator
 date: 2023-01-14
 tags: dotnet, test, xUnit, vcs, coverlet, reportgenerator
 categories: programming

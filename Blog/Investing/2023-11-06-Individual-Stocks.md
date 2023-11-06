@@ -12,19 +12,19 @@ Investing in individual stocks involves purchasing shares of specific companies,
 
 Let's explore the pros and cons of individual stock investments:
 
-## Advantages
+Advantages:
 
-**Control**: Individual stocks offer more control. You can decide when to buy and sell, allowing you to adapt to market conditions as needed.
+- **Control**: Individual stocks offer more control. You can decide when to buy and sell, allowing you to adapt to market conditions as needed.
 
-**Tax Efficiency**: They can be tax-efficient since you have the freedom to time your sales for tax optimization.
+- **Tax Efficiency**: They can be tax-efficient since you have the freedom to time your sales for tax optimization.
 
-**Targeted Approach**: You can take a precise approach by selecting companies that align with your goals and values.
+- **Targeted Approach**: You can take a precise approach by selecting companies that align with your goals and values.
 
-## Drawbacks
+Drawbacks:
 
-**Less Diversification**: Individual stocks are inherently less diversified, which means your portfolio's performance is closely tied to individual company performance.
+- **Less Diversification**: Individual stocks are inherently less diversified, which means your portfolio's performance is closely tied to individual company performance.
 
-**Hands-On Approach**: Managing individual stocks requires a hands-on approach. Extensive research and continuous monitoring are essential.
+- **Hands-On Approach**: Managing individual stocks requires a hands-on approach. Extensive research and continuous monitoring are essential.
 
 ## Diversification
 
@@ -32,10 +32,10 @@ To diversify your portfolio when investing in individual stocks, consider holdin
 
 Achieve greater diversification by considering:
 
-**Industry**: Invest in various industries to reduce sector-specific risks.
+- **Industry**: Invest in various industries to reduce sector-specific risks.
 
-**Size**: Diversify by company size, including large-cap, mid-cap, and small-cap stocks.
+- **Size**: Diversify by company size, including large-cap, mid-cap, and small-cap stocks.
 
-**Style**: Explore different investment styles, such as growth, value, or income-focused companies, to create a well-rounded portfolio.
+- **Style**: Explore different investment styles, such as growth, value, or income-focused companies, to create a well-rounded portfolio.
 
 Find out [more information about diversification](./2023-10-30-Stock-diversification).
