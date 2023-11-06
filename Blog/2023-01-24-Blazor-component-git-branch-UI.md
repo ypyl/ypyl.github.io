@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Blazor component. Git branch UI show git branches on UI.
+title: Blazor component. Git branch UI show git branches on UI
 date: 2023-01-24
 tags: dotnet, blazor, component, ui, git, branch
 categories: programming

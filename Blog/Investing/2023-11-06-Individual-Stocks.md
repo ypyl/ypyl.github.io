@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Individual stocks.
+title: Individual stocks
 date: 2023-10-22
 categories: investing
 tags: stocks individual
