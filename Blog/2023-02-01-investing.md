@@ -1,30 +1,8 @@
 I am writing an article about investment. I am trying to keep it simple and straightforward.
 
-Currently, I am writing about individual stocks. There are my topics that I want to cover in the article:
+Currently, I am writing about Mutual Fund or ETF core. There are my topics that I want to cover in the article:
 
 ```
-# indivisual stocks
-
-- more control
-    - decide when to sell
-    - tax efficient
-- more targeted
-- less diversified
-- more hands on
-    - research
-    - tracking
-- 20-30 for diversification
-- to be more diversified look at a variety company
-    - industry
-    - size
-    - style
-```
-
-Write an article that cover mentioned topics and expand them with additional information.
-
-
-# Strategy: Mutual Fund or ETF core
-
 - 80%+ in core mutual funds (https://en.wikipedia.org/wiki/Mutual_fund)
     - total stock market
     - S&P 500
@@ -34,6 +12,9 @@ Write an article that cover mentioned topics and expand them with additional inf
     - varied holdings (advantantages of individuals)
     - tax reasons (mutual fund distrbution)
     - challenging and fun (boring wins)
+```
+
+Write an article that cover mentioned topics and expand them with additional information.
 
 # how many individuals stocks should I own?
 
