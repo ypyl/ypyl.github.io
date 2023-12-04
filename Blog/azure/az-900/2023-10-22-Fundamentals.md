@@ -196,3 +196,33 @@
     - azure monitor alerts
 - Azure Service Health
 - Azure Arc
+
+# Pricing
+
+- subscriptions
+    - management groups
+- cost management
+- pricing factor
+    - pricing calculator
+- best practices
+    - spending limit
+    - quotas
+    - tags
+
+# Support
+
+- plans
+    - basic
+    - developer
+    - standard
+    - professional direct
+    - premier
+- tickets
+- channels
+- knowledge center
+- service level agreements
+- service lifecycle
+    - preview
+        - private
+        - public
+    - general availability
