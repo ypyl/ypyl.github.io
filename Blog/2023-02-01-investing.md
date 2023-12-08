@@ -1,38 +1,8 @@
 I am writing an article about investment. I am trying to keep it simple and straightforward.
 
-Currently, I am writing about "how many individuals stocks should I own?". There are my topics that I want to cover in the article:
+Currently, I am writing about "Mutual funds". There are my topics that I want to cover in the article:
 
 ```
-- too few
-    - not diversified
-    - more downside risk
-- too many
-    - over diversification
-    - hard to track
-    - less potentional reward
-
-- traditional 20-30 individuals stocks
-
-- study found that portfolio containing 12 to 18 stocks provide aout 90% of the maximum benefits of diversification
-
-- no holding more than 5% of total capital invested =20
-    - ex, 10000$ invested then 500$ per stock
-
-- no holding more than 2% of total capital invested =50
-    - ex, 10000$ invested then 200$ per stock
-
-- diversify by sector (ex. healthcare) and industry (ex, biotechnology) and variety of both (ex, BioTech, EV, Technology, Banks, ..)
-
-- use ETF or Mututal funds for instant diversification
-
-- maybe a core holding(s) and add individuals stocks around that
-```
-
-Write an article that cover mentioned topics and expand them with additional information.
-
-
-# Mutual funds
-
 - pool of investors
     - sharing risk and reward
 - diversified holdings
@@ -41,6 +11,10 @@ Write an article that cover mentioned topics and expand them with additional inf
     - avtive vs index
 - liquidity
     - easy to buy and sell
+```
+
+Write an article that cover mentioned topics and expand them with additional information.
+
 
 # Active vs Index funds
 
