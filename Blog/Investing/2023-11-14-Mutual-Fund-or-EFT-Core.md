@@ -3,7 +3,7 @@ layout: post
 title: Building a Solid Investment Foundation. The Core of Mutual Funds and ETFs
 date: 2023-11-14
 categories: investing
-tags: stocks
+tags: mutual eft fundW
 ---
 
 Investing can be a daunting task, but it doesn't have to be complicated. One strategy that many investors find effective is building a solid core portfolio using [mutual funds](./2023-12-08-Mutual-Funds) or exchange-traded funds (ETFs). In this article, we'll explore the benefits of allocating 80% or more of your investment portfolio to core funds, specifically focusing on total stock market, S&P 500, and international funds. Additionally, we'll delve into the advantages of complementing your core with individual stocks for those seeking extra returns, diversified holdings, and strategic tax planning.

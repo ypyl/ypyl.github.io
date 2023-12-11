@@ -3,7 +3,7 @@ layout: post
 title: Understanding Mutual Funds. A Simple Guide to Smart Investing
 date: 2023-12-08
 categories: investing
-tags: stocks
+tags: mutual fund
 ---
 
 Investing can be a daunting task for many, but mutual funds offer a simple and effective way for individuals to participate in the financial markets. In this article, we'll explore the key aspects of mutual funds, breaking down complex concepts into straightforward ideas that anyone can grasp.

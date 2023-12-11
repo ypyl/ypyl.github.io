@@ -1,21 +1,8 @@
 I am writing an article about investment. I am trying to keep it simple and straightforward.
 
-Currently, I am writing about "Mutual funds". There are my topics that I want to cover in the article:
+Currently, I am writing about "Active vs Index funds". There are my topics that I want to cover in the article:
 
 ```
-- pool of investors
-    - sharing risk and reward
-- diversified holdings
-    - sometime asserts classes
-- professional management
-    - avtive vs index
-- liquidity
-    - easy to buy and sell
-```
-
-Write an article that cover mentioned topics and expand them with additional information.
-
-
 # Active vs Index funds
 
 - index fund means you are trying to match the market that the index follows
@@ -28,6 +15,10 @@ Write an article that cover mentioned topics and expand them with additional inf
     - index down as a whole
     - can be less diversified
     - can be heave weighted in a few positions (ex, S&P 500)
+```
+
+Write an article that cover mentioned topics and expand them with additional information.
+
 
 # Mutual fund expenses
 
