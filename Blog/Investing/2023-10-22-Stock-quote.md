@@ -3,7 +3,7 @@ layout: post
 title: Stock quote
 date: 2023-10-22
 categories: investing
-tags: stocks overview
+tags: stocks overview chatgpt
 ---
 
 # Stock quote

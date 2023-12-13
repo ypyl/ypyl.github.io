@@ -3,7 +3,7 @@ layout: post
 title: Individual stocks
 date: 2023-10-22
 categories: investing
-tags: stocks individual
+tags: stocks individual chatgpt
 ---
 
 # Individual stocks

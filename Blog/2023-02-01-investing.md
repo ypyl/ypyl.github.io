@@ -1,26 +1,9 @@
 I am writing an article about investment. I am trying to keep it simple and straightforward.
 
-Currently, I am writing about "Active vs Index funds". There are my topics that I want to cover in the article:
+Currently, I am writing about "Mutual fund expenses". There are my topics that I want to cover in the article:
 
 ```
-# Active vs Index funds
-
-- index fund means you are trying to match the market that the index follows
-- ex, vanguard S%P 500 Index fund
-- index fund advantages
-    - lower cost
-    - potentional for more diversification
-- index fund disadvantages
-    - no fund manager with vested interest
-    - index down as a whole
-    - can be less diversified
-    - can be heave weighted in a few positions (ex, S&P 500)
-```
-
-Write an article that cover mentioned topics and expand them with additional information.
-
-
-# Mutual fund expenses
+ Mutual fund expenses
 
 - sales charges (load)
     - front end/back end 3$ or more
@@ -37,6 +20,9 @@ Write an article that cover mentioned topics and expand them with additional inf
 - investor.vanguard.com
     - https://investor.vanguard.com/investment-products/mutual-funds/profile/vfiax
 - https://www.google.com/finance/
+```
+
+Write an article that cover mentioned topics and expand them with additional information.
 
 # ETF Extanghe Traded Funds
 

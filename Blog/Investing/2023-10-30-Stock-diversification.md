@@ -3,7 +3,7 @@ layout: post
 title: Stock diversification
 date: 2023-10-22
 categories: investing
-tags: stocks portfolio diversification
+tags: stocks portfolio diversification chatgpt
 ---
 
 # Stock diversification

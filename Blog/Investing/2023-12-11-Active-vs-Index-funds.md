@@ -3,7 +3,7 @@ layout: post
 title: Demystifying Investment Choices. Active vs. Index Funds
 date: 2023-12-11
 categories: investing
-tags: stocks funds
+tags: stocks funds chatgpt
 ---
 
 # Demystifying Investment Choices: Active vs. Index Funds
