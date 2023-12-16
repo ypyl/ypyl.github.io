@@ -1,29 +1,8 @@
 I am writing an article about investment. I am trying to keep it simple and straightforward.
 
-Currently, I am writing about "Mutual fund expenses". There are my topics that I want to cover in the article:
+Currently, I am writing about "ETF Extanghe Traded Funds". There are my topics that I want to cover in the article:
 
 ```
- Mutual fund expenses
-
-- sales charges (load)
-    - front end/back end 3$ or more
-- expense ratio (average 1%)
-    - operating expenses
-    - 12b-1 marketing (.25%)
-- misc. charges (not in expense ration)
-    - custodial fees (10$)
-    - hiddes fees
-- redemption fee (1%)
-    - fee if sell before certain time frame
-    - sicourage market timers
-
-- investor.vanguard.com
-    - https://investor.vanguard.com/investment-products/mutual-funds/profile/vfiax
-- https://www.google.com/finance/
-```
-
-Write an article that cover mentioned topics and expand them with additional information.
-
 # ETF Extanghe Traded Funds
 
 - Hold basket of underlying assets
@@ -34,6 +13,9 @@ Write an article that cover mentioned topics and expand them with additional inf
 - liquidity like a stock
 - pay commission to a broker
 - can buy 1 share
+```
+
+Write an article that cover mentioned topics and expand them with additional information.
 
 # Buy and Hold vs Active trading
 
