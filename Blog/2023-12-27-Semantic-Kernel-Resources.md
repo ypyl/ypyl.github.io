@@ -22,6 +22,13 @@ There is an example of markdown code:
 - Sentence  summary three
 ```
 
+# [How to write better prompts for OpenAI Codex](https://platform.openai.com/docs/guides/prompt-engineering/six-strategies-for-getting-better-results)
+
+- This page provides tips and tricks for writing effective prompts for OpenAI Codex, a system that can generate code from natural language.
+- The page explains how to use the following strategies: providing clear instructions, using examples, specifying input and output formats, using comments, and handling errors.
+- The page also includes a list of resources, such as the OpenAI Cookbook, the Codex Playground, and the Codex API documentation, to help users get started with Codex.
+
+
 # [Semantic Kernel 1.0: Function Calling](https://www.developerscantina.com/p/semantic-kernel-function-calling/)
 
 - This page explains how Semantic Kernel 1.0 supports function calling, a feature that allows an LLM to orchestrate complex AI workflows by calling external functions.
