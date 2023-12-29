@@ -6,22 +6,6 @@ categories: programming
 tags: ai semantic kernel openai
 ---
 
-Prompt to generate such summary for the page:
-
-Please create a memo for this page that will be used later to find this page.
-The first must be the title and the link to this page. After there should be 3 sentences formated as a list.
-Do not add any cross-links, references or sources links in the output.
-Format result as markdown code.
-
-There is an example of markdown code:
-```md
-# [PAGE_TITLE](LINK_TO_THE_PAGE)
-
-- Sentence summary one
-- Sentence summary two
-- Sentence  summary three
-```
-
 # [How to write better prompts for OpenAI Codex](https://platform.openai.com/docs/guides/prompt-engineering/six-strategies-for-getting-better-results)
 
 - This page provides tips and tricks for writing effective prompts for OpenAI Codex, a system that can generate code from natural language.
@@ -114,3 +98,21 @@ Here is a memo for this page:
 - This page shows 61 packages related to Microsoft Semantic Kernel, a framework for building AI applications with semantic memory and reasoning capabilities.
 - The packages include connectors, plugins, planners, functions, and template engines for various AI services and data sources, such as OpenAI, Weaviate, DuckDB, Kusto, Milvus, Qdrant, MongoDB, SQLite, OpenAPI, YAML, Markdown, and Handlebars.
 - The page also provides information about the downloads, updates, and descriptions of each package, as well as links to contact, FAQ, status, and privacy statement of NuGet.org.
+
+---
+
+# Prompt to generate such summary for the page:
+
+Please create a memo for this page that will be used later to find this page.
+The first must be the title and the link to this page. After there should be 3 sentences formated as a list.
+Do not add any cross-links, references or sources links in the output.
+Format result as markdown code.
+
+There is an example of markdown code:
+```md
+# [PAGE_TITLE](LINK_TO_THE_PAGE)
+
+- Sentence summary one
+- Sentence summary two
+- Sentence  summary three
+```

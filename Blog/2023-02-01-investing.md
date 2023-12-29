@@ -1,24 +1,8 @@
 I am writing an article about investment. I am trying to keep it simple and straightforward.
 
-Currently, I am writing about "ETF Extanghe Traded Funds". There are my topics that I want to cover in the article:
+Currently, I am writing about "Buy and Hold vs Active trading". There are topics that I want to cover in the article:
 
 ```
-# ETF Extanghe Traded Funds
-
-- Hold basket of underlying assets
-- typically track an index
-- low expense ratio
-- trade on market like a stock
-- price changes during the day
-- liquidity like a stock
-- pay commission to a broker
-- can buy 1 share
-```
-
-Write an article that cover mentioned topics and expand them with additional information.
-
-# Buy and Hold vs Active trading
-
 ## Buy and hold
 
 ### Advantages
@@ -48,7 +32,9 @@ Write an article that cover mentioned topics and expand them with additional inf
 - increased transaction fees/taxes
 - investing rewards patience with compounding
 - typically underperformsa over long-term
+```
 
+Write an article that covers mentioned topics and expand them with additional information.
 
 # growth stock investing
 
