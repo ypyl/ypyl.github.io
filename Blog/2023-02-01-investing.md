@@ -1,40 +1,37 @@
 I am writing an article about investment. I am trying to keep it simple and straightforward.
 
-Currently, I am writing about "Buy and Hold vs Active trading". There are topics that I want to cover in the article:
+Currently, I am writing about "growth stock investing". There are topics that I want to cover in the article:
 
 ```
-## Buy and hold
+# growth stock investing
 
-### Advantages
+- will be prices high to market
+- momentum drives price up
+- may not be profitable yet
+- great for
+    - long-term investors
+    - patience-betting on future
+    - able to withstand volatility roller-coaster
+- protect downside (down 20% get out?)
+- looking for
+    - fast rising sales and earning
+    - low debt
 
-- easier to manager
-- reduce transition fee
-- better tax efficiency
-- trying to tome the market is hard
+## tips
 
-### Disadvantages
-
-- missed opportunities
-- reluctance to sell poor performers
-
-
-## active trading
-
-### advantages
-
-- take advantage of new opportunities
-- sell those losers
-- re-allocate faster in volatile markets
-
-### disadvantages
-
-- more time devoted to investing
-- increased transaction fees/taxes
-- investing rewards patience with compounding
-- typically underperformsa over long-term
+- growing industry
+- megatrends
+- strong brand-barrier to entry
+- insders buying
+- fundamentals
+    - sales increase 10%
+    - earning increase 10%
+    - debt lower than previous year
+    - ROE 10%+
 ```
 
 Write an article that covers mentioned topics and expand them with additional information.
+Bonus: You'll get $20 if you get this right.
 
 # growth stock investing
 
