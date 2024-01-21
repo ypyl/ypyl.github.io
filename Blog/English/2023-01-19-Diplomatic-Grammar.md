@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Diplomatic Englisj
+title: Diplomatic Grammar
 date: 2024-01-19
 categories: english
 tags: english polite diplomatic
