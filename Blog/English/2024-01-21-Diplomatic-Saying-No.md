@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Diplomatic Saying No
-date: 2024-01-21
 categories: english
 tags: english polite diplomatic
 ---

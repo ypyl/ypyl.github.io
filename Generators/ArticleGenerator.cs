@@ -5,6 +5,7 @@ using System.Linq;
 using Markdig;
 using Markdown.ColorCode;
 using Microsoft.CodeAnalysis;
+using System;
 
 namespace SourceGenerator
 {
@@ -60,6 +61,17 @@ $$"""""""""
 """"""""";
                     meta.AppendLine(singleMeta);
                 }
+                if (parsedContext.Item1.All(x => x.Key != "date"))
+                {
+                    var singleMeta =
+$$"""""""""
+["""date"""] =
+"""""
+{{ArticleCreatedDate(fileName)}}
+""""",
+""""""""";
+                    meta.AppendLine(singleMeta);
+                }
                 var content =
 $$"""""""""
             ["""{{fileName}}"""] = (new Dictionary<string, string> { {{meta}} },
@@ -77,6 +89,16 @@ $$"""""""""
 }
 """"""""");
             context.AddSource($"ArtcilesContent.g.cs", code.ToString());
+        }
+
+        public string ArticleCreatedDate(string articleName)
+        {
+            var parser = articleName.Split("-");
+            var year = Convert.ToInt32(parser[0]);
+            var month = Convert.ToInt32(parser[1]);
+            var day = Convert.ToInt32(parser[2]);
+
+            return $"{year}-{month}-{day}";
         }
 
         private (Dictionary<string, string>, string) MetaDataAndMarkdown(string context)
