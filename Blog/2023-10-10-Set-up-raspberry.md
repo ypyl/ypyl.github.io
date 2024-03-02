@@ -44,6 +44,9 @@ sudo mkdir /mnt/hdd
 sudo chown pi:pi /mnt/hdd
 #Mount the drive
 sudo mount -t ntfs-3g -o uid-pi,gid-pi /dev/sda1 /mnt/hdd
+
+> If it is mounted, run `sudo umount /dev/sda1`
+
 #Now you're done but it's not permanent
 
 #Making it permanent
