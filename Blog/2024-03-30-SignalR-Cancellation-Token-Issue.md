@@ -3,7 +3,7 @@ layout: post
 title: How to Resolve SignalR Server-to-Client Sending Cancellation Issue
 date: 2024-03-30
 categories: programming
-tags: SignalR, .NET, Streaming, Server-to-Client Communication, Cancellation Issue
+tags: SignalR .NET Streaming Server-to-Client Communication Cancellation Issue
 ---
 
 ## Overview
