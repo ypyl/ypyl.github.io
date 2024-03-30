@@ -52,3 +52,5 @@ if (targetOperation === undefined || targetOperation?.controller?.signal.aborted
 ```
 
 By implementing a mechanism on the client side that ceases data reception upon detection of an aborted AbortSignal, the issue can be effectively mitigated.
+
+* The text was updated and modified by OpenAI/ GTP-3.5 model.
