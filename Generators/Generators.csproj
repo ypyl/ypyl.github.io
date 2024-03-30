@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.31.0" GeneratePathProperty="true" PrivateAssets="all" />
-    <PackageReference Include="Markdown.ColorCode" Version="1.0.3" GeneratePathProperty="true" PrivateAssets="all" />
-    <PackageReference Include="ColorCode.Core" Version="2.0.14" GeneratePathProperty="true" PrivateAssets="all" />
-    <PackageReference Include="ColorCode.HTML" Version="2.0.14" GeneratePathProperty="true" PrivateAssets="all" />
+    <PackageReference Include="Markdig" Version="0.36.2" GeneratePathProperty="true" PrivateAssets="all" />
+    <PackageReference Include="Markdown.ColorCode" Version="2.2.1" GeneratePathProperty="true" PrivateAssets="all" />
+    <PackageReference Include="ColorCode.Core" Version="2.0.15" GeneratePathProperty="true" PrivateAssets="all" />
+    <PackageReference Include="ColorCode.HTML" Version="2.0.15" GeneratePathProperty="true" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -23,8 +23,8 @@
 
   <Target Name="GetDependencyTargetPaths">
     <ItemGroup>
-      <TargetPathWithTargetPlatformMoniker Include="$(PKGMarkdig)\lib\net6.0\Markdig.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="$(PKGMarkdown_ColorCode)\lib\net6.0\Markdown.ColorCode.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PKGMarkdig)\lib\net8.0\Markdig.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PKGMarkdown_ColorCode)\lib\net8.0\Markdown.ColorCode.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PKGColorCode_Core)\lib\netstandard2.0\ColorCode.Core.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PKGColorCode_Html)\lib\netstandard2.0\ColorCode.HTML.dll" IncludeRuntimeDependency="false" />
     </ItemGroup>
