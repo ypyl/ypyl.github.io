@@ -158,3 +158,77 @@ Feel free to adapt this list based on specific travel needs or personal medical 
   - Булавки
   - Медицинские перчатки
   - Маска для искусственного дыхания
+
+---
+
+### Podstawowe przedmioty do apteczki podróżnej
+
+1. **Leki indywidualne**
+   - Leki na receptę (zgodnie z zaleceniem lekarza)
+   - Regularnie przyjmowane leki bez recepty (np. na przewlekłe schorzenia)
+
+2. **Materiały opatrunkowe**
+   - Sterylne gaziki
+   - Plastry (różne rozmiary)
+   - Chusteczki antyseptyczne
+   - Taśma klejąca
+   - Bandaże elastyczne
+   - Bandaże na skręcenia
+
+3. **Środki przeciwbólowe**
+   - Ibuprofen lub paracetamol
+
+4. **Środki przeciwwymiotne i na chorobę lokomocyjną**
+   - Na przykład: Aviomarin
+
+5. **Leki na problemy żołądkowo-jelitowe**
+   - Loperamid (na biegunkę)
+   - Ftalylsulfatiazol (na infekcje jelitowe)
+
+6. **Leki przeciwalergiczne**
+   - Antyhistaminy (np. Suprastin)
+
+7. **Narzędzia**
+   - Nożyczki
+   - Pęseta
+
+8. **Antyseptyki**
+   - Chusteczki alkoholowe
+   - Roztwór antyseptyczny (np. Betadine)
+
+### Dodatkowe przedmioty w zależności od sytuacji
+
+- **Ochrona przeciwsłoneczna**
+  - Krem przeciwsłoneczny
+  - Środki po opalaniu (np. Panthenol)
+
+- **Ochrona przed owadami**
+  - Środki odstraszające owady (komary, kleszcze)
+
+### Wskazówki dotyczące przechowywania
+
+- **Pojemnik**
+  - Wybierz wodoodporny i wytrzymały futerał lub torbę.
+  - Rozważ użycie specjalnej torby medycznej dla lepszej organizacji i dostępności.
+
+- **Konserwacja**
+  - Regularnie sprawdzaj daty ważności i wymieniaj przeterminowane leki.
+  - Utrzymuj porządek w apteczce, aby zapewnić szybki dostęp w nagłych przypadkach.
+
+### Dodatkowe zalecenia
+
+- **Środki na oparzenia**
+  - Krem lub żel na oparzenia (np. aloes)
+
+- **Środki na przeziębienie i grypę**
+  - Środki udrażniające nos
+  - Pastylki do ssania na gardło
+
+- **Podstawowe narzędzia medyczne**
+  - Cyfrowy termometr
+  - Chłodzące kompresy
+
+- **Inne niezbędne przedmioty**
+  - Agrafki
+  - Rękawiczki medyczne
+  - Maska do resuscytacji
