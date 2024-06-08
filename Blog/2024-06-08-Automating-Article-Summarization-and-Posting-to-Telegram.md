@@ -3,7 +3,7 @@ layout: post
 title: Automating Article Summarization and Posting to Telegram using Python
 date: 2024-06-08
 
-tags: ai, groq, llm, python, automation, web-scraping, beautifulsoup, telegram-bot, api-integration, tech-content-curation
+tags: ai groq llm python automation web-scraping beautifulsoup telegram-bot api-integration tech-content-curation
 categories: programming
 ---
 

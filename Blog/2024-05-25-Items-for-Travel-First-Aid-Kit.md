@@ -3,7 +3,7 @@ layout: post
 title: Essential Items for a Travel First Aid Kit
 date: 2024-05-25
 
-tags: medicine, travel
+tags: medicine travel
 categories: travelling
 ---
 
