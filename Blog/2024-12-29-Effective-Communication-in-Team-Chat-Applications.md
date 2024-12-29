@@ -3,8 +3,8 @@ layout: post
 title: Effective Communication in Team Chat Applications
 date: 2024-12-29
 
-tags: csproj versioning git pre-commit bash programming automation tech gpt-4o
-categories: programming
+tags: communication team-chat problem-solving etiquette programming collaboration
+categories: teamwork productivity
 ---
 
 # Effective Communication in Team Chat Applications
