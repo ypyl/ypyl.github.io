@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BlazorBlog",
   "resources": {
-    "hash": "sha256-OCvYJndJ/rn1lTW1QN08OUSfcBRxZkllWqDGg4TsnQg=",
+    "hash": "sha256-Wzkc2Wub1pAQ4rqunEEzYpG29VVAnYcsxxXVoEP97yw=",
     "jsModuleNative": {
       "dotnet.native.8.0.12.5019ia6r61.js": "sha256-B6DNRvFeCUi3jbx9uKpuj+hV9cN0KG4RdZj1FgBZwj8="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "BlazorBlog.wasm": "sha256-IN4PKISFVu/DXUXupqIFIYbOt6tNrtxqZGzsARMoyo8=",
+      "BlazorBlog.wasm": "sha256-waenEO9SlGAeFlI919OLt83r84O+ioNl9VdsgyxbvJE=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-mD/Kkid5kAbCd8FTvX7nRa1Zrwyztxc16j0tUjgwvKc=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-z0GrNRC40OggOGEOmGHKT+Pbvou0jI+eOACpAfxf5AQ=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-Flb1MA0jlDHWOa+MWhfPuf24H2zsEl94XIedS3o+mtA=",
