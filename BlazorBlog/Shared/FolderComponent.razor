@@ -3,7 +3,7 @@
 
 @if (FolderValue is not null && Filtered().Any())
 {
-    <MudListItem @key="FolderValue.Name" Text="@FolderValue.Name">
+    <MudListItem @key="FolderValue.Name" Text="@FolderValue.Name" T="string">
         <NestedList>
             @foreach (var folder in FolderValue.Folders)
             {
@@ -11,7 +11,7 @@
             }
             @foreach (var articleName in articleService.ArticleNames(FolderValue, SearchTerm))
             {
-                <MudListItem @key="@articleName">
+                <MudListItem @key="@articleName" T="string">
                     <MudNavLink Href="@articleName" Match="NavLinkMatch.Prefix">
                         <MudHighlighter Text="@CleanArticleName(articleName)" HighlightedText="@SearchTerm"/>
                     </MudNavLink>

@@ -13,15 +13,15 @@
     <MudPaper Class="d-flex pa-4 flex-row-reverse flex-wrap" Elevation="0">
         @if (!string.IsNullOrEmpty(Date))
         {
-            <MudChip Size="Size.Small">@Date</MudChip>
+            <MudChip T="string" Size="Size.Small">@Date</MudChip>
         }
         @foreach(var tag in Tags)
         {
-            <MudChip Size="Size.Small" Color="Color.Info">@tag</MudChip>
+            <MudChip T="string" Size="Size.Small" Color="Color.Info">@tag</MudChip>
         }
         @if (!string.IsNullOrEmpty(Categories))
         {
-            <MudChip Size="Size.Small" Color="Color.Warning">@Categories</MudChip>
+            <MudChip T="string" Size="Size.Small" Color="Color.Warning">@Categories</MudChip>
         }
     </MudPaper>
 }

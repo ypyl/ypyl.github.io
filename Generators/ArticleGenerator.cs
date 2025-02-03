@@ -7,36 +7,43 @@ using Markdown.ColorCode;
 using Microsoft.CodeAnalysis;
 using System;
 
-namespace SourceGenerator
+namespace SourceGenerator;
+
+[Generator]
+public class ArticleGenerator : IIncrementalGenerator
 {
-    [Generator]
-    public class ArticleGenerator : ISourceGenerator
+    public void Initialize(IncrementalGeneratorInitializationContext initContext)
     {
-        public void Execute(GeneratorExecutionContext context)
+        var markdownPipeline = new MarkdownPipelineBuilder()
+            .UseAdvancedExtensions()
+            .UseMathematics()
+            .UseColorCode()
+            .Build();
+
+        IncrementalValuesProvider<AdditionalText> additionalTexts = initContext.AdditionalTextsProvider.Where(static file => file.Path.EndsWith(".md"));
+
+        var collected = additionalTexts.Collect();
+
+        var transformed = collected.Select((mdFiles, token) =>
         {
-            var markdownPipeline = new MarkdownPipelineBuilder()
-                .UseAdvancedExtensions()
-                .UseMathematics()
-                .UseColorCode()
-                .Build();
             var code = new StringBuilder();
             code.AppendLine(
-"""""""""
-using System.Collections.Generic;
-namespace Blog;
-public static class Articles
-{
-    public static Dictionary<string, (Dictionary<string, string>, string)> Value()
-    {
-        return new Dictionary<string, (Dictionary<string, string>, string)>
-        {
-""""""""");
-            foreach (AdditionalText additionalFile in context.AdditionalFiles)
+                """""""""
+                    using System.Collections.Generic;
+                    namespace Blog;
+                    public static class Articles
+                    {
+                        public static Dictionary<string, (Dictionary<string, string>, string)> Value()
+                        {
+                            return new Dictionary<string, (Dictionary<string, string>, string)>
+                            {
+                    """"""""");
+            foreach (AdditionalText additionalFile in mdFiles)
             {
                 // Process the additional file
                 var filePath = additionalFile.Path;
                 var fileName = Path.GetFileNameWithoutExtension(filePath).Replace(".", string.Empty);
-                var fileContent = additionalFile.GetText(context.CancellationToken);
+                var fileContent = additionalFile.GetText(token);
                 var parsedContext = MetaDataAndMarkdown(fileContent.ToString());
                 if (!parsedContext.Item1.Any())
                 {
@@ -46,122 +53,130 @@ public static class Articles
                 var meta = new StringBuilder();
                 var categories = string.Join("|", Categories(filePath));
                 meta.Append($"[\"path\"]=\"{categories}\",");
-                foreach (var (key, value) in parsedContext.Item1)
+                foreach (var keyValue in parsedContext.Item1)
                 {
+                    var key = keyValue.Key;
+                    var value = keyValue.Value;
                     if (string.IsNullOrWhiteSpace(value))
                     {
                         continue;
                     }
                     var singleMeta =
-$$"""""""""
-["""{{key}}"""] =
-"""""
-{{value}}
-""""",
-""""""""";
+                        $$"""""""""
+                            ["""{{key}}"""] =
+                            """""
+                            {{value}}
+                            """"",
+                            """"""""";
                     meta.AppendLine(singleMeta);
                 }
                 if (parsedContext.Item1.All(x => x.Key != "date"))
                 {
                     var singleMeta =
-$$"""""""""
-["""date"""] =
-"""""
-{{ArticleCreatedDate(fileName)}}
-""""",
-""""""""";
+                        $$"""""""""
+                            ["""date"""] =
+                            """""
+                            {{ArticleCreatedDate(fileName)}}
+                            """"",
+                            """"""""";
                     meta.AppendLine(singleMeta);
                 }
                 var content =
-$$"""""""""
-            ["""{{fileName}}"""] = (new Dictionary<string, string> { {{meta}} },
-"""""
-{{html}}
-"""""
-),
-""""""""";
+                    $$"""""""""
+                                    ["""{{fileName}}"""] = (new Dictionary<string, string> { {{meta}} },
+                        """""
+                        {{html}}
+                        """""
+                        ),
+                        """"""""";
                 code.AppendLine(content);
             }
             code.AppendLine(
-"""""""""
-        };
+                """""""""
+                            };
+                        }
+                    }
+                    """"""""");
+            return code.ToString();
+        });
+
+        // generate a class that contains their values as const strings
+        initContext.RegisterSourceOutput(transformed, (spc, finalFile) =>
+        {
+            spc.AddSource("ArtcilesContent.g.cs", finalFile);
+        });
     }
-}
-""""""""");
-            context.AddSource($"ArtcilesContent.g.cs", code.ToString());
-        }
 
-        public string ArticleCreatedDate(string articleName)
+    public string ArticleCreatedDate(string articleName)
+    {
+        var parser = articleName.Split('-');
+        var year = Convert.ToInt32(parser[0]);
+        var month = Convert.ToInt32(parser[1]);
+        var day = Convert.ToInt32(parser[2]);
+
+        return $"{year}-{month}-{day}";
+    }
+
+    private (Dictionary<string, string>, string) MetaDataAndMarkdown(string context)
+    {
+        var keys = new[] { "title", "date", "categories", "tags" };
+        var lines = context.Split('\n');
+        if (lines.Length == 0)
         {
-            var parser = articleName.Split("-");
-            var year = Convert.ToInt32(parser[0]);
-            var month = Convert.ToInt32(parser[1]);
-            var day = Convert.ToInt32(parser[2]);
-
-            return $"{year}-{month}-{day}";
+            return (new Dictionary<string, string>(), context);
         }
-
-        private (Dictionary<string, string>, string) MetaDataAndMarkdown(string context)
+        if (lines[0].Trim() != "---")
         {
-            var keys = new [] {"title", "date", "categories", "tags"};
-            var lines = context.Split('\n');
-            if (lines.Length == 0)
+            return (new Dictionary<string, string>(), context);
+        }
+        var i = 1;
+        var meta = new Dictionary<string, string>();
+        while (i < lines.Length && lines[i].Trim() != "---")
+        {
+            var line = lines[i].Trim();
+            var splitted = line.Split(':');
+            var key = splitted[0].Trim();
+            if (!keys.Any(x => x == key))
             {
-                return (new Dictionary<string, string>(), context);
-            }
-            if (lines[0].Trim()!= "---")
-            {
-                return (new Dictionary<string, string>(), context);
-            }
-            var i = 1;
-            var meta = new Dictionary<string, string>();
-            while (i < lines.Length && lines[i].Trim() != "---")
-            {
-                var line = lines[i].Trim();
-                var splitted = line.Split(':');
-                var key = splitted[0].Trim();
-                if (!keys.Any(x => x == key))
-                {
-                    i++;
-                    continue;
-                }
-                var value = string.Join(':', splitted.Skip(1));
-                meta.Add(key, value);
                 i++;
+                continue;
             }
-            return (meta, string.Join('\n', lines.Skip(i + 1).Select(x =>
-            {
-                return x;
-            })));
+            var value = string.Join(":", splitted.Skip(1));
+            meta.Add(key, value);
+            i++;
         }
-
-        public void Initialize(GeneratorInitializationContext context)
+        return (meta, string.Join("\n", lines.Skip(i + 1).Select(x =>
         {
-            // No initialization required for this one
-        }
+            return x;
+        })));
+    }
 
-        private string[] Categories(string filepath)
+    public void Initialize(GeneratorInitializationContext context)
+    {
+        // No initialization required for this one
+    }
+
+    private string[] Categories(string filepath)
+    {
+        const string block = "Blog";
+        var splitted = filepath.Split(Path.DirectorySeparatorChar);
+        var result = new List<string>();
+        var i = 0;
+        while (i < 6)
         {
-            const string block = "Blog";
-            var splitted = filepath.Split(Path.DirectorySeparatorChar);
-            var result = new List<string>();
-            var i = 0;
-            while (i < 6)
+            if (splitted.Length - 2 - i <= 0)
             {
-                if (splitted.Length - 2 - i <= 0)
-                {
-                    break;
-                }
-                var current = splitted[splitted.Length - 2 - i];
-                if (current == block)
-                {
-                    break;
-                }
-                result.Add(current);
-                i++;
+                break;
             }
-            result.Reverse();
-            return result.ToArray();
+            var current = splitted[splitted.Length - 2 - i];
+            if (current == block)
+            {
+                break;
+            }
+            result.Add(current);
+            i++;
         }
+        result.Reverse();
+        return result.ToArray();
     }
 }

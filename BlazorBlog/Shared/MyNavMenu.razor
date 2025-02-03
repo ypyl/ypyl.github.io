@@ -3,7 +3,7 @@
 @inject ArticleService articleService
 
 <MudNavMenu>
-    <MudList DisablePadding="true" Dense="true" Clickable="true">
+    <MudList Dense="true" T="string">
         <MudListSubheader>
             <MudTextField @bind-Value="@searchTerm" Immediate="true" Margin="Margin.Dense" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" />
         </MudListSubheader>
@@ -15,7 +15,7 @@
 
         @foreach (var articleName in articleService.ArticleNames(Root, searchTerm))
         {
-            <MudListItem @key="@articleName">
+            <MudListItem @key="@articleName" T="string">
                 <MudNavLink Href="@articleName" Match="NavLinkMatch.Prefix">
                     <MudHighlighter Text="@CleanArticleName(articleName)" HighlightedText="@searchTerm"/>
                 </MudNavLink>
