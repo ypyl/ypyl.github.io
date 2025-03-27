@@ -15,35 +15,6 @@ I built this tool to solve a specific problem: when copying multiple pieces of i
 
 ## Key Features
 
-- Start and stop clipboard recording with a simple toggle.
-- Capture and store plain text, file paths, and folder paths.
-- Automatically detect clipboard content from Visual Studio Code and extract file URIs.
-- Show copied items in a list and allow deletion of individual items.
-- Pass the structured data as a single text value to the clipboard at the end.
-
-Got it! Here's a structured article draft similar to your example:
-
----
-
----
-layout: post
-title: How I Created LLMClip – An AutoHotkey Script for Capturing Clipboard Content
-date: 2025-03-27
-
-tags: autohotkey clipboard automation llm productivity
-categories: programming automation
----
-
-# How I Created LLMClip – An AutoHotkey Script for Capturing Clipboard Content
-
-## Introduction
-
-LLMClip is an AutoHotkey (AHK) script I developed to streamline the process of gathering clipboard data and passing it as context to a Large Language Model (LLM) like ChatGPT. The goal was to seamlessly capture text, file paths, and folder paths while preserving their structure and content, making it easier to work with LLMs for code generation, debugging, and research.
-
-I built this tool to solve a specific problem: when copying multiple pieces of information from different sources, it becomes cumbersome to manually paste them into ChatGPT in a structured format. LLMClip automates this process, ensuring a smooth workflow.
-
-## Key Features
-
 - **Start and stop clipboard recording** with a simple toggle.
 - **Capture and store** plain text, file paths, and folder paths.
 - **Automatically detect clipboard content from Visual Studio Code** and extract file URIs.
