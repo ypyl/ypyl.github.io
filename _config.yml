@@ -5,9 +5,8 @@ url: "https://ypyl.github.io/"
 theme: minima
 
 # Author info (used in footer)
-author:
-  name: Yauhen
-  email: yauhen.pyl@gmail.com
+author: Yauhen Pyl
+email: yauhen.pyl@gmail.com
 
 github_username: ypyl
 linkedin_username: yauhenpyl
