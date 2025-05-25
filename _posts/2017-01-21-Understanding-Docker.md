@@ -14,7 +14,7 @@ Docker is the world's leading software containerization platform
 
 Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools, system libraries – anything that can be installed on a server. This guarantees that the software will always run the same, regardless of its environment.
 
-![image1](./images/WhatIsDocker_1_kernal-2_1.png)
+![image1](/assets/WhatIsDocker_1_kernal-2_1.png)
 
 1. Lightweight
 
@@ -33,13 +33,13 @@ Containers and virtual machines have similar resource isolation and allocation b
 
 * Virtual Machines
 
-![image](./images/WhatIsDocker_2_VMs_0-2_2.png)
+![image](/assets/WhatIsDocker_2_VMs_0-2_2.png)
 
 Virtual machines include the application, the necessary binaries and libraries, and an entire guest operating system - all of which can amount to tens of GBs.
 
 * Containers
 
-![image](./images/WhatIsDocker_3_Containers_2_0.png)
+![image](/assets/WhatIsDocker_3_Containers_2_0.png)
 
 Containers include the application and all of its dependencies - but share the kernel with other containers, running as isolated processes in user space on the host operating system. Docker containers are not tied to any specific infrastructure: they run on any computer, on any infrastructure, and in any cloud.
 
@@ -75,7 +75,7 @@ Docker Engine is a client-server application with these major components:
 * A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.
 * A command line interface (CLI) client.
 
-![image](./images/engine-components-flow.png)
+![image](/assets/engine-components-flow.png)
 
 ### [What can I use Docker for?](https://docs.docker.com/engine/understanding-docker/#/what-can-i-use-docker-for)
 
@@ -89,7 +89,7 @@ Docker is lightweight and fast. It provides a viable, cost-effective alternative
 
 Docker uses a client-server architecture. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface. One client can even communicate with multiple unrelated daemons.
 
-![image](./images/architecture.svg)
+![image](/assets/architecture.svg)
 
 ### [Inside Docker](https://docs.docker.com/engine/understanding-docker/#/inside-docker)
 

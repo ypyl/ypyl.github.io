@@ -12,7 +12,7 @@ It allows you to wait some docker containers which have long-running initializat
 And there is step-by-step explanation how to use it:
 1. Copy [wait-for-it.sh](https://github.com/vishnubob/wait-for-it/blob/master/wait-for-it.sh) to your project
 
-![image](./images/service-project.png)
+![image](/assets/service-project.png)
 
 2. Copy it to your docker image
 ```toml

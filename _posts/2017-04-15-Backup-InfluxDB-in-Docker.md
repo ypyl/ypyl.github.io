@@ -95,6 +95,6 @@ for db in ${DATABASES//:/ }; do
 done
 ```
 
-Please find an image [here](./assets/inluxDbBackupDocker.zip).
+Please find an image [here](/assets/inluxDbBackupDocker.zip).
 
 Thank you!

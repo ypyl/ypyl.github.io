@@ -30,12 +30,12 @@ Linux [Filesystem](http://www.tldp.org/LDP/sag/html/filesystems.html)
 
 [The Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
 
-![File System](./images/linux_foundation_filesystem.jpg)
+![File System](/assets/linux_foundation_filesystem.jpg)
 
 The Boot Process
 
-![Boot Process](./images/linux_foundation_boot_process.jpg)
+![Boot Process](/assets/linux_foundation_boot_process.jpg)
 
 Choosing a [Linux Distribution](https://en.wikipedia.org/wiki/Linux_distribution)
 
-![Choose](./images/linux_foundation_choose.jpg)
+![Choose](/assets/linux_foundation_choose.jpg)

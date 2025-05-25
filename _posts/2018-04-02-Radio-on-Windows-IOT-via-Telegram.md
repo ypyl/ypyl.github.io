@@ -25,7 +25,7 @@ Developed radio application is [background application](https://docs.microsoft.c
 2. Radio player is to play radio. It based on [Windows-IoT-Core-Ignite](https://github.com/gloveboxes/Windows-IoT-Core-Ignite).
 
 Example of the bot in Telegram:
-![image](./images/radio_bot.png)
+![image](/assets/radio_bot.png)
 
 The source code is on [GitHub](https://github.com/eapyl/WinIOTRadio).
 

@@ -8,7 +8,7 @@ categories: programming
 ---
 Extension for [Fiddler](http://www.fiddler2.com/Fiddler/dev/).
 
-![example](./images/zip_fiddler.jpg)
+![example](/assets/zip_fiddler.jpg)
 
 The source code: [FiddlerZip](https://drive.google.com/file/d/0BwVmorgjT-W1NDFlZDZkMDItMWMxMS00NzU2LTg3NDUtYTYzOWVhOGMyMzRj/view).
 

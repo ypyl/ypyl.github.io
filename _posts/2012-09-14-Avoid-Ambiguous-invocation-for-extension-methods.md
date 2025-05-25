@@ -8,7 +8,7 @@ categories: programming
 
 I m using ASP.NET MVC. And work with my view, where I have the View
 
-![example](./images/invocation.png)
+![example](/assets/invocation.png)
 
 It gives me the exception
 
@@ -18,4 +18,4 @@ The call is ambiguous between the following methods or properties: 'GMP.MvcWebSi
 
 So i just rebuild my view as
 
-![example2](./images/invocation2.png)
+![example2](/assets/invocation2.png)

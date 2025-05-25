@@ -11,7 +11,7 @@ The value of a point is the sum of values of types ('one', 'two').
 
 [Additional info](http://api.highcharts.com/highcharts#tooltip.formatter)
 
-![image](./images/highchart_add_info.png)
+![image](/assets/highchart_add_info.png)
 
 The code:
 ```js

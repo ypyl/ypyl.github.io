@@ -10,8 +10,8 @@ I have created one more plugin for HTML table. It fixes the head of a table on t
 
 Some images of plugin:
 
-![example1](./images/fixed_header1.png)
+![example1](/assets/fixed_header1.png)
 
 And another plugin https://bitbucket.org/upyl/fixedcolumn to fix column of table.
 
-![example2](./images/fixed_header2.png)
+![example2](/assets/fixed_header2.png)

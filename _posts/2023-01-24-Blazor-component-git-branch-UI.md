@@ -10,7 +10,7 @@ It is surprisingly very easy to create, test and publish Blazor component librar
 
 I decided to create a small Blazor component to represent git branch tree like `gitk` is doing, e.g.
 
-![img](./images/gitk-branch-example.png)
+![img](/assets/gitk-branch-example.png)
 
 And there is a project - https://github.com/ypyl/GitBranchUI.
 

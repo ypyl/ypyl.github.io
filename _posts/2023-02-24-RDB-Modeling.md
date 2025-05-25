@@ -8,8 +8,8 @@ categories: programming
 
 😎 [This application](https://rdbmodel.github.io/) allows you to create and visualize software architecture using a simplified version of the C4 model
 
-![image1](./images/diagram.eedae2b6.gif)
-![image2](./images/editor.17fc0b0b.gif)
+![image1](/assets/diagram.eedae2b6.gif)
+![image2](/assets/editor.17fc0b0b.gif)
 
 ✍ Intuitive interface makes it easy to create and edit yaml files that represent the domain of your application
 

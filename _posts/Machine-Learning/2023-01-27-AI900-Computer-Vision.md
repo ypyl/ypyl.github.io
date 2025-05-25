@@ -15,7 +15,7 @@ A CNN consists of several layers, such as:
 
 The following diagram illustrates the basic structure of a CNN:
 
-![CNN diagram](./images/cnn.png)
+![CNN diagram](/assets/cnn.png)
 
 ## Transformers and multi-modal models
 
@@ -27,7 +27,7 @@ One of the most advanced multi-modal models is the Microsoft Florence model, whi
 
 The following diagram shows how a multi-modal model like Florence works:
 
-![Multi-modal diagram](./images/multi-modal.png)
+![Multi-modal diagram](/assets/multi-modal.png)
 
 ## Conclusion
 

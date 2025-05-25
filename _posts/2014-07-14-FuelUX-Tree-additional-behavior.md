@@ -8,7 +8,7 @@ categories: programming
 ---
 Add "Show All" to the FuelUX Tree like this.
 
-![example](./images/fuelux-tree.gif)
+![example](/assets/fuelux-tree.gif)
 
 There is the [tree plugin](https://exacttarget.github.io/fuelux/#tree). You can add the next code after initialization of the tree:
 ```js

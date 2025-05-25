@@ -17,13 +17,13 @@ All events has been shown on the main page.
 
 1. Create our application in facebook.
 
-![example](./images/facebook1.png)
+![example](/assets/facebook1.png)
 
 You see there is secret key and application key. We need them to working with facebook through our application.
 
 2. Authorization (OAuth 2.0).
 
-![example](./images/facebook2.png)
+![example](/assets/facebook2.png)
 
 * Ask user to permission.
 * User will be redirected to facebook access page.

@@ -126,6 +126,6 @@ Implementing autocomplete functionality in React can enhance user experience by 
 
 For the complete code, you can refer to the following links:
 - [View the code on PlayCode](https://playcode.io/1948870)
-- [Download the code as a ZIP file](./assets/InputWithSuggestionMenu.zip)
+- [Download the code as a ZIP file](/assets/InputWithSuggestionMenu.zip)
 
 > Created by gpt-4o v2024-05-13, reviewed and edited by me

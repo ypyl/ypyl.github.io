@@ -8,7 +8,7 @@ tags: interview coding pattern
 
 # [Sliding Window](https://de.wikipedia.org/wiki/Sliding_Window)
 
-![sliding-window](./images/52s4F62R2c.png)
+![sliding-window](/assets/52s4F62R2c.png)
 
 ## Description
 
@@ -25,7 +25,7 @@ The Sliding Window coding technique is a strategy used in computer programming t
 
 # [Islands (Matrix Traversal)](https://levelup.gitconnected.com/grokking-the-coding-interview-pattern-island-dc9c7def6b54#:~:text=We%20can%20traverse%20the%20matrix%20linearly%20to%20find,to%20find%20all%20of%20its%20connected%20land%20cells.)
 
-![island](./images/DPPj8CoBIl.png)
+![island](/assets/DPPj8CoBIl.png)
 
 ## Description
 
@@ -43,7 +43,7 @@ The Islands (Matrix Traversal) technique is a coding strategy used to solve prob
 
 # [Two Pointers](https://www.geeksforgeeks.org/two-pointers-technique/)
 
-![two-pointers](./images/OKJsB0cjio.png)
+![two-pointers](/assets/OKJsB0cjio.png)
 
 ## Description
 
@@ -61,7 +61,7 @@ The Two Pointers technique is a coding strategy used to efficiently solve proble
 
 # [Fast & Slow Pointers](https://techbum.io/slow-fast-pointers-linked-list/)
 
-![fast-and-slow-pointers](./images/fUvRwuxhNX.png)
+![fast-and-slow-pointers](/assets/fUvRwuxhNX.png)
 
 ## Description
 
@@ -79,7 +79,7 @@ The Fast & Slow Pointers technique is a coding strategy that involves using two 
 
 # [Merge Intervals](https://www.geeksforgeeks.org/merging-intervals/)
 
-![merge-intervals](./images/x2PtTNmFVR.png)
+![merge-intervals](/assets/x2PtTNmFVR.png)
 
 ## Description
 
@@ -96,7 +96,7 @@ The Merge Intervals technique is a coding strategy that involves combining and c
 
 # [Cyclic Sort](https://en.wikipedia.org/wiki/Cycle_sort)
 
-![cyclic-sort](./images/6HAc3A1uk.webp)
+![cyclic-sort](/assets/6HAc3A1uk.webp)
 
 ## Description
 
@@ -114,7 +114,7 @@ The Cyclic Sort technique is a coding strategy used to solve problems involving 
 
 # [In-place Reversal of a LinkedList](https://emre.me/coding-patterns/in-place-reversal-of-a-linked-list/)
 
-![in-place-reversal](./images/reverse-linked-list.gif)
+![in-place-reversal](/assets/reverse-linked-list.gif)
 
 ## Description
 
@@ -131,7 +131,7 @@ The In-place Reversal of a LinkedList technique is a coding strategy used to rev
 
 # [Breadth-First Search](https://en.wikipedia.org/wiki/Breadth-first_search)
 
-![bfs](./images/Animated_BFS.gif)
+![bfs](/assets/Animated_BFS.gif)
 
 ## Description
 
@@ -149,7 +149,7 @@ Tree, Graph, [Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)), [Queu
 
 # [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)
 
-![dfs](./images/Depth-First-Search.gif)
+![dfs](/assets/Depth-First-Search.gif)
 
 ## Description
 
@@ -166,7 +166,7 @@ Tree, Graph, [Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics))
 
 # [Two Heaps](https://algodaily.com/lessons/two-heaps-technique)
 
-![two-heaps](./images/zLvR1ypcKJ.png)
+![two-heaps](/assets/zLvR1ypcKJ.png)
 
 ## Description
 
@@ -183,7 +183,7 @@ The Two Heaps technique is a coding strategy that utilizes two separate heaps, a
 
 # [Subsets](https://en.wikipedia.org/wiki/Subset)
 
-![subsets](./images/2019-11-19-subsets-example.png)
+![subsets](/assets/2019-11-19-subsets-example.png)
 
 ## Description
 
@@ -215,7 +215,7 @@ The Modified Binary Search technique is a coding strategy used to efficiently se
 
 # [Bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation)
 
-![bitwise-xor](./images/how-Bitwise-XOR-Operator-works.webp)
+![bitwise-xor](/assets/how-Bitwise-XOR-Operator-works.webp)
 
 ## Description
 
@@ -247,7 +247,7 @@ The Top 'K' Elements technique is a coding strategy used to efficiently identify
 
 # [K-way Merge](https://en.wikipedia.org/wiki/K-way_merge_algorithm)
 
-![k-way-merge](./images/k-way-merge.jpg)
+![k-way-merge](/assets/k-way-merge.jpg)
 
 ## Description
 
@@ -264,7 +264,7 @@ The K-way Merge technique is a coding strategy used to merge K sorted arrays or 
 
 # [Topological Sort](https://en.wikipedia.org/wiki/Topological_sorting)
 
-![topological-sort](./images/Q3MA6dZ.png)
+![topological-sort](/assets/Q3MA6dZ.png)
 
 ## Description
 
@@ -281,7 +281,7 @@ The Topological Sort technique is a coding strategy used to order the vertices o
 
 # [0/1 Knapsack](https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/)
 
-![knacksack](./images/maxresdefault.jpg)
+![knacksack](/assets/maxresdefault.jpg)
 
 ## Description
 
@@ -298,7 +298,7 @@ The 0/1 Knapsack technique is a coding strategy used to solve problems that invo
 
 # [Fibonacci Numbers](https://en.wikipedia.org/wiki/Fibonacci_sequence)
 
-![fibonacci](./images/fibonacci_diagram.svg)
+![fibonacci](/assets/fibonacci_diagram.svg)
 
 ## Description
 
@@ -315,7 +315,7 @@ The Fibonacci Numbers technique is a coding strategy used to efficiently calcula
 
 # [Palindromic Subsequence](https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/)
 
-![fibonacci](./images/OIP.jpg)
+![fibonacci](/assets/OIP.jpg)
 
 ## Description
 
@@ -332,7 +332,7 @@ The Palindromic Subsequence technique is a coding strategy used to identify and 
 
 # [Longest Common Substring](https://en.wikipedia.org/wiki/Longest_common_substring)
 
-![longest-common-substring](./images/longest-common-string.jpg)
+![longest-common-substring](/assets/longest-common-string.jpg)
 
 ## Description
 

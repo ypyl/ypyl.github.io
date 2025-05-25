@@ -8,7 +8,7 @@ tags: stocks overview portfolio chatgpt
 
 # Investment instruments
 
-![Investment instruments](./images/investment-instruments.png)
+![Investment instruments](/assets/investment-instruments.png)
 
 ## Cash
 

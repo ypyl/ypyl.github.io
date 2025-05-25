@@ -8,7 +8,7 @@ tags: stocks overview chatgpt
 
 # Stock quote
 
-![microsoft](./images/dH8SRAsgP9.png)
+![microsoft](/assets/dH8SRAsgP9.png)
 
 [Source](https://finance.yahoo.com/quote/MSFT?p=MSFT&.tsrc=fin-srch)
 

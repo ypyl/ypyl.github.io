@@ -17,7 +17,7 @@ It would be good to **get enough sleep**!
 
 You should take small breaks as often as possible when working at computer or with papers. During the pause you can do a little gymnastics for the eyes:
 
-![image](./images/Eyes.png)
+![image](/assets/Eyes.png)
 
 *Each exercise is performed 5-10 times in each direction, 1-2 times a day*
 

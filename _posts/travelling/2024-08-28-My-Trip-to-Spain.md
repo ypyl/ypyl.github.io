@@ -31,7 +31,7 @@ The nearby beach was fantastic, with great sandy areas that are ideal for famili
 
 The closest supermarket was conveniently located, which made it easy to pick up daily essentials. You can find it [here](https://www.openstreetmap.org/node/7126908485#map=19/38.025324/-0.654105&layers=N). They even had normal milk available, which was great!
 
-![example](./images/image_1724359267933_0.png)
+![example](/assets/image_1724359267933_0.png)
 
 ### Local Market
 
