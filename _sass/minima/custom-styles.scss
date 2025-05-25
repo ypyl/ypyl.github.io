@@ -1,9 +1,3 @@
-
-@import
-  "minima/skins/{{ site.minima.skin | default: 'classic' }}",
-  "minima/initialize";
-
-// YOUR OVERRIDES:
 .social-media-list {
   list-style: none;
   padding: 0;
