@@ -1,0 +1,16 @@
+@import "minima/skins/classic"; // or your current skin
+@import "minima/initialize";
+
+// YOUR OVERRIDES:
+.social-media-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-media-list li {
+  display: inline-block;
+}
