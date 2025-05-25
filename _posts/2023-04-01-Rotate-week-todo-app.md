@@ -1,10 +1,10 @@
 ---
-title: Rotate: The Desktop Todo App That Helps You Stay Organized
+title: Rotate - The Desktop Todo App That Helps You Stay Organized
 date: 2023-04-01
 tags: todo, elm, neutralinojs, desktop
 categories: programming
 ---
-![img](../images/6uYcsaJqui.png)
+![img](/assets/6uYcsaJqui.png)
 
 Do you often find yourself struggling to manage your tasks and keep track of deadlines? If so, you're not alone. Many people struggle to stay organized and focused, especially when they have a lot on their plate. That's why desktop todo apps like Rotate can be so helpful.
 
