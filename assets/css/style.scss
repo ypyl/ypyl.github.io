@@ -1,5 +1,7 @@
-@import "minima/skins/classic"; // or your current skin
-@import "minima/initialize";
+
+@import
+  "minima/skins/{{ site.minima.skin | default: 'classic' }}",
+  "minima/initialize";
 
 // YOUR OVERRIDES:
 .social-media-list {
