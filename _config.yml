@@ -3,3 +3,13 @@ description: "A blog about programming, technology, and life experiences."
 baseurl: ""
 url: "https://ypyl.github.io/"
 theme: minima
+
+# Author info (used in footer)
+author:
+  name: Yauhen
+  email: yauhen.pyl@gmail.com
+
+# Optional: social media (used in social.html include if applicable)
+social:
+  github: https://github.com/ypyl
+  linkedin: https://www.linkedin.com/in/yauhenpyl/

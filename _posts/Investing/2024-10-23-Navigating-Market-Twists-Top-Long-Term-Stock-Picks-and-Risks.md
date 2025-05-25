@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: Starbucks Shakeups, Election Influence, and McDonald’s Troubles: Market News Highlights
+title: Starbucks Shakeups, Election Influence, and McDonald’s Troubles - Market News Highlights
 date: 2024-10-23
 
 tags: investing stock-market market-analysis Starbucks McDonalds political-impact consumer-goods financial-recommendations boycott-risks health-crisis
