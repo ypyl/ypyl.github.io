@@ -14,12 +14,5 @@ social:
   github: https://github.com/ypyl
   linkedin: https://www.linkedin.com/in/yauhenpyl/
 
-minima:
-  social_links:
-    - title: GitHub
-      url: "https://github.com/ypyl"
-      icon: github
-    - title: LinkedIn
-      url: "https://www.linkedin.com/in/yauhenpyl/"
-      icon: linkedin
-  hide_site_feed_link: true  # Optional: set true to hide RSS icon
+github_username: ypyl
+linkedin_username: yauhenpyl
