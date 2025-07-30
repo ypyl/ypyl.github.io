@@ -79,7 +79,7 @@ There is a also a great article [Documenting software architecture](https://herb
 
 It is important to understand how a customer or user sees the application or product. So the description of all different solutions and/or applications which are available in the product can be covered in this chapter. All descriptions should be done from a customer's perspective without any technical details.
 
-### Product implementation (Level 2: ContainerS)
+### Product implementation (Level 2: Containers)
 
 It is important to have an information in general about how the product/application depends on the infrastructure. This section should include all special requirements to infrastructure so the application will work on it well.
 
@@ -196,6 +196,167 @@ General overview of activities that are related to non-functional requirements.
 7. Automated and manual OAM activities (Operations, Administration and Management) - the list of all repetitive jobs that are performed automatically or need to be performed manually, e.g disk or database clean up etc;
 8. Troubleshooting tools and approaches
 9. Incidents analysis - an overview of the last issues and incidents with the product and RCS of them ([5 whys](https://en.wikipedia.org/wiki/Five_whys))
+
+# Template
+
+```md
+# 📄 [[Project Name]] - Onboarding & Knowledge Base
+
+## 1. Team & Contacts
+
+- List all team members and their roles:
+  - R&D developers
+  - Technical Lead / Architect
+  - Project Manager
+  - Product Owner / Business Rep
+  - QA / Testers
+  - DevOps
+  - SaaSOps / Support
+  - Release Manager
+- Note: Are any roles combined? Who is the main point of contact for technical questions? For business questions?
+
+## 2. Understand the Product
+
+### Product Overview
+
+- What is this project about in one sentence?
+- How long has it been running? Any major milestones?
+- What type of product is it? (e.g., web app, API service, ERP, SaaS, CLI tool)
+- What is the main goal of the product?
+- Who are the primary users/customers?
+- What problems does it solve?
+- What market/niche does it serve?
+
+### Product History & Recent Releases
+
+- Read release notes or changelogs for the last 2–3 releases.
+- List key features and bug fixes added recently.
+- Identify any recurring issues or patterns in fixes.
+
+### Key Product Objectives & Capabilities
+
+- What are the top 3–5 capabilities of the product?
+- How does it differentiate from competitors?
+- Watch a product demo (if available).
+- Ask: 'What makes this product unique?'
+
+### Key Customers & Workflows
+
+- List top 5–10 customers (if known).
+- For each: Why do they use this product over competitors?
+- What are their main workflows?
+- What features do they use most?
+- How is customer usage data collected? (Analytics, logs, telemetry?)
+
+### Main Competitors
+
+- List 2–3 main competitors.
+- Compare: What do they do better? What do we do better?
+
+## 3. Architecture
+
+### System Context (Level 1) – Big Picture
+
+- Draw or find a **System Context Diagram** (C4 Model Level 1):
+  - Show the main system and its interactions with users and external systems.
+- Answer: How do users interact with the system? (UI, API, CLI?)
+
+### Container View (Level 2) – Major Building/Deployable Blocks
+
+- Identify main components (e.g., frontend, backend, database, message queue, microservices).
+- Map each component to:
+  - Technology stack (e.g., React, Node.js, PostgreSQL, Kafka)
+  - Hosting environment (e.g., AWS, Kubernetes, on-premise)
+  - Cloud services used (e.g., S3, CloudFront, Firebase)
+
+### Component View (Level 3) – Deep Dive
+
+- Pick 1–2 core components you’ll work on.
+- For each:
+  - Purpose and responsibilities
+  - Programming language & framework
+  - Dependencies (internal and external)
+  - Third-party libraries/services used (open-source or paid)
+  - Why was this tech chosen? (Ask team if not documented)
+
+### Data Model & Storage (Important Part of Level 2)
+
+- Identify all data stores:
+  - Databases (SQL/NoSQL), caches, file storage
+- For each:
+  - Type (e.g., PostgreSQL, Redis, S3)
+  - What data is stored?
+  - How is data accessed? (APIs, direct queries?)
+- Is there an ER diagram or schema documentation?
+
+### Security
+
+- How is authentication handled? (OAuth, JWT, SSO?)
+- How is authorization implemented? (RBAC, ABAC?)
+- Where are secrets stored? (Vault, AWS Secrets Manager?)
+- How are credentials rotated?
+- Data encryption: in transit? at rest?
+
+## 4. Development Setup
+
+- How to run locally
+- Can you run the product fully locally?
+- Is there a one-click setup script? (e.g., `./setup-dev-env.sh`)
+- Document the steps to:
+  - Clone the repo
+  - Install dependencies
+  - Build the project
+  - Run services locally
+  - Access the app (URLs, ports, credentials)
+- Build & test commands
+- Identify gaps in local setup (e.g., missing mock services)
+
+## 5. Key Use Cases
+
+- For each major user scenario (e.g., “User logs in”, “Submit order”, “Generate report”):
+  - **Business Requirement**: Why is this important?
+  - **Customer View**: Step-by-step user flow (UI or API calls)
+  - **Data Flow**: Which components are involved? (Draw sequence diagram if possible)
+  - **Common Incidents**: Known issues, error patterns, troubleshooting tips
+    - Add runbooks, playbooks, or monitoring alerts if available
+> 💡 Tip: Start with 2–3 critical use cases. Expand later.
+
+## 6. Operational Guide
+
+### Operational Overview
+
+- **Deployment Strategy**: How is it deployed to prod? (CI/CD pipeline, manual?)
+- **Testing Strategy**: Unit, integration, E2E, smoke tests? Where to see results?
+- **Monitoring Strategy**:
+  - Logging (e.g., ELK, Datadog)
+  - Metrics & APM (e.g., Prometheus, New Relic)
+  - Alerts: What triggers them?
+- **SLA/SLO**: What is the uptime target? Maintenance windows?
+- **Disaster Recovery**: Backup strategy? Restore process? DR drills?
+- **High Availability**: Redundancy, load balancing, failover?
+- **OAM Tasks**: What manual jobs run periodically? (e.g., log cleanup, DB vacuum)
+- **Troubleshooting Tools**: CLI tools, dashboards, debug modes?
+- **Incident Analysis**: Review last 2–3 incidents and their RCA (5 Whys).
+  - Common Issues & Runbooks
+
+## 7. Known Limitations
+
+- What are the known architectural limitations?
+- What components are expensive to run or maintain?
+- What breaks often? (e.g., flaky services, slow DB queries)
+- What’s hard to scale or deploy?
+- Any tech debt or legacy parts?
+
+## 8. Future Roadmap
+
+- Ask team: “Where should this product be in 1–2 years?”
+- What does the ideal product look like?
+- **Complexity Reduction**: Any plans to simplify architecture?
+- **Cost Reduction**: Are there plans to replace or remove services?
+- **Performance Improvement**: Scaling plans? Latency targets?
+
+## 9. References
+```
 
 # References
 
