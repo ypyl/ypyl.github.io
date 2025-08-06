@@ -170,9 +170,14 @@ Thought generation techniques guide the model to produce intermediate reasoning 
 ## Zero-Shot-CoT
 
 ### Zero-Shot-CoT
-The model is prompted to "think step by step" to generate a chain of thought before the final answer.
+It involves appending a thought-inducing phrase to the prompt, such as "Let's think step by step." This encourages the model to generate a chain of thought before providing the final answer. Other phrases can also be used, like "First, let’s think about this logically" or "Let’s work this out in a step by step way to be sure we have the right answer." This approach is attractive because it doesn't require examples and is generally task-agnostic.
 ```
-Q: A man has 5 apples and he gives 2 to his friend. How many apples does he have left? A: Let's think step by step. The man starts with 5 apples. He gives away 2 apples. So, he has 5 - 2 = 3 apples left. The answer is 3.
+Q: A man has 5 apples and he gives 2 to his friend. How many apples does he have left? Let's think step by step.
+A: 1. The man starts with 5 apples.
+2. He gives 2 apples to his friend.
+3. To find out how many apples he has left, I need to subtract the number of apples he gave away from the number of apples he started with.
+4. 5 - 2 = 3.
+The man has 3 apples left.
 ```
 
 ### Step-Back Prompting
@@ -182,21 +187,56 @@ Before you answer the question, take a step back and consider the underlying pri
 ```
 
 ### Analogical Prompting
-The model is prompted to use analogies to reason about the problem.
+Automatically generates exemplars (examples) with included chains of thought to improve reasoning for a given task. It is particularly useful for mathematical reasoning and code generation.
 ```
-Think of the problem like a leaky bucket. The water is the information, and the holes are the gaps in your knowledge. How can you plug the holes to get a complete picture?
+# User's problem:
+# "A cyclist bikes at 15 mph for 2 hours. How far do they go?"
+
+# Internally, we are asking the model to generate relevant examples with step-by-step solutions:
+# Exemplar 1:
+# Q: If a car travels at 60 km/h, how far will it travel in 3 hours?
+# A: Let's think step by step. Speed is 60 km/h, time is 3 hours. Distance = 60 * 3 = 180 km.
+
+# The model then uses this analogical reasoning to solve the user's problem:
+# A: Let's think step by step. Speed is 15 mph, time is 2 hours. Distance = 15 * 2 = 30 miles.
 ```
 
 ### Thread-of-Thought (ThoT) Prompting
-The model generates multiple threads of thought and then combines them to produce a final answer.
+An improved thought inducer for CoT reasoning that uses the phrase "Walk me through this context in manageable parts step by step, summarizing and analyzing as we go". This is particularly effective for question-answering and retrieval tasks with large, complex contexts.
 ```
-Generate three different ways to solve this math problem, and then explain which method is the most efficient.
+# Context: [A long and complex article about the history of artificial intelligence]
+
+# Prompt:
+Walk me through this context in manageable parts step by step, summarizing and analyzing as we go. What were the key milestones in the development of AI?
+
+# Model's possible response:
+Step 1: Early Beginnings (1940s-1950s)
+Summary: The concept of AI emerged with early pioneers like Alan Turing. The Dartmouth Workshop in 1956 is considered the birthplace of AI as a field.
+Analysis: This period was characterized by theoretical work and foundational ideas, with limited practical application due to computational constraints.
+
+Step 2: The First AI Boom (1960s-1970s)
+Summary: This era saw the development of early expert systems and natural language processing.
+Analysis: ...
 ```
 
 ### Tabular Chain-of-Thought (Tab-CoT)
-The model uses a tabular format to organize its thoughts and reasoning steps.
+A Zero-Shot CoT prompt that makes the LLM output reasoning as a markdown table. This tabular design enables the LLM to improve the structure and thus the reasoning of its output.
 ```
 Please solve the following logic puzzle and present your reasoning in a table with columns for 'Step', 'Action', and 'Justification'.
+
+| Step | Action | Justification |
+|---|---|---|
+| 1 | Assume A is the knight. | Start with an assumption. |
+| 2 | If A is the knight, then A's statement is true. | Knights always tell the truth. |
+| 3 | A says "B is the knave." | This is A's statement. |
+| 4 | Therefore, B must be the knave. | Based on steps 2 and 3. |
+| 5 | B says "A and I are of opposite types." | This is B's statement. |
+| 6 | If B is the knave, their statement is false. | Knaves always lie. |
+| 7 | The statement "A and I are of opposite types" is false. | Based on step 6. |
+| 8 | This means A and B are of the same type. | Negation of B's statement. |
+| 9 | This contradicts our finding that A is a knight and B is a knave. | Contradiction between step 4 and 8. |
+| 10 | Therefore, our initial assumption is wrong. A is not the knight. | The assumption led to a contradiction. |
+| ... | ... | ... |
 ```
 
 ## Few-Shot CoT
