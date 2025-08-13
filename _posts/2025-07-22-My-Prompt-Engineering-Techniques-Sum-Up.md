@@ -248,33 +248,129 @@ Here is an example of a good reasoning process and a bad reasoning process. ... 
 ```
 
 ### Uncertainty-Routed CoT Prompting
-The model is prompted to identify and address uncertainty in its reasoning process.
+Uncertainty-Routed CoT Prompting is an ensemble-based technique that improves the reliability of large language models. It works by first generating multiple Chain-of-Thought (CoT) reasoning paths for a given question. It then calculates the consistency of the answers derived from these paths. If the consistency is high (i.e., a clear majority of paths arrive at the same answer), that majority answer is selected. However, if the consistency is low, indicating high uncertainty, the model discards the sampled paths and instead generates a single, greedy response (the most likely answer without sampling). This approach allows the model to rely on diverse reasoning when there is a consensus and fall back to a high-confidence direct answer when reasoning paths diverge, improving performance on complex reasoning tasks.
 ```
-If you are unsure about any part of your answer, please state your uncertainty and explain why you are unsure.
+Let's say we ask a complex question: "If a farmer has 15 cows and sells 7, but 3 of his remaining cows have twins, how many cows does he have?"
+
+**Step 1: Sample Multiple Reasoning Paths (e.g., 5 paths)**
+
+*   **Path 1:** 15 - 7 = 8. 3 cows have twins, so 3 * 2 = 6 new cows. 8 + 6 = 14. **Answer: 14**
+*   **Path 2:** Starts with 15. Sells 7, so 15-7=8. 3 cows have twins, so that's 3*2=6 calves. Total is 8+6=14. **Answer: 14**
+*   **Path 3:** 15 cows - 7 sold = 8 cows. The remaining cows are 8. 3 of them have twins, so 3 new pairs, which is 6 calves. Total cows: 8 + 6 = 14. **Answer: 14**
+*   **Path 4:** 15 - 7 = 8. 3 cows have twins, so that's 3 more cows. 8 + 3 = 11. (Incorrect reasoning). **Answer: 11**
+*   **Path 5:** The farmer has 15 cows. He sells 7, so he has 8 left. 3 of these 8 have twins, meaning 3 * 2 = 6 calves are born. The total number of cows is now 8 + 6 = 14. **Answer: 14**
+
+**Step 2: Check for Majority Consensus**
+
+*   The answers are: [14, 14, 14, 11, 14].
+*   The answer "14" appears in 4 out of 5 paths (80% consistency).
+*   This is above the confidence threshold.
+
+**Step 3: Select Final Answer**
+
+*   Since consistency is high, the majority answer is chosen.
+*   **Final Answer: 14**
+
+**(Alternative Scenario: Low Consistency)**
+
+If the answers were [14, 11, 15, 12, 14], there is no clear majority. The system would detect this high uncertainty, discard these results, and generate a single, direct (greedy) answer to the original question.
 ```
 
 ### Complexity-based Prompting
-The model is prompted to adjust its reasoning process based on the complexity of the problem.
+Complexity-based Prompting involves two major modifications to Chain-of-Thought (CoT) prompting. First, it selects complex examples for annotation and inclusion in the prompt, based on factors like question length or reasoning steps required. Second, during inference, it samples multiple reasoning chains (answers) and uses a majority vote among chains exceeding a certain length threshold, under the premise that longer reasoning indicates higher answer quality. This technique has shown improvements on mathematical reasoning datasets.
 ```
-This is a complex problem, so take your time and break it down into smaller steps. Explain your reasoning for each step.
+# Example of a complex problem for annotation:
+"A train leaves station A at 10:00 AM traveling at 60 mph towards station B, which is 300 miles away. At 11:00 AM, another train leaves station B traveling at 50 mph towards station A. When and where do the two trains meet?"
+
+# During inference, the model might generate multiple reasoning chains.
+# Chain 1 (short, potentially incorrect):
+# Train 1 travels 60 miles in 1 hour. Remaining distance 240 miles.
+# Relative speed 110 mph. 240/110 = 2.18 hours.
+# Meeting time: 11:00 AM + 2.18 hours = 1:11 PM.
+# Meeting location: 60 + 2.18 * 60 = 190.8 miles from A.
+
+# Chain 2 (longer, more detailed, likely correct):
+# 1. Train 1 starts at 10:00 AM. By 11:00 AM, it has traveled 60 mph * 1 hr = 60 miles.
+# 2. Remaining distance between trains at 11:00 AM = 300 miles - 60 miles = 240 miles.
+# 3. Both trains are now moving towards each other. Their combined speed (relative speed) = 60 mph + 50 mph = 110 mph.
+# 4. Time to meet from 11:00 AM = Distance / Relative Speed = 240 miles / 110 mph = 2.1818 hours.
+# 5. Convert 0.1818 hours to minutes: 0.1818 * 60 minutes/hour = 10.908 minutes (approx 11 minutes).
+# 6. Meeting time = 11:00 AM + 2 hours and 11 minutes = 1:11 PM.
+# 7. Distance traveled by Train 1 from 11:00 AM = 60 mph * 2.1818 hours = 130.908 miles.
+# 8. Total distance from Station A for Train 1 = 60 miles (initial) + 130.908 miles = 190.908 miles.
+# 9. Meeting location: Approximately 190.9 miles from Station A.
+
+# If Chain 2 exceeds a predefined length threshold, it's considered higher quality.
+# A majority vote among such longer chains would determine the final answer.
 ```
 
 ### Active Prompting
-The model is prompted to ask clarifying questions to resolve ambiguity.
+Active Prompting is a technique that iteratively improves a language model's performance by focusing on uncertain examples. It starts by having the LLM solve a set of training questions or exemplars. Then, it calculates the uncertainty of the LLM's responses (often measured by disagreement among multiple generated answers or reasoning paths). For the exemplars with the highest uncertainty, human annotators are asked to rewrite or refine them. These improved exemplars are then used to further train or fine-tune the LLM, leading to a more robust model over time.
 ```
-If you need more information to answer the question, please ask me.
+# Initial training exemplars:
+# Q: "What is the capital of France?" A: "Paris"
+# Q: "Who painted the Mona Lisa?" A: "Leonardo da Vinci"
+# Q: "What is the largest ocean?" A: "Pacific Ocean"
+
+# LLM is asked to solve new questions:
+# Q1: "What is the best way to travel from London to Edinburgh?"
+# Q2: "Explain the concept of quantum entanglement."
+# Q3: "Summarize the plot of 'Hamlet'."
+
+# LLM generates answers and uncertainty is calculated.
+# Let's say Q1 and Q3 have high uncertainty (e.g., multiple conflicting answers, or low confidence scores).
+
+# Human annotators are asked to rewrite/refine Q1 and Q3 to reduce ambiguity or provide clearer context.
+# Rewritten Q1: "Considering speed and cost, what is the most efficient way to travel from London to Edinburgh for a single person?"
+# Rewritten Q3: "Provide a concise summary of the main plot points and character motivations in Shakespeare's 'Hamlet'."
+
+# These rewritten exemplars are then used to improve the LLM.
 ```
 
 ### Memory-of-Thought Prompting
-The model is prompted to use a memory of its previous thoughts to inform its current reasoning.
+Memory-of-Thought Prompting leverages unlabeled training exemplars to construct Few-Shot Chain-of-Thought (CoT) prompts dynamically at test time. Before the actual test, the model performs inference on a set of unlabeled training examples using CoT, generating reasoning paths for them. At test time, when a new query is presented, the system retrieves similar instances from this pre-processed set of unlabeled exemplars. These retrieved examples, along with their generated CoT reasoning, are then included in the prompt for the current test sample. This technique has demonstrated substantial improvements in benchmarks across various reasoning tasks, including arithmetic, commonsense, and factual reasoning.
 ```
-Remember that you previously determined that the suspect was at the scene of the crime. How does this new piece of evidence affect your conclusion?
+# Pre-processing (before test time):
+# Unlabeled training exemplar: "What is 123 + 456?"
+# LLM generates CoT for it: "1. Add the units digits: 3 + 6 = 9. 2. Add the tens digits: 2 + 5 = 7. 3. Add the hundreds digits: 1 + 4 = 5. Result: 579."
+
+# Unlabeled training exemplar: "Is a tomato a fruit or a vegetable?"
+# LLM generates CoT for it: "1. A fruit develops from the flower's ovary and contains seeds. 2. A vegetable is any other edible part of a plant. 3. Tomatoes develop from the flower's ovary and contain seeds. Conclusion: A tomato is a fruit."
+
+# At test time, for a new query: "What is 789 - 123?"
+# The system retrieves similar instances from its "memory of thought."
+# It might retrieve the "123 + 456" example because it's an arithmetic problem.
+
+# The prompt for the new query would then include the retrieved example and its CoT:
+# "Here's an example of how to solve an arithmetic problem:
+# Q: What is 123 + 456?
+# A: 1. Add the units digits: 3 + 6 = 9. 2. Add the tens digits: 2 + 5 = 7. 3. Add the hundreds digits: 1 + 4 = 5. Result: 579.
+
+# Now, solve the following: What is 789 - 123?"
 ```
 
 ### Automatic Chain-of-Thought (Auto-CoT) Prompting
-The model automatically generates its own chain of thought without explicit prompting.
+Automatic Chain-of-Thought (Auto-CoT) Prompting automates the process of generating Chain-of-Thought (CoT) examples. It begins by using a simple Zero-Shot prompt (like "Let's think step by step") to automatically generate reasoning chains for a diverse set of unlabeled questions. These automatically generated question-reasoning-answer triplets are then used to construct a Few-Shot CoT prompt for new, unseen test samples. This approach eliminates the need for manual annotation of CoT examples, making CoT prompting more scalable and accessible.
 ```
-Solve the following problem and show your work.
+# Step 1: Automatic CoT Generation (using Zero-Shot CoT)
+# For an unlabeled question: "Q: If a car travels 100 miles in 2 hours, what is its average speed?"
+# LLM generates CoT: "A: Let's think step by step. Speed = Distance / Time. Distance = 100 miles. Time = 2 hours. Speed = 100 / 2 = 50 mph. The average speed is 50 mph."
+
+# For another unlabeled question: "Q: Is the sun a planet?"
+# LLM generates CoT: "A: Let's think step by step. A planet orbits a star and is large enough to be rounded by its own gravity. The sun is a star, not orbiting another star, and generates its own light and heat. Therefore, the sun is not a planet."
+
+# Step 2: Constructing Few-Shot CoT Prompt for a new test sample
+# New test question: "Q: What is the capital of Japan?"
+
+# The Auto-CoT system would select relevant automatically generated CoT examples (e.g., the "Sun is a planet" example for factual reasoning) and include them in the prompt:
+# "Q: If a car travels 100 miles in 2 hours, what is its average speed?
+# A: Let's think step by step. Speed = Distance / Time. Distance = 100 miles. Time = 2 hours. Speed = 100 / 2 = 50 mph. The average speed is 50 mph.
+
+# Q: Is the sun a planet?
+# A: Let's think step by step. A planet orbits a star and is large enough to be rounded by its own gravity. The sun is a star, not orbiting another star, and generates its own light and heat. Therefore, the sun is not a planet.
+
+# Q: What is the capital of Japan?
+# A: Let's think step by step."
 ```
 
 # Decomposition
