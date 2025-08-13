@@ -378,27 +378,135 @@ Automatic Chain-of-Thought (Auto-CoT) Prompting automates the process of generat
 Decomposition techniques break down complex problems into smaller, more manageable subproblems.
 
 ### Least-to-Most Prompting
-The model solves a problem by starting with the simplest subproblem and gradually moving to more complex ones.
+Least-to-Most Prompting is a problem-solving technique where a Large Language Model (LLM) is first prompted to decompose a complex problem into a series of simpler sub-problems without immediately solving them. Once the sub-problems are identified, the LLM then solves them sequentially. The solution to each sub-problem is appended to the prompt, providing context for solving the next, more complex sub-problem, until the final result for the original problem is achieved. This method has shown significant improvements in tasks involving symbolic manipulation, compositional generalization, and mathematical reasoning, as it mimics a structured, step-by-step approach to problem-solving.
 ```
-First, solve for x in the equation 2x = 4. Then, solve for y in the equation 3y = 9. Finally, solve for z in the equation 4z = 16.
+# Original Problem: "Calculate the total cost of a meal if a pizza costs $15, a drink costs $3, and you want to buy 2 pizzas and 3 drinks, with a 10% discount on the total."
+
+# Step 1: Decompose the problem into sub-problems (without solving yet)
+# Prompt: "Break down the following problem into a sequence of smaller, solvable steps: 'Calculate the total cost of a meal if a pizza costs $15, a drink costs $3, and you want to buy 2 pizzas and 3 drinks, with a 10% discount on the total.'"
+# LLM Response (sub-problems):
+# 1. Calculate the cost of pizzas.
+# 2. Calculate the cost of drinks.
+# 3. Calculate the subtotal before discount.
+# 4. Calculate the discount amount.
+# 5. Calculate the final total after discount.
+
+# Step 2: Solve sub-problems sequentially, appending results to the prompt
+# Prompt (for sub-problem 1): "A pizza costs $15. Calculate the cost of 2 pizzas."
+# LLM Response: "Cost of pizzas = 2 * $15 = $30."
+
+# Prompt (for sub-problem 2, with previous result): "Cost of pizzas = $30. A drink costs $3. Calculate the cost of 3 drinks."
+# LLM Response: "Cost of drinks = 3 * $3 = $9."
+
+# Prompt (for sub-problem 3, with previous results): "Cost of pizzas = $30. Cost of drinks = $9. Calculate the subtotal before discount."
+# LLM Response: "Subtotal = $30 + $9 = $39."
+
+# Prompt (for sub-problem 4, with previous results): "Subtotal = $39. Calculate a 10% discount on the subtotal."
+# LLM Response: "Discount amount = 0.10 * $39 = $3.90."
+
+# Prompt (for sub-problem 5, with previous results): "Subtotal = $39. Discount amount = $3.90. Calculate the final total after discount."
+# LLM Response: "Final total = $39 - $3.90 = $35.10."
+
+# Final Answer: $35.10
 ```
 
 ### Decomposed Prompting
-The model is prompted to break down a problem into its constituent parts.
+Decomposed Prompting (DECOMP) is a technique where a Large Language Model (LLM) is provided with Few-Shot examples demonstrating how to utilize specific external functions or tools. These functions can range from simple operations like string manipulation to more complex ones like internet searching or database queries, often implemented as separate LLM calls or API integrations. Given a complex problem, the LLM is prompted to break it down into sub-problems and then route these sub-problems to the appropriate functions for execution. This approach allows the LLM to leverage specialized capabilities beyond its core generative abilities, leading to improved performance on tasks that require external knowledge or precise data manipulation, often outperforming methods like Least-to-Most prompting on certain tasks.
 ```
-Break down the task of writing a research paper into a series of smaller steps.
+# Example of Few-Shot prompt demonstrating function usage:
+# User: "Search the web for 'current weather in London' and extract the temperature."
+# LLM (internal thought process, guided by prompt):
+# Use function: search_web(query="current weather in London")
+# Use function: extract_temperature(text=search_results)
+
+# Original Problem: "Find the capital of the country with the highest population in South America."
+
+# LLM's decomposition and function calls (guided by Decomposed Prompting):
+# 1. Identify the function to get population data: get_country_populations(continent="South America")
+# 2. Identify the function to find the country with the highest population: find_highest_population_country(data=country_populations)
+# 3. Identify the function to get the capital of a country: get_capital(country=highest_population_country)
+
+# Execution (simulated):
+# Call: get_country_populations(continent="South America") -> Returns: {"Brazil": 215M, "Colombia": 52M, ...}
+# Call: find_highest_population_country(data={"Brazil": 215M, "Colombia": 52M, ...}) -> Returns: "Brazil"
+# Call: get_capital(country="Brazil") -> Returns: "Brasília"
+
+# Final Answer: "Brasília"
 ```
 
 ### Plan-and-Solve Prompting
-The model first creates a plan for solving a problem and then executes the plan.
+Plan-and-Solve Prompting is an enhanced Zero-Shot Chain-of-Thought (CoT) technique that encourages a more structured and robust reasoning process. It uses a specific prompt, "Let’s first understand the problem and devise a plan to solve it. Then, let’s carry out the plan and solve the problem step by step." This prompt guides the Large Language Model (LLM) to explicitly articulate a plan before attempting to solve the problem, and then to execute that plan step-by-step. This method has been shown to generate more reliable reasoning processes compared to standard Zero-Shot CoT on various reasoning datasets, particularly for complex problems.
 ```
-Create a plan to solve the following problem, and then execute the plan. ...
+# Original Problem: "I have a rectangular garden that is 10 meters long and 5 meters wide. I want to build a fence around it, but I need to leave a 1-meter wide gate on one of the longer sides. If fencing costs $12 per meter, what will be the total cost of the fence?"
+
+# Plan-and-Solve Prompt:
+# "Let’s first understand the problem and devise a plan to solve it. Then, let’s carry out the plan and solve the problem step by step.
+# Problem: Calculate the total cost of fencing a rectangular garden (10m long, 5m wide) with a 1m gate on a longer side, if fencing costs $12/meter.
+
+# Plan:
+# 1. Calculate the perimeter of the garden.
+# 2. Subtract the length of the gate from the perimeter to find the length of fencing needed.
+# 3. Multiply the length of fencing needed by the cost per meter to find the total cost.
+
+# Execution:
+# Step 1: Calculate the perimeter of the garden.
+# Perimeter = 2 * (length + width) = 2 * (10m + 5m) = 2 * 15m = 30m.
+
+# Step 2: Subtract the length of the gate from the perimeter.
+# Length of fencing needed = Perimeter - gate length = 30m - 1m = 29m.
+
+# Step 3: Multiply the length of fencing needed by the cost per meter.
+# Total cost = 29m * $12/meter = $348.
+
+# Final Answer: $348
 ```
 
 ### Tree-of-Thought (ToT)
-The model explores multiple reasoning paths in a tree-like structure.
+Tree-of-Thought (ToT), also known as Tree of Thoughts, is a problem-solving framework that transforms a complex problem into a tree-like search problem. It begins with an initial problem and then generates multiple possible intermediate steps, or "thoughts," similar to those produced by Chain-of-Thought (CoT) prompting. For each generated thought, the system evaluates its progress towards solving the overall problem (often through further prompting or a separate evaluation module). Based on this evaluation, it decides which thought paths are most promising to continue exploring, iteratively generating more thoughts and expanding the tree until a solution is found. ToT is particularly effective for tasks that require extensive search, planning, and exploration of multiple reasoning trajectories, such as complex puzzles, strategic games, or creative writing.
 ```
-Generate a tree of thoughts to solve the following problem. Each node in the tree should represent a possible step in the solution.
+# Original Problem: "Design a simple, healthy, and appealing 3-course meal for a vegetarian guest."
+
+# ToT Process (simplified):
+
+# Initial Thought (Root Node): "What are the main components of a 3-course meal?"
+#   - Appetizer
+#   - Main Course
+#   - Dessert
+
+# Branch 1: Appetizer Ideas (Vegetarian, Healthy, Appealing)
+#   - Thought 1.1: "Soup"
+#     - Evaluation: Good for healthy, but might be too heavy.
+#   - Thought 1.2: "Salad"
+#     - Evaluation: Good for healthy, can be appealing.
+#   - Thought 1.3: "Small bites (e.g., bruschetta)"
+#     - Evaluation: Appealing, but might not be healthy enough.
+
+# Branch 2: Main Course Ideas (Vegetarian, Healthy, Appealing)
+#   - Thought 2.1: "Pasta dish"
+#     - Evaluation: Can be appealing, but often not very healthy.
+#   - Thought 2.2: "Lentil/Bean based dish"
+#     - Evaluation: Healthy, can be made appealing.
+#   - Thought 2.3: "Vegetable curry"
+#     - Evaluation: Appealing, can be healthy.
+
+# Branch 3: Dessert Ideas (Vegetarian, Healthy, Appealing)
+#   - Thought 3.1: "Fruit salad"
+#     - Evaluation: Very healthy, simple, appealing.
+#   - Thought 3.2: "Sorbet"
+#     - Evaluation: Healthy, refreshing, appealing.
+#   - Thought 3.3: "Baked apple"
+#     - Evaluation: Healthy, comforting.
+
+# Selecting promising paths and combining:
+# (Example of a selected path leading to a solution)
+# Appetizer: Caprese Salad (healthy, appealing, light)
+# Main Course: Lentil Shepherd's Pie with root vegetable mash (healthy, hearty, appealing)
+# Dessert: Mixed Berry Sorbet (healthy, refreshing, appealing)
+
+# Final Meal Plan:
+# Appetizer: Caprese Salad
+# Main Course: Lentil Shepherd's Pie with Root Vegetable Mash
+# Dessert: Mixed Berry Sorbet
 ```
 
 ### Recursion-of-Thought
