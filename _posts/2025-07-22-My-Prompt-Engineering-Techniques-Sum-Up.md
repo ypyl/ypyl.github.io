@@ -568,15 +568,54 @@ The final answer is 8.
 ```
 
 ### Skeleton-of-Thought
-The model is given a skeleton of a solution and is prompted to fill in the details.
+This technique speeds up the model's response time by breaking a problem down into smaller parts and solving them simultaneously. First, the model creates an outline or "skeleton" of the answer, which consists of several sub-problems. Then, it solves all these sub-problems in parallel and combines the results to give a final answer.
 ```
-Here is a skeleton of a proof. Fill in the missing steps.
+# Original Problem: "Write a blog post about the benefits of exercise."
+
+# Step 1: The model creates a skeleton of the blog post.
+# Prompt: "Create a skeleton for a blog post about the benefits of exercise."
+# LLM Response (Skeleton):
+# - Introduction: Briefly introduce the importance of exercise.
+# - Body Paragraph 1: Discuss the physical health benefits (e.g., weight management, reduced risk of chronic diseases).
+# - Body Paragraph 2: Discuss the mental health benefits (e.g., stress reduction, improved mood).
+# - Conclusion: Summarize the key benefits and encourage readers to start exercising.
+
+# Step 2: The model expands on each part of the skeleton in parallel.
+# Prompt 1 (for Introduction): "Write a brief introduction about the importance of exercise."
+# Prompt 2 (for Body Paragraph 1): "Write a paragraph about the physical health benefits of exercise, such as weight management and reduced risk of chronic diseases."
+# Prompt 3 (for Body Paragraph 2): "Write a paragraph about the mental health benefits of exercise, such as stress reduction and improved mood."
+# Prompt 4 (for Conclusion): "Write a conclusion summarizing the key benefits of exercise and encouraging readers to start."
+
+# Step 3: The model combines the responses to create the final blog post.
+# (The combined text from the parallel calls)
 ```
 
 ### Metacognitive Prompting
-The model is prompted to reflect on its own reasoning process.
+This technique guides the model to "think about its own thinking" by following a structured, five-step process that mimics human problem-solving. This includes clarifying the question, making an initial guess, evaluating its own answer, confirming its final decision, and stating its confidence level. This helps the model produce more reasoned and reliable outputs.
 ```
-After you have solved the problem, reflect on your reasoning process and identify any areas where you could have improved.
+# Original Problem: "Is a tomato a fruit or a vegetable?"
+
+# Metacognitive Prompting (Five-Step Chain):
+
+# Step 1: Clarify the Question
+# Prompt: "First, clarify the question: 'Is a tomato a fruit or a vegetable?' What are the key terms and what is being asked?"
+# LLM Response: "The question asks for the classification of a tomato. The key terms are 'tomato,' 'fruit,' and 'vegetable.' I need to determine which category a tomato belongs to, considering both botanical and culinary definitions."
+
+# Step 2: Preliminary Judgment
+# Prompt: "Based on your initial understanding, what is your preliminary judgment?"
+# LLM Response: "My preliminary judgment is that a tomato is botanically a fruit but is commonly used as a vegetable in cooking."
+
+# Step 3: Evaluate the Response
+# Prompt: "Now, evaluate your preliminary judgment. What are the arguments for and against it? Are there any ambiguities?"
+# LLM Response: "The botanical definition of a fruit is a mature ovary of a flowering plant, enclosing the seed or seeds. Tomatoes fit this definition. The culinary definition of a vegetable is based on how it's used in meals, typically savory dishes. This is why the confusion exists."
+
+# Step 4: Decision Confirmation
+# Prompt: "Based on your evaluation, confirm your final decision and provide a clear answer."
+# LLM Response: "My final decision is that a tomato is technically a fruit from a botanical standpoint. However, it is used as a vegetable in a culinary context. The most accurate answer depends on the context."
+
+# Step 5: Confidence Assessment
+# Prompt: "On a scale of 1 to 10, how confident are you in your final answer?"
+# LLM Response: "I am 10/10 confident in my answer, as it addresses the different contexts in which the question can be interpreted."
 ```
 
 # Ensembling
