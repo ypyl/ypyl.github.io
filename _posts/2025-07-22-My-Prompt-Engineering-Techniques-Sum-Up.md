@@ -248,7 +248,14 @@ Here is an example of a good reasoning process and a bad reasoning process. ... 
 ```
 
 ### Uncertainty-Routed CoT Prompting
-Uncertainty-Routed CoT Prompting is an ensemble-based technique that improves the reliability of large language models. It works by first generating multiple Chain-of-Thought (CoT) reasoning paths for a given question. It then calculates the consistency of the answers derived from these paths. If the consistency is high (i.e., a clear majority of paths arrive at the same answer), that majority answer is selected. However, if the consistency is low, indicating high uncertainty, the model discards the sampled paths and instead generates a single, greedy response (the most likely answer without sampling). This approach allows the model to rely on diverse reasoning when there is a consensus and fall back to a high-confidence direct answer when reasoning paths diverge, improving performance on complex reasoning tasks.
+This technique improves the model's reliability. Here's how it works:
+1.  **Generate Multiple Solutions:** The model creates several different step-by-step solutions to the same problem.
+2.  **Check for Agreement:** It then checks if most of the solutions arrive at the same answer.
+3.  **Decide on the Best Answer:**
+    *   If most solutions agree, the model uses that answer.
+    *   If they disagree, the model throws them out and generates a single, direct answer instead.
+
+This way, the model uses a more reliable, multi-path approach when it's confident and a safe, direct approach when it's uncertain.
 ```
 Let's say we ask a complex question: "If a farmer has 15 cows and sells 7, but 3 of his remaining cows have twins, how many cows does he have?"
 
@@ -378,7 +385,7 @@ Automatic Chain-of-Thought (Auto-CoT) Prompting automates the process of generat
 Decomposition techniques break down complex problems into smaller, more manageable subproblems.
 
 ### Least-to-Most Prompting
-Least-to-Most Prompting is a problem-solving technique where a Large Language Model (LLM) is first prompted to decompose a complex problem into a series of simpler sub-problems without immediately solving them. Once the sub-problems are identified, the LLM then solves them sequentially. The solution to each sub-problem is appended to the prompt, providing context for solving the next, more complex sub-problem, until the final result for the original problem is achieved. This method has shown significant improvements in tasks involving symbolic manipulation, compositional generalization, and mathematical reasoning, as it mimics a structured, step-by-step approach to problem-solving.
+This technique first breaks a big problem into smaller, easier-to-solve pieces. Then, it solves each small piece one by one, using the answer from the previous piece to help with the next one. It’s like building with LEGOs: you start with the simplest part and add on from there.
 ```
 # Original Problem: "Calculate the total cost of a meal if a pizza costs $15, a drink costs $3, and you want to buy 2 pizzas and 3 drinks, with a 10% discount on the total."
 
@@ -411,7 +418,7 @@ Least-to-Most Prompting is a problem-solving technique where a Large Language Mo
 ```
 
 ### Decomposed Prompting
-Decomposed Prompting (DECOMP) is a technique where a Large Language Model (LLM) is provided with Few-Shot examples demonstrating how to utilize specific external functions or tools. These functions can range from simple operations like string manipulation to more complex ones like internet searching or database queries, often implemented as separate LLM calls or API integrations. Given a complex problem, the LLM is prompted to break it down into sub-problems and then route these sub-problems to the appropriate functions for execution. This approach allows the LLM to leverage specialized capabilities beyond its core generative abilities, leading to improved performance on tasks that require external knowledge or precise data manipulation, often outperforming methods like Least-to-Most prompting on certain tasks.
+This technique teaches the model how to use external tools to solve problems. It breaks a complex problem into smaller pieces and then uses the right tool for each piece, like using a search engine to find information or a calculator to do math. This helps the model handle tasks that require more than just generating text.
 ```
 # Example of Few-Shot prompt demonstrating function usage:
 # User: "Search the web for 'current weather in London' and extract the temperature."
@@ -435,7 +442,7 @@ Decomposed Prompting (DECOMP) is a technique where a Large Language Model (LLM) 
 ```
 
 ### Plan-and-Solve Prompting
-Plan-and-Solve Prompting is an enhanced Zero-Shot Chain-of-Thought (CoT) technique that encourages a more structured and robust reasoning process. It uses a specific prompt, "Let’s first understand the problem and devise a plan to solve it. Then, let’s carry out the plan and solve the problem step by step." This prompt guides the Large Language Model (LLM) to explicitly articulate a plan before attempting to solve the problem, and then to execute that plan step-by-step. This method has been shown to generate more reliable reasoning processes compared to standard Zero-Shot CoT on various reasoning datasets, particularly for complex problems.
+This technique tells the model to first make a plan and then solve the problem. It’s like telling someone, "First, figure out the steps, and then follow them." This makes the model's reasoning clearer and more reliable, especially for difficult tasks.
 ```
 # Original Problem: "I have a rectangular garden that is 10 meters long and 5 meters wide. I want to build a fence around it, but I need to leave a 1-meter wide gate on one of the longer sides. If fencing costs $12 per meter, what will be the total cost of the fence?"
 
@@ -462,7 +469,7 @@ Plan-and-Solve Prompting is an enhanced Zero-Shot Chain-of-Thought (CoT) techniq
 ```
 
 ### Tree-of-Thought (ToT)
-Tree-of-Thought (ToT), also known as Tree of Thoughts, is a problem-solving framework that transforms a complex problem into a tree-like search problem. It begins with an initial problem and then generates multiple possible intermediate steps, or "thoughts," similar to those produced by Chain-of-Thought (CoT) prompting. For each generated thought, the system evaluates its progress towards solving the overall problem (often through further prompting or a separate evaluation module). Based on this evaluation, it decides which thought paths are most promising to continue exploring, iteratively generating more thoughts and expanding the tree until a solution is found. ToT is particularly effective for tasks that require extensive search, planning, and exploration of multiple reasoning trajectories, such as complex puzzles, strategic games, or creative writing.
+Instead of just one straight line of reasoning, this method explores multiple different reasoning paths at the same time, like branches of a tree. The model generates many different "thoughts" or ideas on how to proceed, checks how good each one is, and then focuses on the most promising branches. This is great for complex problems where you need to explore different possibilities to find the best solution.
 ```
 # Original Problem: "Design a simple, healthy, and appealing 3-course meal for a vegetarian guest."
 
@@ -510,21 +517,54 @@ Tree-of-Thought (ToT), also known as Tree of Thoughts, is a problem-solving fram
 ```
 
 ### Recursion-of-Thought
-The model uses recursion to solve problems that have a recursive structure.
+This is like Chain-of-Thought, but when the model hits a tricky part, it stops and creates a new, smaller task to solve just that part. Once it gets the answer to the smaller task, it plugs it back into the main problem and keeps going. This helps the model solve more complex problems step-by-step.
 ```
-Define a recursive function to calculate the factorial of a number.
+# Example: Calculate the value of f(3) where f(n) = n * f(n-1), and f(1) = 1.
+
+# Step 1: The model starts solving f(3):
+To calculate f(3), I need to compute 3 * f(2).
+
+# Step 2: f(2) is a sub-problem, so the model recursively prompts itself:
+To calculate f(2), I need to compute 2 * f(1).
+
+# Step 3: f(1) is a base case:
+f(1) = 1.
+
+# Step 4: Insert the answer for f(1) back into the previous step:
+f(2) = 2 * 1 = 2.
+
+# Step 5: Insert the answer for f(2) back into the original problem:
+f(3) = 3 * 2 = 6.
+
+# Final Answer: 6
 ```
 
 ### Program-of-Thoughts
-The model generates a program to solve a problem.
+Program-of-Thoughts (Chen et al., 2023d) uses LLMs like Codex to generate programming code as reasoning steps. A code interpreter executes these steps to obtain the final answer. It excels in athematical and programming-related tasks but is less effective for semantic reasoning tasks.
 ```
-Write a Python program to solve the following problem. ...
+Write a Python program to solve the following problem: "Calculate the factorial of a number."
 ```
 
 ### Faithful Chain-of-Thought
-The model is prompted to generate a chain of thought that is faithful to the original problem.
+This technique combines natural language reasoning with symbolic language (like Python code) in a single chain of thought, adapting the symbolic language to the task.
 ```
-Make sure that your reasoning process is sound and that you are not making any logical leaps.
+Question: Olivia has $23. She bought five bagels for $3 each. How much money does she have left?
+
+Let's think step by step.
+First, let's calculate the total cost of the bagels.
+---python
+bagel_cost = 3
+num_bagels = 5
+total_cost = bagel_cost * num_bagels
+---
+So, the total cost is $15.
+Now, let's subtract the total cost from the initial amount of money Olivia had.
+---python
+initial_money = 23
+money_left = initial_money - total_cost
+---
+So, Olivia has $8 left.
+The final answer is 8.
 ```
 
 ### Skeleton-of-Thought
