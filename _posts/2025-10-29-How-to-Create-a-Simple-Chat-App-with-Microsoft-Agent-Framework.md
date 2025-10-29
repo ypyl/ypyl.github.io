@@ -15,14 +15,14 @@ This article documents my steps in creating this simple chat app. It's a great w
 
 ## Initial setup
 
-1. Create a new console application using the .NET CLI:
+- Create a new console application using the .NET CLI:
 
 ```sh
 dotnet new console -n SimpleChatApp
 cd SimpleChatApp
 ```
 
-2. Add the necessary NuGet packages. The core of our application will use the `Microsoft.Agent` framework, and for this demo, I'm using `OllamaSharp` to connect to a local LLM (https://ollama.com/).
+- Add the necessary NuGet packages. The core of our application will use the `Microsoft.Agent` framework, and for this demo, I'm using `OllamaSharp` to connect to a local LLM (https://ollama.com/).
 
 You can add these packages via the CLI:
 ```sh
@@ -32,7 +32,7 @@ dotnet add package Microsoft.Agents.AI.Workflows --prerelease
 dotnet add package OllamaSharp
 ```
 
-3. Csproj file:
+- Csproj file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -56,14 +56,14 @@ dotnet add package OllamaSharp
 
 ## Code
 
-1. Initialize the `OllamaApiClient` and `ChatClientAgent` to connect and use local LLM (in this case, `gemma3:4b`).
+- Initialize the `OllamaApiClient` and `ChatClientAgent` to connect and use local LLM (in this case, `gemma3:4b`).
 
 ```cs
 var uri = new Uri("http://localhost:11434");
 using IChatClient chatClient = new OllamaApiClient(uri, "gemma3:4b");
 ```
 
-2. Define a `Workflow` that orchestrates the interaction between the user and the agent. This workflow is a simple loop.
+- Define a `Workflow` that orchestrates the interaction between the user and the agent. This workflow is a simple loop.
 
 ```cs
 var workflow = new WorkflowBuilder(conversationAgent)
@@ -74,7 +74,7 @@ var workflow = new WorkflowBuilder(conversationAgent)
     .Build();
 ```
 
-4. Add a `JudgeExecutor` which is a custom component to decide if the conversation should continue or end based on user input. A key part of this component is sending a `TurnToken` to pass control back to the agent after the user provides an answer.
+- Add a `JudgeExecutor` which is a custom component to decide if the conversation should continue or end based on user input. A key part of this component is sending a `TurnToken` to pass control back to the agent after the user provides an answer.
 
 ```cs
 internal sealed class JudgeExecutor() : Executor<JudgeInput>("JudgeExecutor")
@@ -95,7 +95,7 @@ internal sealed class JudgeExecutor() : Executor<JudgeInput>("JudgeExecutor")
 }
 ```
 
-5. The main loop streams events, prints messages, and waits for the user to type a response. The code for `AgentRunUpdateEvent` is commented out, but you can uncomment it to see all the intermediate updates from the agent as it processes.
+- The main loop streams events, prints messages, and waits for the user to type a response. The code for `AgentRunUpdateEvent` is commented out, but you can uncomment it to see all the intermediate updates from the agent as it processes.
 
 ```cs
 await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
@@ -124,7 +124,7 @@ await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
 }
 ```
 
-6. Full code:
+- Full code:
 
 ```cs
 using Microsoft.Agents.AI;
@@ -198,8 +198,8 @@ record JudgeInput(string? Message, List<ChatMessage> Messages);
 
 ### Sources
 
-- https://github.com/microsoft/agent-framework/blob/main/dotnet/samples/GettingStarted/Workflows/Agents/WorkflowAsAnAgent/WorkflowFactory.cs#L16
-- https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/request-and-response?pivots=programming-language-csharp
-- https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/using-agents?pivots=programming-language-csharp
-- https://github.com/microsoft/agent-framework/blob/a2ee840eef8a7bdc341f4e25ac08c2e11bb13c88/dotnet/samples/GettingStarted/Workflows/Loop/Program.cs
-- https://github.com/microsoft/agent-framework/blob/main/dotnet/samples/GettingStarted/Workflows/HumanInTheLoop/HumanInTheLoopBasic/WorkflowFactory.cs
+- [WorkflowAsAnAgent](https://github.com/microsoft/agent-framework/blob/main/dotnet/samples/GettingStarted/Workflows/Agents/WorkflowAsAnAgent/WorkflowFactory.cs#L16)
+- [Request and Response](https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/request-and-response?pivots=programming-language-csharp)
+- [Using Agents](https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/using-agents?pivots=programming-language-csharp)
+- [Loop](https://github.com/microsoft/agent-framework/blob/a2ee840eef8a7bdc341f4e25ac08c2e11bb13c88/dotnet/samples/GettingStarted/Workflows/Loop/Program.cs)
+- [HumanInTheLoop](https://github.com/microsoft/agent-framework/blob/main/dotnet/samples/GettingStarted/Workflows/HumanInTheLoop/HumanInTheLoopBasic/WorkflowFactory.cs)
