@@ -6,11 +6,13 @@ tags: llmclip autohotkey mermaid diagrams markdown genai
 categories: programming genai
 ---
 
-This post details the recent enhancement to [LLMClip](https://github.com/YauhenPyl/LLMClip), an AutoHotkey v2 clipboard manager, by integrating support for [Mermaid diagrams](https://mermaid.js.org/). This new feature allows LLMs to generate diagrams directly within the app.
+This post details the recent enhancement to [LLMClip](https://github.com/ypyl/llmclip/tree/main), an AutoHotkey v2 clipboard manager, by integrating support for [Mermaid diagrams](https://mermaid.js.org/). This new feature allows LLMs to generate diagrams directly within the app.
 
 ### How Mermaid Support Was Added
 
 Integrating Mermaid into LLMClip involved a few key steps within the `WebViewManager.ahk` script, which handles the rendering of the web-based chat interface.
+
+![alt text](/assets/llmclip-mermaid.png)
 
 1. **Including the Mermaid Library**
 
