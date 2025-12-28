@@ -71,12 +71,11 @@ When it's time to modify data—whether it's a POST, PUT, or DELETE - `useMutati
 import { useMutation } from './hooks/useQm';
 
 function AddUserButton() {
-  const { mutate, loading } = useMutation<User>('/api/users');
+  const { mutate, loading } = useMutation<User>('/api/users/create');
 
   const handleAddUser = async () => {
-    const newUser = await mutate(undefined, {
-      method: 'POST',
-      body: JSON.stringify({ name: 'Jane Doe' }),
+    const newUser = await mutate({
+      body: { name: 'Jane Doe' },
     });
 
     if (newUser) {
