@@ -327,7 +327,6 @@ Systems that consistently respond within the Doherty Threshold deliver smoother 
 5. **Test** with real users (think‑aloud, timed tasks) to verify that perceived speed meets expectations.
 6. **Iterate**: shrink page weight, refine feedback mechanisms, and re‑measure until the 400 ms target is met across the board.
 
-
 ## References
 
 [Laws of UX](https://www.amazon.com/Laws-UX-Psychology-Products-Services/dp/149205531X)
