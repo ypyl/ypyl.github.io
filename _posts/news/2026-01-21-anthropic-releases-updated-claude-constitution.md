@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Releases Updated Claude Constitution"
 date: 2026-01-22
-tags: [AI, Safety, Ethics]
+tags: news
 categories: news
 ---
 
