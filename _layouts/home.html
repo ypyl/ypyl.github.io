@@ -20,9 +20,10 @@ layout: default
     {% for post in news_posts | sort: 'date' | reverse limit:10 %}
       <div class="news-card" style="flex: 0 0 300px; margin-right: 15px; border: 1px solid #eee; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         <h3 style="margin-top: 0;">
-            {{ post.title | escape }}
-          </a>
-        </h3>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
         <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
       </div>
