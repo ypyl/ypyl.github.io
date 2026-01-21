@@ -17,9 +17,9 @@ layout: default
         {%- assign news_posts = news_posts | push: post -%}
       {%- endif -%}
     {%- endfor -%}
-    {% for post in news_posts limit:10 %}
+    {% for post in news_posts | sort: 'date' | reverse limit:10 %}
       <div class="news-card" style="flex: 0 0 300px; margin-right: 15px; border: 1px solid #eee; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h3 style="margin-top: 0;">l
+        <h3 style="margin-top: 0;">
             {{ post.title | escape }}
           </a>
         </h3>
@@ -29,7 +29,6 @@ layout: default
     {% endfor %}
   </div>
 
-  <h2 class="post-list-heading">Posts</h2>
   {%- if site.posts.size > 0 -%}
     <ul class="post-list">
       {%- for post in site.posts -%}
