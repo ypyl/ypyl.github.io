@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Anthropic Releases Updated Claude Constitution"
-date: 2026-01-22
+date: 2026-01-21
 tags: news
 categories: news
 ---
