@@ -1,6 +1,6 @@
 ---
 layout: post
-title: FlashLabs Releases Chroma 1.0: Open-Source Real-Time Speech-to-Speech Model with Voice Cloning
+title: "FlashLabs Releases Chroma 1.0: Open-Source Real-Time Speech-to-Speech Model with Voice Cloning"
 date: 2026-01-22
 tags: news
 categories: news
