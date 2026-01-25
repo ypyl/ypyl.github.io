@@ -12,4 +12,4 @@ Additionally, OpenAI aims to introduce more flexible pricing plans including ent
 
 This approach reflects OpenAI's strategy to monetize not only through subscriptions but also by sharing in client success and offering adaptable pricing.
 
-Source: Internal context provided.
+[Source](https://www.forbes.com/sites/jonmarkman/2026/01/20/moving-beyond-chatgpt-openais-new-revenue-model/)
