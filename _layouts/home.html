@@ -3,6 +3,45 @@ layout: default
 ---
 
 <div class="home">
+
+  {{ content }}
+
+  <div class="news-scroll-container" style="display: flex; overflow-x: auto; padding: 15px 0; scrollbar-width: none; -ms-overflow-style: none;">
+    {%- assign news_posts = "" | split: "" -%}
+    {%- for post in site.posts -%}
+      {%- if post.categories contains "news" -%}
+        {%- assign news_posts = news_posts | push: post -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {% for post in news_posts | sort: 'date' | reverse limit:30 %}
+      <div class="news-card" style="flex: 0 0 300px; margin-right: 15px; border: 1px solid #eee; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="margin-top: 0;">
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <style>
+    .news-scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const newsContainer = document.querySelector('.news-scroll-container');
+      newsContainer.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        newsContainer.scrollLeft += e.deltaY;
+      });
+    });
+  </script>
+
   {%- if site.posts.size > 0 -%}
     <ul class="post-list">
       {%- for post in site.posts -%}
