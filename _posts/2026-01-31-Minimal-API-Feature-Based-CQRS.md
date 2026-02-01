@@ -508,7 +508,9 @@ Rules:
 
 ---
 
-## 20. Deployment & Configuration > One-line rule: Fail fast on startup; validate everything before accepting traffic.
+## 20. Deployment & Configuration
+
+> One-line rule: Fail fast on startup; validate everything before accepting traffic.
 
 **Summary**
 
