@@ -22,6 +22,7 @@ categories: programming backend spa
 ---
 
 ## 2. Project Structure
+> One-line rule: Group by feature, not by technical layer; keep shared code feature-agnostic.
 
 ```
 /src
@@ -61,6 +62,7 @@ categories: programming backend spa
 ---
 
 ## 3. Endpoint Rules (Program.cs)
+> One-line rule: Endpoints dispatch to handlers; no business logic in routing layer.
 
 **Endpoints are transport-only. They are not features.**
 
@@ -92,6 +94,7 @@ Endpoints must NOT:
 ---
 
 ## 4. Commands & Queries
+> One-line rule: Commands change state and return void; queries return data and never mutate.
 
 ### Commands
 
@@ -108,6 +111,7 @@ Endpoints must NOT:
 ---
 
 ## 5. Aggregation Handlers
+> One-line rule: Aggregate queries only; never combine commands or add side effects.
 
 ### Constraints
 
@@ -131,6 +135,7 @@ Endpoints must NOT:
 ---
 
 ## 6. Dispatcher
+> One-line rule: Single entry point for external commands; workflows bypass for internal steps.
 
 * Dispatcher is the **only entry point** to application logic for external/public commands.
 * Dispatcher:
@@ -144,6 +149,7 @@ Endpoints must NOT:
 ---
 
 ## 7. Pipeline Behaviors
+> One-line rule: Cross-cutting concerns live in behaviors; handlers stay focused on business logic.
 
 Behaviors are **cross-cutting and generic**.
 
@@ -165,6 +171,7 @@ Rules:
 ---
 
 ## 8. Security
+> One-line rule: Authenticate by default, authorize explicitly; secure endpoints from the start.
 
 **All endpoints require authentication. No exceptions.**
 
@@ -199,6 +206,7 @@ Restricted to production domains only.
 ---
 
 ## 9. Validation
+> One-line rule: Validate early via pipeline behaviors; handlers receive pre-validated requests.
 
 * Validators implement `IValidator<TRequest>`
 * Validators:
@@ -213,6 +221,7 @@ Restricted to production domains only.
 ---
 
 ## 10. Error Handling & Problem Details
+> One-line rule: Convert all failures to Problem Details; maintain consistent error contracts.
 
 * **ALL errors must be converted to RFC 7807 Problem Details**
 * No exception, validation failure, or business error may leak raw details to the client
@@ -248,6 +257,7 @@ Restricted to production domains only.
 ---
 
 ## 11. Migration and Versioning
+> One-line rule: Version APIs explicitly; maintain backward compatibility within major versions.
 
 ### API Versioning
 
@@ -290,6 +300,7 @@ Restricted to production domains only.
 ---
 
 ## 12. Feature Flags
+> One-line rule: New features start disabled; enable gradually with rollback capability.
 
 **All new features must use feature flags for safe rollout.**
 
@@ -303,6 +314,7 @@ Restricted to production domains only.
 ---
 
 ## 13. Result Model (Monad)
+> One-line rule: Wrap all handler outcomes in Result<T>; never throw exceptions for business failures.
 
 * Handlers return:
   * `Result`
@@ -315,6 +327,7 @@ Restricted to production domains only.
 ---
 
 ## 14. Resilience
+> One-line rule: Centralize retry policies in infrastructure; handlers remain resilience-agnostic.
 
 The application **must be resilient by default**. Transient failures are expected, not exceptional.
 
@@ -410,6 +423,7 @@ What still applies (explicitly)
 ---
 
 ## 16. Dependency Injection
+> One-line rule: Scope components by request lifecycle; maintain proper dependency lifetimes.
 
 ### Lifetime Requirements
 
@@ -467,6 +481,7 @@ Use specifications to build reusable, composable query logic without repository 
 ---
 
 ## 18. Shared Code Rules
+> One-line rule: Shared code stays feature-agnostic; handlers orchestrate shared services.
 
 Shared code **never lives inside Features**.
 
@@ -498,6 +513,7 @@ Rules:
 ---
 
 ## 19. Observability
+> One-line rule: Telemetry lives in pipeline behaviors; handlers remain instrumentation-free.
 
 * Tracing, logging, metrics are implemented via **pipeline behaviors**
 * Handlers **never**:
@@ -549,7 +565,7 @@ Validate configuration and dependencies at startup; use health checks for runtim
 
 ## 21. Monitoring
 
-Monitoring > One-line rule: Metrics collection happens only in pipeline behaviors; handlers remain telemetry-free.
+> One-line rule: Metrics collection happens only in pipeline behaviors; handlers remain telemetry-free.
 
 **Summary**
 
@@ -604,7 +620,6 @@ Keep telemetry concerns separated from business logic; collect metrics at the pi
 
 Naming convention (feature.operation), pipeline-only collection, automatic tagging, and export to monitoring systems.
 
-
 ---
 
 ## 22. Non-Negotiable Rules
@@ -637,6 +652,7 @@ Naming convention (feature.operation), pipeline-only collection, automatic taggi
 ---
 
 ## 23. Mental Model
+> One-line rule: Request flows through layers with clear separation; each layer has single responsibility.
 
 ```
 HTTP (Program.cs, Authenticated, Rate Limited, CORS)
