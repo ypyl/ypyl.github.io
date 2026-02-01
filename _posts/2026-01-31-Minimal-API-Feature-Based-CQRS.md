@@ -22,7 +22,6 @@ categories: programming backend spa
 ---
 
 ## 2. Project Structure
-> One-line rule: Group by feature, not by technical layer; keep shared code feature-agnostic.
 
 ```
 /src
@@ -36,10 +35,11 @@ categories: programming backend spa
  │    │    │    └── Validator.cs (optional)
  │    │    └── Contracts.cs
  │
- ├── Workflows/
- │    ├── <WorkflowName>/
+ ├── Workflows
+ │    ├── <WorkflowName>
  │    │    ├── Workflow.cs
  │    │    ├── State.cs
+ │    │    ├── Steps/
  │    │    └── Policies.cs
  │
  ├── Infrastructure
@@ -51,12 +51,14 @@ categories: programming backend spa
  │
  └── Shared
       ├── Abstractions/
+      │    ├── IDispatcher.cs
+      │    └── IWorkflowExecutor.cs
       ├── Results/
       ├── Errors/
       ├── Behaviors/
       ├── Domain/
       ├── Validators/
-      ├── Mappers/
+      └── Mappers/
 ```
 
 ---
@@ -379,46 +381,51 @@ Long-running workflows must be durable and rely on infrastructure-level resilien
 
 ---
 
-## 15. Workflows & Execution Paths
+## 15. Workflows & Feature Application Services
 
-> **One-line rule:** Commands that cross a system boundary go through pipeline behaviors; workflow-internal steps do not.
+> **One-line rule:** Workflows orchestrate features via application services; handlers remain internal to features.
 
-Summary
+### Features vs Workflows Comparison
 
-* Keep workflows explicit and durable; avoid implicit middleware.
+| Dimension          | Feature               | Workflow                       |
+| ------------------ | --------------------- | ------------------------------ |
+| Purpose            | Execute one use case  | Coordinate multiple use cases  |
+| Scope              | Single aggregate      | Multiple aggregates / contexts |
+| Lifetime           | Single request        | Long-running                   |
+| Transactions       | Single                | Multiple / eventual            |
+| Retries            | Implicit via pipeline | Explicit per step              |
+| Compensation       | ❌                    | ✅                             |
+| Pipeline behaviors | ✅                    | ❌ (internals)                 |
+| Failure semantics  | Immediate             | Stateful                       |
 
-Kinds of commands
+### Rules
 
-* **External / Public** (e.g., `CreateUser`, `StartUserOnboarding`)
-  * Enter via HTTP/messaging, cross trust boundaries
-  * Require validation, authorization, telemetry, auditing, idempotency
-  * **Pipeline behaviors APPLY**
+* Features expose public application service interfaces
+* Handlers are internal to features
+* Workflows call application services, never handlers directly
+* Endpoints use dispatcher, workflows bypass dispatcher
+* Application services delegate to handlers without behaviors
+* Workflows live in `/Workflows/<WorkflowName>/`
+* Feature application services live in `Features/<Feature>/Application/`
 
-* **Internal Workflow Steps** (e.g., `AssignDefaultRole`, `ProvisionUserStorage`)
-  * Executed inside workflows; already validated/authorized
-  * Owned by the workflow (tracing, idempotency, retries)
-  * **Pipeline behaviors MUST NOT APPLY**
+### Execution Paths
 
-Execution paths (explicit)
+* **External requests** → Dispatcher → Behaviors → Handler
+* **Workflow steps** → Application Service → Handler (no behaviors)
 
-* `IDispatcher.Send<TCommand>(...)` — behaviors ON
-* `IWorkflowExecutor.Execute<TStep>(...)` — behaviors OFF
+### Constraints
 
-Workflow steps
+* ❌ Workflows cannot call dispatcher
+* ❌ Workflows cannot access handlers directly
+* ❌ Workflows cannot use pipeline behaviors
+* ❌ Endpoints cannot call application services
+* ✅ Same handlers serve both paths
+* ✅ Workflow engine handles retries and compensation
 
-* Implement `IWorkflowStep<TState>` with `ExecuteAsync` and `CompensateAsync`
-* No `Result`, validation, or auth on step methods; failures bubble to the workflow engine
-* Workflow logic handles retries/compensation and publishes durable status (Started/InProgress/Succeeded/Failed/Compensated)
-* **Step failures are captured by the workflow engine and exposed via status endpoints, which convert them to Problem Details per Section 10**
+### Result Contract
 
-Result contract
-
-* Endpoints that start workflows return `202 Accepted` and a status-check URI (e.g., `GET /workflows/{id}/status`)
-* Provide a query endpoint that returns `Result<WorkflowStatus>` or ProblemDetails
-
-What still applies (explicitly)
-
-* Resilience (infrastructure-level), tracing (child spans), idempotency, and error mapping — all workflow-owned and explicit.
+* Start endpoints return `202 Accepted` + status URI
+* Status endpoints return `Result<WorkflowStatus>` or Problem Details
 
 ---
 
