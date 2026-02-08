@@ -7,8 +7,6 @@ tags: tinker, llm, finetuning, qwen3-vl
 categories: ai, programming
 ---
 
-# Tinker: Fine-Tuning Entry & Execution
-
 Received $150 credit from [Tinker](https://thinkingmachines.ai/tinker/) to test the platform. Lacking prior LLM fine-tuning experience, I am following their official tutorial and documenting the workflow.
 
 ## Initialization

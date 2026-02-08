@@ -6,7 +6,7 @@ tags: react typescript frontend web-development data-fetching
 categories: programming frontend
 ---
 
-# React Data Fetching with useQm
+> strongly recommend using TanStack Query; it will pay off later
 
 In the modern React ecosystem, managing server state can often feel like a choice between two extremes: rolling your own `useEffect` logic (and all the boilerplate that comes with it) or reaching for a heavyweight library like TanStack Query.
 
