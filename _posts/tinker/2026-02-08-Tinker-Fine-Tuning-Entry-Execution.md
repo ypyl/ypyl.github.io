@@ -17,6 +17,8 @@ Received $150 credit from [Tinker](https://thinkingmachines.ai/tinker/) to test 
 2. **Documentation:** Accessed the [Training & Sampling](https://tinker-docs.thinkingmachines.ai/training-sampling) guide.
 3. **Execution:** Copied and executed the initialization code.
 
+There are some additional notes based on questions I had while reviewing and executing the example.
+
 ## Lora training client
 
 ```py
