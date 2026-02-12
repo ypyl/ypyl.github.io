@@ -10,3 +10,6 @@ email: yauhen.pyl@gmail.com
 
 github_username: ypyl
 linkedin_username: yauhenpyl
+collections:
+  tools:
+    output: false

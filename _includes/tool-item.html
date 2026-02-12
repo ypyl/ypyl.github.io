@@ -1,0 +1,13 @@
+<li class="tool">
+  <a href="{{ include.tool.url }}" target="_blank">
+    {{ include.tool.name }}
+  </a>
+
+  <p>{{ include.tool.description }}</p>
+
+  <div class="tags">
+    {% for tag in include.tool.tags %}
+      <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+</li>

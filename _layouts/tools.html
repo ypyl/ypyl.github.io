@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<h1>{{ page.title }}</h1>
+
+{% assign tools_sorted = site.tools | sort: "name" %}
+{% assign tools_by_category = tools_sorted | group_by: "category" %}
+
+{% for group in tools_by_category %}
+<section class="tool-category">
+  <h2>{{ group.name }}</h2>
+
+  <ul class="tool-list">
+    {% for tool in group.items %}
+      {% include tool-item.html tool=tool %}
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+
+<hr>
+
+<h2>Tag Cloud</h2>
+
+{% assign all_tags = "" | split: "" %}
+
+{% for tool in site.tools %}
+  {% for tag in tool.tags %}
+    {% assign all_tags = all_tags | push: tag %}
+  {% endfor %}
+{% endfor %}
+
+{% assign tag_cloud = all_tags | group_by: "itself" | sort: "name" %}
+
+<div class="tag-cloud">
+  {% for tag in tag_cloud %}
+    <span class="tag size-{{ tag.items | size }}">
+      {{ tag.name }} ({{ tag.items | size }})
+    </span>
+  {% endfor %}
+</div>
