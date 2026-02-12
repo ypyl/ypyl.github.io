@@ -26,12 +26,14 @@ layout: default
 {% assign all_tags = "" | split: "" %}
 
 {% for tool in site.tools %}
-  {% for tag in tool.tags %}
-    {% assign all_tags = all_tags | push: tag %}
-  {% endfor %}
+  {% if tool.tags %}
+    {% for t in tool.tags %}
+      {% assign all_tags = all_tags | push: t %}
+    {% endfor %}
+  {% endif %}
 {% endfor %}
 
-{% assign tag_cloud = all_tags | group_by: "itself" | sort: "name" %}
+{% assign tag_cloud = all_tags | group_by_exp: "tag", "tag" %}
 
 <div class="tag-cloud">
   {% for tag in tag_cloud %}
