@@ -1,4 +1,4 @@
-﻿---
+---
 name: Penpot
 link: https://penpot.app
 category: Project Management

@@ -1,4 +1,4 @@
-﻿---
+---
 name: Plane
 link: https://plane.so
 category: Project Management

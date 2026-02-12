@@ -1,4 +1,4 @@
-﻿---
+---
 name: Tiny RDM
 link: https://redis.tinycraft.cc
 category: Database

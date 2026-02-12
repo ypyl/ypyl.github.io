@@ -1,4 +1,4 @@
-﻿---
+---
 name: Monty
 link: https://github.com/pydantic/monty
 category: Language

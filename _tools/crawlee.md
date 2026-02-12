@@ -1,4 +1,4 @@
-﻿---
+---
 name: Crawlee
 link: https://github.com/apify/crawlee
 category: Automation
