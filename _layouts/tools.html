@@ -15,10 +15,10 @@ layout: default
 </section>
 {% endfor %}
 
-<hr />
+<br />
 
 <h2>Tag Cloud</h2>
-<hr />
+<br />
 
 {% assign all_tags = "" | split: "" %} {% for tool in site.tools %} {% if tool.tags %} {% for t in tool.tags %} {%
 assign all_tags = all_tags | push: t %} {% endfor %} {% endif %} {% endfor %} {% assign tag_cloud = all_tags |
