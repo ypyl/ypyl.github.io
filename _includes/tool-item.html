@@ -1,10 +1,7 @@
 <li class="tool">
-  {% assign href = include.tool.url %}
-  {% if href contains "http://" or href contains "https://" %}
-    <a href="{{ href }}" target="_blank">{{ include.tool.name }}</a>
-  {% else %}
-    <a href="{{ href | relative_url }}" target="_blank">{{ include.tool.name }}</a>
-  {% endif %}
+  <a href="{{ include.tool.link }}" target="_blank">
+    {{ include.tool.name }}
+  </a>
 
   <p>{{ include.tool.description }}</p>
 
