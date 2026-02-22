@@ -4,7 +4,6 @@ title: "Rendering and Highlighting PDFs in React with react-pdf"
 date: 2026-02-22
 tags: react pdf pdfjs ocr highlighting document-viewer frontend
 categories: programming web development
-
 ---
 
 # Rendering and Highlighting PDFs in React with react-pdf
@@ -26,7 +25,6 @@ This article documents the distinction and shows how to render a PDF with:
 * Text-layer highlighting
 * Coordinate-based OCR overlays
 
----
 
 ## The Discovery
 
@@ -54,8 +52,6 @@ This enables highlighting both:
 
 * Native PDF text (via `customTextRenderer`)
 * Arbitrary regions (e.g., OCR bounding boxes)
-
----
 
 ## How It Works
 
@@ -102,8 +98,6 @@ In this example, coordinates are directly mapped assuming:
 * Page scale = 1
 * Top-left origin adjustment already handled (inferred — verify if Y-axis inversion is required depending on PDF)
 
----
-
 ## Implementation
 
 ### Installation
@@ -124,8 +118,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ```
 
 Without this, rendering fails.
-
----
 
 ### Full Example
 
@@ -217,15 +209,11 @@ function App() {
 export default App;
 ```
 
----
-
 ## Gotchas & Observations
 
 ### 1. Worker Configuration Is Mandatory
 
 If `workerSrc` is not configured, rendering silently fails.
-
----
 
 ### 2. Text Highlighting Is String-Based
 
@@ -236,8 +224,6 @@ Implications:
 * Regex must match fragment boundaries
 * Long phrases may be split across spans
 * Highlighting multi-line text is non-trivial
-
----
 
 ### 3. OCR Coordinates Require Careful Mapping
 
@@ -257,16 +243,12 @@ You may need to:
 
 The current example assumes alignment is already correct. This must be validated per document.
 
----
-
 ### 4. Scale Synchronization
 
 When changing `scale`:
 
 * All overlay coordinates must be multiplied by the same scale.
 * Otherwise, overlays drift.
-
----
 
 ### 5. Performance
 
@@ -280,8 +262,6 @@ For heavy documents:
 
 * Render one page at a time
 * Avoid rendering thumbnails unless needed
-
----
 
 ## Conclusion
 
