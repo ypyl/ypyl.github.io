@@ -1,0 +1,3 @@
+**Efficient Removal of Watermarks from Sora 2 Videos**
+
+A tool for precise extraction of watermarks from videos created with Sora 2 employs spectral analysis and filtering algorithms to remove watermarks without losing image quality. It includes spectral analysis, smooth transitions between frames, artifact-free algorithms, automated detection-to-rendering processes, and supports various formats and resolutions. **GitHub repository**: [sora2-free-watermark-remover](https://github.com/trumpet-noek/sora2-free-watermark-remover).
