@@ -15,7 +15,7 @@ There are two fundamentally different PDF use cases in web applications:
 1. **Generate PDFs from structured data** (e.g., JSON → PDF).
 2. **Render and interact with existing PDF documents** (e.g., viewing, pagination, text highlighting, OCR overlays).
 
-While exploring [json-render.dev](https://json-render.dev/docs/api/react-pdf)'s React PDF renderer, it became clear that it relies on [@react-pdf/renderer](https://github.com/diegomura/react-pdf/tree/master) (from **react-pdf**) for PDF generation.
+While exploring [json-render.dev](https://json-render.dev/docs/api/react-pdf) React PDF renderer, it became clear that it relies on [@react-pdf/renderer](https://github.com/diegomura/react-pdf/tree/master) (from **react-pdf**) for PDF generation.
 
 However, for rendering and interacting with *existing* PDFs in a web app, the correct tool is [react-pdf](https://github.com/wojtekmaj/react-pdf), which is a React wrapper around **PDF.js**.
 
@@ -25,6 +25,7 @@ This article documents the distinction and shows how to render a PDF with:
 * Text-layer highlighting
 * Coordinate-based OCR overlays
 
+---
 
 ## The Discovery
 
@@ -52,6 +53,8 @@ This enables highlighting both:
 
 * Native PDF text (via `customTextRenderer`)
 * Arbitrary regions (e.g., OCR bounding boxes)
+
+---
 
 ## How It Works
 
@@ -98,6 +101,8 @@ In this example, coordinates are directly mapped assuming:
 * Page scale = 1
 * Top-left origin adjustment already handled (inferred — verify if Y-axis inversion is required depending on PDF)
 
+---
+
 ## Implementation
 
 ### Installation
@@ -119,8 +124,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 Without this, rendering fails.
 
+---
+
 ### Full Example
 
+{% raw %}
 ```tsx
 import "./App.css";
 import { useState } from "react";
@@ -208,12 +216,17 @@ function App() {
 
 export default App;
 ```
+{% endraw %}
+
+---
 
 ## Gotchas & Observations
 
 ### 1. Worker Configuration Is Mandatory
 
 If `workerSrc` is not configured, rendering silently fails.
+
+---
 
 ### 2. Text Highlighting Is String-Based
 
@@ -224,6 +237,8 @@ Implications:
 * Regex must match fragment boundaries
 * Long phrases may be split across spans
 * Highlighting multi-line text is non-trivial
+
+---
 
 ### 3. OCR Coordinates Require Careful Mapping
 
@@ -243,12 +258,16 @@ You may need to:
 
 The current example assumes alignment is already correct. This must be validated per document.
 
+---
+
 ### 4. Scale Synchronization
 
 When changing `scale`:
 
 * All overlay coordinates must be multiplied by the same scale.
 * Otherwise, overlays drift.
+
+---
 
 ### 5. Performance
 
@@ -262,6 +281,8 @@ For heavy documents:
 
 * Render one page at a time
 * Avoid rendering thumbnails unless needed
+
+---
 
 ## Conclusion
 
