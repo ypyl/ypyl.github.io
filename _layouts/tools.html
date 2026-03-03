@@ -20,10 +20,14 @@ layout: default
 
 {% assign all_tags = "" | split: "" %} {% for tool in site.tools %} {% if tool.tags %} {% for t in tool.tags %} {%
 assign all_tags = all_tags | push: t %} {% endfor %} {% endif %} {% endfor %} {% assign tag_cloud = all_tags |
-group_by_exp: "tag", "tag" %}
+group_by_exp: "tag", "tag" %} {% assign min_count = 999999 %} {% assign max_count = 0 %} {% for tag in tag_cloud
+%} {% assign count = tag.items | size %} {% if count < min_count %} {% assign min_count = count %} {% endif %} {% if
+count > max_count %} {% assign max_count = count %} {% endif %} {% endfor %}
 
 <div class="tag-cloud">
-  {% for tag in tag_cloud %}
-  <span class="tag size-{{ tag.items | size }}"> {{ tag.name }} ({{ tag.items | size }}) </span>
+  {% for tag in tag_cloud %} {% assign count = tag.items | size %} {% assign range = max_count | minus: min_count %} {%
+  if range == 0 %} {% assign font_size = 1.0 %} {% else %} {% assign normalized = count | minus: min_count | times: 1.0
+  | divided_by: range %} {% assign font_size = normalized | times: 1.2 | plus: 0.8 %} {% endif %}
+  <span class="tag" style="font-size: {{ font_size }}rem;"> {{ tag.name }} ({{ count }}) </span>
   {% endfor %}
 </div>
