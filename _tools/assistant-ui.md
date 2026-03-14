@@ -1,7 +1,7 @@
 ---
 name: Assistant UI
-link: https://assistant-ui.com
+link: https://github.com/assistant-ui/assistant-ui
 category: UI Library
-tags: [react, typescript, ai, chatbot, 2026-03-12]
-description: Typescript/React library for building production-grade AI chat experiences with streaming and accessibility.
+tags: [typescript, react, chatbot, ai, 2026-03-14]
+description: Typescript and React library providing UI components for AI chat interfaces.
 ---
