@@ -1,7 +1,7 @@
 ---
 name: Agent Lightning
-link: https://microsoft.github.io/agent-lightning/
+link: https://github.com/microsoft/agent-lightning
 category: AI Agents
-tags: [ai, automation, python, open-source, reinforcement-learning]
-description: A tool to optimize and train AI agents using reinforcement learning and prompt optimization without code changes.
+tags: [ai-agents, reinforcement-learning, mlops, agentic-ai, 2026-03-16]
+description: Trainer framework designed to develop and enhance AI agents using reinforcement learning and MLOps.
 ---
