@@ -2,6 +2,6 @@
 name: Squad
 link: https://github.com/bradygaster/squad
 category: AI Agents
-tags: [ai, ai-agents, multi-agent, open-source, 2026-03-02]
-description: AI agent teams for any project that grow and evolve with your code.
+tags: [ai-agents, automation, multi-agent, github-repo, agentic-ai, 2026-03-16]
+description: AI agent teams that live in your codebase to assist development and improve over time.
 ---
