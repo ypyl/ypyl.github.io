@@ -1,7 +1,7 @@
 ---
 name: LanceDB
-link: https://github.com/lancedb
+link: https://github.com/lancedb/lancedb
 category: Search
-tags: [vector-database, retrieval, multimodal, open-source, 2026-03-15]
-description: Developer-friendly open source embedded retrieval library for multimodal AI enabling efficient search and management.
+tags: [vector-database, multimodal, retrieval, open-source, 2026-03-17]
+description: Developer-friendly embedded retrieval library for multimodal AI supporting efficient search and similarity tasks.
 ---
