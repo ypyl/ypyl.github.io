@@ -2,6 +2,6 @@
 name: Learn Claude Code
 link: https://github.com/shareAI-lab/learn-claude-code
 category: AI Agents
-tags: [ai-agents, agent-development, python, claude-code, 2026-03-28]
-description: Nano claude code-like agent harness built from scratch for teaching and developing real AI agents.
+tags: [agent-development, python, claude-code, tutorial, 2026-04-05]
+description: Nano claude code-like agent harness built from scratch for educational purposes and agent development.
 ---
