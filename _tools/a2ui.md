@@ -1,7 +1,7 @@
 ---
 name: A2UI
-link: https://a2ui.org
-category: UI Library
-tags: [ai-agents, automation, open-source, typescript, 2026-03-13]
-description: Open-source project enabling agents to generate and populate rich, updatable user interfaces.
+link: https://github.com/google/a2ui
+category: AI Agents
+tags: [ai-agents, open-source, typescript, react, 2026-04-07]
+description: Open-source project for creating updatable agent-generated user interfaces with renderers.
 ---
