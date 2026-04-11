@@ -56,6 +56,18 @@ Six commands cover 90% of daily use in interactive mode:
 
 **Closed source, but open SDKs**: The Copilot CLI itself is closed source, but GitHub provides [open-source SDKs](https://github.com/github/copilot-sdk) that allow programmatic access to Copilot in custom applications.
 
+## Context and Conversations
+
+- **File references**: Use `@` to reference files, `@folder/` for all files in a folder
+- **Wildcards**: `@folder/*.py` for all in folder, `@**/test_*.py` recursive; `@image.png` for images
+- **Sessions auto-save**: `copilot --continue` to resume last session, `copilot --resume` to pick from list
+- **Switch session without restart**: `/resume` inside active session
+- **Rename session**: `/rename new-name` for easier identification later
+- **Context management**: `/context` shows token usage; `/new` saves and starts fresh, `/clear` discards; `/rewind` rolls back
+- **Session info**: `/session` shows workspace summary, `/usage` shows metrics
+- **Access outside cwd**: Use `/add-dir /path/to/directory` to grant access if "Permission denied" or "File not found"
+- **Share session**: `/share file|gist|html` exports session as markdown, gist, or interactive HTML
+
 ## Resources
 
 - [Official GitHub Copilot CLI documentation](https://docs.github.com/en/copilot/how-tos/copilot-cli)
