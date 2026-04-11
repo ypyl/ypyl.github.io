@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "JSON Patch in ASP.NET Core: A Journey Through Three Approaches"
 date: 2026-04-11
 tags: asp-net-core, json, json-patch, dotnet
@@ -270,19 +271,19 @@ app.MapGet("/patch", () =>
 {
     var token = JToken.Parse(jsonData);
     var errors = new List<string>();
-    
+
     var patchDoc1 = JsonConvert.DeserializeObject<JsonPatchDocument<JToken>>(jsonPatch1)!;
     patchDoc1.ApplyTo(token, error =>
     {
         errors.Add($"Patch 1 Error: {error.ErrorMessage}");
     });
-    
+
     var patchDoc2 = JsonConvert.DeserializeObject<JsonPatchDocument<JToken>>(jsonPatch2)!;
     patchDoc2.ApplyTo(token, error =>
     {
         errors.Add($"Patch 2 Error: {error.ErrorMessage}");
     });
-    
+
     var result = new { data = token, errors = errors };
     return Results.Text(JsonConvert.SerializeObject(result), "application/json");
 });
