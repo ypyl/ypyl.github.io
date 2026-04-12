@@ -16,6 +16,7 @@ Jekyll blog published to GitHub Pages at `https://ypyl.github.io/`. No build too
 **Posts** (`_posts/`):
 ```yaml
 ---
+layout: post
 title: Post Title
 date: YYYY-MM-DD
 tags: tag1, tag2
