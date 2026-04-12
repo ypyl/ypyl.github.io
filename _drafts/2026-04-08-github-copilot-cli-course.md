@@ -52,6 +52,51 @@ Six commands cover 90% of daily use in interactive mode:
 | `/research` | Deep research using GitHub and web sources | When you need to investigate before coding |
 | `/exit` | End the session | When you're done |
 
+## Development Workflows
+
+Five core workflows: **Code Review**, **Refactoring**, **Debugging**, **Test Generation**, **Git Integration**.
+
+### Code Review
+- Basic review with `@file` reference
+- Input validation review (specific focus area)
+- Cross-file project review (`@folder/`)
+- Interactive code review (multi-turn conversation)
+- Review checklist template (severity categorized)
+- **`/review`** - Built-in code-review agent for staged/unstaged changes
+
+### Refactoring
+- Simple refactoring (type hints, patterns)
+- Separate concerns across files
+- Improve error handling (custom exceptions)
+- Add documentation (docstrings)
+- Safe refactoring with tests first
+
+### Debugging
+- Simple debugging ("Expected X but got Y" pattern)
+- Bug Detective - AI finds related bugs
+- Security audit ("Find all security vulnerabilities")
+- Understanding an Error (stack trace + `@file`)
+- Debugging with test case (exact input/output)
+- Trace issue through code (multiple files)
+- Understanding data issues (JSON + code)
+
+### Test Generation
+- Test explosion - 2 tests vs 15+ tests
+- Unit tests (specific function)
+- Test for specific scenarios (duplicates, empty, concurrent)
+- Add tests to existing file (edge cases)
+
+### Git Integration
+- Generate commit messages: `copilot -p "Generate commit message for: $(git diff --staged)"`
+- Explain changes: `copilot -p "Explain: $(git show HEAD --stat)"`
+- PR description from branch changes
+- **`/pr [view|create|fix|auto]`** - Work with pull requests
+- **`/delegate`** - Hand off to background agent
+- **`/diff`** - Review session changes before commit
+
+### Research Before Plan
+Use **`/research`** for deep investigation before coding. Copilot searches GitHub and web sources, returns summary with references. Works well *before* `/plan` - research the approach first, then plan.
+
 ## Worth Knowing
 
 **Closed source, but open SDKs**: The Copilot CLI itself is closed source, but GitHub provides [open-source SDKs](https://github.com/github/copilot-sdk) that allow programmatic access to Copilot in custom applications.
