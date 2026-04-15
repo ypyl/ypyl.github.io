@@ -97,6 +97,25 @@ Five core workflows: **Code Review**, **Refactoring**, **Debugging**, **Test Gen
 ### Research Before Plan
 Use **`/research`** for deep investigation before coding. Copilot searches GitHub and web sources, returns summary with references. Works well *before* `/plan` - research the approach first, then plan.
 
+## Agents
+
+Custom agents are `.agent.md` files for specialized AI personas.
+
+**Locations:**
+- `.github/agents/` - Project-specific, team-shared
+- `~/.copilot/agents/` - Global, personal
+
+**Usage:**
+- Interactive: `> /agent` to list and select agents
+- Programmatic: `copilot --agent python-reviewer`
+
+**Instruction files (auto-loaded):**
+- `AGENTS.md` - Cross-platform, project root
+- `.github/copilot-instructions.md` - GitHub Copilot specific
+- `.github/instructions/*.instructions.md` - Granular, topic-specific
+
+Use **`/init`** to scan project and generate configuration files automatically.
+
 ## Worth Knowing
 
 **Closed source, but open SDKs**: The Copilot CLI itself is closed source, but GitHub provides [open-source SDKs](https://github.com/github/copilot-sdk) that allow programmatic access to Copilot in custom applications.
