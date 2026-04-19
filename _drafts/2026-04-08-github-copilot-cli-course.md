@@ -116,6 +116,28 @@ Custom agents are `.agent.md` files for specialized AI personas.
 
 Use **`/init`** to scan project and generate configuration files automatically.
 
+## Skills
+
+Skills are folders with instructions, scripts, and resources that Copilot auto-loads when relevant.
+
+**Skills vs Agents vs MCP:**
+| Feature | What It Does | When to Use |
+|---------|-------------|-------------|
+| Agents | Changes how AI thinks | Need specialized expertise across many tasks |
+| Skills | Provides task-specific instructions | Specific, repeatable tasks with detailed steps |
+| MCP | Connects external services | Need live data from APIs |
+
+**`/skills` commands:**
+- `/skills list` - Show all installed skills
+- `/skills info <name>` - Get details about a specific skill
+- `/skills add <name>` - Enable a skill from repository or marketplace
+- `/skills remove <name>` - Disable or uninstall a skill
+- `/skills reload` - Reload after editing SKILL.md files
+
+Find skills at [agentskills.io](https://agentskills.io/home) and [Awesome Copilot](https://github.com/github/awesome-copilot).
+
+**Plugins** are installable packages that bundle skills, agents, and MCP server configurations together - like an "app store" for Copilot CLI extensions.
+
 ## Worth Knowing
 
 **Closed source, but open SDKs**: The Copilot CLI itself is closed source, but GitHub provides [open-source SDKs](https://github.com/github/copilot-sdk) that allow programmatic access to Copilot in custom applications.
@@ -137,3 +159,4 @@ Use **`/init`** to scan project and generate configuration files automatically.
 - [Official GitHub Copilot CLI documentation](https://docs.github.com/en/copilot/how-tos/copilot-cli)
 - [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference)
 - [Course repo](https://github.com/github/copilot-cli-for-beginners/tree/main)
+- [Awesome Copilot](https://github.com/github/awesome-copilot) - Community skills, agents, and resources
