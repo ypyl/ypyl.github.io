@@ -160,3 +160,4 @@ Find skills at [agentskills.io](https://agentskills.io/home) and [Awesome Copilo
 - [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference)
 - [Course repo](https://github.com/github/copilot-cli-for-beginners/tree/main)
 - [Awesome Copilot](https://github.com/github/awesome-copilot) - Community skills, agents, and resources
+- [AgentSkills](https://agentskills.io/home) - Skills overview and specification
