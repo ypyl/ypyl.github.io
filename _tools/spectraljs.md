@@ -1,7 +1,7 @@
 ---
 name: Spectral.js
-link: https://spectraljs.com
+link: https://github.com/rvanwijnen/spectral.js
 category: Design
-tags: [color, pigment, javascript, lightweight, 2026-03-11]
-description: Lightweight JavaScript library for realistic color mixing based on the Kubelka-Munk theory.
+tags: [javascript, color, library, open-source, 2026-04-29]
+description: A lightweight JavaScript library for realistic paint-like color mixing based on the Kubelka-Munk theory.
 ---

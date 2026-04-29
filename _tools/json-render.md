@@ -1,7 +1,7 @@
 ---
 name: json-render
-link: https://github.com/vercel-labs/json-render
-category: UI Library
-tags: [generative-ui, ui-framework, typescript, open-source, 2026-03-16]
-description: Generative UI framework to create dynamic, personalized user interfaces from prompts with predefined components.
+link: https://json-render.dev/
+category: A2UI
+tags: [react, generative-ui, ai, json, streaming, vercel, 2026-04-29]
+description: Generative UI framework that generates dynamic interfaces from prompts using predefined JSON component catalogs.
 ---

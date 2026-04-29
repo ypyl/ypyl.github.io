@@ -1,7 +1,7 @@
 ---
 name: Skills
-link: https://github.com/anthropics/skills
+link: https://github.com/mattpocock/skills
 category: AI Agents
-tags: [ai, open-source, automation, knowledge-base, 2026-02-28]
-description: Folders of instructions and scripts that dynamically enhance AI performance on specialized tasks.
+tags: [agent-skills, ai-agents, open-source, developer-tool, 2026-04-29]
+description: Agent skills designed for real engineering that are small, adaptable, and composable, working with any model.
 ---
