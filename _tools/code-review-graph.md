@@ -1,7 +1,7 @@
 ---
-name: Code Review Graph
+name: code-review-graph
 link: https://github.com/tirth8205/code-review-graph
-category: Programming
-tags: [knowledge-graph, python, static-analysis, code-review, llm, 2026-03-17]
-description: Local knowledge graph for Claude Code that builds a persistent map of your codebase to reduce tokens in reviews and daily tasks.
+category: Developer Tool
+tags: [knowledge-graph, code-review, claude-code, static-analysis, python, 2026-04-29]
+description: Builds persistent codebase knowledge graphs for AI assistants to optimize context and reduce token usage.
 ---
