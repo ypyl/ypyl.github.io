@@ -83,7 +83,9 @@
   --text-secondary: #d5d3c8;
   --text-tertiary:  #b0aea4;
   --text-muted:     #8a8880;
-  --link:           #6b9ecf;
+  --brand:       #6b9ecf;
+  --brand-light: #8ab4e0;
+  --link:           var(--brand);
   --link-hover:     #e8e6dc;
   --border-color:   #40403c;
   --border-soft:    #383834;
