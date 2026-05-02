@@ -1,55 +1,95 @@
+/* ==========================================================================
+   Tools Page — Kami Design System
+   ========================================================================== */
+
 .tool-category {
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-2xl);
+}
+
+.tool-category h2 {
+  font-family: var(--serif);
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .tool-list {
   list-style: none;
   padding: 0;
   display: grid;
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
 }
 
 .tool {
-  padding: 1rem;
-  border: 1px solid #eee;
+  padding: var(--space-lg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  background: #fafafa;
+  background: var(--surface);
+  box-shadow: var(--whisper);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tool:hover {
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .tool a {
-  font-weight: 600;
+  font-family: var(--serif);
+  font-weight: 500;
   font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.tool a:hover {
+  color: var(--brand);
   text-decoration: none;
 }
 
 .tool p {
-  margin: 0.5rem 0;
-  color: #555;
+  margin: var(--space-sm) 0 var(--space-md) 0;
+  color: var(--text-tertiary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 6px;
 }
 
 .tag {
-  font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  background: #eaeaea;
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 2px;
+  background: var(--tag-bg);
+  color: var(--brand);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
 }
 
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
+  gap: 6px;
   line-height: 1;
+  margin-top: var(--space-md);
 }
 
 .tag-cloud .tag {
   display: inline-block;
-  padding: 0.2rem 0.4rem;
-  margin: 0.1rem;
+  padding: 4px 10px;
+  margin: 0;
   white-space: nowrap;
+  font-size: 0.75rem;
+  border-radius: 4px;
 }

@@ -1,9 +1,847 @@
----
----
+/* ==========================================================================
+   Kami Design System Overrides for Minima
+   Warm parchment, serif hierarchy, ink-blue accent
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Surfaces */
+  --parchment:    #f5f4ed;
+  --ivory:        #faf9f5;
+  --warm-sand:    #e8e6dc;
+  --dark-surface: #30302e;
+  --deep-dark:    #141413;
+
+  /* Brand */
+  --brand:       #1B365D;
+  --brand-light: #2D5A8A;
+
+  /* Text */
+  --near-black:  #141413;
+  --dark-warm:   #3d3d3a;
+  --olive:       #504e49;
+  --stone:       #6b6a64;
+
+  /* Borders */
+  --border:      #e8e6dc;
+  --border-soft: #e5e3d8;
+
+  /* Tag tints (solid hex, never rgba) */
+  --tag-bg:      #E4ECF5;
+  --tag-bg-light:#EEF2F7;
+
+  /* Shadows */
+  --whisper:     0 4px 24px rgba(0, 0, 0, 0.05);
+  --ring:        0 0 0 1px var(--border);
+
+  /* Typography */
+  --serif:       Charter, Georgia, Palatino, "Times New Roman", serif;
+  --sans:        -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono:        "JetBrains Mono", "SF Mono", "Fira Code", Consolas, Monaco, monospace;
+
+  /* Spacing base */
+  --space-xs:    4px;
+  --space-sm:    8px;
+  --space-md:    16px;
+  --space-lg:    24px;
+  --space-xl:    32px;
+  --space-2xl:   48px;
+
+  /* Applied tokens (light mode defaults) */
+  --bg:          var(--parchment);
+  --surface:     var(--ivory);
+  --text:        var(--near-black);
+  --text-secondary: var(--dark-warm);
+  --text-tertiary:  var(--olive);
+  --text-muted:     var(--stone);
+  --link:           var(--brand);
+  --link-hover:     var(--dark-warm);
+  --border-color:   var(--border);
+  --code-bg:        var(--ivory);
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --bg:          var(--deep-dark);
+  --surface:     var(--dark-surface);
+  --text:        #e8e6dc;
+  --text-secondary: #d5d3c8;
+  --text-tertiary:  #b0aea4;
+  --text-muted:     #8a8880;
+  --link:           #6b9ecf;
+  --link-hover:     #e8e6dc;
+  --border-color:   #40403c;
+  --code-bg:        #252523;
+  --tag-bg:         #1f3350;
+  --tag-bg-light:   #1a2d47;
+  --whisper:        0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Reset & Typography
+   -------------------------------------------------------------------------- */
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+     -moz-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* No italic anywhere */
+em, i, .italic, cite, dfn {
+  font-style: normal;
+}
+
+/* Serif weight locked at 500 for headings, 400 for body */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--serif);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.2;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+h1 { font-size: 2rem; line-height: 1.15; }
+h2 { font-size: 1.625rem; line-height: 1.2; }
+h3 { font-size: 1.375rem; line-height: 1.25; }
+h4 { font-size: 1.125rem; line-height: 1.3; }
+h5 { font-size: 1rem; line-height: 1.3; }
+h6 { font-size: 0.9375rem; line-height: 1.3; }
+
+p, ul, ol, dl, figure {
+  margin-bottom: var(--space-md);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:visited {
+  color: var(--link);
+}
+
+strong, b {
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout Overrides (Minima)
+   -------------------------------------------------------------------------- */
 
 .wrapper {
-  width: 100%;
-  max-width: clamp(900px, 75vw, 1300px);
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 var(--space-lg);
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    padding: 0 var(--space-md);
+  }
+}
+
+/* Header */
+.site-header {
+  position: relative;
+  min-height: 56px;
+  line-height: 56px;
+  background-color: var(--bg);
+  border-top: none;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.site-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-bottom: 0;
+  float: left;
+  color: var(--text);
+}
+
+.site-title,
+.site-title:visited {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-title:hover {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+/* Navigation */
+.site-nav {
+  float: right;
+  border: none;
+  background-color: transparent;
+}
+
+.site-nav .page-link,
+.site-nav .nav-item {
+  color: var(--text-secondary);
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 56px;
+  margin-left: var(--space-md);
+}
+
+.site-nav .page-link:hover,
+.site-nav .nav-item:hover {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+/* Mobile nav hamburger */
+.site-nav .menu-icon > svg path {
+  fill: var(--text-muted);
+}
+
+@media screen and (max-width: 600px) {
+  .site-nav {
+    position: absolute;
+    top: 9px;
+    right: var(--space-md);
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-align: right;
+  }
+
+  .site-nav .page-link {
+    display: block;
+    margin-left: 0;
+    padding: 5px 10px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+}
+
+/* Page content */
+.page-content {
+  padding: var(--space-xl) 0;
+  flex: 1 0 auto;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border-color);
+  padding: var(--space-xl) 0;
+  background-color: var(--bg);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-col-wrapper,
+.social-links {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+.footer-col-wrapper a,
+.social-links a {
+  color: var(--text-secondary);
+}
+
+.footer-col-wrapper a:hover,
+.social-links a:hover {
+  color: var(--brand);
+}
+
+.contact-list,
+.social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.footer-col {
+  margin-bottom: var(--space-md);
+}
+
+/* --------------------------------------------------------------------------
+   4. Post List (Home page)
+   -------------------------------------------------------------------------- */
+
+.post-list {
+  margin-left: 0;
+  list-style: none;
+}
+
+.post-list > li {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-list > li:last-child {
+  border-bottom: none;
+}
+
+.post-link {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: var(--space-xs);
+}
+
+.post-link:hover {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.post-meta {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   5. Post Content
+   -------------------------------------------------------------------------- */
+
+.post-header {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-title,
+.post-content h1 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0;
+  color: var(--text);
+  margin-bottom: var(--space-sm);
+}
+
+.post-content {
+  margin-bottom: var(--space-xl);
+}
+
+.post-content h2 {
+  font-size: 1.5rem;
+  margin-top: var(--space-2xl);
+}
+
+.post-content h3 {
+  font-size: 1.25rem;
+  margin-top: var(--space-xl);
+}
+
+.post-content h4 {
+  font-size: 1.125rem;
+  margin-top: var(--space-xl);
+}
+
+.post-content img {
+  max-width: 100%;
+  vertical-align: middle;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Blockquotes
+   -------------------------------------------------------------------------- */
+
+blockquote {
+  color: var(--olive);
+  border-left: 3px solid var(--brand);
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-md);
+  font-size: 1rem;
+  line-height: 1.55;
+  background-color: transparent;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. Code
+   -------------------------------------------------------------------------- */
+
+pre,
+code {
+  font-family: var(--mono);
+  background-color: var(--code-bg);
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+code {
+  padding: 2px 6px;
+  border: 1px solid var(--border-color);
+}
+
+pre {
+  padding: var(--space-md);
+  line-height: 1.5;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+}
+
+pre > code {
+  display: block;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.highlight {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-bottom: var(--space-md);
+}
+
+.highlight pre {
+  margin: 0;
+  border: none;
+}
+
+/* --------------------------------------------------------------------------
+   8. Tables
+   -------------------------------------------------------------------------- */
+
+table {
+  width: 100%;
+  margin-bottom: var(--space-md);
+  text-align: left;
+  color: var(--text-secondary);
+  border-collapse: collapse;
+  border: 1px solid var(--border-color);
+  font-size: 0.9375rem;
+}
+
+table th,
+table td {
+  padding: 10px 14px;
+}
+
+table th {
+  font-weight: 500;
+  color: var(--text);
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+}
+
+table td {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+table tr:nth-child(even) {
+  background-color: var(--surface);
+}
+
+/* --------------------------------------------------------------------------
+   9. Horizontal Rule
+   -------------------------------------------------------------------------- */
+
+hr {
+  margin: var(--space-2xl) 0;
+  border: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+/* --------------------------------------------------------------------------
+   10. Lists
+   -------------------------------------------------------------------------- */
+
+ul, ol {
+  padding-left: var(--space-lg);
+  line-height: 1.55;
+}
+
+ul li::marker {
+  color: var(--brand);
+}
+
+/* --------------------------------------------------------------------------
+   11. News Grid (Home page)
+   -------------------------------------------------------------------------- */
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-md) 0;
+}
+
+.news-card {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  box-shadow: var(--whisper);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card:hover {
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.news-card h3 {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.news-card h3 a {
+  color: var(--text);
+}
+
+.news-card h3 a:hover {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.news-card .post-meta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.news-card p {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  margin: 0;
+  flex: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. Dark Mode Toggle
+   -------------------------------------------------------------------------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin-left: var(--space-md);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--brand);
+  border-color: var(--brand);
+  background-color: var(--surface);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.theme-toggle .sun-icon {
+  display: none;
+}
+
+.theme-toggle .moon-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+  display: none;
+}
+
+.theme-toggle .sun-icon circle,
+.theme-toggle .sun-icon line {
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.theme-toggle .sun-icon circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Position toggle next to nav on desktop */
+.theme-toggle {
+  float: right;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .theme-toggle {
+    float: none;
+    position: absolute;
+    top: 10px;
+    right: 55px;
+    margin-top: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Syntax Highlighting (Rouge) — Kami Palette
+   No italic, no bold > 500
+   -------------------------------------------------------------------------- */
+
+.highlight .c,
+.highlight .cm,
+.highlight .cp,
+.highlight .c1,
+.highlight .cs {
+  color: var(--text-muted);
+}
+
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt {
+  color: var(--brand);
+}
+
+.highlight .n,
+.highlight .na,
+.highlight .nb,
+.highlight .nc,
+.highlight .no,
+.highlight .ni,
+.highlight .ne,
+.highlight .nf,
+.highlight .nn,
+.highlight .nt,
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi {
+  color: var(--text);
+}
+
+.highlight .s,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .s2,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .s1,
+.highlight .sr,
+.highlight .ss {
+  color: #7a6a4a;
+}
+
+[data-theme="dark"] .highlight .s,
+[data-theme="dark"] .highlight .s1,
+[data-theme="dark"] .highlight .s2 {
+  color: #baa94a;
+}
+
+.highlight .m,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .il {
+  color: var(--text-secondary);
+}
+
+.highlight .o,
+.highlight .ow {
+  color: var(--text-secondary);
+}
+
+.highlight .gd {
+  color: #c44;
+}
+
+.highlight .gi {
+  color: #3a3;
+}
+
+.highlight .gh,
+.highlight .gp,
+.highlight .gu {
+  color: var(--text-muted);
+}
+
+.highlight .err {
+  color: #c44;
+  background-color: transparent;
+}
+
+.highlight .w {
+  color: var(--text-muted);
+}
+
+/* Remove all italic and heavy bold from syntax highlighting */
+.highlight .c,
+.highlight .cm,
+.highlight .cp,
+.highlight .c1,
+.highlight .cs,
+.highlight .ge {
+  font-style: normal;
+}
+
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt,
+.highlight .ow,
+.highlight .gs {
+  font-weight: 500;
+}
+
+.highlight .lineno,
+.highlight .gl {
+  color: var(--text-muted);
+  text-align: right;
+  padding-right: var(--space-sm);
+  border-right: 1px solid var(--border-color);
+  margin-right: var(--space-sm);
+}
+
+/* --------------------------------------------------------------------------
+   14. RSS Subscribe
+   -------------------------------------------------------------------------- */
+
+.rss-subscribe {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: var(--space-xl);
+}
+
+.rss-subscribe a {
+  color: var(--brand);
+}
+
+/* --------------------------------------------------------------------------
+   15. Social & Pagination
+   -------------------------------------------------------------------------- */
+
+.social-media-list li a {
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.social-media-list li a:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.pagination li a,
+.pagination li div {
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.pagination li a:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.pagination li div.current-page {
+  font-weight: 500;
+  color: var(--brand);
+  border-color: var(--brand);
+}
+
+/* --------------------------------------------------------------------------
+   16. Task Lists
+   -------------------------------------------------------------------------- */
+
+.task-list-item-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-right: var(--space-sm);
+  cursor: pointer;
+  background-color: var(--surface);
+}
+
+.task-list-item-checkbox:checked {
+  background-color: var(--brand);
+  border-color: var(--brand);
+  position: relative;
+}
+
+.task-list-item-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--ivory);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
