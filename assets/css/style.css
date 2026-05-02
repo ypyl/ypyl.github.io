@@ -4,7 +4,19 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Design Tokens
+   1. Font Faces
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2. Design Tokens
    -------------------------------------------------------------------------- */
 
 :root {
@@ -74,6 +86,7 @@
   --link:           #6b9ecf;
   --link-hover:     #e8e6dc;
   --border-color:   #40403c;
+  --border-soft:    #383834;
   --code-bg:        #252523;
   --tag-bg:         #1f3350;
   --tag-bg-light:   #1a2d47;
@@ -399,33 +412,39 @@ pre,
 code {
   font-family: var(--mono);
   background-color: var(--code-bg);
-  border-radius: 4px;
-  font-size: 0.875rem;
+  font-size: 0.75rem;   /* 9pt ≈ 12px */
+  line-height: 1.5;
 }
 
+/* Inline code */
 code {
   padding: 2px 6px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
 }
 
+/* Code blocks */
 pre {
-  padding: var(--space-md);
-  line-height: 1.5;
+  padding: 13px 19px;   /* 10pt 14pt equivalent */
   overflow-x: auto;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;   /* 6pt equivalent */
 }
 
 pre > code {
   display: block;
   padding: 0;
   border: none;
+  border-radius: 0;
   background-color: transparent;
+  font-size: inherit;
 }
 
+/* Rouge / Jekyll highlight wrapper */
 .highlight {
   background-color: var(--code-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
   margin-bottom: var(--space-md);
 }
 
