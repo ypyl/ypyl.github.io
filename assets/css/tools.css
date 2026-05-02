@@ -2,32 +2,49 @@
    Tools Page — Kami Design System
    ========================================================================== */
 
-/* Search */
+/* Search — editorial underline style */
 .tools-search {
+  position: relative;
   margin-bottom: var(--space-2xl);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  border-bottom: 2px solid var(--border-color);
+  transition: border-color 0.3s ease;
+}
+
+.tools-search:focus-within {
+  border-bottom-color: var(--brand);
+}
+
+.tools-search .search-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.tools-search:focus-within .search-icon {
+  color: var(--brand);
 }
 
 .tools-search input {
-  width: 100%;
-  max-width: 480px;
-  padding: 10px 16px;
-  font-family: var(--sans);
-  font-size: 0.9375rem;
+  flex: 1;
+  padding: var(--space-md) 0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
   color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  background: transparent;
+  border: none;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  line-height: 1.2;
 }
 
 .tools-search input::placeholder {
   color: var(--text-muted);
-}
-
-.tools-search input:focus {
-  border-color: var(--brand);
-  box-shadow: 0 0 0 1px var(--brand);
+  font-weight: 400;
 }
 
 /* No results message */
