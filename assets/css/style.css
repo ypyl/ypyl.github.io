@@ -411,8 +411,9 @@ blockquote > :last-child {
 pre,
 code {
   font-family: var(--mono);
+  color: var(--text);           /* override minima's hardcoded #111 */
   background-color: var(--code-bg);
-  font-size: 0.75rem;   /* 9pt ≈ 12px */
+  font-size: 0.75rem;           /* 9pt ≈ 12px */
   line-height: 1.5;
 }
 
@@ -423,12 +424,20 @@ code {
   border-radius: 4px;
 }
 
+/* Jekyll's inline code wrapper */
+code.highlighter-rouge {
+  color: var(--text);
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-soft);
+}
+
 /* Code blocks */
 pre {
-  padding: 13px 19px;   /* 10pt 14pt equivalent */
+  padding: 13px 19px;           /* 10pt 14pt equivalent */
   overflow-x: auto;
   border: 1px solid var(--border-soft);
-  border-radius: 8px;   /* 6pt equivalent */
+  border-radius: 8px;           /* 6pt equivalent */
+  color: var(--text);           /* ensure visibility in dark mode */
 }
 
 pre > code {
@@ -438,17 +447,20 @@ pre > code {
   border-radius: 0;
   background-color: transparent;
   font-size: inherit;
+  color: inherit;               /* let pre control the color */
 }
 
 /* Rouge / Jekyll highlight wrapper */
-.highlight {
+.highlight,
+.highlighter-rouge .highlight {
   background-color: var(--code-bg);
   border: 1px solid var(--border-soft);
   border-radius: 8px;
   margin-bottom: var(--space-md);
 }
 
-.highlight pre {
+.highlight pre,
+.highlighter-rouge .highlight pre {
   margin: 0;
   border: none;
 }
