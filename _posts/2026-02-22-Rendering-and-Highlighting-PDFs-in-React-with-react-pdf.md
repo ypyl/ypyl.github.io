@@ -6,8 +6,6 @@ tags: react pdf pdfjs ocr highlighting document-viewer frontend
 categories: programming web development
 ---
 
-# Rendering and Highlighting PDFs in React with react-pdf
-
 ## Overview
 
 There are two fundamentally different PDF use cases in web applications:
