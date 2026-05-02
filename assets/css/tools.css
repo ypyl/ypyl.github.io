@@ -7,7 +7,7 @@
   position: relative;
   margin-bottom: var(--space-2xl);
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--space-sm);
   border-bottom: 2px solid var(--border-color);
   transition: border-color 0.3s ease;
@@ -31,7 +31,7 @@
 
 .tools-search input {
   flex: 1;
-  padding: var(--space-md) 0;
+  padding: var(--space-sm) 0;
   font-family: var(--serif);
   font-size: 1.5rem;
   font-weight: 500;
