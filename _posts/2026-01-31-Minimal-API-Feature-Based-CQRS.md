@@ -6,8 +6,6 @@ tags: dotnet minimal api asp net core feature-based cqrs architecture
 categories: programming backend spa
 ---
 
-# Architecture Instructions – ASP.NET Core Minimal API (Feature-Based CQRS)
-
 ## 1. Architectural Style
 
 * Use **feature-based architecture**.
