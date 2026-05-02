@@ -1,4 +1,7 @@
-<li class="tool">
+<li class="tool"
+    data-tool-name="{{ include.tool.name | downcase }}"
+    data-tool-desc="{{ include.tool.description | downcase }}"
+    data-tool-tags="{% for tag in include.tool.tags %}{{ tag | downcase }} {% endfor %}">
   <a href="{{ include.tool.link }}" target="_blank">
     {{ include.tool.name }}
   </a>

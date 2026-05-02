@@ -2,32 +2,120 @@
 layout: default
 ---
 
-{% assign tools_sorted = site.tools | sort: "name" %} {% assign tools_by_category = tools_sorted | group_by: "category"
-%} {% for group in tools_by_category %}
-<section class="tool-category">
-  <h2>{{ group.name }}</h2>
+<div class="tools-page">
 
-  <ul class="tool-list">
-    {% for tool in group.items %} {% include tool-item.html tool=tool %} {% endfor %}
-  </ul>
-</section>
-{% endfor %}
+  <div class="tools-search">
+    <input
+      type="text"
+      id="tools-search-input"
+      placeholder="Search tools by name, description, or tag..."
+      aria-label="Search tools"
+      autocomplete="off"
+    />
+  </div>
 
-<br />
+  {% assign tools_sorted = site.tools | sort: "name" %}
+  {% assign tools_by_category = tools_sorted | group_by: "category" %}
 
-<h2>Tag Cloud</h2>
-<br />
+  <div id="tools-categories">
+    {% for group in tools_by_category %}
+    <section class="tool-category" data-category="{{ group.name }}">
+      <h2>{{ group.name }}</h2>
 
-{% assign all_tags = "" | split: "" %} {% for tool in site.tools %} {% if tool.tags %} {% for t in tool.tags %} {%
-assign all_tags = all_tags | push: t %} {% endfor %} {% endif %} {% endfor %} {% assign tag_cloud = all_tags |
-group_by_exp: "tag", "tag" %} {% assign min_count = 999999 %} {% assign max_count = 0 %} {% for tag in tag_cloud
-%} {% assign count = tag.items | size %} {% if count < min_count %} {% assign min_count = count %} {% endif %} {% if
-count > max_count %} {% assign max_count = count %} {% endif %} {% endfor %}
+      <ul class="tool-list">
+        {% for tool in group.items %}
+          {% include tool-item.html tool=tool %}
+        {% endfor %}
+      </ul>
+    </section>
+    {% endfor %}
+  </div>
 
-<div class="tag-cloud">
-  {% for tag in tag_cloud %} {% assign count = tag.items | size %} {% assign range = max_count | minus: min_count %} {%
-  if range == 0 %} {% assign font_size = 1.0 %} {% else %} {% assign normalized = count | minus: min_count | times: 1.0
-  | divided_by: range %} {% assign font_size = normalized | times: 1.2 | plus: 0.8 %} {% endif %}
-  <span class="tag" style="font-size: {{ font_size }}rem;"> {{ tag.name }} ({{ count }}) </span>
+  <div id="tools-no-results" class="tools-no-results" style="display: none;">
+    <p>No tools match your search.</p>
+  </div>
+
+  <br />
+
+  <h2>Tag Cloud</h2>
+  <br />
+
+  {% assign all_tags = "" | split: "" %}
+  {% for tool in site.tools %}
+    {% if tool.tags %}
+      {% for t in tool.tags %}
+        {% assign all_tags = all_tags | push: t %}
+      {% endfor %}
+    {% endif %}
   {% endfor %}
+
+  {% assign tag_cloud = all_tags | group_by_exp: "tag", "tag" %}
+  {% assign min_count = 999999 %}
+  {% assign max_count = 0 %}
+  {% for tag in tag_cloud %}
+    {% assign count = tag.items | size %}
+    {% if count < min_count %}
+      {% assign min_count = count %}
+    {% endif %}
+    {% if count > max_count %}
+      {% assign max_count = count %}
+    {% endif %}
+  {% endfor %}
+
+  <div class="tag-cloud">
+    {% for tag in tag_cloud %}
+      {% assign count = tag.items | size %}
+      {% assign range = max_count | minus: min_count %}
+      {% if range == 0 %}
+        {% assign font_size = 1.0 %}
+      {% else %}
+        {% assign normalized = count | minus: min_count | times: 1.0 | divided_by: range %}
+        {% assign font_size = normalized | times: 1.2 | plus: 0.8 %}
+      {% endif %}
+      <span class="tag" style="font-size: {{ font_size }}rem;">{{ tag.name }} ({{ count }})</span>
+    {% endfor %}
+  </div>
+
+  <script>
+    (function() {
+      var input = document.getElementById('tools-search-input');
+      var categoriesContainer = document.getElementById('tools-categories');
+      var noResults = document.getElementById('tools-no-results');
+
+      if (!input || !categoriesContainer) return;
+
+      input.addEventListener('input', function() {
+        var query = input.value.trim().toLowerCase();
+        var categories = categoriesContainer.querySelectorAll('.tool-category');
+        var anyVisible = false;
+
+        categories.forEach(function(category) {
+          var tools = category.querySelectorAll('.tool');
+          var categoryHasVisible = false;
+
+          tools.forEach(function(tool) {
+            var name = tool.getAttribute('data-tool-name') || '';
+            var desc = tool.getAttribute('data-tool-desc') || '';
+            var tags = tool.getAttribute('data-tool-tags') || '';
+            var match = name.indexOf(query) !== -1 ||
+                        desc.indexOf(query) !== -1 ||
+                        tags.indexOf(query) !== -1;
+
+            if (match || query === '') {
+              tool.style.display = '';
+              categoryHasVisible = true;
+              anyVisible = true;
+            } else {
+              tool.style.display = 'none';
+            }
+          });
+
+          category.style.display = categoryHasVisible ? '' : 'none';
+        });
+
+        noResults.style.display = anyVisible ? 'none' : 'block';
+      });
+    })();
+  </script>
+
 </div>

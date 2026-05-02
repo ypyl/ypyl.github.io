@@ -2,6 +2,43 @@
    Tools Page — Kami Design System
    ========================================================================== */
 
+/* Search */
+.tools-search {
+  margin-bottom: var(--space-2xl);
+}
+
+.tools-search input {
+  width: 100%;
+  max-width: 480px;
+  padding: 10px 16px;
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tools-search input::placeholder {
+  color: var(--text-muted);
+}
+
+.tools-search input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 1px var(--brand);
+}
+
+/* No results message */
+.tools-no-results {
+  text-align: center;
+  padding: var(--space-2xl) 0;
+  color: var(--text-muted);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+}
+
 .tool-category {
   margin-bottom: var(--space-2xl);
 }
