@@ -53,6 +53,7 @@ optimizer_state = {
 ---
 
 ## Summary Table
+
 | Concept          | Contains                               | Purpose                              | Saved by                |
 |------------------|----------------------------------------|--------------------------------------|------------------------|
 | **Weights**      | Learned tensors (including bias)       | Run the model (inference)            | `save_weights_for_sampler()` |
