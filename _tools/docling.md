@@ -1,7 +1,7 @@
 ---
 name: Docling
-link: https://github.com/docling-project/docling
+link: https://github.com/DS4SD/docling
 category: Document Management
-tags: [document-parsing, document-analysis, pdf, ai, 2026-03-10]
-description: Simplifies document processing and parsing across formats with advanced pdf understanding and gen ai integrations.
+tags: [python, document-parsing, pdf, ai, 2026-05-03]
+description: Simplifies document processing and parsing for generative AI with support for multiple formats and advanced PDF understanding.
 ---
