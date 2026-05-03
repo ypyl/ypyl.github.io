@@ -132,6 +132,7 @@ Use **`/init`** to scan project and generate configuration files automatically.
 Skills are folders with instructions, scripts, and resources that Copilot auto-loads when relevant.
 
 **Skills vs Agents:**
+
 | Feature | What It Does | When to Use |
 |---------|-------------|-------------|
 | Agents | Changes how AI thinks | Need specialized expertise across many tasks |
