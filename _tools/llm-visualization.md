@@ -1,7 +1,7 @@
 ---
 name: LLM Visualization
 link: https://bbycroft.net/llm
-category: AI
-tags: [visualization, large-language-models, tutorial, openai, 2026-02-27]
-description: Visualization and walkthrough of the LLM algorithm behind OpenAI's ChatGPT showing the process in detail.
+category: Visualization
+tags: [visualization, llm, education, interactive, transformer, gpt, open-source, javascript, typescript, 2026-05-03]
+description: 3D interactive visualization and walkthrough of the GPT-style LLM algorithm, showing every operation down to each add and multiply.
 ---
