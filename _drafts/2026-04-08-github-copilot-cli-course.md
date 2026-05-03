@@ -1,6 +1,7 @@
 ---
 title: GitHub Copilot CLI - First Impressions
-date: 2026-04-08
+date: 2026-05-03
+layout: post
 tags: github, copilot, ai, cli, learning
 categories: programming
 ---
@@ -38,6 +39,18 @@ Fourth mode accessed via Shift+Tab. Copilot executes an entire plan without paus
 ```bash
 copilot --autopilot --yolo --max-autopilot-continues 10 -p "YOUR PROMPT HERE"
 ```
+
+## Context and Conversations
+
+- **File references**: Use `@` to reference files, `@folder/` for all files in a folder
+- **Wildcards**: `@folder/*.py` for all in folder, `@**/test_*.py` recursive; `@image.png` for images
+- **Sessions auto-save**: `copilot --continue` to resume last session, `copilot --resume` to pick from list
+- **Switch session without restart**: `/resume` inside active session
+- **Rename session**: `/rename new-name` for easier identification later
+- **Context management**: `/context` shows token usage; `/new` saves and starts fresh, `/clear` discards; `/rewind` rolls back
+- **Session info**: `/session` shows workspace summary, `/usage` shows metrics
+- **Access outside cwd**: Use `/add-dir /path/to/directory` to grant access if "Permission denied" or "File not found"
+- **Share session**: `/share file|gist|html` exports session as markdown, gist, or interactive HTML
 
 ## Essential Slash Commands
 
@@ -120,12 +133,11 @@ Use **`/init`** to scan project and generate configuration files automatically.
 
 Skills are folders with instructions, scripts, and resources that Copilot auto-loads when relevant.
 
-**Skills vs Agents vs MCP:**
+**Skills vs Agents:**
 | Feature | What It Does | When to Use |
 |---------|-------------|-------------|
 | Agents | Changes how AI thinks | Need specialized expertise across many tasks |
 | Skills | Provides task-specific instructions | Specific, repeatable tasks with detailed steps |
-| MCP | Connects external services | Need live data from APIs |
 
 **`/skills` commands:**
 - `/skills list` - Show all installed skills
@@ -167,22 +179,6 @@ MCP connects Copilot to external services (GitHub, filesystem, documentation). S
 
 **Closed source, but open SDKs**: The Copilot CLI itself is closed source, but GitHub provides [open-source SDKs](https://github.com/github/copilot-sdk) that allow programmatic access to Copilot in custom applications.
 
-## Context and Conversations
-
-- **File references**: Use `@` to reference files, `@folder/` for all files in a folder
-- **Wildcards**: `@folder/*.py` for all in folder, `@**/test_*.py` recursive; `@image.png` for images
-- **Sessions auto-save**: `copilot --continue` to resume last session, `copilot --resume` to pick from list
-- **Switch session without restart**: `/resume` inside active session
-- **Rename session**: `/rename new-name` for easier identification later
-- **Context management**: `/context` shows token usage; `/new` saves and starts fresh, `/clear` discards; `/rewind` rolls back
-- **Session info**: `/session` shows workspace summary, `/usage` shows metrics
-- **Access outside cwd**: Use `/add-dir /path/to/directory` to grant access if "Permission denied" or "File not found"
-- **Share session**: `/share file|gist|html` exports session as markdown, gist, or interactive HTML
-
 ## Resources
 
-- [Official GitHub Copilot CLI documentation](https://docs.github.com/en/copilot/how-tos/copilot-cli)
-- [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference)
-- [Course repo](https://github.com/github/copilot-cli-for-beginners/tree/main)
-- [Awesome Copilot](https://github.com/github/awesome-copilot) - Community skills, agents, and resources
-- [AgentSkills](https://agentskills.io/home) - Skills overview and specification
+[Official GitHub Copilot CLI documentation](https://docs.github.com/en/copilot/how-tos/copilot-cli) · [Command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) · [Course repo](https://github.com/github/copilot-cli-for-beginners/tree/main)
