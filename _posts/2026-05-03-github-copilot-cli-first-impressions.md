@@ -8,8 +8,6 @@ categories: programming
 
 Started going through the [GitHub Copilot CLI for Beginners](https://github.com/github/copilot-cli-for-beginners/tree/main) course. Here are my notes so far.
 
-<!--more-->
-
 ## Three Interaction Modes
 
 | Mode | When to Use |
