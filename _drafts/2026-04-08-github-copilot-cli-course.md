@@ -138,6 +138,31 @@ Find skills at [agentskills.io](https://agentskills.io/home) and [Awesome Copilo
 
 **Plugins** are installable packages that bundle skills, agents, and MCP server configurations together - like an "app store" for Copilot CLI extensions.
 
+## MCP (Model Context Protocol)
+
+MCP connects Copilot to external services (GitHub, filesystem, documentation). Servers are configured in `~/.copilot/mcp-config.json`.
+
+**`/mcp` commands:**
+- `/mcp show` - List available MCP servers
+- `/mcp search <term>` - Search for servers by keyword
+
+## Combining Tools
+
+**Integration pattern**: Context (MCP) → Analyze (Agents) → Execute (Skills) → Complete (MCP).
+
+| Tool | Sweet Spot | Activation |
+|------|-----------|------------|
+| Agents | Specialized expertise | Explicit via `/agent` |
+| Skills | Task-specific instructions | Auto when prompt matches |
+| MCP | Live data from external services | Always available |
+
+**Key insight**: You don't need agents, skills, or MCP to be productive. Core workflow (describe → plan → implement → test → review → ship) works with built-in features alone.
+
+**Session tips**:
+- One feature per session, rename with `/rename`
+- Start with context before analysis
+- Use `/review` before committing
+
 ## Worth Knowing
 
 **Closed source, but open SDKs**: The Copilot CLI itself is closed source, but GitHub provides [open-source SDKs](https://github.com/github/copilot-sdk) that allow programmatic access to Copilot in custom applications.
