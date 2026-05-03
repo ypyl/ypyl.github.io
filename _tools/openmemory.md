@@ -1,7 +1,7 @@
 ---
 name: OpenMemory
-link: https://openmemory.cavira.app
-category: AI Agents
-tags: [ai-memory, vector-database, long-term-memory, rag, 2026-03-05]
-description: Local persistent memory store for LLM applications supporting embeddings and memory retrieval.
+link: https://github.com/CaviraOSS/OpenMemory
+category: AI
+tags: [memory, ai-memory, llm, open-source, self-hosted, 2026-05-02]
+description: Cognitive memory engine for LLMs and agents with multi-sector storage and temporal reasoning.
 ---

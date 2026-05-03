@@ -1,7 +1,7 @@
 ---
 name: dots.ocr
 link: https://github.com/rednote-hilab/dots.ocr
-category: AI
-tags: [multilingual, document-parsing, ocr, vision-language-model, svg, 2026-03-14]
-description: Multilingual document layout parsing and structured graphic conversion in a single vision-language model.
+category: Developer Tool
+tags: [ocr, document-parsing, vlm, vision-language, python, open-source, multilingual, 2026-05-03]
+description: Multilingual Document Layout Parsing in a Single Vision-Language Model.
 ---
