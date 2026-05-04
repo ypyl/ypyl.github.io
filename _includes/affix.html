@@ -1,0 +1,31 @@
+<!-- Scroll-to-top affix button -->
+<button id="affix-top" class="affix-button" aria-label="Scroll to top" title="Scroll to top" style="opacity:0;pointer-events:none;">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<script>
+(function() {
+  var btn = document.getElementById('affix-top');
+  if (!btn) return;
+
+  var threshold = 200;
+  var shown = false;
+
+  function onScroll() {
+    var shouldShow = window.scrollY > threshold;
+    if (shouldShow === shown) return;
+    shown = shouldShow;
+    btn.style.opacity = shouldShow ? '1' : '0';
+    btn.style.pointerEvents = shouldShow ? 'auto' : 'none';
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // initial check
+
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>

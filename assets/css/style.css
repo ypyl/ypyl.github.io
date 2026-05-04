@@ -878,3 +878,58 @@ ul li::marker {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+/* --------------------------------------------------------------------------
+   17. Affix — Scroll to top button
+   -------------------------------------------------------------------------- */
+
+.affix-button {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 100;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+
+  background-color: var(--brand);
+  color: var(--ivory);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  box-shadow: var(--ring), var(--whisper);
+  transition: opacity 0.25s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.affix-button:hover {
+  background-color: var(--brand-light);
+  transform: translateY(-2px);
+}
+
+.affix-button:active {
+  transform: translateY(0);
+}
+
+.affix-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .affix-button {
+    bottom: var(--space-md);
+    right: var(--space-md);
+    width: 44px;
+    height: 44px;
+  }
+
+  .affix-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
