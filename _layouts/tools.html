@@ -12,6 +12,7 @@ layout: default
       aria-label="Search tools"
       autocomplete="off"
     />
+    <button type="button" id="tools-search-clear" class="tools-search-clear" aria-label="Clear search" title="Clear search">&times;</button>
   </div>
 
   {% assign tools_sorted = site.tools | sort: "name" %}
@@ -43,7 +44,9 @@ layout: default
 
       if (!input || !categoriesContainer) return;
 
-      input.addEventListener('input', function() {
+      var clearBtn = document.getElementById('tools-search-clear');
+
+      function filterTools() {
         var query = input.value.trim().toLowerCase();
         var categories = categoriesContainer.querySelectorAll('.tool-category');
         var anyVisible = false;
@@ -73,7 +76,23 @@ layout: default
         });
 
         noResults.style.display = anyVisible ? 'none' : 'block';
-      });
+
+        if (clearBtn) {
+          clearBtn.style.display = query === '' ? 'none' : '';
+        }
+      }
+
+      input.addEventListener('input', filterTools);
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+          input.value = '';
+          input.focus();
+          filterTools();
+        });
+      }
+
+      filterTools();
     })();
   </script>
 

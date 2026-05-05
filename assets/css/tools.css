@@ -35,6 +35,23 @@
   font-weight: 400;
 }
 
+.tools-search-clear {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: var(--space-sm);
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.tools-search-clear:hover {
+  color: var(--text);
+}
+
 /* No results message */
 .tools-no-results {
   text-align: center;
