@@ -37,6 +37,8 @@ description: One-line description.
 
 ### Valid Categories
 
+New categories can be added when a tool doesn't fit any existing one — keep them broad enough to group related tools.
+
 | Category | Use for |
 |----------|---------|
 | AI Agent Framework | Frameworks/SDKs for building AI agents |
@@ -63,6 +65,8 @@ description: One-line description.
 | UI Component | UI component libraries and frameworks |
 
 ### Tag Guidelines
+
+Create new tags freely when they describe a meaningful aspect of the tool (e.g., a technology, domain, or capability).
 
 - Use lowercase, hyphenated tags (e.g., `machine-learning`, `web-scraping`)
 - Do not include dates — they belong in the filename/frontmatter `date` field
