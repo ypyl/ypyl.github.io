@@ -1,7 +1,7 @@
 ---
-name: Midscene
-link: https://github.com/web-infra-dev/midscene
+name: Midscene.js
+link: https://midscenejs.com/
 category: Automation
-tags: [javascript, testing, ai, browser-automation, 2026-03-01]
-description: Vision-based model driving cross-platform UI automation for testing and control.
+tags: [javascript, testing, ai, browser-automation, cross-platform, 2026-05-03]
+description: AI-powered, vision-driven UI automation for web, desktop, and mobile platforms using natural language.
 ---

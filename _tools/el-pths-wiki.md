@@ -1,7 +1,7 @@
 ---
 name: El-Pths Wiki
 link: https://github.com/el-pths/w
-category: Learning
+category: Learning Resource
 tags: [electronics, wiki, open-source, 2026-05-03]
 description: Wiki related files for Electronics in PTHS Wiki (schematics, drawings, and images).
 ---
