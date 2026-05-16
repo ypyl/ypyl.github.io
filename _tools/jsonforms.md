@@ -2,6 +2,6 @@
 name: JSONForms
 link: https://jsonforms.io
 category: UI Component
-tags: [json, forms, react, angular, vue, typescript, customizable, 2026-03-10]
+tags: [json, react, angular, vue, typescript, customizable]
 description: Customizable JSON Schema-based forms with React, Angular, and Vue support out of the box.
 ---

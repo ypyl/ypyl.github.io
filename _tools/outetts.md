@@ -2,6 +2,6 @@
 name: OuteTTS
 link: https://outeai.com
 category: AI Model
-tags: [text-to-speech, transformers, tts, llama, gguf, 2026-02-26]
+tags: [tts, transformers, llama, gguf]
 description: Interface for OuteTTS models supporting multiple backends for text-to-speech transformation.
 ---

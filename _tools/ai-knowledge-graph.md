@@ -2,6 +2,6 @@
 name: AI Knowledge Graph
 link: https://github.com/robert-mcdermott/ai-knowledge-graph
 category: AI Tool
-tags: [knowledge-graph, python, llm, visualization, open-source, 2026-04-29]
+tags: [knowledge-graph, python, llm, visualization, open-source]
 description: Extracts knowledge from unstructured text using LLMs and visualizes relationships as interactive graphs.
 ---

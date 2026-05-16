@@ -2,6 +2,6 @@
 name: Awesome MCP Servers
 link: https://github.com/punkpeye/awesome-mcp-servers
 category: AI Agent Framework
-tags: [ai, open-source, 2026-02-27]
+tags: [ai, open-source]
 description: Collection of MCP servers related to AI and multi-agent systems.
 ---

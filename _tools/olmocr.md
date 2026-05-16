@@ -2,6 +2,6 @@
 name: olmocr
 link: https://github.com/allenai/olmocr
 category: Document
-tags: [pdf, document-parsing, ocr, document-management, 2026-03-11]
+tags: [pdf, document-parsing, ocr, document-management]
 description: Toolkit for converting PDFs and image-based documents into clean, readable plain text format.
 ---

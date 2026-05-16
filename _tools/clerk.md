@@ -2,6 +2,6 @@
 name: Clerk
 link: https://clerk.com
 category: Security
-tags: [authentication, user-management, security, api, scalable, 2026-03-02]
+tags: [authentication, security, api]
 description: Full stack authentication and user management platform to launch faster and scale easier.
 ---

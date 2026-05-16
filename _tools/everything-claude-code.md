@@ -2,6 +2,6 @@
 name: Everything Claude Code
 link: https://github.com/affaan-m/everything-claude-code
 category: AI Agent Framework
-tags: [claude-code, developer-tool, productivity, open-source, 2026-04-29]
+tags: [claude-code, dev-tool, productivity, open-source]
 description: Performance optimization system for AI agent harnesses with skills, memory, and security tooling.
 ---

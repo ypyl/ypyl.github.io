@@ -2,6 +2,6 @@
 name: Repomix
 link: https://repomix.com
 category: Developer Tool
-tags: [ai, developer-friendly, open-source, nodejs, 2026-02-24]
+tags: [ai, open-source, nodejs]
 description: Packs entire repositories into a single AI-friendly file for feeding codebases to large language models and AI tools.
 ---

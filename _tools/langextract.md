@@ -2,6 +2,6 @@
 name: LangExtract
 link: https://github.com/google/langextract
 category: AI Tool
-tags: [python, nlp, large-language-models, structured-data, visualization, 2026-03-09]
+tags: [python, nlp, llm, visualization]
 description: Python library for extracting structured information from unstructured text using LLMs with source grounding and visualization.
 ---

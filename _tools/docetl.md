@@ -2,6 +2,6 @@
 name: DocETL
 link: https://docetl.org
 category: AI Agent Framework
-tags: [python, data-pipelines, document-processing, llm, 2026-03-27]
+tags: [python, document-processing, llm]
 description: System for agentic LLM-powered data processing and ETL focused on complex document workflows.
 ---

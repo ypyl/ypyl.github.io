@@ -2,6 +2,6 @@
 name: PaperQA2
 link: https://github.com/Future-House/paper-qa
 category: AI Tool
-tags: [rag, python, llm, research, agents, 2026-05-03]
+tags: [rag, python, llm, research, agents]
 description: High-accuracy retrieval augmented generation for answering questions from scientific documents with citations.
 ---

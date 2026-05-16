@@ -2,6 +2,6 @@
 name: dotLLM
 link: https://dotllm.dev/
 category: AI Model
-tags: [dotnet, c#, llm, inference, open-source, 2026-04-29]
+tags: [.net, c#, llm, inference, open-source]
 description: High-performance LLM inference engine written natively in C# for .NET with SIMD-optimized CPU and CUDA GPU backends.
 ---

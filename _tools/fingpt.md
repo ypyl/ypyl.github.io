@@ -2,6 +2,6 @@
 name: FinGPT
 link: https://github.com/AI4Finance-Foundation/FinGPT
 category: AI Model
-tags: [ai, finance, machine-learning, reinforcement-learning, sentiment-analysis, pytorch, fintech, large-language-models, prompt-engineering, 2026-02-26]
+tags: [ai, machine-learning, reinforcement-learning, pytorch, fintech, llm, prompt-engineering]
 description: Open-source financial large language models designed for NLP tasks in fintech and technical analysis.
 ---

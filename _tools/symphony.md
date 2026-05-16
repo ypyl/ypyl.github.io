@@ -2,6 +2,6 @@
 name: Symphony
 link: https://github.com/openai/symphony
 category: AI Agent Framework
-tags: [ai-agents, orchestration, automation, openai, codex, 2026-04-29]
+tags: [ai-agents, orchestration, automation, openai, codex]
 description: Orchestrates autonomous coding agents to execute project work with minimal supervision.
 ---
