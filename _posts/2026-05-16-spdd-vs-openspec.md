@@ -6,7 +6,7 @@ tags: sdd, ai, spec-driven-development, spdd, openspec, software-engineering
 categories: ai
 ---
 
-Specification-Driven Development (SDD) is having a moment. As AI coding assistants become ubiquitous, the old question — *"how do we make sure the AI builds the right thing?"* — has become urgent. Two approaches have emerged as leading answers: **SPDD** (Structured Prompt-Driven Development), described in depth by Zhang Wei and published on [Martin Fowler's site](https://martinfowler.com/articles/structured-prompt-driven/), and **OpenSpec**, an open-source toolkit by [Fission-AI](https://github.com/Fission-AI/OpenSpec) with nearly 50,000 GitHub stars.
+Specification-Driven Development (SDD) is having a moment. As AI coding assistants become ubiquitous, the old question — *"how do we make sure the AI builds the right thing?"* — has become urgent. Two approaches have emerged as leading answers: **SPDD** (Structured Prompt-Driven Development), described in depth by Zhang Wei and published on [Martin Fowler's site](https://martinfowler.com/articles/structured-prompt-driven/), and **OpenSpec**, an open-source toolkit by [Fission-AI](https://github.com/Fission-AI/OpenSpec) with nearly 50,000 GitHub stars. The SPDD methodology is implemented by the [`open-spdd`](https://github.com/gszhangwei/open-spdd) CLI, while OpenSpec provides the [`openspec`](https://github.com/Fission-AI/OpenSpec) CLI and AI slash commands.
 
 Both claim to solve the same problem: aligning AI-generated code with human intent. But they approach it from fundamentally different angles. Here's how they compare — and when you'd reach for one over the other.
 
@@ -171,3 +171,12 @@ You could imagine using SPDD's REASONS Canvas *within* OpenSpec's change folder 
 ---
 
 *Both SPDD and OpenSpec are evolving rapidly. SPDD's roadmap includes automated verification at the asset layer, decision memory for reuse, and progressively higher automation ratios. OpenSpec continues to expand cross-tool support and customization options. The SDD space is young, and these are likely the first of many approaches.*
+
+---
+
+## Links
+
+- [Structured Prompt-Driven Development](https://martinfowler.com/articles/structured-prompt-driven/) — the full SPDD article by Zhang Wei on martinfowler.com
+- [`open-spdd` CLI](https://github.com/gszhangwei/open-spdd) — reference implementation of the SPDD workflow
+- [OpenSpec](https://github.com/Fission-AI/OpenSpec) — Fission-AI's open-source SDD toolkit
+- [OpenSpec Docs](https://github.com/Fission-AI/OpenSpec/tree/main/docs) — full documentation (concepts, workflows, commands, customization)
