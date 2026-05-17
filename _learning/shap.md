@@ -1,5 +1,5 @@
 ---
-name: SHAP : A Comprehensive Guide to SHapley Additive exPlanations
+name: "SHAP : A Comprehensive Guide to SHapley Additive exPlanations"
 link: https://www.geeksforgeeks.org/machine-learning/shap-a-comprehensive-guide-to-shapley-additive-explanations/
 category: Guide
 tags: [machine-learning, deep-learning, model-interpretability, xai, python, tutorial]

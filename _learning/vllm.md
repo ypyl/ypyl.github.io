@@ -1,5 +1,5 @@
 ---
-name: Inside vLLM: Anatomy of a High-Throughput LLM Inference System
+name: "Inside vLLM: Anatomy of a High-Throughput LLM Inference System"
 link: https://www.aleksagordic.com/blog/vllm
 category: Guide
 tags: [llm, inference, distributed-systems, python, tutorial]
