@@ -9,6 +9,7 @@ Jekyll blog published to GitHub Pages at `https://ypyl.github.io/`. No build too
 - `_posts/` — Blog posts. Filename format: `YYYY-MM-DD-title.md`
 - `_posts/news/` — Short news entries (categories: news). Displayed as cards on the main page. Reference the source.
 - `_tools/` — Tool reference cards (Jekyll collection, `output: false`, not rendered as pages). Browse at `/tools/`
+- `_learning/` — Learning resource cards (Jekyll collection, `output: false`, not rendered as pages). Browse at `/learning/`
 - `_drafts/` — Unpublished drafts
 
 ## Frontmatter Conventions
@@ -35,7 +36,18 @@ description: One-line description.
 ---
 ```
 
-### Valid Categories
+**Learning Resources** (`_learning/`):
+```yaml
+---
+name: Resource Name
+link: https://github.com/...
+category: Category
+tags: [tag1, tag2]
+description: One-line description.
+---
+```
+
+### Valid Tool Categories
 
 New categories can be added when a tool doesn't fit any existing one — keep them broad enough to group related tools.
 
@@ -53,7 +65,6 @@ New categories can be added when a tool doesn't fit any existing one — keep th
 | Developer Tool | Dev utilities, CLI tools, testing |
 | Document | PDF, spreadsheets, document processing |
 | Infrastructure | Monitoring, networking, home automation, distributed systems |
-| Learning Resource | Tutorials, books, curated lists, courses |
 | Machine Learning | ML frameworks, training, data tools |
 | Mapping | Geospatial and map tools |
 | Media | Audio, video, streaming |
@@ -63,6 +74,17 @@ New categories can be added when a tool doesn't fit any existing one — keep th
 | Search | Search engines and tools |
 | Security | Security tools, privacy, governance |
 | UI Component | UI component libraries and frameworks |
+
+### Valid Learning Resource Categories
+
+| Category | Use for |
+|----------|---------|
+| Book | Full-length textbooks and book companion repositories |
+| Course | Structured learning with progressive sessions, workshops, hands-on platforms |
+| Curated List | Aggregations of links, tools, or resources (awesome-* repos, curated collections) |
+| Guide | Articles, blog posts, documentation guides on a specific topic |
+| Research Paper | Academic research or deep technical analysis papers |
+| Tutorial | Step-by-step how-to walkthroughs of a specific technique |
 
 ### Tag Guidelines
 
@@ -79,7 +101,8 @@ Create new tags freely when they describe a meaningful aspect of the tool (e.g.,
 
 - **New post**: Create `YYYY-MM-DD-descriptive-title.md` in `_posts/`
 - **New news**: Create `YYYY-MM-DD-title.md` in `_posts/news/` with `categories: news`. Keep short and reference the source.
-- **New tool**: Create `*.md` in `_tools/` with the tool frontmatter. Choose from valid categories above and follow tag guidelines.
+- **New tool**: Create `*.md` in `_tools/` with the tool frontmatter. Choose from valid tool categories above and follow tag guidelines.
+- **New learning resource**: Create `*.md` in `_learning/` with the learning resource frontmatter. Choose from valid learning resource categories above and follow tag guidelines.
 - **Draft**: Place in `_drafts/` (not rendered)
 
 ## Layouts

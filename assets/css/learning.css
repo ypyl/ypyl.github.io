@@ -1,0 +1,118 @@
+/* ==========================================================================
+   Learning Resources Page — Kami Design System
+   ========================================================================== */
+
+/* Search — editorial underline style */
+.resources-search {
+  position: relative;
+  margin-bottom: var(--space-2xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border-bottom: 2px solid var(--border-color);
+  transition: border-color 0.3s ease;
+}
+
+.resources-search:focus-within {
+  border-bottom-color: var(--brand);
+}
+
+.resources-search input {
+  flex: 1;
+  padding: var(--space-sm) 0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+  line-height: 1.2;
+}
+
+.resources-search input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.resources-search-clear {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: var(--space-sm);
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.resources-search-clear:hover {
+  color: var(--text);
+}
+
+/* No results message */
+.resources-no-results {
+  text-align: center;
+  padding: var(--space-2xl) 0;
+  color: var(--text-muted);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+}
+
+.resource-category {
+  margin-bottom: var(--space-2xl);
+}
+
+.resource-category h2 {
+  font-family: var(--serif);
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.resource-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.resource {
+  padding: var(--space-lg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--whisper);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.resource:hover {
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.resource a {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.resource a:hover {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.resource p {
+  margin: var(--space-sm) 0 var(--space-md) 0;
+  color: var(--text-tertiary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}

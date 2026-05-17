@@ -13,3 +13,5 @@ linkedin_username: yauhenpyl
 collections:
   tools:
     output: false
+  learning:
+    output: false

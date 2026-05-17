@@ -1,0 +1,16 @@
+<li class="resource"
+    data-resource-name="{{ include.resource.name | downcase }}"
+    data-resource-desc="{{ include.resource.description | downcase }}"
+    data-resource-tags="{% for tag in include.resource.tags %}{{ tag | downcase }} {% endfor %}">
+  <a href="{{ include.resource.link }}" target="_blank">
+    {{ include.resource.name }}
+  </a>
+
+  <p>{{ include.resource.description }}</p>
+
+  <div class="tags">
+    {% for tag in include.resource.tags %}
+      <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+</li>

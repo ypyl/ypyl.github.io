@@ -1,0 +1,99 @@
+---
+layout: default
+---
+
+<div class="resources-page">
+
+  <div class="resources-search">
+    <input
+      type="text"
+      id="resources-search-input"
+      placeholder="Search resources"
+      aria-label="Search resources"
+      autocomplete="off"
+    />
+    <button type="button" id="resources-search-clear" class="resources-search-clear" aria-label="Clear search" title="Clear search">&times;</button>
+  </div>
+
+  {% assign resources_sorted = site.learning | sort: "name" %}
+  {% assign resources_by_category = resources_sorted | group_by: "category" %}
+
+  <div id="resources-categories">
+    {% for group in resources_by_category %}
+    <section class="resource-category" data-category="{{ group.name }}">
+      <h2>{{ group.name }}</h2>
+
+      <ul class="resource-list">
+        {% for resource in group.items %}
+          {% include learning-item.html resource=resource %}
+        {% endfor %}
+      </ul>
+    </section>
+    {% endfor %}
+  </div>
+
+  <div id="resources-no-results" class="resources-no-results" style="display: none;">
+    <p>No resources match your search.</p>
+  </div>
+
+  <script>
+    (function() {
+      var input = document.getElementById('resources-search-input');
+      var categoriesContainer = document.getElementById('resources-categories');
+      var noResults = document.getElementById('resources-no-results');
+
+      if (!input || !categoriesContainer) return;
+
+      var clearBtn = document.getElementById('resources-search-clear');
+
+      function filterResources() {
+        var query = input.value.trim().toLowerCase();
+        var categories = categoriesContainer.querySelectorAll('.resource-category');
+        var anyVisible = false;
+
+        categories.forEach(function(category) {
+          var resources = category.querySelectorAll('.resource');
+          var categoryHasVisible = false;
+
+          resources.forEach(function(resource) {
+            var name = resource.getAttribute('data-resource-name') || '';
+            var desc = resource.getAttribute('data-resource-desc') || '';
+            var tags = resource.getAttribute('data-resource-tags') || '';
+            var match = name.indexOf(query) !== -1 ||
+                        desc.indexOf(query) !== -1 ||
+                        tags.indexOf(query) !== -1;
+
+            if (match || query === '') {
+              resource.style.display = '';
+              categoryHasVisible = true;
+              anyVisible = true;
+            } else {
+              resource.style.display = 'none';
+            }
+          });
+
+          category.style.display = categoryHasVisible ? '' : 'none';
+        });
+
+        noResults.style.display = anyVisible ? 'none' : 'block';
+
+        if (clearBtn) {
+          clearBtn.style.display = query === '' ? 'none' : 'inline-block';
+        }
+      }
+
+      input.addEventListener('input', filterResources);
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+          input.value = '';
+          input.focus();
+          filterResources();
+        });
+      }
+
+      filterResources();
+    })();
+  </script>
+
+</div>
