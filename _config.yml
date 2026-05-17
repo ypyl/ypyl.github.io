@@ -10,6 +10,11 @@ email: yauhen.pyl@gmail.com
 
 github_username: ypyl
 linkedin_username: yauhenpyl
+exclude:
+  - openspec/
+  - AGENTS.md
+  - README.md
+
 collections:
   tools:
     output: false
