@@ -819,12 +819,10 @@ ul li::marker {
    -------------------------------------------------------------------------- */
 
 .social-media-list li a {
-  border: 1px solid var(--border-color);
   color: var(--text-secondary);
 }
 
 .social-media-list li a:hover {
-  border-color: var(--brand);
   color: var(--brand);
 }
 
