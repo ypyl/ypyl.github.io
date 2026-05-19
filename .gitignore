@@ -1,2 +1,4 @@
 repomix-output.xml
 .playwright-cli/
+.pi/
+.opencode/
