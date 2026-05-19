@@ -39,3 +39,7 @@ The document is released under **CC0 (public domain)**, free for anyone to use o
 ```
 
 Write created article to the markdown file in folder `_posts\news`.
+
+User input:
+
+$@
