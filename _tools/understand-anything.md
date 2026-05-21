@@ -1,7 +1,7 @@
 ---
 name: Understand Anything
 link: https://github.com/Lum1104/Understand-Anything
-category: AI Agent Framework
-tags: [knowledge-graph, ai-agents, codex]
-description: Turn any codebase or knowledge base into an interactive knowledge graph for exploration and questions.
+category: Developer Tool
+tags: [knowledge-graph, typescript, claude-code, codex, ai, plugins, visualization]
+description: Multi-platform AI coding agent plugin that analyzes codebases with a multi-agent pipeline and generates interactive knowledge graphs with guided tours, semantic search, and diff impact analysis.
 ---
