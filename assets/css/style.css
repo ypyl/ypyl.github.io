@@ -685,6 +685,7 @@ ul li::marker {
   height: 36px;
   padding: 0;
   margin-top: 10px;
+  margin-left: var(--space-md);
   margin-right: var(--space-md);
   background: transparent;
   border: 1px solid var(--border-color);
