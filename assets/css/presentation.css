@@ -107,6 +107,7 @@
 
 .reveal p,
 .reveal li {
+  font-size: 1.25rem;
   color: var(--reveal-text-color);
   line-height: 1.55;
 }
