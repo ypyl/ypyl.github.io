@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "/assets/css/tools.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "/assets/css/learning.css" | relative_url }}">
+  {%- if page.layout == 'presentation' -%}
+  <link rel="stylesheet" href="{{ "/assets/css/presentation.css" | relative_url }}">
+  {%- endif -%}
 
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}

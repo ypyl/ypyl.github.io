@@ -27,6 +27,15 @@
       </nav>
     {%- endif -%}
 
+    {%- if page.layout == 'post' -%}
+      {%- for pres in site.presentations -%}
+        {%- if pres.slug == page.slug -%}
+          <a class="present-link" href="{{ pres.url | relative_url }}" title="Present as slides">🖥️&nbsp;Present</a>
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
     <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
       <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="5"/>

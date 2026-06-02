@@ -1,0 +1,360 @@
+/* ==========================================================================
+   Presentation — Kami Design System overrides for Reveal.js
+   Matches blog's light + dark themes with design token consistency
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Slide Background & Typography
+   -------------------------------------------------------------------------- */
+
+.reveal {
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--text);
+}
+
+.reveal .slides section {
+  background-color: var(--bg);
+  transition: background-color 0.3s ease;
+}
+
+/* Light mode defaults */
+:root {
+  --reveal-heading-color: var(--near-black);
+  --reveal-text-color: var(--near-black);
+  --reveal-link-color: var(--brand);
+  --reveal-link-hover: var(--dark-warm);
+  --reveal-code-bg: var(--ivory);
+  --reveal-code-text: var(--text);
+  --reveal-code-border: var(--border-soft);
+  --reveal-table-border: var(--border-color);
+  --reveal-table-stripe: var(--surface);
+  --reveal-table-header-bg: var(--surface);
+  --reveal-controls-color: var(--brand);
+  --reveal-progress-color: var(--brand);
+  --reveal-progress-bg: var(--border-color);
+  --reveal-blockquote-border: var(--brand);
+  --reveal-blockquote-text: var(--olive);
+}
+
+/* --------------------------------------------------------------------------
+   2. Dark Mode Overrides
+   -------------------------------------------------------------------------- */
+
+[data-theme="dark"] {
+  --reveal-heading-color: #e8e6dc;
+  --reveal-text-color: #e8e6dc;
+  --reveal-link-color: #6b9ecf;
+  --reveal-link-hover: #e8e6dc;
+  --reveal-code-bg: #252523;
+  --reveal-code-text: #e8e6dc;
+  --reveal-code-border: #383834;
+  --reveal-table-border: #40403c;
+  --reveal-table-stripe: var(--dark-surface);
+  --reveal-table-header-bg: var(--dark-surface);
+  --reveal-controls-color: #6b9ecf;
+  --reveal-progress-color: #6b9ecf;
+  --reveal-progress-bg: #40403c;
+  --reveal-blockquote-border: #6b9ecf;
+  --reveal-blockquote-text: #b0aea4;
+}
+
+/* --------------------------------------------------------------------------
+   3. Headings
+   -------------------------------------------------------------------------- */
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: var(--serif);
+  font-weight: 500;
+  color: var(--reveal-heading-color);
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.reveal h1 { font-size: 2.25rem; }
+.reveal h2 { font-size: 1.75rem; }
+.reveal h3 { font-size: 1.375rem; }
+.reveal h4 { font-size: 1.125rem; }
+
+/* --------------------------------------------------------------------------
+   4. Body Text & Lists
+   -------------------------------------------------------------------------- */
+
+.reveal p,
+.reveal li {
+  color: var(--reveal-text-color);
+  line-height: 1.55;
+}
+
+.reveal ul {
+  list-style-type: disc;
+}
+
+.reveal ol {
+  list-style-type: decimal;
+}
+
+.reveal ul li::marker {
+  color: var(--reveal-link-color);
+}
+
+/* --------------------------------------------------------------------------
+   5. Links
+   -------------------------------------------------------------------------- */
+
+.reveal a {
+  color: var(--reveal-link-color);
+  text-decoration: none;
+}
+
+.reveal a:hover {
+  color: var(--reveal-link-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Code Blocks
+   -------------------------------------------------------------------------- */
+
+.reveal pre {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  background-color: var(--reveal-code-bg);
+  color: var(--reveal-code-text);
+  border: 1px solid var(--reveal-code-border);
+  border-radius: 8px;
+  padding: 13px 19px;
+  box-shadow: none;
+  width: auto;
+}
+
+.reveal pre code {
+  font-family: var(--mono);
+  font-size: inherit;
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: inherit;
+  max-height: none;
+}
+
+.reveal code {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  background-color: var(--reveal-code-bg);
+  border: 1px solid var(--reveal-code-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--reveal-code-text);
+}
+
+/* Override Reveal's default code styling */
+.reveal pre code.hljs {
+  background: transparent;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. Tables
+   -------------------------------------------------------------------------- */
+
+.reveal table {
+  font-size: 0.8125rem;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid var(--reveal-table-border);
+}
+
+.reveal table th,
+.reveal table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--reveal-table-border);
+  color: var(--reveal-text-color);
+}
+
+.reveal table th {
+  font-weight: 500;
+  background-color: var(--reveal-table-header-bg);
+  color: var(--reveal-heading-color);
+}
+
+.reveal table tr:nth-child(even) {
+  background-color: var(--reveal-table-stripe);
+}
+
+/* Override Reveal's default table border/th styling */
+.reveal table th,
+.reveal table td {
+  border-bottom: 1px solid var(--reveal-table-border);
+}
+.reveal table th {
+  border-bottom: 1px solid var(--reveal-table-border);
+}
+
+/* --------------------------------------------------------------------------
+   8. Blockquotes
+   -------------------------------------------------------------------------- */
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: auto;
+  margin: var(--space-md) auto;
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+  border-left: 3px solid var(--reveal-blockquote-border);
+  color: var(--reveal-blockquote-text);
+  background: transparent;
+  box-shadow: none;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.reveal blockquote p {
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   9. Progress Bar
+   -------------------------------------------------------------------------- */
+
+.reveal .progress {
+  height: 3px;
+  background-color: var(--reveal-progress-bg);
+}
+
+.reveal .progress span {
+  background-color: var(--reveal-progress-color);
+  transition: width 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   10. Navigation Controls
+   -------------------------------------------------------------------------- */
+
+.reveal .controls .controls-arrow {
+  color: var(--reveal-controls-color);
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.reveal .controls .controls-arrow:hover,
+.reveal .controls .controls-arrow:focus {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   11. Slide Number
+   -------------------------------------------------------------------------- */
+
+.reveal .slide-number {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: transparent;
+}
+
+[data-theme="dark"] .reveal .slide-number {
+  color: #8a8880;
+}
+
+/* --------------------------------------------------------------------------
+   12. Horizontal Rule (within slides, not the separator)
+   -------------------------------------------------------------------------- */
+
+.reveal hr {
+  margin: var(--space-lg) 0;
+  border: 0;
+  border-top: 1px solid var(--reveal-table-border);
+  height: 0;
+}
+
+/* --------------------------------------------------------------------------
+   13. Images
+   -------------------------------------------------------------------------- */
+
+.reveal section img {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   14. Presentation Page Layout
+   -------------------------------------------------------------------------- */
+
+.presentation-page {
+  background-color: var(--bg);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   15. Theme Toggle Button (on presentation page)
+   -------------------------------------------------------------------------- */
+
+.presentation-theme-toggle {
+  position: fixed;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 100;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.presentation-theme-toggle:hover {
+  color: var(--brand);
+  border-color: var(--brand);
+  background-color: var(--surface);
+}
+
+.presentation-theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.presentation-theme-toggle .sun-icon circle,
+.presentation-theme-toggle .sun-icon line {
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.presentation-theme-toggle .sun-icon circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+@media screen and (max-width: 600px) {
+  .presentation-theme-toggle {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    width: 32px;
+    height: 32px;
+  }
+
+  .presentation-theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+}

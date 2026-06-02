@@ -20,3 +20,6 @@ collections:
     output: false
   learning:
     output: false
+  presentations:
+    output: true
+    permalink: /present/:name/

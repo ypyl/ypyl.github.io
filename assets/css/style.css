@@ -673,6 +673,39 @@ ul li::marker {
 }
 
 /* --------------------------------------------------------------------------
+   12b. Present Link (in header nav)
+   -------------------------------------------------------------------------- */
+
+.present-link {
+  float: right;
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 56px;
+  font-size: 0.9375rem;
+  margin-right: var(--space-md);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.present-link:hover {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .present-link {
+    float: none;
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    line-height: 36px;
+    margin-right: 0;
+    font-size: 0.8125rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
    13. Syntax Highlighting (Rouge) — Kami Palette
    No italic, no bold > 500
    -------------------------------------------------------------------------- */

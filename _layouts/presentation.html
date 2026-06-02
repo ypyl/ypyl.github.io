@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+{%- include head.html -%}
+<body class="presentation-page">
+
+  <div class="reveal">
+    <div class="slides">
+      <!-- Slides injected by JS -->
+    </div>
+  </div>
+
+  <!-- Raw rendered content, hidden from view, split into slides by JS -->
+  <div id="presentation-content" style="display:none;">
+    {{ content }}
+  </div>
+
+  <!-- Theme toggle button (sun/moon) -->
+  <button id="presentation-theme-toggle" class="presentation-theme-toggle" aria-label="Toggle theme" title="Toggle light/dark theme">
+    <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <!-- Reveal.js from CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" id="reveal-theme-light">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css">
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/markdown/markdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+
+  <script>
+    (function() {
+      // --- Theme management ---
+      function getTheme() {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || stored === 'light') return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        var revealEl = document.querySelector('.reveal');
+        if (revealEl) revealEl.setAttribute('data-theme', theme);
+
+        // Toggle icons
+        var sunIcon = document.querySelector('.sun-icon');
+        var moonIcon = document.querySelector('.moon-icon');
+        if (sunIcon && moonIcon) {
+          sunIcon.style.display = theme === 'dark' ? 'block' : 'none';
+          moonIcon.style.display = theme === 'dark' ? 'none' : 'block';
+        }
+      }
+
+      function toggleTheme() {
+        var current = getTheme();
+        var next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        applyTheme(next);
+      }
+
+      // Apply theme on load
+      applyTheme(getTheme());
+
+      // Theme toggle button
+      var themeBtn = document.getElementById('presentation-theme-toggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', toggleTheme);
+      }
+
+      // --- Slide parsing ---
+      var rawEl = document.getElementById('presentation-content');
+      if (!rawEl) return;
+
+      // Jekyll renders --- as <hr /> or <hr>
+      var rawHTML = rawEl.innerHTML;
+      var segments = rawHTML.split(/<hr\s*\/?\s*>/i).filter(function(s) {
+        return s.trim().length > 0;
+      });
+
+      var slidesContainer = document.querySelector('.reveal .slides');
+      if (!slidesContainer) return;
+
+      segments.forEach(function(segment) {
+        var section = document.createElement('section');
+        section.innerHTML = segment;
+
+        // Convert > **Notes:** blockquotes to <aside class="notes">
+        var blockquotes = section.querySelectorAll('blockquote');
+        blockquotes.forEach(function(bq) {
+          var firstP = bq.querySelector('p');
+          if (!firstP) return;
+          var strongEl = firstP.querySelector('strong');
+          if (!strongEl) return;
+          if (strongEl.textContent.trim().startsWith('Notes:')) {
+            // Remove "Notes:" from the content, keep the rest
+            var noteText = firstP.innerHTML.replace(/<strong>Notes:<\/strong>\s*/, '').trim();
+            var aside = document.createElement('aside');
+            aside.className = 'notes';
+            aside.innerHTML = noteText;
+            bq.replaceWith(aside);
+          }
+        });
+
+        slidesContainer.appendChild(section);
+      });
+
+      // --- Reveal.js initialization ---
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        slideNumber: 'c/t',
+        history: true,
+        center: true,
+        transition: 'slide',
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+
+      // Sync theme after Reveal init
+      applyTheme(getTheme());
+    })();
+  </script>
+</body>
+</html>
