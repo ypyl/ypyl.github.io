@@ -192,7 +192,7 @@
 
 .reveal table {
   font-size: 1.0625rem;
-  margin: 0 auto;
+  margin: 0 auto var(--r-block-margin) auto;
   border-collapse: collapse;
   border: 1px solid var(--reveal-table-border);
 }
