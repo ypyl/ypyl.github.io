@@ -104,7 +104,7 @@
       }
 
       // --- Font size controls ---
-      var FONT_SCALE_KEY = 'presentation-font-scale';
+      var FONT_SCALE_KEY = 'presentation-font-scale-v2';
       var FONT_BASE = 16; // px
       var FONT_STEP = 0.125; // rem step (~2px at base 16)
       var FONT_MIN = 0.75;  // 12px
@@ -116,7 +116,7 @@
           var parsed = parseFloat(stored);
           if (!isNaN(parsed)) return Math.max(FONT_MIN, Math.min(FONT_MAX, parsed));
         }
-        return 1.0;
+        return 2.0;
       }
 
       function applyFontScale(scale) {
