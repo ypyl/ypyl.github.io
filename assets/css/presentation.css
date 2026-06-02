@@ -16,6 +16,25 @@
 .reveal .slides section {
   background-color: var(--bg);
   transition: background-color 0.3s ease;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Ensure slides fill consistently even with little content */
+.reveal .slides section > *:first-child {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .reveal .slides section {
+    padding: 30px 40px;
+  }
 }
 
 /* Light mode defaults */
