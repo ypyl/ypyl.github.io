@@ -358,3 +358,54 @@
     height: 16px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   15b. Close Button (exit presentation)
+   -------------------------------------------------------------------------- */
+
+.presentation-close {
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 100;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.presentation-close:hover {
+  color: #c44;
+  border-color: #c44;
+  background-color: var(--surface);
+}
+
+.presentation-close svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+@media screen and (max-width: 600px) {
+  .presentation-close {
+    top: var(--space-sm);
+    left: var(--space-sm);
+    width: 32px;
+    height: 32px;
+  }
+
+  .presentation-close svg {
+    width: 16px;
+    height: 16px;
+  }
+}

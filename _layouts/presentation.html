@@ -32,6 +32,14 @@
     </svg>
   </button>
 
+  <!-- Close button — navigate back to article -->
+  <button id="presentation-close" class="presentation-close" aria-label="Exit presentation" title="Exit presentation (Esc)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
   <!-- Reveal.js from CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" id="reveal-theme-light">
@@ -79,6 +87,35 @@
       if (themeBtn) {
         themeBtn.addEventListener('click', toggleTheme);
       }
+
+      // Close button — navigate back
+      var closeBtn = document.getElementById('presentation-close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          if (document.referrer && document.referrer.indexOf(window.location.origin) === 0) {
+            window.location.href = document.referrer;
+          } else {
+            window.history.back();
+          }
+        });
+      }
+
+      // Esc key also exits presentation (when not in overview)
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          // Reveal overview is triggered by Esc; let Reveal handle it first
+          // If already in overview (or after a short delay), check and exit
+          setTimeout(function() {
+            if (!document.querySelector('.reveal.overview')) {
+              if (document.referrer && document.referrer.indexOf(window.location.origin) === 0) {
+                window.location.href = document.referrer;
+              } else {
+                window.history.back();
+              }
+            }
+          }, 100);
+        }
+      });
 
       // --- Slide parsing ---
       var rawEl = document.getElementById('presentation-content');
