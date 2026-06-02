@@ -96,10 +96,10 @@
   line-height: 1.2;
 }
 
-.reveal h1 { font-size: 2.25rem; }
-.reveal h2 { font-size: 1.75rem; }
-.reveal h3 { font-size: 1.375rem; }
-.reveal h4 { font-size: 1.125rem; }
+.reveal h1 { font-size: 2.5rem; }
+.reveal h2 { font-size: 2rem; }
+.reveal h3 { font-size: 1.5rem; }
+.reveal h4 { font-size: 1.25rem; }
 
 /* --------------------------------------------------------------------------
    4. Body Text & Lists
@@ -107,7 +107,7 @@
 
 .reveal p,
 .reveal li {
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   color: var(--reveal-text-color);
   line-height: 1.55;
 }
@@ -147,7 +147,7 @@
   display: block;
   position: relative;
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   background-color: var(--reveal-code-bg);
   color: var(--reveal-code-text);
@@ -172,7 +172,7 @@
 
 .reveal code {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   background-color: var(--reveal-code-bg);
   border: 1px solid var(--reveal-code-border);
   border-radius: 4px;
@@ -191,7 +191,7 @@
    -------------------------------------------------------------------------- */
 
 .reveal table {
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   margin: 0 auto;
   border-collapse: collapse;
   border: 1px solid var(--reveal-table-border);
@@ -237,7 +237,7 @@
   color: var(--reveal-blockquote-text);
   background: transparent;
   box-shadow: none;
-  font-size: 1rem;
+  font-size: 1.125rem;
   text-align: left;
 }
 
