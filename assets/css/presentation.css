@@ -265,6 +265,10 @@
    10. Navigation Controls
    -------------------------------------------------------------------------- */
 
+.reveal .controls {
+  bottom: 30px;
+}
+
 .reveal .controls .controls-arrow {
   color: var(--reveal-controls-color);
   opacity: 0.6;
