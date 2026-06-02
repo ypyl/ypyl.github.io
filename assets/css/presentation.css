@@ -143,6 +143,8 @@
    -------------------------------------------------------------------------- */
 
 .reveal pre {
+  display: block;
+  position: relative;
   font-family: var(--mono);
   font-size: 0.75rem;
   line-height: 1.5;
@@ -152,7 +154,9 @@
   border-radius: 8px;
   padding: 13px 19px;
   box-shadow: none;
-  width: auto;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 var(--r-block-margin) 0;
 }
 
 .reveal pre code {
