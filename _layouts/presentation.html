@@ -40,6 +40,12 @@
     </svg>
   </button>
 
+  <!-- Font size controls -->
+  <div id="presentation-font-controls" class="presentation-font-controls">
+    <button id="font-size-down" class="font-size-btn" aria-label="Decrease font size" title="Smaller text">A⁻</button>
+    <button id="font-size-up" class="font-size-btn" aria-label="Increase font size" title="Larger text">A⁺</button>
+  </div>
+
   <!-- Reveal.js from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/markdown/markdown.js"></script>
@@ -96,6 +102,41 @@
           }
         });
       }
+
+      // --- Font size controls ---
+      var FONT_SCALE_KEY = 'presentation-font-scale';
+      var FONT_BASE = 16; // px
+      var FONT_STEP = 0.125; // rem step (~2px at base 16)
+      var FONT_MIN = 0.75;  // 12px
+      var FONT_MAX = 2.0;   // 32px
+
+      function getFontScale() {
+        var stored = localStorage.getItem(FONT_SCALE_KEY);
+        if (stored) {
+          var parsed = parseFloat(stored);
+          if (!isNaN(parsed)) return Math.max(FONT_MIN, Math.min(FONT_MAX, parsed));
+        }
+        return 1.0;
+      }
+
+      function applyFontScale(scale) {
+        document.documentElement.style.fontSize = (FONT_BASE * scale) + 'px';
+      }
+
+      function changeFontSize(delta) {
+        var current = getFontScale();
+        var next = Math.round((current + delta) * 1000) / 1000;
+        next = Math.max(FONT_MIN, Math.min(FONT_MAX, next));
+        localStorage.setItem(FONT_SCALE_KEY, next);
+        applyFontScale(next);
+      }
+
+      applyFontScale(getFontScale());
+
+      var fontUp = document.getElementById('font-size-up');
+      var fontDown = document.getElementById('font-size-down');
+      if (fontUp) fontUp.addEventListener('click', function() { changeFontSize(FONT_STEP); });
+      if (fontDown) fontDown.addEventListener('click', function() { changeFontSize(-FONT_STEP); });
 
       // Esc key also exits presentation (when not in overview)
       document.addEventListener('keydown', function(e) {

@@ -435,3 +435,57 @@
     height: 16px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   15c. Font Size Controls
+   -------------------------------------------------------------------------- */
+
+.presentation-font-controls {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-xs);
+}
+
+.font-size-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+
+  font-family: var(--serif);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.font-size-btn:hover {
+  color: var(--brand);
+  border-color: var(--brand);
+  background-color: var(--surface);
+}
+
+@media screen and (max-width: 600px) {
+  .presentation-font-controls {
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+  }
+
+  .font-size-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8125rem;
+  }
+}
