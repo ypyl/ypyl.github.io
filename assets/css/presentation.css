@@ -443,7 +443,7 @@
 .presentation-font-controls {
   position: fixed;
   bottom: var(--space-md);
-  right: var(--space-md);
+  left: var(--space-md);
   z-index: 100;
   display: flex;
   flex-direction: row;
@@ -480,7 +480,7 @@
 @media screen and (max-width: 600px) {
   .presentation-font-controls {
     bottom: var(--space-sm);
-    right: var(--space-sm);
+    left: var(--space-sm);
   }
 
   .font-size-btn {
