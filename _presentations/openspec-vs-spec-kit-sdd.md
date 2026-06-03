@@ -2,159 +2,95 @@
 layout: presentation
 ---
 
-# Spec-Driven Development — OpenSpec vs GitHub Spec-Kit
+# OpenSpec vs GitHub Spec-Kit
 
-Two tools, two philosophies. One decision.
+Two tools. Two philosophies.
 
-- **OpenSpec** (Fission-AI) — fluid, delta specs, brownfield-first
-- **Spec-Kit** (GitHub) — structured, constitution-first, greenfield-optimized
+- **OpenSpec** — fluid, delta specs, brownfield
+- **Spec-Kit** — structured, full specs, greenfield
 
-> **Notes:** Both are MIT-licensed open source. OpenSpec is Node.js/npm. Spec-Kit is Python/uv. Both support 20+ AI coding agents.
-
----
-
-# OpenSpec — Delta Specs, Minimal Ceremony
-
-```bash
-npm install -g @fission-ai/openspec@latest
-openspec init
-```
-
-Workflow:
-```
-/opsx:propose add-dark-mode
-/opsx:apply
-/opsx:archive
-```
-
-4 artifacts per change: `proposal.md` · `specs/` · `design.md` · `tasks.md`
-
-<br>
-
-| The Catch |
-|-----------|
-| Delta model assumes AI understands **unchanged** parts of codebase |
-| Poor docs → hallucinated context → spec that doesn't fit |
-
-> **Notes:** Brownfield-first means you only describe what's changing. But on large codebases without good inline docs, the agent may invent surrounding behavior. Always review the proposal against actual code before applying.
+> **Notes:** Both MIT-licensed. OpenSpec is Node.js, Spec-Kit is Python. Both support 20+ AI coding agents.
 
 ---
 
-# Spec-Kit — Constitution-First, Full Specs
+# At a Glance
 
-```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@v0.1.6
-specify init my-app --integration copilot
-```
+| | OpenSpec | Spec-Kit |
+|---|---|---|
+| **Spec model** | Delta only | Full description |
+| **Phase gates** | None | Sequential |
+| **Files per change** | ~4 | 7+ |
+| **Brownfield** | First-class | Afterthought |
 
-Workflow:
-```
-/speckit.constitution
-/speckit.specify
-/speckit.plan
-/speckit.tasks
-/speckit.implement
-```
-
-7+ artifacts per feature: `spec.md` · `plan.md` · `tasks.md` · `research.md` · `data-model.md` · `contracts/` · `quickstart.md`
-
-<br>
-
-| The Gotcha |
-|------------|
-| Markdown review overload — auditing AI prose takes longer than plain AI coding |
-| Internal status files land in project root, not meant for human review |
-
-> **Notes:** In hands-on testing, a medium feature produced so many repetitive markdown files that reviewing them consumed more time than implementing without the framework. Spec-Kit also has no built-in help or status command.
+> **Notes:** Delta specs = you only describe what's changing. Spec-Kit's full specs mean more markdown to review — on a medium feature, review took longer than implementing without the framework.
 
 ---
 
-# Spec Drift — The AI Doesn't Follow Its Own Plan
+# Hands-On Scorecard
 
-Both tools suffer: the spec is correct, the agent ignores it.
+Same feature, same codebase (Isenberg, Feb 2026)
 
-| Tool | Drift Example |
-|------|--------------|
-| Spec-Kit | Research phase documents `AuthMiddleware` as existing code → implementation regenerates it, creating duplicates |
-| OpenSpec | Proposal writes "PostgreSQL chosen for JSONB support" — you never mentioned PostgreSQL |
+| Dimension | OpenSpec | Spec-Kit |
+|-----------|:--------:|:--------:|
+| Spec quality | 4/5 | 2/5 |
+| Dev experience | 4/5 | 3/5 |
+| Mid-feature correction | 4/5 | 2/5 |
+| **Overall** | **4.0** | **2.8** |
 
-**The fix:** treat the spec as a living artifact, not a contract.
+> **Notes:** Both shipped working PRs in ~1 day. The gap is experience, not output. Spec-Kit has no help command — you don't know where you are in the workflow.
 
-```bash
-# OpenSpec — edit any file, pick up where you left off
-vim openspec/changes/add-auth/specs/auth.md
-/opsx:apply    # continues from current state, no re-generation
+---
 
-# Spec-Kit — re-run the entire phase chain
-vim specs/003-auth/spec.md
-/speckit.plan  # regenerates ALL downstream artifacts
-```
+# Spec Drift
 
-> **Notes:** OpenSpec's fluid model is the key advantage here. Spec-Kit's rigid phases mean one edit cascades into regenerating everything. Neither tool guarantees the agent will follow instructions — skeptical review is always required.
+Agent ignores its own spec.
+
+| | Issue |
+|---|---|
+| Spec-Kit | Documents existing code → regenerates duplicates |
+| OpenSpec | Invents rationale you never gave |
+
+- **OpenSpec**: edit, re-apply — no re-generation
+- **Spec-Kit**: edit, re-run phase — everything downstream resets
+
+> **Notes:** OpenSpec's fluid model is the key advantage. Spec-Kit's rigidity makes course correction expensive.
 
 ---
 
 # The Upgrade Trap
 
-| Issue | Spec-Kit | OpenSpec |
-|-------|----------|----------|
-| Upgrade overwrites customizations | ⚠️ Yes — documented warning | ✅ No — separate dirs |
-| Template safety | Templates share space with tool internals | User content in `openspec/`, runtime separate |
-| Fix | Back up `.specify/templates/` before `specify self upgrade` | `npm install -g @fission-ai/openspec@latest && openspec update` |
+**Spec-Kit**: `specify self upgrade` wipes custom templates.
 
-```bash
-# Spec-Kit upgrade — DANGER: wipes custom templates
-specify self upgrade   # ⚠️ "Upgrade will overwrite customizations"
-```
+**OpenSpec**: `openspec update` never touches your specs.
 
-```bash
-# OpenSpec upgrade — safe, only regenerates agent instructions
-npm install -g @fission-ai/openspec@latest
-openspec update        # doesn't touch openspec/specs/ or openspec/changes/
-```
-
-> **Notes:** If your org has a security review checklist baked into Spec-Kit templates, one upgrade deletes it. OpenSpec's trade-off: opinionated about directory naming — can collide if your monorepo already has a `specs/` folder at root.
+> **Notes:** Spec-Kit explicitly warns "Upgrade will overwrite customizations." If your org customized templates, they're gone on upgrade. OpenSpec keeps user content and runtime separate.
 
 ---
 
-# Hands-On Scorecard — Same Feature, Same Codebase
+# Community Health
 
-Evaluated by Ran Isenberg, Senior Engineer at Palo Alto Networks (Feb 2026)
+| | OpenSpec | Spec-Kit |
+|---|---|---|
+| Stars | Growing | 108k |
+| Commits (90d) | 158 | 37 |
+| PR median age | 30 days | 62 days |
+| Bus factor | 1 | 2 |
 
-| Dimension | OpenSpec | Spec-Kit |
-|-----------|:--------:|:--------:|
-| Developer experience | 4/5 | 3/5 |
-| Human review checkpoints | 5/5 | 3/5 |
-| Workflow visibility | 4/5 | 2/5 |
-| Parallel development | 5/5 | 5/5 |
-| Mid-feature course correction | 4/5 | 2/5 |
-| Planning time | 3 hrs | 4 hrs |
-| Implementation time | 1 day | 1 day |
-| **Overall score** | **4.00** | **2.77** |
-
-> **Notes:** Spec-Kit has no help command — you don't know where you are. OpenSpec always suggests next step via `/opsx:continue`. Both shipped a working PR in similar total time. The gap is in the experience — not the output.
+> **Notes:** Spec-Kit has the brand. OpenSpec has more active development. Both have thin bus factors — you're betting on small teams.
 
 ---
 
-# Which One Fits Your Workflow?
+# Pick Your Tool
 
-| Choose OpenSpec when | Choose Spec-Kit when |
-|----------------------|----------------------|
-| Modifying an existing codebase | Starting greenfield from scratch |
-| You want fluid, out-of-order editing | Your org needs enforced architectural rules |
-| Parallel features on the same codebase | You need a project constitution |
-| Minimal ceremony, fast iteration | Deep customization via extensions & presets |
-| You already have OpenSpec skills (pi, Cursor) | You're in GitHub Copilot ecosystem |
+| OpenSpec | Spec-Kit |
+|----------|----------|
+| Existing codebases | New projects |
+| Fluid editing | Enforced rules |
+| Minimal ceremony | Deep customization |
 
-<br>
+Specs are starting points, not contracts.
 
-| **The universal rule** |
-|-------------------------|
-| Specs are **conversation starters**, not signed contracts |
-| Review every generated artifact skeptically |
-| Don't trust the agent's confidence — verify against code |
-
-> **Notes:** These tools are fast-moving. Features land, break, and get patched between evaluation cycles. Abstract your tool choice with custom skills so you can swap engines without breaking your team's workflow.
+> **Notes:** Abstract your choice behind custom skills so you can swap tools later without retraining your team.
 
 ---
 
@@ -162,7 +98,5 @@ Evaluated by Ran Isenberg, Senior Engineer at Palo Alto Networks (Feb 2026)
 
 - [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec)
 - [github/spec-kit](https://github.com/github/spec-kit)
-- [Ran Isenberg — Hands-on comparison](https://ranthebuilder.cloud/blog/i-tested-three-spec-driven-ai-tools-here-s-my-honest-take/)
-- [Martin Fowler — Understanding SDD Tools (Kiro, Spec-Kit, Tessl)](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)
-
-> **Notes:** Slide deck created June 2026. Versions tested: OpenSpec v1.2.0, Spec-Kit v0.1.6. Tools evolve rapidly — verify current state before deciding.
+- [Isenberg comparison](https://ranthebuilder.cloud/blog/i-tested-three-spec-driven-ai-tools-here-s-my-honest-take/)
+- [Martin Fowler on SDD](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)
