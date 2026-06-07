@@ -965,6 +965,12 @@ ul li::marker {
   vertical-align: middle;
 }
 
+.post-meta .tag {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  vertical-align: middle;
+}
+
 /* --------------------------------------------------------------------------
    17. Affix — Scroll to top button
    -------------------------------------------------------------------------- */
