@@ -952,6 +952,19 @@ ul li::marker {
   line-height: 1.4;
 }
 
+/* Home page post list: lighter, smaller tags (Kami lightest tier) */
+.post-list .tag {
+  font-size: 0.625rem;
+  padding: 2px 6px;
+  background: var(--tag-bg-light);
+}
+
+/* Post page: inline tags on date line */
+.post-meta .tags {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
 /* --------------------------------------------------------------------------
    17. Affix — Scroll to top button
    -------------------------------------------------------------------------- */
