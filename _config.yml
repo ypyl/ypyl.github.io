@@ -23,3 +23,6 @@ collections:
   presentations:
     output: true
     permalink: /present/:name/
+  news:
+    output: true
+    permalink: /news/:year/:month/:day/:title/

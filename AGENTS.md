@@ -7,7 +7,7 @@ Jekyll blog published to GitHub Pages at `https://ypyl.github.io/`. No build too
 ## Content Structure
 
 - `_posts/` — Blog posts. Filename format: `YYYY-MM-DD-title.md`
-- `_posts/news/` — Short news entries (categories: news). Displayed as cards on the main page. Reference the source.
+- `_news/` — Short news entries (Jekyll collection, `output: true`). Displayed as cards on the main page. Filename format: `YYYY-MM-DD-title.md`. Reference the source.
 - `_tools/` — Tool reference cards (Jekyll collection, `output: false`, not rendered as pages). Browse at `/tools/`
 - `_learning/` — Learning resource cards (Jekyll collection, `output: false`, not rendered as pages). Browse at `/learning/`
 - `_drafts/` — Unpublished drafts
@@ -102,7 +102,7 @@ Create new tags freely when they describe a meaningful aspect of the content (e.
 ## Adding Content
 
 - **New post**: Create `YYYY-MM-DD-descriptive-title.md` in `_posts/`
-- **New news**: Create `YYYY-MM-DD-title.md` in `_posts/news/` with `categories: news`. Keep short and reference the source.
+- **New news**: Create `YYYY-MM-DD-title.md` in `_news/` with `layout: post`, `title`, and `date` frontmatter. No `categories` or `tags` needed — the collection itself identifies the content type. Keep short and reference the source.
 - **New tool**: Create `*.md` in `_tools/` with the tool frontmatter. Choose from valid tool categories above and follow tag guidelines.
 - **New learning resource**: Create `*.md` in `_learning/` with the learning resource frontmatter. Choose from valid learning resource categories above and follow tag guidelines.
 - **Draft**: Place in `_drafts/` (not rendered)

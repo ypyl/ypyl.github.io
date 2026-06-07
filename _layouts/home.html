@@ -6,39 +6,27 @@ layout: default
 
   {{ content }}
 
-  {%- assign news_posts = "" | split: "" -%}
-  {%- for post in site.posts -%}
-    {%- if post.categories contains "news" -%}
-      {%- assign news_posts = news_posts | push: post -%}
-    {%- endif -%}
-  {%- endfor -%}
+  {%- assign news_items = site.news | sort: "date" | reverse -%}
 
-  {%- if news_posts.size > 0 -%}
+  {%- if news_items.size > 0 -%}
     <div class="news-grid">
-      {%- for post in news_posts limit: 6 -%}
+      {%- for item in news_items limit: 6 -%}
         <article class="news-card">
           <h3>
-            <a class="post-link" href="{{ post.url | relative_url }}">
-              {{ post.title | escape }}
+            <a class="post-link" href="{{ item.url | relative_url }}">
+              {{ item.title | escape }}
             </a>
           </h3>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-          <p>{{ post.excerpt | strip_html | truncatewords: 24 }}</p>
+          <span class="post-meta">{{ item.date | date: "%b %-d, %Y" }}</span>
+          <p>{{ item.excerpt | strip_html | truncatewords: 24 }}</p>
         </article>
       {%- endfor -%}
     </div>
   {%- endif -%}
 
-  {%- assign regular_posts = "" | split: "" -%}
-  {%- for post in site.posts -%}
-    {%- unless post.categories contains "news" -%}
-      {%- assign regular_posts = regular_posts | push: post -%}
-    {%- endunless -%}
-  {%- endfor -%}
-
-  {%- if regular_posts.size > 0 -%}
+  {%- if site.posts.size > 0 -%}
     <ul class="post-list">
-      {%- for post in regular_posts -%}
+      {%- for post in site.posts -%}
         <li>
           {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
           <span class="post-meta">{{ post.date | date: date_format }}</span>
