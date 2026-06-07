@@ -16,4 +16,4 @@
 - [x] 4.1 Verify post page: tags appear inline after date with `·` separator
 - [x] 4.2 Verify home page: tags use lighter tier (smaller, lighter bg)
 - [x] 4.3 Verify tools page: tags unaffected by overrides
-- [ ] 4.4 Push to GitHub and verify GitHub Pages builds successfully
+- [x] 4.4 Push to GitHub and verify GitHub Pages builds successfully

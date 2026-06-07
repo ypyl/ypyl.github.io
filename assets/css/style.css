@@ -962,7 +962,6 @@ ul li::marker {
 /* Post page: inline tags on date line */
 .post-meta .tags {
   display: inline-flex;
-  vertical-align: middle;
 }
 
 .post-meta .tag {
