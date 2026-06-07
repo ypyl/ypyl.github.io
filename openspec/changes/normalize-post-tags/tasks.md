@@ -16,7 +16,7 @@
 - [x] 3.1 Run `git diff --stat` to confirm expected number of files changed (~215 single-word + ~30 comma-separated = ~245 files)
 - [x] 3.2 Spot-check 10% of changed files across both `_posts/` and `_posts/news/` for correct transformation
 - [x] 3.3 Verify no other frontmatter fields were modified or corrupted
-- [ ] 3.4 Push to GitHub and verify GitHub Pages builds successfully
+- [x] 3.4 Push to GitHub and verify GitHub Pages builds successfully
 
 ## 4. Update documentation
 
