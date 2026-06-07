@@ -17,4 +17,4 @@
 
 - [x] 4.1 Verify tools page tag badges render correctly after CSS move (no visual regression)
 - [x] 4.2 Spot-check a post page with tags and a post page without tags
-- [ ] 4.3 Push to GitHub and verify GitHub Pages builds successfully
+- [x] 4.3 Push to GitHub and verify GitHub Pages builds successfully
