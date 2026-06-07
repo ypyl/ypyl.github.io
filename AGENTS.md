@@ -4,6 +4,20 @@
 
 Jekyll blog published to GitHub Pages at `https://ypyl.github.io/`. No build tooling needed locally — GitHub Pages auto-builds on push.
 
+## Design
+
+This site follows the **[Kami](https://github.com/tw93/Kami)** design system. See [Kami design reference](https://github.com/tw93/Kami/blob/main/references/design.md) for the full specification.
+
+Key Kami constraints applied here:
+- **Surfaces**: warm parchment (`#f5f4ed`, `--parchment`), never pure white.
+- **Accent**: single ink-blue (`#1B365D`, `--brand`). No second chromatic color.
+- **Typography**: serif hierarchy (Charter/Georgia), weight locked at 400/500, no italic.
+- **Grays**: all warm-toned (yellow-brown undertone), no cool blue-grays.
+- **Tags**: three tiers — default (`--tag-bg: #E4ECF5`), lightest (`--tag-bg-light: #EEF2F7`), and gradient. Solid hex only, never rgba.
+- **Shadows**: whisper shadow (`0 4px 24px rgba(0,0,0,0.05)`) or ring (`0 0 0 1px var(--border)`), never hard drop shadows.
+
+Design tokens are defined in `assets/css/style.css` (section 2, Design Tokens). All custom CSS in `tools.css` and inline styles must use Kami tokens.
+
 ## Content Structure
 
 - `_posts/` — Blog posts. Filename format: `YYYY-MM-DD-title.md`
