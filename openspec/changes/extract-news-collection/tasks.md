@@ -25,4 +25,4 @@
 - [x] 5.1 Verify `_news/` contains exactly 186 files
 - [x] 5.2 Verify no `categories: news` or `tags: [news]` remain in any `_news/` file
 - [x] 5.3 Verify `_posts/news/` directory no longer exists
-- [ ] 5.4 Push to GitHub and verify GitHub Pages builds successfully
+- [x] 5.4 Push to GitHub and verify GitHub Pages builds successfully
