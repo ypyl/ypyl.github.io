@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Dario Amodei Warns of Existential Risks in AI Development"
 date: 2026-01-27
-tags: news
+tags: [news]
 categories: news
 ---
 

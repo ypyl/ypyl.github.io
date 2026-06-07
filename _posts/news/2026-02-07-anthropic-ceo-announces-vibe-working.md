@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Anthropic CEO Announces Shift to 'Vibe Working'"
 date: 2026-02-07
-tags: news
+tags: [news]
 categories: news
 ---
 

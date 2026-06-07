@@ -2,7 +2,7 @@
 layout: post
 title: Daemon cron using F#
 date: 2017-05-19
-tags: dotnet fsharp
+tags: [dotnet, fsharp]
 categories: programming
 ---
 As continuation for [my previous post]({% post_url 2017-06-01-Cron-schedule-using-FSharp %}) I want to create a daemon which runs jobs using created cron code.

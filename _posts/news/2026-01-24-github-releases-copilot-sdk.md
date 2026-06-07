@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "GitHub Releases Copilot SDK with Agent Capabilities"
 date: 2026-01-24
-tags: news
+tags: [news]
 categories: news
 ---
 

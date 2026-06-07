@@ -2,7 +2,7 @@
 layout: post
 title: "Stanford Releases AI Index 2026 Highlighting Key Industry Insights"
 date: 2026-04-15
-tags: news
+tags: [news]
 categories: news
 ---
 

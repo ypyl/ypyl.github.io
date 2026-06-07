@@ -2,7 +2,7 @@
 layout: post
 title: "Zyphra Releases ZAYA1-8B, a Compact MoE Model Trained on AMD"
 date: 2026-05-07
-tags: news
+tags: [news]
 categories: news
 ---
 

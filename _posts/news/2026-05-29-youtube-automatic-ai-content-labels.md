@@ -2,7 +2,7 @@
 layout: post
 title: "YouTube to Automatically Label AI-Generated Content"
 date: 2026-05-29
-tags: news
+tags: [news]
 categories: news
 ---
 

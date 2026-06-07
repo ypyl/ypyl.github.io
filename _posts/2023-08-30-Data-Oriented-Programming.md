@@ -3,7 +3,7 @@ layout: post
 title: Data-oriented programming
 date: 2023-08-30
 categories: programming
-tags: programming data
+tags: [programming, data]
 ---
 
 # Notes about data-oriented programming

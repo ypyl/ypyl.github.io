@@ -3,7 +3,7 @@ layout: post
 title: How to set up SQL code coverage
 date: 2017-12-15
 
-tags: dotnet sql
+tags: [dotnet, sql]
 categories: programming
 ---
 If you are creating a lot of SQL code, it is a good idea to do unit testing for it and see [code coverage](https://en.wikipedia.org/wiki/Code_coverage). Luckly there is two nice tools/libs to do it: [tSQLt](http://tsqlt.org/) and [SQLCover](https://github.com/GoEddie/SQLCover).

@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Launches Claude Code Review for Pull Request Bug Detection"
 date: 2026-03-10
-tags: news
+tags: [news]
 categories: news
 ---
 

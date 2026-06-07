@@ -2,7 +2,7 @@
 layout: post
 title: "Axios Library Compromised with Remote Access Trojan"
 date: 2026-03-31
-tags: news
+tags: [news]
 categories: news
 ---
 

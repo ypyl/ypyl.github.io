@@ -3,7 +3,7 @@ layout: post
 title: FuelUX Tree additional behavior
 date: 2014-07-14
 
-tags: javascript
+tags: [javascript]
 categories: programming
 ---
 Add "Show All" to the FuelUX Tree like this.

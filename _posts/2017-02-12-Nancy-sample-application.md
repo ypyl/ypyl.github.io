@@ -3,7 +3,7 @@ layout: post
 title: Nancy sample application
 date: 2017-02-12
 
-tags: dotnet web
+tags: [dotnet, web]
 categories: programming
 ---
 Hi there,

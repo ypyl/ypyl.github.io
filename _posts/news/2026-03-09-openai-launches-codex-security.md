@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Launches Codex Security Tool in Research Preview"
 date: 2026-03-09
-tags: news
+tags: [news]
 categories: news
 ---
 

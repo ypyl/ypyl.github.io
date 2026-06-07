@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft Open Sources Harrier Embeddings Family"
 date: 2026-03-31
-tags: news
+tags: [news]
 categories: news
 ---
 

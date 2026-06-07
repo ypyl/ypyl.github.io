@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Study Finds AI Assistance May Hinder Coding Skill Development"
 date: 2026-01-29
-tags: news
+tags: [news]
 categories: news
 ---
 

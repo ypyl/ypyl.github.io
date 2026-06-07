@@ -3,7 +3,7 @@ layout: post
 title: TFS Exclude binding from solution
 date: 2013-04-24
 
-tags: tfs
+tags: [tfs]
 categories: programming
 ---
 It is not easy command to unbind solution/project of TFS.

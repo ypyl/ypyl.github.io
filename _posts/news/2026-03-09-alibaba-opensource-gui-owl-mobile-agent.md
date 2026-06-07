@@ -2,7 +2,7 @@
 layout: post
 title: "Alibaba Tongyi Lab Open Sources GUI-Owl-1.5 and Mobile-Agent-v3.5"
 date: 2026-03-09
-tags: news
+tags: [news]
 categories: news
 ---
 

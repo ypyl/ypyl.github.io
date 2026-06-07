@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Gemini Gets Agent Vision"
 date: 2026-01-29
-tags: news
+tags: [news]
 categories: news
 ---
 

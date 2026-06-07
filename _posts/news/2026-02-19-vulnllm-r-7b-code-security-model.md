@@ -2,7 +2,7 @@
 layout: post
 title: "VulnLLM-R-7B: New Reasoning Model for Code Security"
 date: 2026-02-19
-tags: news
+tags: [news]
 categories: news
 ---
 

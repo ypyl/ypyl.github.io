@@ -3,7 +3,7 @@ layout: post
 title: Nomad Visas
 date: 2023-07-10
 categories: travelling
-tags: visa programming travel
+tags: [visa, programming, travel]
 ---
 | Visa Name                                       | Visa Fee        | Income Required                  | Visa Period               | Country Name          |
 |-------------------------------------------------|-----------------|----------------------------------|--------------------------|-----------------------|

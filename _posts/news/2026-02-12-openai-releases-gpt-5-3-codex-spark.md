@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "OpenAI Releases GPT-5.3-Codex-Spark with High Speed"
 date: 2026-02-12
-tags: news
+tags: [news]
 categories: news
 ---
 

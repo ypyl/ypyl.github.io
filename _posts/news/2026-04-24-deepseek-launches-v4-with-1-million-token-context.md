@@ -2,7 +2,7 @@
 layout: post
 title: "DeepSeek Launches V4 with 1 Million Token Context as Standard"
 date: 2026-04-24
-tags: news
+tags: [news]
 categories: news
 ---
 

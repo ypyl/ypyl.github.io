@@ -2,7 +2,7 @@
 layout: post
 title: "Code Mode: the Better Way to Use MCP"
 date: 2025-09-26
-tags: news
+tags: [news]
 categories: news
 ---
 

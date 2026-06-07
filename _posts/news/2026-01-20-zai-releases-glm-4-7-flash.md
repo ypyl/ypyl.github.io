@@ -2,7 +2,7 @@
 layout: post
 title: "ZAI releases GLM-4.7 Flash"
 date: 2026-01-20
-tags: news
+tags: [news]
 categories: news
 ---
 

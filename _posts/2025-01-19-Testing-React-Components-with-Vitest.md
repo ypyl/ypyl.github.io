@@ -3,7 +3,7 @@ layout: post
 title: Testing React Components with Vitest - Testing React Components with Vitest
 date: 2025-01-19
 
-tags: testing react vitest components mocking hooks
+tags: [testing, react, vitest, components, mocking, hooks]
 categories: programming testing
 ---
 

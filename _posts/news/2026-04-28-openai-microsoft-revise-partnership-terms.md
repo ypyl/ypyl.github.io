@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI and Microsoft Revise Partnership Terms"
 date: 2026-04-28
-tags: news
+tags: [news]
 categories: news
 ---
 

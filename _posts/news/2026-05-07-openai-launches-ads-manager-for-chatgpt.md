@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Launches Ads Manager for ChatGPT"
 date: 2026-05-07
-tags: news
+tags: [news]
 categories: news
 ---
 

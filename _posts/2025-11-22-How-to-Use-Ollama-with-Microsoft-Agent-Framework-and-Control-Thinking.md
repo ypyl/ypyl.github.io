@@ -2,7 +2,7 @@
 layout: post
 title: How to Use Ollama with Microsoft Agent Framework and Control Thinking
 date: 2025-11-22
-tags: microsoft-agent-framework chatbot ai-agents llm dotnet how-to
+tags: [microsoft-agent-framework, chatbot, ai-agents, llm, dotnet, how-to]
 categories: programming genai agent framework
 ---
 

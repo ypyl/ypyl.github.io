@@ -3,7 +3,7 @@ layout: post
 title: TFS Delete Team Project
 date: 2013-01-30
 
-tags: tfs
+tags: [tfs]
 categories: programming
 ---
 It is not so easy to find the steps to delete project from TFS.

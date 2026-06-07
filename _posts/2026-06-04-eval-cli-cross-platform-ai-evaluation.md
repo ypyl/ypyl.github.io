@@ -2,7 +2,7 @@
 layout: post
 title: "eval-cli: Cross-platform AI evaluation CLI wrapping Microsoft.Extensions.AI.Evaluation"
 date: 2026-06-04
-tags: dotnet, ai, evaluation, microsoft-extensions-ai, python, cross-platform, cli, native-aot
+tags: [dotnet, ai, evaluation, microsoft-extensions-ai, python, cross-platform, cli, native-aot]
 categories: programming
 ---
 

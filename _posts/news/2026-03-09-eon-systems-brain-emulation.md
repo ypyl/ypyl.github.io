@@ -2,7 +2,7 @@
 layout: post
 title: "Eon Systems Demonstrates Full Brain Emulation Controlling a Simulated Body"
 date: 2026-03-09
-tags: news
+tags: [news]
 categories: news
 ---
 

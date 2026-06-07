@@ -20,7 +20,7 @@ Jekyll blog published to GitHub Pages at `https://ypyl.github.io/`. No build too
 layout: post
 title: Post Title
 date: YYYY-MM-DD
-tags: tag1, tag2
+tags: [tag1, tag2]
 categories: category-name
 ---
 ```
@@ -88,7 +88,9 @@ New categories can be added when a tool doesn't fit any existing one — keep th
 
 ### Tag Guidelines
 
-Create new tags freely when they describe a meaningful aspect of the tool (e.g., a technology, domain, or capability).
+**Format**: All tags MUST use YAML array (flow sequence) format: `tags: [tag1, tag2]`. This applies to posts, tools, learning resources, and all other content types. Jekyll processes YAML arrays natively; comma-separated and other formats are not valid.
+
+Create new tags freely when they describe a meaningful aspect of the content (e.g., a technology, domain, or capability).
 
 - Use lowercase, hyphenated tags (e.g., `machine-learning`, `web-scraping`)
 - Do not include dates — they belong in the filename/frontmatter `date` field

@@ -3,7 +3,7 @@ layout: post
 title: Structure of presentation
 date: 2013-04-10
 
-tags: presentation
+tags: [presentation]
 categories: documentation
 ---
 [link](http://burba.pro/presentation_structure/)

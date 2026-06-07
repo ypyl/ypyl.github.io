@@ -3,7 +3,7 @@ layout: post
 title: WinRT Checksum for large files
 date: 2014-09-29
 
-tags: dotnet winrt
+tags: [dotnet, winrt]
 categories: programming
 ---
 There is a good [question](http://stackoverflow.com/questions/13534334/how-to-compute-hash-md5-or-sha-of-a-large-file-with-c-sharp-in-windows-store-a) about this.

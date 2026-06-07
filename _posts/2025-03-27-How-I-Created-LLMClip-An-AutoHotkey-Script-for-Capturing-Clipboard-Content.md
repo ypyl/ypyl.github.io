@@ -3,7 +3,7 @@ layout: post
 title: How I Created LLMClip – An AutoHotkey Script for Capturing Clipboard Content
 date: 2025-03-27
 
-tags: autohotkey clipboard automation llm productivity
+tags: [autohotkey, clipboard, automation, llm, productivity]
 categories: programming automation
 ---
 

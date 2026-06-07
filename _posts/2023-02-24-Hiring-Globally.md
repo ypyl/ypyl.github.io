@@ -2,7 +2,7 @@
 layout: post
 title: Hiring globally companies
 date: 2023-02-24
-tags: hiring, remote, job, programming
+tags: [hiring, remote, job, programming]
 categories: work
 ---
 

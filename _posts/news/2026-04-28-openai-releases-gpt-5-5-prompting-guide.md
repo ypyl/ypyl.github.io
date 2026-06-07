@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Releases GPT-5.5 Prompting Guide"
 date: 2026-04-28
-tags: news
+tags: [news]
 categories: news
 ---
 

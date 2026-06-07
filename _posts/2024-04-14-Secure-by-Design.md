@@ -3,7 +3,7 @@ layout: post
 title: Some bullet points related to security
 date: 2024-04-14
 categories: programming
-tags: secure design architecture
+tags: [secure, design, architecture]
 ---
 
 # Secure by Design notes

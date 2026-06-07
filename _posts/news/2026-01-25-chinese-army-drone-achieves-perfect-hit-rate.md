@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Chinese Army Drone Achieves 100% Hit Rate in Shooting Test"
 date: 2026-01-25
-tags: news
+tags: [news]
 categories: news
 ---
 

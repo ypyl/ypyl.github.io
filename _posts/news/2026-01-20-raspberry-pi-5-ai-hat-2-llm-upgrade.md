@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Raspberry Pi 5 Gets AI Upgrade with New AI HAT+ 2"
 date: 2026-01-20
-tags: news
+tags: [news]
 categories: news
 ---
 

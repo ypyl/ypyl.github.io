@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Anthropic Releases Claude Opus 4.6 System Card"
 date: 2026-02-06
-tags: news
+tags: [news]
 categories: news
 ---
 

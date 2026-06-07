@@ -2,7 +2,7 @@
 layout: post
 title: "SkillsBench Research Shows Real Impact of Skills on LLM Agents"
 date: 2026-02-20
-tags: news
+tags: [news]
 categories: news
 ---
 

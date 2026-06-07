@@ -2,7 +2,7 @@
 layout: post
 title: "xAI launches 1 GW AI training cluster"
 date: 2026-01-20
-tags: news
+tags: [news]
 categories: news
 ---
 

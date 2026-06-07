@@ -2,7 +2,7 @@
 layout: post
 title: "Overworked AI Agents Start Demanding Workers' Rights"
 date: 2026-05-14
-tags: news
+tags: [news]
 categories: news
 ---
 

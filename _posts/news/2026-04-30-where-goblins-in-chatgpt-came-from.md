@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Explains the Origin of Goblins in ChatGPT"
 date: 2026-04-30
-tags: news
+tags: [news]
 categories: news
 ---
 

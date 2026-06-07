@@ -2,7 +2,7 @@
 layout: post
 title: "Assessing Claude Mythos Preview’s Cybersecurity Capabilities"
 date: 2026-04-07
-tags: news
+tags: [news]
 categories: news
 ---
 

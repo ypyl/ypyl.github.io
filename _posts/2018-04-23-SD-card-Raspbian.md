@@ -3,7 +3,7 @@ layout: post
 title: Prepare SD card for Raspbian
 date: 2018-04-23
 
-tags: raspberrypi
+tags: [raspberrypi]
 categories: iot
 ---
 Steps:

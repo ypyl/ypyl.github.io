@@ -2,7 +2,7 @@
 layout: post
 title: "Princeton Study Reveals Chatbots' Power to Manipulate Consumers"
 date: 2026-04-09
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: Disengage
 categories: english
-tags: english word vocabluary
+tags: [english, word, vocabluary]
 ---
 ### Meaning
 

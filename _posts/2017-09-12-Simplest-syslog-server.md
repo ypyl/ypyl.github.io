@@ -3,7 +3,7 @@ layout: post
 title: Simplest syslog server for rfc5424 (TCP)
 date: 2017-09-12
 
-tags: dotnet docker
+tags: [dotnet, docker]
 categories: deployment
 ---
 I am working on onside project where we have more than 5 docker containers. Previously we used just serilog to do our logging in all our containers. So each project had his own logging mechanism. Finally we decided to centralize our logging system ans start using docker logs. There are a lot of solutions using clouds (e.g. [loggly](https://www.loggly.com/)) or quite complex systems to grab, analyze and show your logs (like [kafka](https://kafka.apache.org), [kibana](https://www.elastic.co/products/kibana)). But we wanted to save our logs to simple txt files without any additional complex stuff.

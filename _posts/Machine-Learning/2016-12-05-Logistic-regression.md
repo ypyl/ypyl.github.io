@@ -3,7 +3,7 @@ layout: post
 title: Logistic regression
 date: 2016-12-05
 
-tags: machine learning octave
+tags: [machine, learning, octave]
 categories: learning
 ---
 ### Binary Classification

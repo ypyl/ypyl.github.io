@@ -2,7 +2,7 @@
 layout: post
 title: Notes about passionate programmer
 date: 2022-02-20
-tags: programming notes
+tags: [programming, notes]
 categories: programming
 ---
 # Notes after reading [Passionate Programmer](https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic/dp/1934356344)

@@ -2,7 +2,7 @@
 layout: post
 title: Diplomatic Grammar
 categories: english
-tags: english polite diplomatic
+tags: [english, polite, diplomatic]
 ---
 
 ### Modal Verbs: Softening Certainty

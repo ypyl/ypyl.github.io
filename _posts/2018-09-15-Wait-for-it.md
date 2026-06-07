@@ -3,7 +3,7 @@ layout: post
 title: How to use wait-for-it with docker compose
 date: 2018-09-15
 
-tags: docker
+tags: [docker]
 categories: deployment
 ---
 There is a possibility to control startup order in Compose using great script - [wait-for-it](https://github.com/vishnubob/wait-for-it).

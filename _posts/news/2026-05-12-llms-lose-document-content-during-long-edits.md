@@ -2,7 +2,7 @@
 layout: post
 title: "LLMs Lose ~25% of Document Content During Long Editing Sessions"
 date: 2026-05-12
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: Fiddler Zip extension
 date: 2011-12-08
 
-tags: dotnet
+tags: [dotnet]
 categories: programming
 ---
 Extension for [Fiddler](http://www.fiddler2.com/Fiddler/dev/).

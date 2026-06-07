@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Anthropic Bans User for Automating Claude Instructions"
 date: 2026-01-26
-tags: news
+tags: [news]
 categories: news
 ---
 

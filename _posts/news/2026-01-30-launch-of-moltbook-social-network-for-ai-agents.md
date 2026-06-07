@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Launch of Moltbook: A Social Network for AI Agents"
 date: 2026-01-30
-tags: news
+tags: [news]
 categories: news
 ---
 

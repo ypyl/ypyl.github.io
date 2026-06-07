@@ -3,7 +3,7 @@ layout: post
 title: Azure Cosmos DB Always Encrypted and GetItemLinqQueryable issue
 date: 2023-11-01
 categories: programming
-tags: dotnet core azure cosmosDB encryption
+tags: [dotnet, core, azure, cosmosDB, encryption]
 ---
 
 # Reading Azure Cosmos DB Always Encrypted issue

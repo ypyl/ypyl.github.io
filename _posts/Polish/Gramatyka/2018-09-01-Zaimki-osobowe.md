@@ -3,7 +3,7 @@ layout: post
 title: Zaimki osobowe
 date: 2018-09-01
 
-tags: polish gramatyka
+tags: [polish, gramatyka]
 categories: learning
 ---
 |Mianownik|Dopełniacz(kogo? czego?)|Celownik(komu? czemy?)|Biernik(kogo? co?)|Narzędnik(z kim? z czym?)|Miejscownik(o kim? o czym?)|

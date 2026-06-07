@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft Introduces Autopilots — Always-On AI Agents, Starting with Scout"
 date: 2026-06-03
-tags: news
+tags: [news]
 categories: news
 ---
 

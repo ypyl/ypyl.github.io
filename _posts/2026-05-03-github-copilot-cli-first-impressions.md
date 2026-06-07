@@ -2,7 +2,7 @@
 title: GitHub Copilot CLI - First Impressions
 date: 2026-05-03
 layout: post
-tags: github, copilot, ai, cli, learning
+tags: [github, copilot, ai, cli, learning]
 categories: programming
 ---
 

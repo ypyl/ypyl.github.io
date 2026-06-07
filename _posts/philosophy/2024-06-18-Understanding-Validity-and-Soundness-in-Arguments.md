@@ -3,7 +3,7 @@ layout: post
 title: Understanding Validity and Soundness in Arguments
 date: 2024-06-18
 
-tags: valid sound
+tags: [valid, sound]
 categories: philosophy
 ---
 Certainly! Here's an article discussing the concepts of valid and sound arguments, incorporating the Ontological Argument for context:

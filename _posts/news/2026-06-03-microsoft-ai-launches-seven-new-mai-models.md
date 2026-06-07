@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft AI Launches Seven New MAI Models"
 date: 2026-06-03
-tags: news
+tags: [news]
 categories: news
 ---
 

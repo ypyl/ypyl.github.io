@@ -2,7 +2,7 @@
 layout: post
 title: "Nvidia and Microsoft Unveil RTX Spark Superchip for AI-Native PCs"
 date: 2026-06-01
-tags: news
+tags: [news]
 categories: news
 ---
 

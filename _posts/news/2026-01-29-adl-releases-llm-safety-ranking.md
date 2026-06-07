@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "ADL Releases Safety Ranking of LLMs: Claude Leads, Grok Fails Extremism Tests"
 date: 2026-01-29
-tags: news
+tags: [news]
 categories: news
 ---
 

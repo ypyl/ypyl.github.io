@@ -4,7 +4,7 @@ layout: post
 title: Trump’s Re-election Sparks Market Reactions Highlights and Insights
 date: 2024-11-08
 
-tags: investing stock-market market-analysis political-impact US-economy tech-sector financial-strategy
+tags: [investing, stock-market, market-analysis, political-impact, US-economy, tech-sector, financial-strategy]
 categories: investing
 
 ---

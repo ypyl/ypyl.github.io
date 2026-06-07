@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "OpenAI Explores New Monetization Models Beyond ChatGPT Subscriptions"
 date: 2026-01-25
-tags: news
+tags: [news]
 categories: news
 ---
 

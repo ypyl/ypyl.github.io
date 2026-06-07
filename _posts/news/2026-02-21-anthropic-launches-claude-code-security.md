@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Launches Claude Code Security"
 date: 2026-02-21
-tags: news
+tags: [news]
 categories: news
 ---
 

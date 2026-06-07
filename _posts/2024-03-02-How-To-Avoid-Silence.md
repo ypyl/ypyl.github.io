@@ -3,7 +3,7 @@ layout: post
 title: How to avoid silence
 date: 2024-03-02
 categories: conversation
-tags: english communication soft-skills
+tags: [english, communication, soft-skills]
 ---
 
 # How to Avoid Silence: 5 Strategies for Keeping Conversations Alive

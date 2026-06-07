@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft Unveils GitHub Copilot Desktop App, Frontier Tuning, and AI-Native Developer Tools"
 date: 2026-06-03
-tags: news
+tags: [news]
 categories: news
 ---
 

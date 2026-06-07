@@ -2,7 +2,7 @@
 layout: post
 title: "Mozilla.ai Launches cq: Stack Overflow for Agents"
 date: 2026-03-26
-tags: news
+tags: [news]
 categories: news
 ---
 

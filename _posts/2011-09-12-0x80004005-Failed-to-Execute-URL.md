@@ -2,7 +2,7 @@
 layout: post
 title: 0x80004005 Failed to Execute URL
 date: 2011-09-12
-tags: linux dotnet
+tags: [linux, dotnet]
 categories: programming
 ---
 

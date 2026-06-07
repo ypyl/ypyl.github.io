@@ -3,7 +3,7 @@ layout: post
 title: Copy remote MSSQL DB to local server
 date: 2017-12-20
 
-tags: dotnet mssql
+tags: [dotnet, mssql]
 categories: programming
 ---
 I faced with one issue how to automatically download and restore databases from remote server to my local MSSQL server. It sounds like very generic task so I tried to find a solution in Internet without success. So there is a small console application which does the next things:

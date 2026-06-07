@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Singapore Launches Model AI Governance Framework for Agentic AI"
 date: 2026-01-22
-tags: news
+tags: [news]
 categories: news
 ---
 

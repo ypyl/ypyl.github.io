@@ -3,7 +3,7 @@ layout: post
 title: Permanently save environment variables
 date: 2019-04-15
 
-tags: linux
+tags: [linux]
 categories: administration
 ---
 Environment variables are only stored temporally if you are setting them using terminal:

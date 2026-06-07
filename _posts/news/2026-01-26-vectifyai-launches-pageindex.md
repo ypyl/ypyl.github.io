@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "VectifyAI Launches PageIndex: Smart Document Indexing Without Vectors"
 date: 2026-01-26
-tags: news
+tags: [news]
 categories: news
 ---
 

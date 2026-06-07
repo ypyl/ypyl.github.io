@@ -2,7 +2,7 @@
 layout: post
 title: "NASA Releases Over 12,000 High-Resolution Photos from Artemis II Mission"
 date: 2026-05-04
-tags: news
+tags: [news]
 categories: news
 ---
 

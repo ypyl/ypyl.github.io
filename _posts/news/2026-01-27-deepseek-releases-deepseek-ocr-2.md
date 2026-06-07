@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "DeepSeek Releases DeepSeek-OCR 2 with State-of-the-Art Quality"
 date: 2026-01-27
-tags: news
+tags: [news]
 categories: news
 ---
 

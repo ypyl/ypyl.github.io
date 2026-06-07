@@ -3,7 +3,7 @@ layout: post
 title: Set up raspberry
 date: 2023-10-10
 categories: raspberry
-tags: raspberry
+tags: [raspberry]
 ---
 
 # Setup SD

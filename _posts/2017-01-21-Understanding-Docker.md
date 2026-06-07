@@ -3,7 +3,7 @@ layout: post
 title: Understanding Docker
 date: 2017-01-21
 
-tags: docker
+tags: [docker]
 categories: deployment
 ---
 ### [What is Docker?](https://www.docker.com/what-docker)

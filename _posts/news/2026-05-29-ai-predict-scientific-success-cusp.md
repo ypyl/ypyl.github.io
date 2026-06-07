@@ -2,7 +2,7 @@
 layout: post
 title: "Can AI Predict Which Scientific Ideas Will Succeed? New Benchmark Says: Partially"
 date: 2026-05-29
-tags: news
+tags: [news]
 categories: news
 ---
 

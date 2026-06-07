@@ -2,7 +2,7 @@
 layout: post
 title: "Open Retro Model Trained on Pre-1930 Data"
 date: 2026-04-29
-tags: news
+tags: [news]
 categories: news
 ---
 

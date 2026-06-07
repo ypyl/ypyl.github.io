@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "OpenAI Updates GPT-5.2 Instant with Clearer Responses"
 date: 2026-02-12
-tags: news
+tags: [news]
 categories: news
 ---
 

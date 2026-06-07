@@ -3,7 +3,7 @@ layout: post
 title: Notes from 'Introduction to Linux'
 date: 2015-05-21
 
-tags: linux
+tags: [linux]
 categories: administration
 ---
 [course link](https://www.edx.org/course/introduction-linux-linuxfoundationx-lfs101x-0)

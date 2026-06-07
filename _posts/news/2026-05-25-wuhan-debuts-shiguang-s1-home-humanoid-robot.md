@@ -2,7 +2,7 @@
 layout: post
 title: "Wuhan Debuts Shiguang S1 — China's First Home Humanoid Robot"
 date: 2026-05-25
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: Qwen Releases Open-Source Qwen3-TTS with Voice Design and Cloning
 date: 2026-01-22
-tags: news
+tags: [news]
 categories: news
 ---
 

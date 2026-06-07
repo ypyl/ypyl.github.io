@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Winds Down Fine-Tuning Platform by Early 2027"
 date: 2026-05-12
-tags: news
+tags: [news]
 categories: news
 ---
 

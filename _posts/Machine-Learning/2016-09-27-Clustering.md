@@ -3,7 +3,7 @@ layout: post
 title: Clustering
 date: 2016-09-27
 
-tags: machine learning
+tags: [machine, learning]
 categories: learning
 ---
 Unsupervised learning is contrasted from supervised learning because it uses an unlabeled training set rather than a labeled one.

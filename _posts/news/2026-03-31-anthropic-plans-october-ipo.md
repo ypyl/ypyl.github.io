@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Plans IPO in October 2026"
 date: 2026-03-31
-tags: news
+tags: [news]
 categories: news
 ---
 

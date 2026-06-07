@@ -3,7 +3,7 @@ layout: post
 title: jQuery Twitter Bootstrap List Tree Plugin Editable version
 date: 2013-04-20
 
-tags: javascript
+tags: [javascript]
 categories: programming
 ---
 JQuery / Twitter Bootstrap List Tree Plugin is a great plugin, but it does not allow to edit and sort tree elements. I have created an editable version of plugin: The view of tree:

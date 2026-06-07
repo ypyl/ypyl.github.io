@@ -2,7 +2,7 @@
 layout: post
 title: "Developers Now Refuse to Work Without AI Coding Tools, Researchers Find"
 date: 2026-06-04
-tags: news
+tags: [news]
 categories: news
 ---
 

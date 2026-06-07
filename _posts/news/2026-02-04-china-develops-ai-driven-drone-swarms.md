@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "China Develops AI-Driven Drone Swarms Inspired by Predator Hunting Strategies"
 date: 2026-02-04
-tags: news
+tags: [news]
 categories: news
 ---
 

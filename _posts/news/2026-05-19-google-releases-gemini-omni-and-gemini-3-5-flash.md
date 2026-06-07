@@ -2,7 +2,7 @@
 layout: post
 title: "Google Releases Gemini Omni and Gemini 3.5 Flash"
 date: 2026-05-19
-tags: news
+tags: [news]
 categories: news
 ---
 

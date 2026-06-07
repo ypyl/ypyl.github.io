@@ -2,7 +2,7 @@
 layout: post
 title: "Context Graphs, One Month In"
 date: 2026-02-18
-tags: news
+tags: [news]
 categories: news
 ---
 

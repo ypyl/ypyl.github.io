@@ -3,7 +3,7 @@ layout: post
 title: Coding techniques
 date: 2023-07-13
 categories: programming
-tags: interview coding pattern
+tags: [interview, coding, pattern]
 ---
 
 # [Sliding Window](https://de.wikipedia.org/wiki/Sliding_Window)

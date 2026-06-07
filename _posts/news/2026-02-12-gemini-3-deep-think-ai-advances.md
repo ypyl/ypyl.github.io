@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Gemini 3 Deep Think: AI Excels in Complex Problem Solving"
 date: 2026-02-12
-tags: news
+tags: [news]
 categories: news
 ---
 

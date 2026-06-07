@@ -2,7 +2,7 @@
 layout: post
 title: Generate EF Core model from database using SQL script
 date: 2017-12-22
-tags: dotnet sql ef
+tags: [dotnet, sql, ef]
 categories: programming
 ---
 It is possible to generate EF Core model from existing database without some of tables. There is very simple and small SQL query which generated a content of C# file.

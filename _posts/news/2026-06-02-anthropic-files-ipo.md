@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Files Confidentially for IPO"
 date: 2026-06-02
-tags: news
+tags: [news]
 categories: news
 ---
 

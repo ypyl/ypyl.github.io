@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Chinese Engineers Develop Mosquito-Sized Surveillance Drone"
 date: 2026-02-02
-tags: news
+tags: [news]
 categories: news
 ---
 

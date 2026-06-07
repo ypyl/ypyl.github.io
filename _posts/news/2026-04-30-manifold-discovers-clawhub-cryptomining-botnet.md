@@ -2,7 +2,7 @@
 layout: post
 title: "Manifold Researcher Discovers Cryptomining Botnet on ClawHub"
 date: 2026-04-30
-tags: news
+tags: [news]
 categories: news
 ---
 

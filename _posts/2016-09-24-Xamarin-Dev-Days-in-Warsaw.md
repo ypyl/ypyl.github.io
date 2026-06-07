@@ -3,7 +3,7 @@ layout: post
 title: Xamarin Dev Days in Warsaw
 date: 2016-09-24
 
-tags: xamarin
+tags: [xamarin]
 categories: programming
 ---
 Hi All, it is my overview of Xamarin Dev Days - short summary. Hope it will be useful to create an  impression what you can expect from this event.

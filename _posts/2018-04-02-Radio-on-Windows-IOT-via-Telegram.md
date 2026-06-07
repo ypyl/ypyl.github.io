@@ -3,7 +3,7 @@ layout: post
 title: Radio on Windows IOT via Telegram Bot
 date: 2018-04-02
 
-tags: dotnet
+tags: [dotnet]
 categories: programming
 ---
 # Radio on Windows IOT via Telegram Bot

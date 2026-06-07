@@ -2,7 +2,7 @@
 layout: post
 title: "Harness Engineering: Leveraging Codex in an Agent-First World"
 date: 2026-02-11
-tags: news
+tags: [news]
 categories: news
 ---
 

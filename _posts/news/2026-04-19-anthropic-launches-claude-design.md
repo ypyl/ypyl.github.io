@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Launches Claude Design for Automated Visual Prototyping"
 date: 2026-04-19
-tags: news
+tags: [news]
 categories: news
 ---
 

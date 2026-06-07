@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "OpenAI Explains How Codex CLI Works"
 date: 2026-01-28
-tags: news
+tags: [news]
 categories: news
 ---
 

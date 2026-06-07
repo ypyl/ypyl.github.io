@@ -3,7 +3,7 @@ layout: post
 title: Navigating Market Twists Top Long-Term Stock Picks and Risks
 date: 2024-07-20
 
-tags: stocks
+tags: [stocks]
 categories: investing
 ---
 ### Analysis of Your Stock Portfolio Based on Market News

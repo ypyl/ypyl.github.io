@@ -2,7 +2,7 @@
 layout: post
 title: Naming Tests - Quick Note
 date: 2026-04-12
-tags: testing, naming, programming, unit-tests
+tags: [testing, naming, programming, unit-tests]
 categories: programming
 ---
 

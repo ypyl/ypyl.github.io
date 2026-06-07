@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Leases Colossus 1 from SpaceX and Raises Claude Limits"
 date: 2026-05-07
-tags: news
+tags: [news]
 categories: news
 ---
 

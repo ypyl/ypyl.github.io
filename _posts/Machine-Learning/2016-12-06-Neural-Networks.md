@@ -3,7 +3,7 @@ layout: post
 title: Neural Networks
 date: 2016-12-06
 
-tags: machine learning
+tags: [machine, learning]
 categories: learning
 ---
 Neural networks are limited imitations of how our own brains work. They've had a big recent resurgence because of advances in computer hardware.

@@ -2,7 +2,7 @@
 layout: post
 title: "MiniMax M3: Open-Weight Model with 1M Context Outperforms GPT-5.5 and Opus on Agentic Benchmarks"
 date: 2026-06-01
-tags: news
+tags: [news]
 categories: news
 ---
 

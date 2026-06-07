@@ -2,7 +2,7 @@
 layout: post
 title: "Google Unveils Coral Board: A RISC-V SBC for On-Device Gemma 3"
 date: 2026-05-29
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Why ESLint Says Don't Call setState in useEffect — and What to Do Instead"
 date: 2026-05-30
-tags: react, eslint, hooks, typescript, frontend
+tags: [react, eslint, hooks, typescript, frontend]
 categories: programming
 ---
 

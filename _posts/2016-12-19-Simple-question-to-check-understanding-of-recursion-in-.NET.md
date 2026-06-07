@@ -3,7 +3,7 @@ layout: post
 title: Simple question to check understanding of recursion in .NET
 date: 2016-12-19
 
-tags: dotnet interview
+tags: [dotnet, interview]
 categories: programming
 ---
 There is the next code:

@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Publishes AI-Resistant Technical Evaluations"
 date: 2026-01-22
-tags: news
+tags: [news]
 categories: news
 ---
 

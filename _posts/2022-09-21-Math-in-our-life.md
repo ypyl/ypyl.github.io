@@ -2,7 +2,7 @@
 layout: post
 title: Math in our life
 date: 2022-09-21
-tags: math
+tags: [math]
 categories: math
 ---
 

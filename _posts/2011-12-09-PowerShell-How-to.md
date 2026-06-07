@@ -3,7 +3,7 @@ layout: post
 title: PowerShell How to
 date: 2011-12-09
 
-tags: powershell
+tags: [powershell]
 categories: administration
 ---
 0. How to delete all bin, obj folders?

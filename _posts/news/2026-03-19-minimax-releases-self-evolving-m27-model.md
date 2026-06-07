@@ -2,7 +2,7 @@
 layout: post
 title: "MiniMax Releases Self-Evolving M2.7 Model"
 date: 2026-03-19
-tags: news
+tags: [news]
 categories: news
 ---
 

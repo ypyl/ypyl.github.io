@@ -2,7 +2,7 @@
 layout: post
 title: "AI Increases Work Intensity Instead of Lightening Workloads"
 date: 2026-03-26
-tags: news
+tags: [news]
 categories: news
 ---
 

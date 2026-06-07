@@ -2,7 +2,7 @@
 layout: post
 title: "AI Plugins Become New Vector for Attacks"
 date: 2026-02-22
-tags: news
+tags: [news]
 categories: news
 ---
 

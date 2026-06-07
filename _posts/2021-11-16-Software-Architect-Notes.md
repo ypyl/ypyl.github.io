@@ -2,7 +2,7 @@
 layout: post
 title: Software Architect Notes
 date: 2021-10-16
-tags: software architect
+tags: [software, architect]
 categories: programming
 ---
 

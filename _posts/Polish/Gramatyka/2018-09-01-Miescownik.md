@@ -3,7 +3,7 @@ layout: post
 title: Miescownik
 date: 2018-09-01
 
-tags: polish gramatyka
+tags: [polish, gramatyka]
 categories: learning
 ---
 # Miescownik (o kim? o czym? w, na, o, po, przy), liczba poejdyncza

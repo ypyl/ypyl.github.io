@@ -2,7 +2,7 @@
 layout: post
 title: "Evaluating AI Responses in .NET with Microsoft.Extensions.AI.Evaluation"
 date: 2026-05-29
-tags: dotnet, ai, evaluation, microsoft-extensions-ai, testing, mstest
+tags: [dotnet, ai, evaluation, microsoft-extensions-ai, testing, mstest]
 categories: programming
 ---
 

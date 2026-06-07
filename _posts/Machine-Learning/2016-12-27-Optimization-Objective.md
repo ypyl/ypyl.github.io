@@ -3,7 +3,7 @@ layout: post
 title: Optimization Objective
 date: 2016-12-27
 
-tags: machine learning
+tags: [machine, learning]
 categories: learning
 ---
 The Support Vector Machine (SVM) is yet another type of supervised machine learning algorithm. It is sometimes cleaner and more powerful.

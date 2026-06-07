@@ -3,7 +3,7 @@ layout: post
 title: Text based prompting
 date: 2025-07-22
 
-tags: slm prompting llm genai ai
+tags: [slm, prompting, llm, genai, ai]
 categories: programming genai
 ---
 

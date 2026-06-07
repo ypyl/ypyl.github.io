@@ -3,7 +3,7 @@ layout: post
 title: Machine Learning Init. Linear Regression. Gradient Descent
 date: 2016-11-14
 
-tags: machine learning
+tags: [machine, learning]
 categories: learning
 ---
 The information is from this [course](https://www.coursera.org/learn/machine-learning/).

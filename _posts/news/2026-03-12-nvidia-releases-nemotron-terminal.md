@@ -2,7 +2,7 @@
 layout: post
 title: "NVIDIA Releases Nemotron-Terminal Models for Autonomous Linux Terminal Tasks"
 date: 2026-03-12
-tags: news
+tags: [news]
 categories: news
 ---
 

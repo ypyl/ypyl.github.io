@@ -3,7 +3,7 @@ layout: post
 title: Czasownik
 date: 2018-09-01
 
-tags: polish gramatyka
+tags: [polish, gramatyka]
 categories: learning
 ---
 ||być|mieć|mieszkać|rozumieć|przepraszać|czytać|pytać|mówić|lubić|robić|uczyć się|tańczyć|

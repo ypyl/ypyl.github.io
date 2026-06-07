@@ -2,7 +2,7 @@
 layout: post
 title: "Berkeley Study Finds AI Increases Employee Workload Instead of Reducing It"
 date: 2026-03-09
-tags: news
+tags: [news]
 categories: news
 ---
 

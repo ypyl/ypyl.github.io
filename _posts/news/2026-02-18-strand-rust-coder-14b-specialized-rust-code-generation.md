@@ -2,7 +2,7 @@
 layout: post
 title: "Strand-Rust-Coder-14B: Specialized AI Model for Rust Code Generation"
 date: 2026-02-18
-tags: news
+tags: [news]
 categories: news
 ---
 

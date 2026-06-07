@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Overworld Releases Open-Source Real-Time Game World Generator"
 date: 2026-01-24
-tags: news
+tags: [news]
 categories: news
 ---
 

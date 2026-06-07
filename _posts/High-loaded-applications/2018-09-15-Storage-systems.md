@@ -3,7 +3,7 @@ layout: post
 title: Storage systems
 date: 2018-09-15
 
-tags: high-load
+tags: [high-load]
 categories: learning
 ---
 Storage systems are divided into two broad categories:

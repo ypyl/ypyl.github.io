@@ -2,7 +2,7 @@
 layout: post
 title: "LLM Accuracy Significantly Improves by Repeating Prompt Twice"
 date: 2026-02-18
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "OpenAI to Retire GPT-4o and GPT-4.1 Models in February 2026"
 date: 2026-01-31
-tags: news
+tags: [news]
 categories: news
 ---
 

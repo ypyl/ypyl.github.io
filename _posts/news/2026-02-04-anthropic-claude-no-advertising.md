@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Anthropic Declares No Advertising in Claude AI Conversations"
 date: 2026-02-04
-tags: news
+tags: [news]
 categories: news
 ---
 

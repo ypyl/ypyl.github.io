@@ -2,7 +2,7 @@
 layout: post
 title: Diplomatic Saying No
 categories: english
-tags: english polite diplomatic
+tags: [english, polite, diplomatic]
 ---
 
 ## No in Small Talks

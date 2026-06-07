@@ -3,7 +3,7 @@ layout: post
 title: Implementing async.queue using rxjs
 date: 2016-12-18
 
-tags: javascript
+tags: [javascript]
 categories: programming
 ---
 There is an example of queue using rxjs:

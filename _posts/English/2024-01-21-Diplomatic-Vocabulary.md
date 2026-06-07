@@ -2,7 +2,7 @@
 layout: post
 title: Diplomatic Vocabulary
 categories: english
-tags: english polite diplomatic
+tags: [english, polite, diplomatic]
 ---
 
 ### Rephrasing Negative Sentences

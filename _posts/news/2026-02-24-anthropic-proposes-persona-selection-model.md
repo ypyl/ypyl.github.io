@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Proposes Persona Selection Model to Explain AI Assistant Behavior"
 date: 2026-02-24
-tags: news
+tags: [news]
 categories: news
 ---
 

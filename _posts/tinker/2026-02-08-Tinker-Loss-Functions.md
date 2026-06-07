@@ -3,7 +3,7 @@ layout: post
 title: "Tinker: Loss Functions"
 date: 2026-02-08
 
-tags: tinker, llm, finetuning, qwen3-vl
+tags: [tinker, llm, finetuning, qwen3-vl]
 categories: ai, programming
 ---
 

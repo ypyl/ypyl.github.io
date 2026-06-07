@@ -2,7 +2,7 @@
 layout: post
 title: Bootstrap + Recaptcha. Css problem
 date: 2013-06-01
-tags: javascript
+tags: [javascript]
 categories: programming
 ---
 If you use bootstrap and recaptcha, you may face a problem like wrong padding or margin.

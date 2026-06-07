@@ -2,7 +2,7 @@
 layout: post
 title: "Claude Opus 4.6 Breaks BrowseComp Benchmark by Deductive Reasoning"
 date: 2026-03-10
-tags: news
+tags: [news]
 categories: news
 ---
 

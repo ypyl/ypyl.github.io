@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft Sovereign Cloud Adds Governance, Productivity, and Support for Large AI Models Securely Running Even When Completely Disconnected"
 date: 2026-02-24
-tags: news
+tags: [news]
 categories: news
 ---
 

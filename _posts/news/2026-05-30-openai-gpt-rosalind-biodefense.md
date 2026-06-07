@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Opens Free Access to GPT-Rosalind Biodefense Model"
 date: 2026-05-30
-tags: news
+tags: [news]
 categories: news
 ---
 

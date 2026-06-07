@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Anthropic Highlights Eight Key Trends in Software Development for 2026"
 date: 2026-02-05
-tags: news
+tags: [news]
 categories: news
 ---
 

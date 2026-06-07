@@ -2,7 +2,7 @@
 layout: post
 title: Diplomatic Meaning Clear
 categories: english
-tags: english polite diplomatic
+tags: [english, polite, diplomatic]
 ---
 
 ### **Meaning Clear: Mastering the L.I.S.T.E.N. Model**

@@ -3,7 +3,7 @@ layout: post
 title: Applying machine learning
 date: 2016-09-27
 
-tags: machine learning
+tags: [machine, learning]
 categories: learning
 ---
 Errors in your predictions can be troubleshooted by:

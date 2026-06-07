@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Model Autonomously Solves 80-Year-Old Geometry Conjecture"
 date: 2026-05-21
-tags: news
+tags: [news]
 categories: news
 ---
 

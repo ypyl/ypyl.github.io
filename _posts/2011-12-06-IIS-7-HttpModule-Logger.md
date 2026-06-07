@@ -3,7 +3,7 @@ layout: post
 title: IIS 7 HttpModule Logger
 date: 2011-12-06
 
-tags: iis
+tags: [iis]
 categories: administration
 ---
 Простой модуль-лог для IIS 7 (Classic mode)

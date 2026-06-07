@@ -2,7 +2,7 @@
 layout: post
 title: "Vatican to Publish First AI Encyclical with Anthropic Co-Founder"
 date: 2026-05-20
-tags: news
+tags: [news]
 categories: news
 ---
 

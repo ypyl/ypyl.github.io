@@ -2,7 +2,7 @@
 layout: post
 title: "MiniMax Releases M2.5 Model"
 date: 2026-02-14
-tags: news
+tags: [news]
 categories: news
 ---
 

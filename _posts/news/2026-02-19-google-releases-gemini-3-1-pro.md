@@ -2,7 +2,7 @@
 layout: post
 title: "Google Releases Gemini 3.1 Pro with Advanced Abstract Reasoning"
 date: 2026-02-19
-tags: news
+tags: [news]
 categories: news
 ---
 

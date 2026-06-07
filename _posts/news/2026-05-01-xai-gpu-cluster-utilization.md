@@ -2,7 +2,7 @@
 layout: post
 title: "xAI GPU Cluster Utilization Remains Low at 11%"
 date: 2026-05-01
-tags: news
+tags: [news]
 categories: news
 ---
 

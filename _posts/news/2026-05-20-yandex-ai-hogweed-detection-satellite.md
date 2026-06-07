@@ -2,7 +2,7 @@
 layout: post
 title: "Yandex Wins Green Digital Award for AI-Powered Hogweed Detection via Satellite"
 date: 2026-05-20
-tags: news
+tags: [news]
 categories: news
 ---
 

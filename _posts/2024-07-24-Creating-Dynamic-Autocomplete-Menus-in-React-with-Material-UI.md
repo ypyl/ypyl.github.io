@@ -3,7 +3,7 @@ layout: post
 title: Creating Dynamic Autocomplete Menus in React with Material-UI
 date: 2024-07-24
 
-tags: react autocomplete javascript webdevelopment frontend material-ui userexperience uicomponents webdesign softwaredevelopment tech gpt-4o
+tags: [react, autocomplete, javascript, webdevelopment, frontend, material-ui, userexperience, uicomponents, webdesign, softwaredevelopment, tech, gpt-4o]
 categories: programming
 ---
 

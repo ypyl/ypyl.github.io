@@ -3,7 +3,7 @@ layout: post
 title: How to Create a CI/CD Pipeline in Azure DevOps Using a .NET Application
 date: 2025-03-06
 
-tags: azure-devops dotnet ci-cd pipeline automation
+tags: [azure-devops, dotnet, ci-cd, pipeline, automation]
 categories: programming devops
 ---
 

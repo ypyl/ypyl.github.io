@@ -2,7 +2,7 @@
 layout: post
 title: "YouTube Accelerates LLM Recommendation Validation by 948x with New STATIC Framework"
 date: 2026-03-03
-tags: news
+tags: [news]
 categories: news
 ---
 

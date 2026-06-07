@@ -2,7 +2,7 @@
 layout: post
 title: Building a Seamless Double-Click-to-Edit Component for Mantine
 date: 2025-12-23
-tags: react mantine typescript npm frontend web-development
+tags: [react, mantine, typescript, npm, frontend, web-development]
 categories: programming frontend
 ---
 

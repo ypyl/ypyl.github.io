@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Implements Identity Verification System"
 date: 2026-04-19
-tags: news
+tags: [news]
 categories: news
 ---
 

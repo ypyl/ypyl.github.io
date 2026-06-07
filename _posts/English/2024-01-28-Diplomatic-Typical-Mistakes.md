@@ -2,7 +2,7 @@
 layout: post
 title: Diplomatic Typical Mistakes
 categories: english
-tags: english polite diplomatic
+tags: [english, polite, diplomatic]
 ---
 
 ### Typical Mistakes in Business Communication

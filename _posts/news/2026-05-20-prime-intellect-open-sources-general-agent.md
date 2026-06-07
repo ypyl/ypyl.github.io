@@ -2,7 +2,7 @@
 layout: post
 title: "Prime Intellect Open-Sources General-Agent for Synthetic AI Training Data"
 date: 2026-05-20
-tags: news
+tags: [news]
 categories: news
 ---
 

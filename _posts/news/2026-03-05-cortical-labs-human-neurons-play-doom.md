@@ -2,7 +2,7 @@
 layout: post
 title: "Cortical Labs Human Neurons Play Doom Faster Than GPT-4"
 date: 2026-03-05
-tags: news
+tags: [news]
 categories: news
 ---
 

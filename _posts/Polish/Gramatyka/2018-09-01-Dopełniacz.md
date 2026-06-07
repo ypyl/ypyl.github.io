@@ -3,7 +3,7 @@ layout: post
 title: Dopełniacz
 date: 2018-09-01
 
-tags: polish gramatyka
+tags: [polish, gramatyka]
 categories: learning
 ---
 # Dopełniacz (kogo? czego?), liczba pojedyncza - 24 September, 2018

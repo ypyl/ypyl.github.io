@@ -2,7 +2,7 @@
 layout: post
 title: "Mistral Releases Medium 3.5 and Remote Agents in Vibe Environment"
 date: 2026-04-30
-tags: news
+tags: [news]
 categories: news
 ---
 

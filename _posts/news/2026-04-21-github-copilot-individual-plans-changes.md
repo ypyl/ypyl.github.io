@@ -2,7 +2,7 @@
 layout: post
 title: "Changes to GitHub Copilot Individual Plans"
 date: 2026-04-21
-tags: news
+tags: [news]
 categories: news
 ---
 

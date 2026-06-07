@@ -2,7 +2,7 @@
 layout: post
 title: Microsoft Releases VibeVoice-ASR Speech-to-Text Model
 date: 2026-01-22
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "AISI Evaluates OpenAI's GPT-5.5 Cyber Capabilities"
 date: 2026-05-01
-tags: news
+tags: [news]
 categories: news
 ---
 

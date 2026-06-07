@@ -3,7 +3,7 @@ layout: post
 title: Effective Communication in Team Chat Applications
 date: 2024-12-29
 
-tags: communication team-chat problem-solving etiquette programming collaboration
+tags: [communication, team-chat, problem-solving, etiquette, programming, collaboration]
 categories: teamwork productivity
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: Restore InfluxDB in Docker
 date: 2017-08-07
 
-tags: docker influxdb
+tags: [docker, influxdb]
 categories: administration
 ---
 It is not easy to restore influxdb in an official container. Unfortunately it is not possible directly. You need to restore db out of a container and mount restored db to the container.

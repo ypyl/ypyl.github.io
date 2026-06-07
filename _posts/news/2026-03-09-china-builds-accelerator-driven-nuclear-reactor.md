@@ -2,7 +2,7 @@
 layout: post
 title: "China Builds Accelerator-Driven Nuclear Reactor to Burn Waste and Generate Power"
 date: 2026-03-09
-tags: news
+tags: [news]
 categories: news
 ---
 

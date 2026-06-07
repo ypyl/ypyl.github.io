@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Reduces Claude's Flattery in Relationship Advice"
 date: 2026-05-03
-tags: news
+tags: [news]
 categories: news
 ---
 

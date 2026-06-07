@@ -3,7 +3,7 @@ layout: post
 title: Use ZadGraph
 date: 2011-05-05
 
-tags: dotnet
+tags: [dotnet]
 categories: programming
 ---
 Library can be downloaded. License is LPGL 2.1.

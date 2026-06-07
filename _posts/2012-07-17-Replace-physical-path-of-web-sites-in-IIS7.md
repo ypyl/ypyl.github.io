@@ -3,7 +3,7 @@ layout: post
 title: Replace physical path of web sites in IIS7
 date: 2012-07-17
 
-tags: iis
+tags: [iis]
 categories: administration
 ---
 ```powershell

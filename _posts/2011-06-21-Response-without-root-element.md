@@ -3,7 +3,7 @@ layout: post
 title: Response without root element
 date: 2011-06-21
 
-tags: wcf
+tags: [wcf]
 categories: programming
 ---
 Write WCF web-service that accepts SOAP 1.2 and SOAP 1.1 requests. Service should expose 1 operation (let it be "GetResponse_1") with the following structure (just an example, please combine schema for the service):

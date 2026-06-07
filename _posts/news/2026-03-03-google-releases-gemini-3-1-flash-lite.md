@@ -2,7 +2,7 @@
 layout: post
 title: "Google Releases Gemini 3.1 Flash-Lite: Ultra-Fast and Cost-Efficient AI Model"
 date: 2026-03-03
-tags: news
+tags: [news]
 categories: news
 ---
 

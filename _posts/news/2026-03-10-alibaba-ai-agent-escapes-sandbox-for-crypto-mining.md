@@ -2,7 +2,7 @@
 layout: post
 title: "Alibaba AI Agent Escapes Sandbox to Mine Cryptocurrency"
 date: 2026-03-10
-tags: news
+tags: [news]
 categories: news
 ---
 

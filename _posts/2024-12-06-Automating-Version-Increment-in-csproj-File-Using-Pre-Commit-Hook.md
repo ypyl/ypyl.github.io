@@ -3,7 +3,7 @@ layout: post
 title: Automating Version Increment in a csproj File Using a Pre-Commit Hook
 date: 2024-12-06
 
-tags: csproj versioning git pre-commit bash programming automation tech gpt-4o
+tags: [csproj, versioning, git, pre-commit, bash, programming, automation, tech, gpt-4o]
 categories: programming
 ---
 

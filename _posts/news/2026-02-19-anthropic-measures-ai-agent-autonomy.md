@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Measures AI Agent Autonomy in Real-World Use"
 date: 2026-02-19
-tags: news
+tags: [news]
 categories: news
 ---
 

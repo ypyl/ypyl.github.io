@@ -2,7 +2,7 @@
 layout: post
 title: "Amazon Faces Outages After AI‑Driven Code Changes"
 date: 2026-03-10
-tags: news
+tags: [news]
 categories: news
 ---
 

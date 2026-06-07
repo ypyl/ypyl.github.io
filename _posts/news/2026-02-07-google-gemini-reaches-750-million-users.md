@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Google's Gemini Reaches 750 Million Monthly Active Users"
 date: 2026-02-07
-tags: news
+tags: [news]
 categories: news
 ---
 

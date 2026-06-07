@@ -2,7 +2,7 @@
 layout: post
 title: "Exa Becomes One of Gemini's Search Backends"
 date: 2026-04-30
-tags: news
+tags: [news]
 categories: news
 ---
 

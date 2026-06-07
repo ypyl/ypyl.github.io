@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Sundance Film Festival Showcases DeepMind and Animation Veterans Collaboration"
 date: 2026-02-01
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Microsoft Announces Rho-alpha AI Model for Robot Control"
 date: 2026-01-23
-tags: news
+tags: [news]
 categories: news
 ---
 

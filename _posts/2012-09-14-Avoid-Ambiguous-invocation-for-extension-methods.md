@@ -2,7 +2,7 @@
 layout: post
 title: Avoid Ambiguous invocation for extension methods
 date: 2012-09-14
-tags: dotnet asp net mvc
+tags: [dotnet, asp, net, mvc]
 categories: programming
 ---
 

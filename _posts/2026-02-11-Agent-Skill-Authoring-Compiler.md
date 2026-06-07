@@ -2,7 +2,7 @@
 layout: post
 title: "Agent Skill Authoring Compiler"
 date: 2026-02-11
-tags: prompt agent skill generator
+tags: [prompt, agent, skill, generator]
 categories: programming ai
 ---
 

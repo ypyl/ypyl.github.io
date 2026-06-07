@@ -2,7 +2,7 @@
 layout: post
 title: Diplomatic Questions
 categories: english
-tags: english polite diplomatic
+tags: [english, polite, diplomatic]
 ---
 
 ## Indirect Questions

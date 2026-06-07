@@ -3,7 +3,7 @@ layout: post
 title: Czas przeszły
 date: 2018-09-01
 
-tags: polish gramatyka
+tags: [polish, gramatyka]
 categories: learning
 ---
 |robić|rodzaj męski|rodzaj żeński|rodzaj nijaki

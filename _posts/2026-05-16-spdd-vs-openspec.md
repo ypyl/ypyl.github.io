@@ -2,7 +2,7 @@
 layout: post
 title: "Two Paths to Spec-Driven Development: SPDD vs. OpenSpec"
 date: 2026-05-16
-tags: sdd, ai, spec-driven-development, spdd, openspec, software-engineering
+tags: [sdd, ai, spec-driven-development, spdd, openspec, software-engineering]
 categories: ai
 ---
 

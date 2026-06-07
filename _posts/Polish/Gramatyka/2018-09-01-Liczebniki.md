@@ -3,7 +3,7 @@ layout: post
 title: Liczebniki
 date: 2018-09-01
 
-tags: polish gramatyka
+tags: [polish, gramatyka]
 categories: learning
 ---
 |mianownik|dopełniacz|miejscownik|

@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Releases GPT-5.3 Instant with Improved Accuracy and Communication"
 date: 2026-03-03
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: Machine Learning links
 date: 2017-01-14
 
-tags: machine learning
+tags: [machine, learning]
 categories: learning
 ---
 This info is from [Machine Learning recourses](https://www.coursera.org/learn/machine-learning)

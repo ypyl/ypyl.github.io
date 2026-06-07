@@ -2,7 +2,7 @@
 layout: post
 title: Enhancing LLMClip with Mermaid Diagram Support
 date: 2025-12-22
-tags: llmclip autohotkey mermaid diagrams markdown genai
+tags: [llmclip, autohotkey, mermaid, diagrams, markdown, genai]
 categories: programming genai
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Cloudflare Launches Dynamic Workers for AI Code Execution"
 date: 2026-03-26
-tags: news
+tags: [news]
 categories: news
 ---
 

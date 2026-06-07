@@ -2,7 +2,7 @@
 layout: post
 title: "Stanford Study Reveals AI Issue with Excessive Agreement"
 date: 2026-03-10
-tags: news
+tags: [news]
 categories: news
 ---
 

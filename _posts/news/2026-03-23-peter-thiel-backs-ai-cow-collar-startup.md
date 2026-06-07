@@ -2,7 +2,7 @@
 layout: post
 title: "Peter Thiel's Fund Backs AI-Powered Cow Collar Startup Halter"
 date: 2026-03-23
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Launches Claude Managed Agents: Cloud Infrastructure for Autonomous AI Agents"
 date: 2026-04-09
-tags: news
+tags: [news]
 categories: news
 ---
 

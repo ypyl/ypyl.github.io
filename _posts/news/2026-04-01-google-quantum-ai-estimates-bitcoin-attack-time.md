@@ -2,7 +2,7 @@
 layout: post
 title: "Google Quantum AI Estimates Bitcoin Private Key Hack in 9 Minutes"
 date: 2026-04-01
-tags: news
+tags: [news]
 categories: news
 ---
 

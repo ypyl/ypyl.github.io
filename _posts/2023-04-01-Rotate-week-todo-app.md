@@ -1,7 +1,7 @@
 ---
 title: Rotate - The Desktop Todo App That Helps You Stay Organized
 date: 2023-04-01
-tags: todo, elm, neutralinojs, desktop
+tags: [todo, elm, neutralinojs, desktop]
 categories: programming
 ---
 ![img](/assets/6uYcsaJqui.png)

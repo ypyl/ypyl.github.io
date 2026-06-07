@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Anthropic Releases Claude Opus 4.6 with Enhanced Capabilities"
 date: 2026-02-05
-tags: news
+tags: [news]
 categories: news
 ---
 

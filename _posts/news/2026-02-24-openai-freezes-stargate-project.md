@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Freezes Stargate Project Amid Challenges"
 date: 2026-02-24
-tags: news
+tags: [news]
 categories: news
 ---
 

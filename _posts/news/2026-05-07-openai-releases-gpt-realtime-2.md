@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Releases GPT-Realtime-2 Voice Models in the API"
 date: 2026-05-07
-tags: news
+tags: [news]
 categories: news
 ---
 

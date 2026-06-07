@@ -2,7 +2,7 @@
 layout: post
 title: "MIT Creates AI-Powered Artificial Muscle Fibers"
 date: 2026-04-24
-tags: news
+tags: [news]
 categories: news
 ---
 

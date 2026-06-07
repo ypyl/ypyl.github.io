@@ -2,7 +2,7 @@
 layout: post
 title: "Google Research Teaches LLMs to Reason Like Bayesians"
 date: 2026-03-05
-tags: news
+tags: [news]
 categories: news
 ---
 

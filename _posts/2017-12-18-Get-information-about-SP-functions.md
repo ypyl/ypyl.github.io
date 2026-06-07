@@ -3,7 +3,7 @@ layout: post
 title: Get information about all stored procedures, views and functions
 date: 2017-12-18
 
-tags: dotnet sql
+tags: [dotnet, sql]
 categories: administration
 ---
 When your primary work is adding functionality to MSSQL database (like implementing business logic in stored procedures, functions and view) it is very useful to have the list of all SP, functions and views with their description, name of authors, created dates and input/output parameters.

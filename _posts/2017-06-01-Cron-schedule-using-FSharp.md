@@ -2,7 +2,7 @@
 layout: post
 title: Cron schedule using F#
 date: 2017-06-01
-tags: dotnet fsharp
+tags: [dotnet, fsharp]
 categories: programming
 ---
 I decided to start learning fsharp and hope I will be able to use F# in my future small projects.

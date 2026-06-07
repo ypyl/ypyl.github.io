@@ -2,7 +2,7 @@
 layout: post
 title: "Qwen Announces VLA Model That Controls Robots Across Different Hardware"
 date: 2026-05-30
-tags: news
+tags: [news]
 categories: news
 ---
 

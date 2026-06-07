@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "French Voice Dubbing Absent in Microsoft and EA Games Due to AI-Related Clauses"
 date: 2026-01-28
-tags: news
+tags: [news]
 categories: news
 ---
 

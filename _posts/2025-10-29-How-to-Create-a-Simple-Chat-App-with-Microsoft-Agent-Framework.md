@@ -3,7 +3,7 @@ layout: post
 title: How to Create a Simple Chat App with Microsoft Agent Framework
 date: 2025-10-29
 
-tags: microsoft-agent-framework chatbot ai-agents llm dotnet how-to
+tags: [microsoft-agent-framework, chatbot, ai-agents, llm, dotnet, how-to]
 categories: programming genai
 ---
 

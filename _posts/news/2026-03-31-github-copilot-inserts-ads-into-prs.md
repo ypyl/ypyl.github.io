@@ -2,7 +2,7 @@
 layout: post
 title: "GitHub Copilot Inserts Ads into Pull Requests, Sparking Developer Backlash"
 date: 2026-03-31
-tags: news
+tags: [news]
 categories: news
 ---
 

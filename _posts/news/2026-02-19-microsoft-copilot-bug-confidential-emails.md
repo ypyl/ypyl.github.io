@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft Says Bug Causes Copilot to Summarize Confidential Emails"
 date: 2026-02-19
-tags: news
+tags: [news]
 categories: news
 ---
 

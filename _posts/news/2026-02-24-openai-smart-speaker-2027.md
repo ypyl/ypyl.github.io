@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI to Launch Smart Speaker with Camera in 2027"
 date: 2026-02-24
-tags: news
+tags: [news]
 categories: news
 ---
 

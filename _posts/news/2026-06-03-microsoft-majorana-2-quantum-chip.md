@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft Unveils Majorana 2 Quantum Chip, Targets 2029 for Full Quantum Computer"
 date: 2026-06-03
-tags: news
+tags: [news]
 categories: news
 ---
 

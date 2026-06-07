@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Giving Agents a Visual Voice: MCP Apps Support in VS Code"
 date: 2026-01-26
-tags: news
+tags: [news]
 categories: news
 ---
 

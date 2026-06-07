@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft and GitHub Launch Official Agentic AI Developer Certification"
 date: 2026-05-19
-tags: news
+tags: [news]
 categories: news
 ---
 

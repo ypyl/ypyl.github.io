@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Releases GPT-5.5-Cyber and Expands TAC Program"
 date: 2026-05-01
-tags: news
+tags: [news]
 categories: news
 ---
 

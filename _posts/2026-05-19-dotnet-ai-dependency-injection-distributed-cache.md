@@ -3,7 +3,7 @@ layout: post
 title: ".NET AI Dependency Injection with Distributed Cache — Watch Your Memory Size"
 date: 2026-05-19
 categories: programming
-tags: dotnet, ai, microsoft-extensions-ai, azure-openai, caching
+tags: [dotnet, ai, microsoft-extensions-ai, azure-openai, caching]
 ---
 
 The **dotnet/ai-samples** repository demonstrates how to wire up Azure OpenAI in a .NET application using **`Microsoft.Extensions.AI`** with dependency injection and response caching. The pattern is clean: register an `AzureOpenAIClient` with `DefaultAzureCredential`, wrap it as an `IChatClient` via `AsChatClient("gpt-4o-mini")`, and layer `UseDistributedCache()` on top — all inside a standard `Host.CreateApplicationBuilder()` pipeline:

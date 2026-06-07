@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Releases GPT-5.5 with Improved Performance in Coding and Research"
 date: 2026-04-23
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Architecture Instructions – ASP.NET Core Minimal API (Feature-Based CQRS)"
 date: 2026-01-31
-tags: dotnet minimal api asp net core feature-based cqrs architecture
+tags: [dotnet, minimal, api, asp, net, core, feature-based, cqrs, architecture]
 categories: programming backend spa
 ---
 

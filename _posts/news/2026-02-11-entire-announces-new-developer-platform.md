@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Entire Announces New Developer Platform Backed by $60M Seed Round"
 date: 2026-02-11
-tags: news
+tags: [news]
 categories: news
 ---
 

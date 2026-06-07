@@ -3,7 +3,7 @@ layout: post
 title: Linear Regression with Multiple Variables
 date: 2016-11-24
 
-tags: machine learning
+tags: [machine, learning]
 categories: learning
 ---
 Hypothesis function looks like:

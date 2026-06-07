@@ -3,7 +3,7 @@ layout: post
 title: Notes about software architecture metrics
 date: 2023-12-04
 categories: programming
-tags: architecture software
+tags: [architecture, software]
 ---
 
 # Four Key Architecture Metrics

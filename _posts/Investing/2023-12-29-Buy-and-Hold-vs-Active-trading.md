@@ -3,7 +3,7 @@ layout: post
 title: Buy and Hold vs Active trading
 date: 2023-12-29
 categories: investing
-tags: investing stocks
+tags: [investing, stocks]
 ---
 
 # Navigating Investment Strategies: Buy and Hold vs Active Trading

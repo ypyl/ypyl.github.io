@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Pays SpaceX $1.25B Monthly for Compute — Nearly Matches Total Revenue"
 date: 2026-05-21
-tags: news
+tags: [news]
 categories: news
 ---
 

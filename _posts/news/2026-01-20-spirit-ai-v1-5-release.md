@@ -2,7 +2,7 @@
 layout: post
 title: "Spirit AI releases Spirit v1.5"
 date: 2026-01-20
-tags: news
+tags: [news]
 categories: news
 ---
 

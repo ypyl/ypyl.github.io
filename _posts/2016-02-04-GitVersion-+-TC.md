@@ -3,7 +3,7 @@ layout: post
 title: GitVersion + TC
 date: 2016-02-04
 
-tags: git
+tags: [git]
 categories: programming
 ---
 GitVersion is the utility to set up version of deployed assemblies using information from Git.

@@ -2,7 +2,7 @@
 layout: post
 title: "Google Cloud Launches AI Threat Defense — Autonomous Vulnerability Patching"
 date: 2026-05-30
-tags: news
+tags: [news]
 categories: news
 ---
 

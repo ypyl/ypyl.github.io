@@ -2,7 +2,7 @@
 layout: post
 title: "TanStack npm Packages Compromised in Ongoing Mini Shai-Hulud Supply-Chain Attack"
 date: 2026-05-11
-tags: news
+tags: [news]
 categories: news
 ---
 

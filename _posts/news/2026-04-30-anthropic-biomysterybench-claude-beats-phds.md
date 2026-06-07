@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic's Claude Surpasses PhD Experts in Bioinformatics with BioMysteryBench"
 date: 2026-04-30
-tags: news
+tags: [news]
 categories: news
 ---
 

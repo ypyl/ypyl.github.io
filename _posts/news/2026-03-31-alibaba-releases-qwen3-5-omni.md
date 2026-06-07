@@ -2,7 +2,7 @@
 layout: post
 title: "Alibaba Releases Qwen3.5-Omni: A Unified Multimodal AI Model"
 date: 2026-03-31
-tags: news
+tags: [news]
 categories: news
 ---
 

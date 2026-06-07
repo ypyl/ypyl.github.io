@@ -3,7 +3,7 @@ layout: post
 title: Navigating Market Twists Top Long-Term Stock Picks and Risks
 date: 2024-07-19
 
-tags: stocks
+tags: [stocks]
 categories: investing
 ---
 ### Tech and Media Stocks: Google, Nvidia, Apple, Microsoft, Alphabet

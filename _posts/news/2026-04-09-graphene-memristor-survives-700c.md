@@ -2,7 +2,7 @@
 layout: post
 title: "Graphene-Based Memristor Survives at 700°C, Revolutionizing AI in Extreme Conditions"
 date: 2026-04-09
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Launches GPT-Rosalind, a Scientific AI Model for Biology and Drug Discovery"
 date: 2026-04-19
-tags: news
+tags: [news]
 categories: news
 ---
 

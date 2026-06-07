@@ -2,7 +2,7 @@
 layout: post
 title: "Malta Becomes First Country to Give All Citizens Free ChatGPT Plus"
 date: 2026-05-21
-tags: news
+tags: [news]
 categories: news
 ---
 

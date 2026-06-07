@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft Azure Launches Cobalt 200 VMs, Maia 200 Accelerator, and HorizonDB"
 date: 2026-06-03
-tags: news
+tags: [news]
 categories: news
 ---
 

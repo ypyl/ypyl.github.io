@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Releases GPT-5.4-Cyber for Cybersecurity Experts"
 date: 2026-04-19
-tags: news
+tags: [news]
 categories: news
 ---
 

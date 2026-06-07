@@ -3,7 +3,7 @@ layout: post
 title: InfluxDB can't be started as a service
 date: 2016-12-21
 
-tags: indluxdb
+tags: [indluxdb]
 categories: deployment
 ---
 I was not able to run influxdb as a service after [installing](https://docs.influxdata.com/influxdb/v1.1/introduction/installation/) influxdb on my local ubuntu:

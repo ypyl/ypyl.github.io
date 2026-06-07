@@ -2,7 +2,7 @@
 layout: post
 title: Discord Belarus chat By
 date: 2016-12-22
-tags: dotnet discord
+tags: [dotnet, discord]
 categories: other
 ---
 # Discord Belarus chat By

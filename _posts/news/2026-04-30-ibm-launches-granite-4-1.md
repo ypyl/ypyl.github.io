@@ -2,7 +2,7 @@
 layout: post
 title: "IBM Launches Granite 4.1: Open-Source Dense Models for Enterprise"
 date: 2026-04-30
-tags: news
+tags: [news]
 categories: news
 ---
 

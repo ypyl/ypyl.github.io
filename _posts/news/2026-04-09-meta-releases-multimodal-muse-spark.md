@@ -2,7 +2,7 @@
 layout: post
 title: "Meta Releases Multimodal AI Model Muse Spark"
 date: 2026-04-09
-tags: news
+tags: [news]
 categories: news
 ---
 

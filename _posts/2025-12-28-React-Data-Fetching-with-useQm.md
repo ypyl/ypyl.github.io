@@ -2,7 +2,7 @@
 layout: post
 title: React Data Fetching with useQm
 date: 2025-12-28
-tags: react typescript frontend web-development data-fetching
+tags: [react, typescript, frontend, web-development, data-fetching]
 categories: programming frontend
 ---
 

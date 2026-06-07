@@ -2,7 +2,7 @@
 layout: post
 title: "Sakana AI Introduces Text-to-LoRA and Doc-to-LoRA for Faster LLM Customization"
 date: 2026-02-28
-tags: news
+tags: [news]
 categories: news
 ---
 

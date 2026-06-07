@@ -2,7 +2,7 @@
 layout: post
 title: "JSON Patch in ASP.NET Core: A Journey Through Three Approaches"
 date: 2026-04-11
-tags: asp-net-core, json, json-patch, dotnet
+tags: [asp-net-core, json, json-patch, dotnet]
 categories: programming
 ---
 

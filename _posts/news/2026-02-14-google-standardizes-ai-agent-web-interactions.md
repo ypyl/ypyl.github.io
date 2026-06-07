@@ -2,7 +2,7 @@
 layout: post
 title: "Google Standardizes AI Agent Interaction with Websites via WebMCP"
 date: 2026-02-14
-tags: news
+tags: [news]
 categories: news
 ---
 

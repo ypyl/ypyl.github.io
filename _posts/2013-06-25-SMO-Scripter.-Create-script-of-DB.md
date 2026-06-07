@@ -3,7 +3,7 @@ layout: post
 title: SMO Scripter. Create script of DB
 date: 2013-06-25
 
-tags: dotnet
+tags: [dotnet]
 categories: programming
 ---
 It is possible to create script of MSSQL using SMO: ([link](http://pastebin.com/AQkprTS7#))

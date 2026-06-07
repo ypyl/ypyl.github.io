@@ -2,7 +2,7 @@
 layout: post
 title: "Nous Research Unveils Hermes Desktop — Cross-Platform AI Agent with Sub-Agent Delegation"
 date: 2026-06-04
-tags: news
+tags: [news]
 categories: news
 ---
 

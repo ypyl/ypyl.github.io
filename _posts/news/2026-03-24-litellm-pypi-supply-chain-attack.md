@@ -2,7 +2,7 @@
 layout: post
 title: "Malicious Code Found in LiteLLM PyPI Release 1.82.8"
 date: 2026-03-24
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "MOSS-TTS-v1.5 Tops Hugging Face Trending for Text-to-Speech"
 date: 2026-06-03
-tags: news
+tags: [news]
 categories: news
 ---
 

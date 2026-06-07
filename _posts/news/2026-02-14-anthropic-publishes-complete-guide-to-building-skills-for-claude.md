@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Publishes Complete Guide to Building Skills for Claude"
 date: 2026-02-14
-tags: news
+tags: [news]
 categories: news
 ---
 

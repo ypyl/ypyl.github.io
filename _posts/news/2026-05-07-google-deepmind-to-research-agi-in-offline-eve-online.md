@@ -2,7 +2,7 @@
 layout: post
 title: "Google DeepMind to Research AGI in Offline EVE Online"
 date: 2026-05-07
-tags: news
+tags: [news]
 categories: news
 ---
 

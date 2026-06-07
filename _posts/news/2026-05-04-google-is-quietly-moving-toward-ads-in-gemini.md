@@ -2,7 +2,7 @@
 layout: post
 title: "Google is Quietly Moving Toward Ads in Gemini"
 date: 2026-05-04
-tags: news
+tags: [news]
 categories: news
 ---
 

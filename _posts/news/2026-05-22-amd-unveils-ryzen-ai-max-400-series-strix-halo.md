@@ -2,7 +2,7 @@
 layout: post
 title: "AMD Unveils Ryzen AI Max 400 Series with Strix Halo Architecture"
 date: 2026-05-22
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Tracking GitHub Copilot usage and cost locally"
 date: 2026-06-06
-tags: copilot, opentelemetry, powershell, cost
+tags: [copilot, opentelemetry, powershell, cost]
 categories: tools, ai
 ---
 

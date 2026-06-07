@@ -3,7 +3,7 @@ layout: post
 title: Navigating Market Twists Top Long-Term Stock Picks and Risks
 date: 2024-06-28
 
-tags: stocks
+tags: [stocks]
 categories: investing
 ---
 ### Big Tech: Apple and Microsoft

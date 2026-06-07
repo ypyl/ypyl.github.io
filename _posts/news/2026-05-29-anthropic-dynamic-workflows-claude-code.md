@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic Introduces Dynamic Workflows in Claude Code"
 date: 2026-05-29
-tags: news
+tags: [news]
 categories: news
 ---
 

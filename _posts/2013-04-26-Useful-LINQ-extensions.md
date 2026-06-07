@@ -3,7 +3,7 @@ layout: post
 title: Useful LINQ extensions
 date: 2013-04-26
 
-tags: dotnet linq
+tags: [dotnet, linq]
 categories: programming
 ---
 # Useful LINQ extensions

@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Anthropic Opus 4.6 Discovers Over 500 Zero-Day Vulnerabilities in Open Source"
 date: 2026-02-07
-tags: news
+tags: [news]
 categories: news
 ---
 

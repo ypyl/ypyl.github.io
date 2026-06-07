@@ -3,7 +3,7 @@ layout: post
 title: Use WebSQL and IndexedDB in Typescript
 date: 2016-10-25
 
-tags: javascript
+tags: [javascript]
 categories: programming
 ---
 More information about [IndexedDb](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) or [WebSQL](https://www.w3.org/TR/webdatabase/).

@@ -3,7 +3,7 @@ layout: post
 title: How to create Discord bot
 date: 2017-02-18
 
-tags: javascript discord
+tags: [javascript, discord]
 categories: programming
 ---
 That is a manual how to create simple ping-pong discord bot using javascript (nodejs).

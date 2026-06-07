@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Announces New ChatGPT Pro Plan Focused on Codex"
 date: 2026-04-09
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "MoltBook Launches Platform for Agent Communication and Collaboration"
 date: 2026-01-30
-tags: news
+tags: [news]
 categories: news
 ---
 

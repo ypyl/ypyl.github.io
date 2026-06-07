@@ -2,7 +2,7 @@
 layout: post
 title: "Nvidia Announces Nemotron 3 Ultra — Most Powerful Open Model from the U.S."
 date: 2026-06-02
-tags: news
+tags: [news]
 categories: news
 ---
 

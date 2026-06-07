@@ -2,7 +2,7 @@
 layout: post
 title: "Tinker: Saving and Loading Checkpoints"
 date: 2026-02-15
-tags: tinker, llm, finetuning
+tags: [tinker, llm, finetuning]
 categories: ai, programming
 ---
 

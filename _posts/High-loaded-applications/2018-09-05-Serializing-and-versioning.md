@@ -3,7 +3,7 @@ layout: post
 title: Serializing and versioning
 date: 2018-09-05
 
-tags: high-load
+tags: [high-load]
 categories: learning
 ---
 Encoding format affects not only efficiency of the application, but also, what is more important, the architecture of the application which are using them.

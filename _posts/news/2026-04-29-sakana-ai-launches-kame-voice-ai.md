@@ -2,7 +2,7 @@
 layout: post
 title: "Sakana AI Launches KAME Voice AI That Thinks While Speaking"
 date: 2026-04-29
-tags: news
+tags: [news]
 categories: news
 ---
 

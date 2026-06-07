@@ -2,7 +2,7 @@
 layout: post
 title: "Google Tests LLMs on Real Scientific Questions in Superconductivity"
 date: 2026-03-17
-tags: news
+tags: [news]
 categories: news
 ---
 

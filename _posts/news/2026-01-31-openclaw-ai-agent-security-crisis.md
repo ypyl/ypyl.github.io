@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "OpenClaw AI Agent Sparks Security Crisis"
 date: 2026-01-31
-tags: news
+tags: [news]
 categories: news
 ---
 

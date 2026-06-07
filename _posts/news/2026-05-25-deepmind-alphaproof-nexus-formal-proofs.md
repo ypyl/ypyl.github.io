@@ -2,7 +2,7 @@
 layout: post
 title: "DeepMind's AlphaProof Nexus Solves 9 Open Erdős Problems Using Formal Verification"
 date: 2026-05-25
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: Semantic Kernel learning
 date: 2023-12-27
 categories: programming
-tags: ai semantic kernel openai
+tags: [ai, semantic, kernel, openai]
 ---
 
 # [How to write better prompts for OpenAI Codex](https://platform.openai.com/docs/guides/prompt-engineering/six-strategies-for-getting-better-results)

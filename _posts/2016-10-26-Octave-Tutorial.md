@@ -3,7 +3,7 @@ layout: post
 title: Octave Tutorial
 date: 2016-10-26
 
-tags: octava
+tags: [octava]
 categories: programming
 ---
 Information is from this wonderful [course](https://www.coursera.org/learn/machine-learning/).

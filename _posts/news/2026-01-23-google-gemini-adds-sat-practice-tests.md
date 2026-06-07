@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Google Gemini Adds SAT Practice Tests"
 date: 2026-01-23
-tags: news
+tags: [news]
 categories: news
 ---
 

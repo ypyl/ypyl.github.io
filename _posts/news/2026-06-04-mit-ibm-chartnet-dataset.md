@@ -2,7 +2,7 @@
 layout: post
 title: "MIT and IBM Research Release ChartNet — 1.5M Synthetic Charts for Training Vision Models"
 date: 2026-06-04
-tags: news
+tags: [news]
 categories: news
 ---
 

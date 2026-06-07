@@ -2,7 +2,7 @@
 layout: post
 title: Add dotnet command to alias of bash
 date: 2016-09-19
-tags: linux dotnet
+tags: [linux, dotnet]
 categories: programming
 ---
 ### Dotnet commands

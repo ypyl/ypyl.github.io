@@ -2,7 +2,7 @@
 layout: post
 title: "Rendering and Highlighting PDFs in React with react-pdf"
 date: 2026-02-22
-tags: react pdf pdfjs ocr highlighting document-viewer frontend
+tags: [react, pdf, pdfjs, ocr, highlighting, document-viewer, frontend]
 categories: programming web development
 ---
 

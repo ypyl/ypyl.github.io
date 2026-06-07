@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft Research and Salesforce Reveal Dialogue Reduces LLM Reliability"
 date: 2026-03-02
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Google Releases Gemma 4 12B — Multimodal Model Without External Encoders"
 date: 2026-06-04
-tags: news
+tags: [news]
 categories: news
 ---
 

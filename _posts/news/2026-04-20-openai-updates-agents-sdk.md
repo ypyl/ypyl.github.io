@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Updates Agents SDK with Enhanced Capabilities"
 date: 2026-04-20
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Microsoft AI CEO on AI Companions"
 date: 2026-01-20
-tags: news
+tags: [news]
 categories: news
 ---
 

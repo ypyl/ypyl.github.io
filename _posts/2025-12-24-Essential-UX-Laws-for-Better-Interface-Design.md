@@ -2,7 +2,7 @@
 layout: post
 title: Essential UX Laws for Better Interface Design
 date: 2025-12-24
-tags: ux design hci product-design usability
+tags: [ux, design, hci, product-design, usability]
 categories: design psychology
 ---
 

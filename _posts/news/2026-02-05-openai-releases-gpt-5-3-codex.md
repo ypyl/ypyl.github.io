@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "OpenAI Releases GPT-5.3-Codex"
 date: 2026-02-05
-tags: news
+tags: [news]
 categories: news
 ---
 

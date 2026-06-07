@@ -3,7 +3,7 @@ layout: post
 title: Use LogParser
 date: 2011-05-05
 
-tags: dotnet
+tags: [dotnet]
 categories: programming
 ---
 1. Download LogParser 2.2.

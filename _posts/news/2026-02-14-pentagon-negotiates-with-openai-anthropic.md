@@ -2,7 +2,7 @@
 layout: post
 title: "Pentagon Negotiates with OpenAI and Anthropic to Deploy AI in Classified Networks"
 date: 2026-02-14
-tags: news
+tags: [news]
 categories: news
 ---
 

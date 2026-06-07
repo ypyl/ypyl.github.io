@@ -3,7 +3,7 @@ layout: post
 title: My Trip to Spain
 date: 2024-08-28
 
-tags: Spain, travel, vacation, beach, family, accommodation, budget, local market, entertainment, summer, outdoor
+tags: [Spain, travel, vacation, beach, family, accommodation, budget, local market, entertainment, summer, outdoor]
 categories: travelling
 ---
 

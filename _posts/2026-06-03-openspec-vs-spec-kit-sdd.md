@@ -3,7 +3,7 @@ layout: post
 title: "OpenSpec vs GitHub Spec-Kit — A Hands-On Comparison for Spec-Driven Development"
 date: 2026-06-03
 categories: programming
-tags: spec-driven-development, openspec, spec-kit, ai-coding, developer-tools
+tags: [spec-driven-development, openspec, spec-kit, ai-coding, developer-tools]
 ---
 
 **Spec-driven development** means writing a spec before code and using AI to generate the implementation from it. Two open-source tools compete in this space: **OpenSpec** by Fission-AI and **GitHub Spec-Kit** by GitHub. Here's how they compare — based on hands-on testing, documentation, and community reports.

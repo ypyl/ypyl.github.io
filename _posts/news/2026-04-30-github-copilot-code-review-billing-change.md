@@ -2,7 +2,7 @@
 layout: post
 title: "GitHub Copilot Code Review to Consume GitHub Actions Minutes from June 1, 2026"
 date: 2026-04-30
-tags: news
+tags: [news]
 categories: news
 ---
 

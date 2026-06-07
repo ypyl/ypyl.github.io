@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Announcing winapp, the Windows App Development CLI"
 date: 2026-01-22
-tags: news
+tags: [news]
 categories: news
 ---
 

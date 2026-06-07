@@ -3,7 +3,7 @@ layout: post
 title: Linq and Group
 date: 2010-10-16
 
-tags: dotnet
+tags: [dotnet]
 categories: programming
 ---
 Description. There are modules that have the input and output parameters (type and number of parameters may be different). The goal is to select some first modules that have no input parameters, then the modules whose inputs are the output parameters of the previously selected modules and so on. Until the last module will not output parameters.

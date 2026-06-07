@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Disempowerment Patterns in Real-World AI Usage"
 date: 2026-01-28
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Google on Data Center Bottlenecks"
 date: 2026-01-20
-tags: news
+tags: [news]
 categories: news
 ---
 

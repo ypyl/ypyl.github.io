@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Releases GPT-5.4 mini and nano Models"
 date: 2026-03-17
-tags: news
+tags: [news]
 categories: news
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: A Guide to Growth Stock Investing
 date: 2024-01-08
 categories: investing
-tags: investing stocks
+tags: [investing, stocks]
 ---
 
 # A Guide to Growth Stock Investing

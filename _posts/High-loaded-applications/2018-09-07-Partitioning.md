@@ -3,7 +3,7 @@ layout: post
 title: Partitioning
 date: 2018-09-07
 
-tags: high-load
+tags: [high-load]
 categories: learning
 ---
 Partitioning is needed when there is too much data to save it at one physical machine.

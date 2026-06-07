@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Microsoft Reduces Dependence on OpenAI and Promises AGI by Year-End"
 date: 2026-02-13
-tags: news
+tags: [news]
 categories: news
 ---
 

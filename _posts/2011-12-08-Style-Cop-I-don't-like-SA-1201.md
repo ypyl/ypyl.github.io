@@ -3,7 +3,7 @@ layout: post
 title: Style Cop I don't like SA 1201
 date: 2011-12-08
 
-tags: dotnet
+tags: [dotnet]
 categories: programming
 ---
 [StyleCop]() is a good application to take your source code in good state. There are a lot of rules and most of all are very useful, but...

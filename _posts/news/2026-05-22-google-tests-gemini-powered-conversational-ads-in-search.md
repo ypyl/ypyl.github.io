@@ -2,7 +2,7 @@
 layout: post
 title: "Google Tests Gemini-Powered Conversational Ads in Search"
 date: 2026-05-22
-tags: news
+tags: [news]
 categories: news
 ---
 

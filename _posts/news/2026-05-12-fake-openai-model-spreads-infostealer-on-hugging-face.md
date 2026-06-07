@@ -2,7 +2,7 @@
 layout: post
 title: "Fake OpenAI Model Spreads Infostealer on Hugging Face"
 date: 2026-05-12
-tags: news
+tags: [news]
 categories: news
 ---
 

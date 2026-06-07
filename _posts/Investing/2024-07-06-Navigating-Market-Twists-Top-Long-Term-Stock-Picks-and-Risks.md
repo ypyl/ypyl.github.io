@@ -3,7 +3,7 @@ layout: post
 title: Navigating Market Twists Top Long-Term Stock Picks and Risks
 date: 2024-07-06
 
-tags: stocks
+tags: [stocks]
 categories: investing
 ---
 ### AI and Tech Companies: Microsoft, Alphabet, Adobe, Oracle, and Meta

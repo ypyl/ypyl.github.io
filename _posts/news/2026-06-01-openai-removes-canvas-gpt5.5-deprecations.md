@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Removes Canvas from GPT-5.5, Sets Deprecation Dates for GPT-4.5 and o3"
 date: 2026-06-01
-tags: news
+tags: [news]
 categories: news
 ---
 

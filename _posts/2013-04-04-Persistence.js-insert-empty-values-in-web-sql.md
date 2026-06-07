@@ -3,7 +3,7 @@ layout: post
 title: Persistence.js insert empty values in web sql
 date: 2013-04-04
 
-tags: javascript
+tags: [javascript]
 categories: programming
 ---
 I am starting to work with persistence.js library and open the problem to me: it saves empty data to web sql

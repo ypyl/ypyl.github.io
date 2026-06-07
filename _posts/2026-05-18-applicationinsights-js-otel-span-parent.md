@@ -3,7 +3,7 @@ layout: post
 title: "ApplicationInsights-JS 3.4 Adds OpenTelemetry Spans — Watch the Parent Context"
 date: 2026-05-18
 categories: programming
-tags: application-insights, opentelemetry, javascript, observability
+tags: [application-insights, opentelemetry, javascript, observability]
 ---
 
 **ApplicationInsights-JS v3.4.0** now supports **OpenTelemetry spans** natively, allowing you to create and manage custom spans inside your JavaScript code via `appInsights.startSpan()` and the `otelApi` tracer.

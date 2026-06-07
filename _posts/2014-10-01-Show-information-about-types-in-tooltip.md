@@ -3,7 +3,7 @@ layout: post
 title: Show information about types in tooltip
 date: 2014-10-01
 
-tags: javascript
+tags: [javascript]
 categories: programming
 ---
 The value of a point is the sum of values of types ('one', 'two').

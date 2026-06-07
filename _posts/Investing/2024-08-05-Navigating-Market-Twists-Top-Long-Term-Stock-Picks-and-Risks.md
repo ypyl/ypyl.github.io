@@ -3,7 +3,7 @@ layout: post
 title: Navigating Market Twists Top Long-Term Stock Picks and Risks
 date: 2024-08-05
 
-tags: stocks
+tags: [stocks]
 categories: investing
 ---
 ### Aviation Industry: Boeing, Airbus, and Embraer

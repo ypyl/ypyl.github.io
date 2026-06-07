@@ -3,7 +3,7 @@ layout: post
 title: A Guide to Income-Dividend Stock Investing
 date: 2024-01-13
 categories: investing
-tags: investing stocks
+tags: [investing, stocks]
 ---
 
 # A Guide to Income-Dividend Stock Investing

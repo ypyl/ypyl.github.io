@@ -3,7 +3,7 @@ layout: post
 title: Navigating Mutual Fund Expenses. A Simplified Guide to Investment Costs
 date: 2023-12-13
 categories: investing
-tags: mutual funds chatgpt
+tags: [mutual, funds, chatgpt]
 ---
 
 # Navigating Mutual Fund Expenses: A Simplified Guide to Investment Costs
