@@ -15,6 +15,11 @@
 
   // -- Zoom compensation --
 
+  // Capture the CSS-computed corner gap before any inline style overrides
+  var wrapperStyle = getComputedStyle(wrapper);
+  var baseBottom = parseFloat(wrapperStyle.bottom);
+  var baseRight = parseFloat(wrapperStyle.right);
+
   // outerWidth (device pixels) stays constant when zooming;
   // innerWidth (CSS pixels) scales with zoom.
   // Their ratio gives the browser zoom level, even on pre-zoomed page loads.
@@ -24,8 +29,15 @@
 
   function updateZoomCompensation() {
     var zoom = getZoomRatio();
-    // Only compensate if zoom deviates noticeably from 1 (small tolerance for window chrome)
-    wrapper.style.transform = Math.abs(zoom - 1) > 0.02 ? 'scale(' + (1 / zoom) + ')' : '';
+    if (Math.abs(zoom - 1) > 0.02) {
+      wrapper.style.transform = 'scale(' + (1 / zoom) + ')';
+      wrapper.style.bottom = (baseBottom / zoom) + 'px';
+      wrapper.style.right = (baseRight / zoom) + 'px';
+    } else {
+      wrapper.style.transform = '';
+      wrapper.style.bottom = '';
+      wrapper.style.right = '';
+    }
   }
 
   // Measure and compensate before making visible
