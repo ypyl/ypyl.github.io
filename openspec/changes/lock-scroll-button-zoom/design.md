@@ -20,29 +20,21 @@ The existing button uses a vanilla JS scroll listener for show/hide behavior. Th
 
 ## Decisions
 
-### D1: Zoom detection via hidden 1rem ruler
+### D1: Zoom detection via devicePixelRatio with baseline
 
-**Choice**: Inject a hidden `<div>` with `width: 1rem`, measure its `offsetWidth` in CSS pixels, and compare to the expected pixel value of `1rem` (derived from root `font-size`).
+**Choice**: Record `window.devicePixelRatio` at page load as a baseline (`baseDPR`), then on each measurement divide the current `devicePixelRatio` by the baseline to get the zoom ratio.
+
+**Why this works**: In Chrome, Edge, and Safari, `devicePixelRatio` changes proportionally with browser zoom (Ctrl+/-). By ratioing against a baseline captured at page load, retina displays are automatically normalized — a MacBook with DPR=2 at 100% zoom has `baseDPR=2` and at 200% zoom has `currentDPR=4`, yielding a correct zoom ratio of 2.
 
 **Alternatives considered**:
 
 | Method | Why rejected |
 |---|---|
-| `devicePixelRatio` | Includes OS-level DPI scaling (retina displays report DPR=2 at 100% zoom). Cannot distinguish OS scaling from browser zoom. Also Firefox/WebKit keep DPR constant across browser zoom levels. |
+| Hidden 1rem ruler | Both `getComputedStyle` fontSize and `offsetWidth` return CSS pixels, which scale uniformly with browser zoom. The ratio is always 1.0 — no zoom information is captured. |
 | `visualViewport.scale` | Firefox doesn't support the `scale` property. Chrome uses it for pinch-zoom but not consistently for Ctrl+/-. |
 | `outerWidth / innerWidth` | Ratio depends on window chrome size (title bar, borders), varies by OS and browser, and changes on window resize. Unreliable. |
 
-**How it works**:
-```
-1. Read root font-size:    getComputedStyle(document.documentElement).fontSize → "16px"
-2. Expected 1rem in px:    16
-3. Create hidden ruler:    <div style="width:1rem;position:absolute;visibility:hidden">
-4. Measure offsetWidth:    ruler.offsetWidth → 32 (at 200% zoom)
-5. Zoom ratio:             32 / 16 = 2.0
-6. Inverse scale:          transform: scale(0.5)
-```
-
-This works because `getComputedStyle` returns the CSS-declared value (unaffected by zoom), while `offsetWidth` reflects the zoomed rendered size. The ratio between them IS the browser zoom factor.
+**Firefox limitation**: Firefox keeps `devicePixelRatio` constant regardless of Ctrl+/- zoom. In Firefox the zoom ratio is always 1 and the button scales normally with the page — graceful degradation to today's behavior.
 
 ### D2: Baseline button size stays at 48px
 
