@@ -974,12 +974,15 @@ ul li::marker {
    17. Affix — Scroll to top button
    -------------------------------------------------------------------------- */
 
-.affix-button {
+.affix-wrapper {
   position: fixed;
   bottom: var(--space-lg);
   right: var(--space-lg);
   z-index: 100;
+  transform-origin: bottom right;
+}
 
+.affix-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1012,9 +1015,12 @@ ul li::marker {
 }
 
 @media screen and (max-width: 600px) {
-  .affix-button {
+  .affix-wrapper {
     bottom: var(--space-md);
     right: var(--space-md);
+  }
+
+  .affix-button {
     width: 44px;
     height: 44px;
   }

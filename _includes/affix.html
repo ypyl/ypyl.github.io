@@ -1,14 +1,49 @@
 <!-- Scroll-to-top affix button -->
-<button id="affix-top" class="affix-button" aria-label="Scroll to top" title="Scroll to top" style="opacity:0;pointer-events:none;">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <polyline points="18 15 12 9 6 15"></polyline>
-  </svg>
-</button>
+<span class="affix-wrapper" id="affix-top-wrapper" style="visibility:hidden;">
+  <button id="affix-top" class="affix-button" aria-label="Scroll to top" title="Scroll to top" style="opacity:0;pointer-events:none;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+</span>
 
 <script>
 (function() {
   var btn = document.getElementById('affix-top');
-  if (!btn) return;
+  var wrapper = document.getElementById('affix-top-wrapper');
+  if (!btn || !wrapper) return;
+
+  // -- Zoom compensation --
+
+  function getZoomRatio() {
+    try {
+      var ruler = document.createElement('div');
+      ruler.style.cssText = 'width:1rem;position:absolute;visibility:hidden;';
+      document.body.appendChild(ruler);
+      var measured = ruler.offsetWidth;
+      document.body.removeChild(ruler);
+
+      var rootFontSize = getComputedStyle(document.documentElement).fontSize;
+      var expected = parseFloat(rootFontSize);
+      if (!expected || expected <= 0) return 1;
+      return measured / expected;
+    } catch (e) {
+      return 1;
+    }
+  }
+
+  function updateZoomCompensation() {
+    var zoom = getZoomRatio();
+    wrapper.style.transform = zoom !== 1 ? 'scale(' + (1 / zoom) + ')' : '';
+  }
+
+  // Measure and compensate before making visible
+  updateZoomCompensation();
+  wrapper.style.visibility = 'visible';
+
+  window.addEventListener('resize', updateZoomCompensation, { passive: true });
+
+  // -- Scroll show/hide --
 
   var threshold = 200;
   var shown = false;
