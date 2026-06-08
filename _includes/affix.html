@@ -15,18 +15,17 @@
 
   // -- Zoom compensation --
 
-  // Record baseline devicePixelRatio at page load to normalize for retina displays
-  var baseDPR = window.devicePixelRatio || 1;
-
+  // outerWidth (device pixels) stays constant when zooming;
+  // innerWidth (CSS pixels) scales with zoom.
+  // Their ratio gives the browser zoom level, even on pre-zoomed page loads.
   function getZoomRatio() {
-    // devicePixelRatio changes with browser zoom in Chrome/Edge/Safari.
-    // In Firefox it stays constant — graceful degradation (button scales normally).
-    return (window.devicePixelRatio || 1) / baseDPR;
+    return window.outerWidth / window.innerWidth;
   }
 
   function updateZoomCompensation() {
     var zoom = getZoomRatio();
-    wrapper.style.transform = zoom !== 1 ? 'scale(' + (1 / zoom) + ')' : '';
+    // Only compensate if zoom deviates noticeably from 1 (small tolerance for window chrome)
+    wrapper.style.transform = Math.abs(zoom - 1) > 0.02 ? 'scale(' + (1 / zoom) + ')' : '';
   }
 
   // Measure and compensate before making visible

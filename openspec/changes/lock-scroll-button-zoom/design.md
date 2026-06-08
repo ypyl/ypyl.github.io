@@ -20,21 +20,25 @@ The existing button uses a vanilla JS scroll listener for show/hide behavior. Th
 
 ## Decisions
 
-### D1: Zoom detection via devicePixelRatio with baseline
+### D1: Zoom detection via outerWidth / innerWidth ratio
 
-**Choice**: Record `window.devicePixelRatio` at page load as a baseline (`baseDPR`), then on each measurement divide the current `devicePixelRatio` by the baseline to get the zoom ratio.
+**Choice**: Use `window.outerWidth / window.innerWidth` as the zoom ratio.
 
-**Why this works**: In Chrome, Edge, and Safari, `devicePixelRatio` changes proportionally with browser zoom (Ctrl+/-). By ratioing against a baseline captured at page load, retina displays are automatically normalized — a MacBook with DPR=2 at 100% zoom has `baseDPR=2` and at 200% zoom has `currentDPR=4`, yielding a correct zoom ratio of 2.
+**Why this works**: `window.outerWidth` reports in device pixels and does NOT change with Ctrl+/- browser zoom. `window.innerWidth` reports in CSS pixels and DOES scale with zoom. Their ratio directly yields the browser zoom factor — a maximized 1920px window has `outerWidth ≈ 1920` and at 200% zoom `innerWidth ≈ 960`, giving a ratio of 2.0. This works regardless of whether the page was loaded pre-zoomed or zoomed after load.
+
+**Window chrome**: The window frame (title bar, borders) adds a small constant offset (~8-40px depending on OS). This creates a ~0.5-3% error in the ratio, which is negligible for a 48px button. A tolerance of ±0.02 (2%) is applied: ratios between 0.98 and 1.02 are treated as 1x (no transform applied).
+
+**Window resize**: When the user resizes the window (not zoom), `outerWidth` and `innerWidth` both change by approximately the same amount, keeping the ratio near 1.0. No recalibration needed.
 
 **Alternatives considered**:
 
 | Method | Why rejected |
 |---|---|
-| Hidden 1rem ruler | Both `getComputedStyle` fontSize and `offsetWidth` return CSS pixels, which scale uniformly with browser zoom. The ratio is always 1.0 — no zoom information is captured. |
-| `visualViewport.scale` | Firefox doesn't support the `scale` property. Chrome uses it for pinch-zoom but not consistently for Ctrl+/-. |
-| `outerWidth / innerWidth` | Ratio depends on window chrome size (title bar, borders), varies by OS and browser, and changes on window resize. Unreliable. |
+| Hidden 1rem ruler | Both `getComputedStyle` fontSize and `offsetWidth` return CSS pixels — ratio is always 1.0. |
+| `devicePixelRatio` with baseline | Fails on pre-zoomed page loads (baseline already includes zoom). Also Firefox keeps DPR constant. |
+| `visualViewport.scale` | Limited browser support. |
 
-**Firefox limitation**: Firefox keeps `devicePixelRatio` constant regardless of Ctrl+/- zoom. In Firefox the zoom ratio is always 1 and the button scales normally with the page — graceful degradation to today's behavior.
+**Cross-browser**: `outerWidth`/`innerWidth` ratio works in Chrome, Firefox, Safari, and Edge. All major browsers keep `outerWidth` stable during zoom.
 
 ### D2: Baseline button size stays at 48px
 
