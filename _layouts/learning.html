@@ -15,21 +15,14 @@ layout: default
     <button type="button" id="resources-search-clear" class="resources-search-clear" aria-label="Clear search" title="Clear search">&times;</button>
   </div>
 
-  {% assign resources_sorted = site.learning | sort: "name" %}
-  {% assign resources_by_category = resources_sorted | group_by: "category" %}
+  {% assign resources_sorted = site.learning | sort: "date" | reverse %}
 
-  <div id="resources-categories">
-    {% for group in resources_by_category %}
-    <section class="resource-category" data-category="{{ group.name }}">
-      <h2>{{ group.name }}</h2>
-
-      <ul class="resource-list">
-        {% for resource in group.items %}
-          {% include learning-item.html resource=resource %}
-        {% endfor %}
-      </ul>
-    </section>
-    {% endfor %}
+  <div id="resources-list">
+    <ul class="resource-list">
+      {% for resource in resources_sorted %}
+        {% include learning-item.html resource=resource %}
+      {% endfor %}
+    </ul>
   </div>
 
   <div id="resources-no-results" class="resources-no-results" style="display: none;">
@@ -39,40 +32,32 @@ layout: default
   <script>
     (function() {
       var input = document.getElementById('resources-search-input');
-      var categoriesContainer = document.getElementById('resources-categories');
+      var listContainer = document.getElementById('resources-list');
       var noResults = document.getElementById('resources-no-results');
 
-      if (!input || !categoriesContainer) return;
+      if (!input || !listContainer) return;
 
       var clearBtn = document.getElementById('resources-search-clear');
 
       function filterResources() {
         var query = input.value.trim().toLowerCase();
-        var categories = categoriesContainer.querySelectorAll('.resource-category');
+        var resources = listContainer.querySelectorAll('.resource');
         var anyVisible = false;
 
-        categories.forEach(function(category) {
-          var resources = category.querySelectorAll('.resource');
-          var categoryHasVisible = false;
+        resources.forEach(function(resource) {
+          var name = resource.getAttribute('data-resource-name') || '';
+          var desc = resource.getAttribute('data-resource-desc') || '';
+          var tags = resource.getAttribute('data-resource-tags') || '';
+          var match = name.indexOf(query) !== -1 ||
+                      desc.indexOf(query) !== -1 ||
+                      tags.indexOf(query) !== -1;
 
-          resources.forEach(function(resource) {
-            var name = resource.getAttribute('data-resource-name') || '';
-            var desc = resource.getAttribute('data-resource-desc') || '';
-            var tags = resource.getAttribute('data-resource-tags') || '';
-            var match = name.indexOf(query) !== -1 ||
-                        desc.indexOf(query) !== -1 ||
-                        tags.indexOf(query) !== -1;
-
-            if (match || query === '') {
-              resource.style.display = '';
-              categoryHasVisible = true;
-              anyVisible = true;
-            } else {
-              resource.style.display = 'none';
-            }
-          });
-
-          category.style.display = categoryHasVisible ? '' : 'none';
+          if (match || query === '') {
+            resource.style.display = '';
+            anyVisible = true;
+          } else {
+            resource.style.display = 'none';
+          }
         });
 
         noResults.style.display = anyVisible ? 'none' : 'block';

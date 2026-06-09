@@ -61,20 +61,6 @@
   font-size: 1.125rem;
 }
 
-.resource-category {
-  margin-bottom: var(--space-2xl);
-}
-
-.resource-category h2 {
-  font-family: var(--serif);
-  font-size: 1.375rem;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--border-color);
-}
-
 .resource-list {
   list-style: none;
   padding: 0;
