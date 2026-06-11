@@ -28,9 +28,9 @@
 
 ## 6. Cross-browser smoke test
 
-- [ ] 6.1 Test at 100%, 150%, 200% zoom in Chrome — button SHALL maintain ~48px visual size
-- [ ] 6.2 Test at 100%, 150%, 200% zoom in Firefox — button SHALL maintain ~48px visual size
-- [ ] 6.3 Test at 100%, 150%, 200% zoom in Edge — button SHALL maintain ~48px visual size
-- [ ] 6.4 Verify hover lift (`translateY(-2px)`) still works after the wrapper change
-- [ ] 6.5 Verify scroll-to-top click still works
-- [ ] 6.6 Verify show/hide at scroll threshold (200px) still works at different zoom levels
+- [x] 6.1 Test at 100%, 150%, 200% zoom in Chrome — button SHALL maintain ~48px visual size
+- [x] 6.2 Test at 100%, 150%, 200% zoom in Firefox — button SHALL maintain ~48px visual size
+- [x] 6.3 Test at 100%, 150%, 200% zoom in Edge — button SHALL maintain ~48px visual size
+- [x] 6.4 Verify hover lift (`translateY(-2px)`) still works after the wrapper change
+- [x] 6.5 Verify scroll-to-top click still works
+- [x] 6.6 Verify show/hide at scroll threshold (200px) still works at different zoom levels
