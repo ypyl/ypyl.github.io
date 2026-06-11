@@ -641,6 +641,7 @@ ul li::marker {
   gap: var(--space-sm);
   padding: var(--space-sm) 0;
   cursor: default;
+  user-select: none;
 }
 
 .news-dot {
