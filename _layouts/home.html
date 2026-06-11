@@ -7,21 +7,66 @@ layout: default
   {{ content }}
 
   {%- assign news_items = site.news | sort: "date" | reverse -%}
+  {%- assign per_view = 6 -%}
+  {%- assign max_views = 5 -%}
+  {%- assign total_views = news_items.size | plus: 5 | divided_by: per_view -%}
+  {%- if total_views > max_views -%}
+    {%- assign total_views = max_views -%}
+  {%- endif -%}
+  {%- assign total_items = total_views | times: per_view -%}
 
   {%- if news_items.size > 0 -%}
-    <div class="news-grid">
-      {%- for item in news_items limit: 6 -%}
-        <article class="news-card">
-          <h3>
-            <a class="post-link" href="{{ item.url | relative_url }}">
-              {{ item.title | escape }}
-            </a>
-          </h3>
-          <span class="post-meta">{{ item.date | date: "%b %-d, %Y" }}</span>
-          <p>{{ item.excerpt | strip_html | truncatewords: 24 }}</p>
-        </article>
-      {%- endfor -%}
+    <div class="news-carousel">
+      <div class="news-carousel-views">
+        {%- for view_idx in (0..4) limit: total_views -%}
+          {%- assign offset = view_idx | times: per_view -%}
+          <div class="news-view{% if view_idx == 0 %} active{% endif %}" data-view="{{ view_idx }}">
+            <div class="news-grid">
+              {%- for item in news_items limit: per_view offset: offset -%}
+                <article class="news-card">
+                  <h3>
+                    <a class="post-link" href="{{ item.url | relative_url }}">
+                      {{ item.title | escape }}
+                    </a>
+                  </h3>
+                  <span class="post-meta">{{ item.date | date: "%b %-d, %Y" }}</span>
+                  <p>{{ item.excerpt | strip_html | truncatewords: 24 }}</p>
+                </article>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if total_views > 1 -%}
+        <div class="news-carousel-dots" aria-label="News carousel navigation">
+          {%- for i in (0..4) limit: total_views -%}
+            <button class="news-dot{% if i == 0 %} active{% endif %}" data-dot="{{ i }}" aria-label="News page {{ i | plus: 1 }}"></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
     </div>
+
+    <script>
+      (function() {
+        var carousel = document.querySelector('.news-carousel');
+        if (!carousel) return;
+        carousel.classList.add('ready');
+        var dots = document.querySelectorAll('.news-dot');
+        if (!dots.length) return;
+        var dotsEl = document.querySelector('.news-carousel-dots');
+        if (dotsEl) dotsEl.style.display = 'flex';
+        dots.forEach(function(dot) {
+          dot.addEventListener('click', function() {
+            var idx = this.getAttribute('data-dot');
+            document.querySelectorAll('.news-dot.active').forEach(function(d) { d.classList.remove('active'); });
+            document.querySelectorAll('.news-view.active').forEach(function(v) { v.classList.remove('active'); });
+            this.classList.add('active');
+            document.querySelector('[data-view="' + idx + '"]').classList.add('active');
+          });
+        });
+      })();
+    </script>
   {%- endif -%}
 
   {%- if site.posts.size > 0 -%}

@@ -597,6 +597,74 @@ ul li::marker {
 }
 
 /* --------------------------------------------------------------------------
+   11b. News Carousel (Home page)
+   -------------------------------------------------------------------------- */
+
+.news-carousel {
+  margin-bottom: var(--space-2xl);
+}
+
+/* Without JS: views stack vertically in document flow */
+.news-view {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* With JS: grid stacking for crossfade */
+.news-carousel.ready .news-carousel-views {
+  display: grid;
+  grid-template: 1fr / 1fr;
+  margin-bottom: var(--space-md);
+}
+
+.news-carousel.ready .news-view {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.news-carousel.ready .news-view.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Carousel dots */
+.news-carousel-dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+}
+
+.news-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  background: var(--border-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.news-dot:hover {
+  background: var(--text-muted);
+}
+
+.news-dot.active {
+  background: var(--brand);
+}
+
+/* Mobile: hide cards 4–6 within each carousel view */
+@media screen and (max-width: 600px) {
+  .news-view .news-card:nth-child(n+4) {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
    12. Dark Mode Toggle
    -------------------------------------------------------------------------- */
 
