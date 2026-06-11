@@ -604,6 +604,10 @@ ul li::marker {
   margin-bottom: var(--space-2xl);
 }
 
+.news-carousel .news-grid {
+  margin-bottom: 0;
+}
+
 /* Without JS: views stack vertically in document flow */
 .news-view {
   opacity: 1;
