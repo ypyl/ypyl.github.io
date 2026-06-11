@@ -645,12 +645,25 @@ ul li::marker {
 }
 
 .news-dot {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.news-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 10px;
   height: 10px;
-  padding: 6px;
+  margin: -5px 0 0 -5px;
   background: var(--border-color);
-  background-clip: content-box;
-  border: none;
   border-radius: 50%;
   transition: background-color 0.2s ease;
 }
@@ -664,11 +677,11 @@ ul li::marker {
   outline-offset: 2px;
 }
 
-.news-dot:hover {
+.news-dot:hover::after {
   background: var(--text-muted);
 }
 
-.news-dot.active {
+.news-dot.active::after {
   background: var(--brand);
 }
 
