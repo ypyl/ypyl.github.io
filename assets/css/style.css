@@ -643,10 +643,11 @@ ul li::marker {
 }
 
 .news-dot {
-  width: 8px;
-  height: 8px;
-  padding: 0;
+  width: 10px;
+  height: 10px;
+  padding: 6px;
   background: var(--border-color);
+  background-clip: content-box;
   border: none;
   border-radius: 50%;
   cursor: pointer;
