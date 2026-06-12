@@ -262,7 +262,7 @@ strong, b {
 
 /* Page content */
 .page-content {
-  padding: var(--space-xl) 0;
+  padding: var(--space-md) 0;
   flex: 1 0 auto;
 }
 
@@ -601,7 +601,7 @@ ul li::marker {
    -------------------------------------------------------------------------- */
 
 .news-carousel {
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
 }
 
 .news-carousel .news-grid {
