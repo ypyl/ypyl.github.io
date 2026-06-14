@@ -212,8 +212,14 @@
 
           var lang = match[1];
 
-          // Skip plaintext blocks (no language was specified in markdown)
-          if (lang === 'plaintext') return;
+          // Prevent auto-detection on plaintext blocks (output samples,
+          // directory trees) by telling highlight.js to skip them.
+          // Auto-detection can misfire (e.g., pgsql highlighting 'cache'
+          // in a directory listing).
+          if (lang === 'plaintext') {
+            code.classList.add('nohighlight');
+            return;
+          }
 
           // Strip Rouge spans to get clean text for highlight.js
           if (code.children.length > 0) {
