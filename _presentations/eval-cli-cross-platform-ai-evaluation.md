@@ -20,7 +20,7 @@ layout: presentation
 
 Evaluate individual LLM responses against quality metrics.
 
-```
+```bash
 eval-cli \
   --endpoint "https://opencode.ai/zen/go/v1" \
   --model "deepseek-v4-pro" \
@@ -60,7 +60,7 @@ demo.reasoning.water-states (n=1)
 
 Same prompt, different output from the system under test each time — LLMs are non-deterministic. Run multiple iterations to see the variance.
 
-```
+```bash
 eval-cli \
   --endpoint "https://opencode.ai/zen/go/v1" \
   --model "deepseek-v4-pro" \
@@ -139,7 +139,7 @@ eval-results/
 
 `eval-cli` writes in the library's native format. Use the official `aieval` CLI to generate interactive HTML reports — no extra export step needed.
 
-```
+```bash
 dotnet aieval report -p ./eval-results -o report.html --open
 ```
 

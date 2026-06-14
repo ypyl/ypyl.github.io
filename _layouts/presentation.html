@@ -192,6 +192,39 @@
         slidesContainer.appendChild(section);
       });
 
+      // --- Bridge: strip Rouge spans, pass language hints to highlight.js ---
+      // Kramdown/Rouge pre-highlights fenced code blocks (<span class="nb"> etc.),
+      // which highlight.js skips because the <code> already has children.
+      // We strip Rouges's spans and copy the language-bash/etc. class from the
+      // wrapper div to the <code> element so highlight.js can do its own work.
+      (function() {
+        var slidesEl = document.querySelector('.reveal .slides');
+        if (!slidesEl) return;
+
+        var codeBlocks = slidesEl.querySelectorAll('pre code');
+        codeBlocks.forEach(function(code) {
+          // Find Kramdown's wrapper: div.language-{name}.highlighter-rouge
+          var wrapper = code.closest('div.highlighter-rouge');
+          if (!wrapper) return;
+
+          var match = wrapper.className.match(/language-(\w[\w-]*)/);
+          if (!match) return;
+
+          var lang = match[1];
+
+          // Skip plaintext blocks (no language was specified in markdown)
+          if (lang === 'plaintext') return;
+
+          // Strip Rouge spans to get clean text for highlight.js
+          if (code.children.length > 0) {
+            code.textContent = code.textContent;
+          }
+
+          // Tell highlight.js which language to use
+          code.classList.add('language-' + lang);
+        });
+      })();
+
       // --- Reveal.js initialization ---
       Reveal.initialize({
         width: 1600,

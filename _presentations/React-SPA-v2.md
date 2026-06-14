@@ -49,7 +49,7 @@ Each layer only imports from below.
 
 # API Client — Single Gateway
 
-```
+```typescript
 // shared/api/client.ts
 // All HTTP goes through here. Never raw fetch().
 ```
@@ -74,7 +74,7 @@ Responsibilities:
 2. **Props-driven** — receive data, don't fetch
 3. **Error Boundaries** — one component crash ≠ page crash
 
-```
+```tsx
 // Components display states, nothing else
 <OrderList
   orders={data}
