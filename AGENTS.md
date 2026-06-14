@@ -120,7 +120,7 @@ Create new tags freely when they describe a meaningful aspect of the content (e.
 - **New news**: Create `YYYY-MM-DD-title.md` in `_news/` with `layout: post`, `title`, and `date` frontmatter. No `categories` or `tags` needed — the collection itself identifies the content type. Keep short and reference the source.
 - **New tool**: Create `*.md` in `_tools/` with the tool frontmatter. Choose from valid tool categories above and follow tag guidelines.
 - **New learning resource**: Create `*.md` in `_learning/` with the learning resource frontmatter. Choose from valid learning resource categories above and follow tag guidelines.
-- **New presentation**: Create `<post-slug>.md` in `_presentations/` with `layout: presentation`. The filename must match the companion post's slug (without date prefix). Use `---` separators for slide breaks.
+- **New presentation**: Create `<post-slug>.md` in `_presentations/` with `layout: presentation`. The filename must match the companion post's slug (without date prefix). Use `---` separators for slide breaks. **Code blocks**: do NOT specify a language identifier on fenced code blocks (use bare ```` ``` ````, not ```` ```bash ````). Jekyll's Kramdown invokes Rouge to pre-highlight language-tagged blocks, producing `<span class="nb">` etc. that conflict with Reveal.js's highlight.js plugin (which skips already-highlighted code, leaving Rouge spans in the DOM and the monokai theme unused). With bare fences, highlight.js auto-detects the language and applies the monokai theme correctly.
 - **Draft**: Place in `_drafts/` (not rendered)
 
 ## Layouts

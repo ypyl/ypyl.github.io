@@ -20,7 +20,7 @@ layout: presentation
 
 Evaluate individual LLM responses against quality metrics.
 
-```bash
+```
 rm -rf eval-results
 
 eval-cli \
@@ -31,6 +31,12 @@ eval-cli \
   --evaluators relevance,coherence,fluency \
   --parallel 3
 ```
+
+> **Notes:** Zero config beyond endpoint + model + input file.
+
+---
+
+# Single Scenario — Output
 
 ```
 presentation-single — 5 scenarios, 5 groups
@@ -46,7 +52,7 @@ demo.reasoning.water-states (n=1)
   ❌ Fluency: 3.00
 ```
 
-> **Notes:** Each scenario name is unique, forming one group. Fluency flags short or bare responses — the math answer "136" scores 0 because it has no grammar to judge. Zero config beyond endpoint + model + input file.
+> **Notes:** Each scenario name is unique, forming one group. Fluency flags short or bare responses — the math answer "136" scores 0 because it has no grammar to judge.
 
 ---
 
@@ -54,7 +60,7 @@ demo.reasoning.water-states (n=1)
 
 LLMs are non-deterministic. One run isn't enough. Run the same prompt multiple times and see the variance.
 
-```bash
+```
 rm -rf eval-results
 
 eval-cli \
@@ -65,6 +71,12 @@ eval-cli \
   --evaluators relevance,coherence \
   --parallel 3
 ```
+
+> **Notes:** Same-name scenarios collapse into groups with n=3 runs each; means, std dev, and ranges are computed across those runs.
+
+---
+
+# Multi-Run — Output
 
 ```
 presentation-multi — 5 scenarios, 2 groups
@@ -129,19 +141,7 @@ eval-results/
 
 `eval-cli` writes in the library's native format. Use the official `aieval` CLI to generate interactive HTML reports — no extra export step needed.
 
-```bash
-# 1. Run evaluation
-eval-cli \
-  --endpoint "https://opencode.ai/zen/go/v1" \
-  --model "deepseek-v4-flash" \
-  --api-key "$API_KEY" \
-  --input integration/scenarios.json \
-  --evaluators relevance,coherence,fluency \
-  --name "baseline"
-
-# 2. Generate HTML report
-dotnet tool install Microsoft.Extensions.AI.Evaluation.Console \
-  --create-manifest-if-needed
+```
 dotnet aieval report -p ./eval-results -o report.html --open
 ```
 
