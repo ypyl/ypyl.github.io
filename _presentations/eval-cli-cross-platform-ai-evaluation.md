@@ -12,7 +12,7 @@ layout: presentation
 - No code required — pipe JSON in, get scores out
 - Standardized evaluators and caching across teams
 
-> **Notes:** Wraps Microsoft.Extensions.AI.Evaluation into a single binary. Any language can call it via subprocess or stdin pipe — no per-ecosystem packages.
+> **Notes:** Microsoft's AI evaluation story is split: .NET library vs. Python cloud service, no cross-language CLI. eval-cli wraps the .NET evaluation library into a single binary that any language can call via subprocess or stdin pipe — no per-ecosystem packages needed. Six quality evaluators cover relevance, coherence, fluency, groundedness, completeness, and equivalence. Zero dependencies — self-contained native binary or dotnet tool.
 
 ---
 
@@ -21,8 +21,6 @@ layout: presentation
 Evaluate individual LLM responses against quality metrics.
 
 ```
-rm -rf eval-results
-
 eval-cli \
   --endpoint "https://opencode.ai/zen/go/v1" \
   --model "deepseek-v4-pro" \
@@ -32,7 +30,7 @@ eval-cli \
   --parallel 3
 ```
 
-> **Notes:** Zero config beyond endpoint + model + input file.
+> **Notes:** You feed it a JSON array of scenarios — each with a user query and the LLM's response. The tool never calls the model-under-test; it only evaluates pre-existing output. The `--parallel 3` flag runs three evaluators concurrently. Zero config beyond endpoint + model + input file.
 
 ---
 
@@ -50,19 +48,19 @@ demo.reasoning.water-states (n=1)
   ✅ Relevance: 5.00
   ✅ Coherence: 4.00
   ❌ Fluency: 3.00
+
+...
 ```
 
-> **Notes:** Each scenario name is unique, forming one group. Fluency flags short or bare responses — the math answer "136" scores 0 because it has no grammar to judge.
+> **Notes:** Each line shows ✅ pass or ❌ fail with the numeric score. Fluency scores 0 for the math answer "136" — not wrong, just no grammar to judge. Coherence and relevance are the metrics to watch most for response quality. Five scenarios run in about 15–20 seconds. The output header shows total scenarios and groups — each unique scenario name is its own group.
 
 ---
 
 # Multi-Run Aggregation
 
-LLMs are non-deterministic. One run isn't enough. Run the same prompt multiple times and see the variance.
+Same prompt, different output from the system under test each time — LLMs are non-deterministic. Run multiple iterations to see the variance.
 
 ```
-rm -rf eval-results
-
 eval-cli \
   --endpoint "https://opencode.ai/zen/go/v1" \
   --model "deepseek-v4-pro" \
@@ -72,7 +70,7 @@ eval-cli \
   --parallel 3
 ```
 
-> **Notes:** Same-name scenarios collapse into groups with n=3 runs each; means, std dev, and ranges are computed across those runs.
+> **Notes:** When you run the same scenario multiple times, eval-cli groups them by name and computes mean, standard deviation, min, max, and failed fraction per metric. This is why naming matters — same name = same group, different names = separate groups. No separate aggregation step or script needed.
 
 ---
 
@@ -90,7 +88,7 @@ qa.moon-distance (n=2)
   ✅ Coherence: 4.00 ± 0.00  [4.00–4.00]
 ```
 
-> **Notes:** A model with 4.0 ± 0.2 is more reliable than one with 4.5 ± 1.5. Std dev is arguably more important than mean.
+> **Notes:** The output shows mean ± std dev and the [min–max] range per metric. Coherence at 4.00 ± 0.00 means the model was perfectly consistent across all three runs. Relevance at 4.33 ± 0.58 means it varied between 4.00 and 5.00 — still good but less predictable. Std dev tells you about reliability, not just average quality.
 
 ---
 
@@ -105,7 +103,7 @@ qa.moon-distance (n=2)
 
 Std dev is arguably more important than mean. A model with 4.0 ± 0.2 is more *reliable* than one with 4.5 ± 1.5.
 
-> **Notes:** This is the core insight for teams adopting LLM evaluation. Don't just look at averages — look at variance.
+> **Notes:** This table is the takeaway to share with your team. High mean + low std dev = ship it with confidence. High mean + high std dev = flaky, investigate why. Low mean + low std dev = the prompt itself is weak, rework it. Low mean + high std dev = the worst case, probably need a different model or approach. Std dev is your reliability metric — a 4.0 with no variance beats a 4.5 that randomly drops to 1.0.
 
 ---
 
@@ -133,7 +131,7 @@ eval-results/
         _stats.json
 ```
 
-> **Notes:** `aieval report` reads results/ for individual runs; the stats/ layer captures the aggregate picture with mean, stdDev, min, max, and failedFraction per metric.
+> **Notes:** Every run persists automatically — no flag, no config. The `results/` folder contains library-native ScenarioRunResult JSON files, one per iteration. The `stats/` folder is added by eval-cli with `_stats.json` files: mean, stdDev, min, max, and failedFraction per metric. The folder is self-contained — copy it to another machine and `aieval report` works. The cache folder stores LLM judge responses so re-runs with identical inputs skip the API call entirely.
 
 ---
 
@@ -147,13 +145,13 @@ dotnet aieval report -p ./eval-results -o report.html --open
 
 Interactive HTML with per-metric scores, ratings, and evaluator reasoning. Execution-level grouping — run multiple evaluations with different `--name` values for trend comparison.
 
-> **Notes:** `aieval` reads the same `eval-results/` directory `eval-cli` writes to. Zero config — the two tools are designed to compose.
+> **Notes:** `aieval` is Microsoft's official reporting CLI — it reads the exact same `eval-results/` directory, no export step needed. The HTML report shows per-metric scores with evaluator reasoning, iteration drill-down for multi-run scenarios, and execution-level grouping when you use different `--name` values. Run with `--open` to auto-open in browser. The two tools are designed to compose: eval-cli writes, aieval reads.
 
 ---
 
 ![aieval HTML report](/assets/images/presentations/aieval-report.png)
 
-> **Notes:** Interactive HTML report with per-metric scores, ratings, and evaluator reasoning.
+> **Notes:** This is what the output looks like: interactive, filterable HTML with detailed evaluator reasoning for each score. Teams can share the HTML file directly — no server needed, just open in a browser. Each metric gets a rating — Excellent, Good, Fair, or Poor — derived from the numeric score against the configured threshold. Results are grouped by execution name so you can compare runs over time.
 
 ---
 
@@ -168,6 +166,4 @@ Interactive HTML with per-metric scores, ratings, and evaluator reasoning. Execu
 
 The engine library is separated from the CLI entry point. When centralization becomes necessary, the same `EvalEngine.RunAsync()` can power an ASP.NET REST API. The CLI is the first delivery vehicle, not the final architecture.
 
-> **Notes:** Each LLM-based evaluator call takes 1–5 seconds. 30 scenarios × 5 evaluators with parallel execution takes 5–8 minutes. CI runners handle that naturally.
-
-
+> **Notes:** The key architectural decision: CLI over REST API. Each evaluator call takes 1–5 seconds — over HTTP that compounds with round-trip latency. A local process avoids network overhead entirely. 30 scenarios × 5 evaluators with parallel execution takes 5–8 minutes on typical CI runners — well within build time budgets. No auth to manage, no rate limiting, no availability concerns. The engine library is purposefully separated from the CLI entry point — when centralization becomes necessary, the same `EvalEngine.RunAsync()` can power an ASP.NET REST API without rewriting any evaluation logic.
