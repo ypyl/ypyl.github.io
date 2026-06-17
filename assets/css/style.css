@@ -613,7 +613,6 @@ ul li::marker {
 /* With JS: absolute positioning for crossfade */
 .news-carousel.ready .news-carousel-views {
   position: relative;
-  margin-bottom: var(--space-md);
 }
 
 .news-carousel.ready .news-view {
@@ -638,6 +637,7 @@ ul li::marker {
   justify-content: center;
   align-items: center;
   gap: var(--space-md);
+  margin-bottom: var(--space-md);
   padding: var(--space-sm) 0;
   cursor: default;
   user-select: none;

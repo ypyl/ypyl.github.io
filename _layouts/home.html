@@ -17,6 +17,14 @@ layout: default
 
   {%- if news_items.size > 0 -%}
     <div class="news-carousel">
+      {%- if total_views > 1 -%}
+        <div class="news-carousel-dots" aria-label="News carousel navigation">
+          {%- for i in (0..4) limit: total_views -%}
+            <button class="news-dot{% if i == 0 %} active{% endif %}" data-dot="{{ i }}" aria-label="News page {{ i | plus: 1 }}"></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
       <div class="news-carousel-views">
         {%- for view_idx in (0..4) limit: total_views -%}
           {%- assign offset = view_idx | times: per_view -%}
@@ -37,14 +45,6 @@ layout: default
           </div>
         {%- endfor -%}
       </div>
-
-      {%- if total_views > 1 -%}
-        <div class="news-carousel-dots" aria-label="News carousel navigation">
-          {%- for i in (0..4) limit: total_views -%}
-            <button class="news-dot{% if i == 0 %} active{% endif %}" data-dot="{{ i }}" aria-label="News page {{ i | plus: 1 }}"></button>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
     </div>
 
     <script>
