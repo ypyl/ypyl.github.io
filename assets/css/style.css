@@ -532,7 +532,7 @@ ul li::marker {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
   padding: 0 0;
 }
 
