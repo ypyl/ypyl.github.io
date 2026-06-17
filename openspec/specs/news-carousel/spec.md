@@ -19,7 +19,7 @@ The home page SHALL render a paginated news carousel in place of the existing st
 - **AND** the layout is visually identical to the pre-carousel static grid
 
 ### Requirement: Dot navigation controls view switching
-The carousel SHALL include clickable navigation dots below the news grid. Each dot corresponds to one view. Clicking a dot SHALL switch the visible view to the corresponding news card group.
+The carousel SHALL include clickable navigation dots. On desktop viewports (wider than 600px), dots SHALL render as a vertical column to the right of the news grid. On mobile viewports (600px or narrower), dots SHALL render as a horizontal row below the news grid. Each dot corresponds to one view. Clicking a dot SHALL switch the visible view to the corresponding news card group.
 
 #### Scenario: User clicks an inactive dot
 - **WHEN** the user clicks a dot that is not currently active

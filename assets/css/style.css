@@ -601,7 +601,16 @@ ul li::marker {
    -------------------------------------------------------------------------- */
 
 .news-carousel {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-lg);
   margin-bottom: var(--space-xl);
+}
+
+.news-carousel .news-carousel-views {
+  flex: 1;
+  min-width: 0;
 }
 
 /* Without JS: views stack vertically in document flow */
@@ -634,13 +643,16 @@ ul li::marker {
 /* Carousel dots */
 .news-carousel-dots {
   display: none;
-  justify-content: center;
-  align-items: center;
   gap: var(--space-md);
-  margin-bottom: var(--space-md);
   padding: var(--space-sm) 0;
   cursor: default;
   user-select: none;
+}
+
+.news-carousel.ready .news-carousel-dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .news-dot {
@@ -684,10 +696,21 @@ ul li::marker {
   background: var(--brand);
 }
 
-/* Mobile: hide cards 4–6 within each carousel view */
+/* Mobile: single-column cards, horizontal dots below */
 @media screen and (max-width: 600px) {
   .news-view .news-card:nth-child(n+4) {
     display: none;
+  }
+
+  .news-carousel {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .news-carousel.ready .news-carousel-dots {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: var(--space-md);
   }
 }
 
