@@ -533,7 +533,7 @@ ul li::marker {
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
   margin-bottom: var(--space-2xl);
-  padding: var(--space-md) 0;
+  padding: 0 0;
 }
 
 .news-card {
