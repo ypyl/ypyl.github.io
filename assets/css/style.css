@@ -605,7 +605,7 @@ ul li::marker {
   flex-direction: row;
   align-items: flex-start;
   gap: var(--space-lg);
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-xs);
 }
 
 .news-carousel .news-carousel-views {
