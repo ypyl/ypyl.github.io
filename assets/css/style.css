@@ -604,31 +604,30 @@ ul li::marker {
   margin-bottom: var(--space-xl);
 }
 
-.news-carousel .news-grid {
-  margin-bottom: 0;
-}
-
 /* Without JS: views stack vertically in document flow */
 .news-view {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* With JS: grid stacking for crossfade */
+/* With JS: absolute positioning for crossfade */
 .news-carousel.ready .news-carousel-views {
-  display: grid;
-  grid-template: 1fr / 1fr;
+  position: relative;
   margin-bottom: var(--space-md);
 }
 
 .news-carousel.ready .news-view {
-  grid-area: 1 / 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
 .news-carousel.ready .news-view.active {
+  position: relative;
   opacity: 1;
   pointer-events: auto;
 }
