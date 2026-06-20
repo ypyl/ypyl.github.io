@@ -1,7 +1,7 @@
 ---
 name: Dive into Claude Code: The Design Space of Today's and Future AI Agent Systems
 link: https://arxiv.org/pdf/2604.14228
-date: 2026-06-17
-tags: [2026-06-17, Research Paper, ai-agents, claude-code, typescript, architecture, llm, open-source]
-description: Architectural analysis of Claude Code's TypeScript source code with a comparison to OpenClaw, identifying design principles and open directions for AI agent systems.
+date: 2026-06-18
+tags: [2026-06-18, Research Paper, ai-agents, agent-architecture, llm, typescript, software-engineering, open-source]
+description: Comprehensive architectural analysis of Claude Code's agentic coding tool, comparing its design principles, permission system, context management, and extensibility with the OpenClaw system.
 ---
