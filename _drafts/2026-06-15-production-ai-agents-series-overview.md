@@ -8,13 +8,13 @@ series: production-ai-agents
 series_index: 0
 ---
 
-Building an AI agent that works in a demo is easy. Running it in production — where it talks to real customers, touches real data, and makes real decisions — is a different discipline entirely.
+Building an AI agent that works in a demo is straightforward. Running it in production — where it talks to real customers, touches real data, and makes real decisions — requires a different discipline.
 
-This is the hub post for a 4-part series on what separates toy demos from production AI agents. Each post dives deep into one pillar.
+This hub post anchors a 4-part series on the engineering foundations that separate prototype agents from production systems. Each post covers one pillar in depth.
 
 ## The Series
 
-Each post covers one layer. Read them in order — each builds on the one below.
+Three deep dives, one per pillar. Each builds on the previous:
 
 | Part | Title | Focus |
 |------|-------|-------|
@@ -30,16 +30,16 @@ These aren't three equal peers — they're **layers** that build on each other:
 ┌─────────────────────────────────────────────┐
 │               GOVERNANCE                    │
 │  Auditability · Policy · Compliance · Org   │
-│  "Can we prove correctness over time?"       │
+│  "Can we prove correctness over time?"      │
 ├─────────────────────────────────────────────┤
 │                 SAFETY                      │
 │  Guardrails · Tool Gates · Content Filters  │
-│  "Can we stop harm in real time?"            │
+│  "Can we stop harm in real time?"           │
 ├─────────────────────────────────────────────┤
 │             OBSERVABILITY                   │
 │  Traces · Metrics · Logs · Monitoring       │
 │  Traceability · Diagnosability              │
-│  "Do we know what's happening and why?"      │
+│  "Do we know what's happening and why?"     │
 └─────────────────────────────────────────────┘
 ```
 
@@ -63,21 +63,35 @@ Governance consumes observability data (audit records are built from production 
 
 ## The Adoption Sequence
 
-Most teams don't build all three at once. A pragmatic sequence:
+Building all three pillars simultaneously is rare. A typical sequence:
 
-1. **Start with observability** (week 1–2). You can't fix what you can't see. Get LLM spans into your tracing system, even if it's just a proxy capturing token counts and latencies.
+1. **Start with observability** (week 1–2). Without visibility, failures are invisible. LLM spans should enter the tracing system early, even if only a proxy captures token counts and latencies.
 
-2. **Layer on safety** (week 2–4). Add output guardrails first (lowest effort, highest immediate value). Then tool gates — classify tools by risk level and add human-in-the-loop for destructive actions. Then input guardrails as you encounter prompt injection.
+2. **Layer on safety** (week 2–4). Output guardrails come first — highest immediate value for lowest effort. Then tool gates: classify tools by risk level and insert human-in-the-loop checkpoints for destructive operations. Input guardrails follow as prompt injection patterns emerge.
 
-3. **Formalize governance** (ongoing). The audit trail grows organically from your observability data. Formalize it into append-only storage with defined retention. Add policy-as-code when business rules outgrow prompt-based enforcement. Prepare compliance artifacts before regulators ask.
+3. **Formalize governance** (ongoing). The audit trail grows organically from observability data. Formalize it into append-only storage with defined retention. Add policy-as-code when business rules outgrow prompt-based enforcement. Prepare compliance artifacts before regulators ask.
 
-Retrofitting governance into a system that's been running for a year is painful. Even if you start light, put the hooks in from day one — structured audit records, model version tracking, and tool permission scoping.
+Governance added retroactively to a system running for a year is expensive. Structured audit records, model version tracking, and tool permission scoping should be instrumented from day one — even at minimal fidelity.
 
-## Who This Series Is For
+## Audience
 
-- **Engineers** building AI agents that will touch real users and real data
-- **Tech leads** who need to convince stakeholders the system is safe and auditable
-- **Product managers** defining the boundary between demo and production
-- **Anyone** who has built a cool agent prototype and is now staring at the gap between "it works" and "it's ready"
+- **Engineers** building AI agents that will interact with real users and real data
+- **Tech leads** who must demonstrate the system is safe and auditable to stakeholders
+- **Product managers** defining the boundary between prototype and production
+- **Solo builders** who have a working agent and need to close the gap to production readiness
 
-If you're running a weekend hackathon project — pick and choose what's useful. If you're shipping to production — all three pillars are mandatory. The only variable is how formal you make each one.
+For weekend projects, individual patterns and tool choices throughout the series remain applicable. For production systems, all three pillars are required — the only variable is the level of formality.
+
+## References
+
+- [OWASP Top 10 for LLM Applications (2025)](https://genai.owasp.org/llm-top-10/) — the canonical threat taxonomy for LLM and agent-based systems (LLM01–LLM10)
+- [EU AI Act — Official Text and Timeline](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) — four risk tiers, phased enforcement
+- [EU AI Act: High-Level Summary](https://artificialintelligenceact.eu/high-level-summary/) — best human-readable breakdown of risk classification (maintained by Future of Life Institute)
+- [NIST AI Risk Management Framework 1.0](https://www.nist.gov/itl/ai-risk-management-framework) — voluntary AI governance framework for US-based deployments
+- [Microsoft Foundry: Observability in Generative AI](https://learn.microsoft.com/en-us/azure/foundry/concepts/observability) — defines AI observability as evaluation + monitoring + tracing across the AI lifecycle
+- [AWS CloudWatch Generative AI Observability](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GenAI-observability.html) — end-to-end prompt tracing, model and agent dashboards, OTel-native (GA October 2025)
+- [Datadog Agent Observability](https://www.datadoghq.com/products/ai/agent-observability/) — traces, evaluates, and improves AI agents in a unified platform
+- [Google Cloud: AI Agent Observability with ADK](https://medium.com/google-cloud/ai-agent-observability-based-on-agent-development-kit-adk-approach-565c82cb8c80) — Cloud Logging + Cloud Trace + Cloud Monitoring for agents on GCP
+- [.NET Observability with OpenTelemetry](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel) — canonical .NET definition of the three pillars
+- [OTel GenAI Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) — the industry-standard telemetry vocabulary for LLM and agent observability
+- [The 3 Pillars of Observability (Elastic)](https://www.elastic.co/blog/3-pillars-of-observability) — modern restatement of the metrics/logs/traces foundation
