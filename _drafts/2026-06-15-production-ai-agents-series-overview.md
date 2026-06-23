@@ -61,6 +61,17 @@ Governance is distinct from observability and safety. It answers **"who did what
 
 Governance consumes observability data (audit records are built from production traces) and safety data (guardrail events become compliance evidence). But governance is fundamentally an organizational concern — it involves humans (compliance officers, auditors, engineering leads) operating on longer timeframes (days to years), not milliseconds.
 
+### A Note on Evaluation
+
+Evaluation — systematically measuring the quality, safety, and correctness of AI outputs — cuts across all three layers. It feeds **observability** (eval scores become metrics you watch in production), it informs **safety** (safety evaluators detect harmful outputs before they reach users), and it provides evidence for **governance** (eval results become audit artifacts).
+
+Every major platform now treats evaluation as a first-class capability alongside observability:
+- **Microsoft Foundry** provides built-in agent evaluators — intent resolution, tool call accuracy, task adherence, and safety dimensions ([docs](https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/agent-evaluators))
+- **Langfuse** integrates evaluation directly into the AI engineering loop: score live traces → build datasets → run experiments → block regressions ([docs](https://langfuse.com/docs/evaluation/overview))
+- **AWS Bedrock AgentCore** offers automated agent quality assessments via AgentCore Evaluations (GA December 2025)
+
+Evaluation is a deep topic in its own right — not covered in this series. Think of it as the measurement layer that makes the three pillars provable rather than anecdotal.
+
 ## The Adoption Sequence
 
 Building all three pillars simultaneously is rare. A typical sequence:
@@ -95,3 +106,5 @@ For weekend projects, individual patterns and tool choices throughout the series
 - [.NET Observability with OpenTelemetry](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel) — canonical .NET definition of the three pillars
 - [OTel GenAI Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) — the industry-standard telemetry vocabulary for LLM and agent observability
 - [The 3 Pillars of Observability (Elastic)](https://www.elastic.co/blog/3-pillars-of-observability) — modern restatement of the metrics/logs/traces foundation
+- [Microsoft Foundry: Agent Evaluators](https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/agent-evaluators) — built-in agent evaluators (intent resolution, tool call accuracy, task adherence)
+- [Langfuse: Evaluation Overview](https://langfuse.com/docs/evaluation/overview) — how evaluation integrates into the AI engineering loop (traces → datasets → experiments → regression blocking)
