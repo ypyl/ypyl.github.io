@@ -1,26 +1,10 @@
 ---
-layout: post
-title: "Production AI Agents — Observability, Safety & Governance (Series Overview)"
+title: "Production AI Agents — Observability, Safety & Governance"
 date: 2026-06-15
 tags: [ai, llm, observability, safety, governance, agents, production]
-categories: programming
-series: production-ai-agents
-series_index: 0
 ---
 
-Building an AI agent that works in a demo is straightforward. Running it in production — where it talks to real customers, touches real data, and makes real decisions — requires a different discipline.
-
-This hub post anchors a 4-part series on the engineering foundations that separate prototype agents from production systems. Each post covers one pillar in depth.
-
-## The Series
-
-Three deep dives, one per pillar. Each builds on the previous:
-
-| Part | Title | Focus |
-|------|-------|-------|
-| **1** | [Observability for AI Agents — Beyond APM](/2026/06/12/observability-for-ai-agents/) | Traces, metrics, logs, monitoring, and traceability reinterpreted for non-deterministic agent workflows. OTel GenAI conventions, correlation, eval feedback loops, cost tracking. The foundation — everything above depends on this. |
-| **2** | [Safety for AI Agents — Guardrails, Threat Models, and Defense in Depth](/2026/06/13/safety-for-ai-agents/) | Runtime guardrails across three boundaries: input, tools, output. Prompt injection, tool misuse, jailbreaking, content filtering. Consumes observability data to detect and block harm. |
-| **3** | [Governance for AI Agents — Policy, Audit, and Compliance](/2026/06/14/governance-for-ai-agents/) | Auditability, accountability, policy-as-code, model lineage, compliance (EU AI Act, NIST). The organizational layer — proves correctness over time to humans and regulators. |
+Running AI agents in production — where they interact with real users, real data, and make real decisions — requires engineering discipline that goes beyond prototype demos. Three interdependent layers provide the foundation: observability, safety, and governance.
 
 ## The Three Pillars
 
@@ -70,9 +54,9 @@ Every major platform now treats evaluation as a first-class capability alongside
 - **Langfuse** integrates evaluation directly into the AI engineering loop: score live traces → build datasets → run experiments → block regressions ([docs](https://langfuse.com/docs/evaluation/overview))
 - **AWS Bedrock AgentCore** offers automated agent quality assessments via AgentCore Evaluations (GA December 2025)
 
-Evaluation is a deep topic in its own right — not covered in this series. Think of it as the measurement layer that makes the three pillars provable rather than anecdotal.
+Evaluation is a deep topic in its own right — not covered here. Think of it as the measurement layer that makes the three pillars provable rather than anecdotal.
 
-## The Adoption Sequence
+## Adoption Sequence
 
 Building all three pillars simultaneously is rare. A typical sequence:
 
@@ -83,15 +67,6 @@ Building all three pillars simultaneously is rare. A typical sequence:
 3. **Formalize governance** (ongoing). The audit trail grows organically from observability data. Formalize it into append-only storage with defined retention. Add policy-as-code when business rules outgrow prompt-based enforcement. Prepare compliance artifacts before regulators ask.
 
 Governance added retroactively to a system running for a year is expensive. Structured audit records, model version tracking, and tool permission scoping should be instrumented from day one — even at minimal fidelity.
-
-## Audience
-
-- **Engineers** building AI agents that will interact with real users and real data
-- **Tech leads** who must demonstrate the system is safe and auditable to stakeholders
-- **Product managers** defining the boundary between prototype and production
-- **Solo builders** who have a working agent and need to close the gap to production readiness
-
-For weekend projects, individual patterns and tool choices throughout the series remain applicable. For production systems, all three pillars are required — the only variable is the level of formality.
 
 ## References
 
