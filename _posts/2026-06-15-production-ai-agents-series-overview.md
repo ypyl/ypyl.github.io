@@ -6,6 +6,63 @@ tags: [ai, llm, observability, safety, governance, agents, production]
 
 Running AI agents in production — where they interact with real users, real data, and make real decisions — requires engineering discipline that goes beyond prototype demos. Three interdependent layers provide the foundation: observability, safety, and governance.
 
+**But are they always necessary?** Each pillar carries real costs and failure modes — observability can consume 20–30% of your infrastructure bill, stacked safety guardrails compound false positives that silently destroy user experience, and governance frameworks frequently become policy theater rather than operational control. The companion note [*The Case Against Premature AI Agent Infrastructure*](/2026/06/16/against-ai-agent-infrastructure/) explores when you might not need these pillars — or whether the task needs an AI agent at all.
+
+## Map
+
+```
+Production AI Agent Infrastructure
+│
+├── START: Adoption Sequence
+│   ├── Day 1:     Basic instrumentation (minimal fidelity)
+│   ├── Week 1-2:  Observability — traces, metrics, logs
+│   ├── Week 2-4:  Safety — output guardrails → tool gates → input filters
+│   └── Ongoing:   Governance — audit trail grows from observability data
+│
+├── PILLAR 1: Observability (foundation)
+│   ├── Traces — LLM calls, tool invocations, reasoning steps
+│   ├── Metrics — token usage, latency, cost, error rates
+│   ├── Logs — event-level records for debugging
+│   ├── Monitoring — predefined checks for known failures
+│   ├── Traceability — correlation IDs end-to-end
+│   └── Diagnosability — root cause in minutes, not days
+│
+├── PILLAR 2: Safety (operational guard, builds on observability)
+│   ├── Input filters — prompt injection defense, content moderation
+│   ├── Tool gates — risk-classified tools, human-in-loop for destructive ops
+│   ├── Output filters — content safety, PII redaction, hallucination check
+│   └── Guardrail events → observability traces
+│
+├── PILLAR 3: Governance (organizational layer, builds on safety + observability)
+│   ├── Audit trail — who did what, when, under which policy
+│   ├── Accountability — actions → actors → policies
+│   ├── Policy-as-code — version-controlled, testable business rules
+│   ├── Model lineage — which model version served which request
+│   └── Compliance — EU AI Act, NIST AI RMF, OWASP
+│
+├── BENEFITS
+│   ├── Find root cause in minutes instead of days
+│   ├── Stop harmful outputs before they reach users
+│   ├── Pass any audit with structured, queryable evidence
+│   ├── Ship faster — observability enables safe, confident iteration
+│   └── Build trust with users, stakeholders, and regulators
+│
+├── LIABILITY OF NOT HAVING IT
+│   ├── Invisible failures — agents fail silently, no stack trace
+│   ├── Undetected harm — prompt injection, toxic outputs, data leaks
+│   ├── Compliance fines — EU AI Act: up to €35M or 7% of global turnover
+│   ├── Audit failure — can't prove correctness when regulators ask
+│   └── Retrofitting cost — adding governance after 1 year is far more expensive
+│
+└── COSTS
+    ├── Observability tooling + storage (traces, metrics, logs)
+    ├── Guardrail latency + false positive triage
+    ├── Audit infrastructure + long-term retention
+    └── Mitigation: instrument from day one at minimal fidelity
+```
+
+> *EU AI Act fines: [Article 99](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689#d1e7505) — up to €35,000,000 or 7% of total worldwide annual turnover for prohibited AI practices (highest tier).*
+
 ## The Three Pillars
 
 These aren't three equal peers — they're **layers** that build on each other:
@@ -60,11 +117,11 @@ Evaluation is a deep topic in its own right — not covered here. Think of it as
 
 Building all three pillars simultaneously is rare. A typical sequence:
 
-1. **Start with observability** (week 1–2). Without visibility, failures are invisible. LLM spans should enter the tracing system early, even if only a proxy captures token counts and latencies.
+1. **Start with observability**. Without visibility, failures are invisible. LLM spans should enter the tracing system early, even if only a proxy captures token counts and latencies.
 
-2. **Layer on safety** (week 2–4). Output guardrails come first — highest immediate value for lowest effort. Then tool gates: classify tools by risk level and insert human-in-the-loop checkpoints for destructive operations. Input guardrails follow as prompt injection patterns emerge.
+2. **Layer on safety**. Output guardrails come first — highest immediate value for lowest effort. Then tool gates: classify tools by risk level and insert human-in-the-loop checkpoints for destructive operations. Input guardrails follow as prompt injection patterns emerge.
 
-3. **Formalize governance** (ongoing). The audit trail grows organically from observability data. Formalize it into append-only storage with defined retention. Add policy-as-code when business rules outgrow prompt-based enforcement. Prepare compliance artifacts before regulators ask.
+3. **Formalize governance**. The audit trail grows organically from observability data. Formalize it into append-only storage with defined retention. Add policy-as-code when business rules outgrow prompt-based enforcement. Prepare compliance artifacts before regulators ask.
 
 Governance added retroactively to a system running for a year is expensive. Structured audit records, model version tracking, and tool permission scoping should be instrumented from day one — even at minimal fidelity.
 
