@@ -136,4 +136,4 @@ The argument is not against observability, safety, and governance. It is against
 2. **Is this system interacting with real users and real data, at scale?** If it's an internal prototype with controlled inputs, full production infrastructure is premature.
 3. **Is each pillar solving a measured problem, or being deployed because "best practice" says so?** Infrastructure that doesn't address a specific, observed failure mode is overhead.
 
-When these questions have clear answers — yes, the system warrants AI; yes, it touches real users; yes, specific failures have occurred — then observability, safety, and governance stop being overhead and start being the engineering foundation the series overview describes.
+When these questions have clear answers — yes, the system warrants AI; yes, it touches real users; yes, specific failures have occurred — then observability, safety, and governance stop being overhead and start being the engineering foundation the [companion overview]({% post_url 2026-06-15-production-ai-agents-series-overview %}) describes.
