@@ -42,9 +42,9 @@ This note collects the strongest counter-arguments from practitioners and author
            └───────────────────────┼───────────────────────┘
                                    ▼
                     ┌──────────────────────────────┐
-                    │  The Multiplicative Problem  │
-                    │  Pillars compound, not add   │
-                    │  More infra ≠ safer system   │
+                    │   The Compounding Problem    │
+                    │   Pillars stack, not just    │
+                    │   coexist                    │
                     └──────────────────────────────┘
 ```
 
@@ -106,7 +106,7 @@ Five guardrails in sequence (toxicity → prompt injection → PII → hallucina
 
 > **0.9⁵ = 0.59** — only 59% of legitimate requests pass through.
 
-At 100,000 requests per day, 41,000 users submit a normal query and get blocked because *one* guardrail misfired. Every individual dashboard is green. No single detector looks broken. But the compound effect destroys adoption, and nobody monitoring component-level metrics can see it.
+At 100,000 requests per day, 41,000 requests get blocked because *one* guardrail misfired. Every individual dashboard is green. No single detector looks broken. But the compound effect destroys adoption, and nobody monitoring component-level metrics can see it.
 
 Improving each guardrail from 90% to 95% sounds modest, but the last 5% of accuracy per guardrail — the hard, ambiguous edge cases — can consume more annotation budget than the entire initial deployment. And even then: 0.95⁵ = 0.77, still blocking 23% of legitimate traffic.
 
@@ -159,7 +159,7 @@ The four-tier risk classification is conceptually clean but operationally vague.
 
 ## The Multiplicative Problem
 
-These pillars interact multiplicatively, not additively. Each guardrail added to the safety layer compounds the false positive cascade. Each governance requirement adds process overhead to every observability-driven investigation. A system with all three pillars can be worse — more expensive, less usable, and no safer — than a system with none, if each pillar is implemented as theater rather than operational control.
+These pillars compound on each other. Each guardrail added to the safety layer compounds the false positive cascade. Each governance requirement adds process overhead to every observability-driven investigation. A system with all three pillars can be worse — more expensive, less usable, and no safer — than a system with none, if each pillar is implemented as theater rather than operational control.
 
 The argument is not against observability, safety, and governance. It is against deploying them as universal defaults without asking:
 
