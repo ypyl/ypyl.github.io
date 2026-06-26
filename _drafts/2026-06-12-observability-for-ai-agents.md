@@ -8,83 +8,66 @@ series: production-ai-agents
 series_index: 1
 ---
 
-*Part 1 of a 4-part series on running AI agents in production. Also see: [Safety](/), [Governance](/), and the [series overview](/).*
+> Series overview: [Production AI Agents — From Notebook to Production]({% post_url 2026-06-15-production-ai-agents-series-overview %})
 
----
+> **Try it now**: VS Code Copilot, OpenAI Codex, and Claude Code all emit OpenTelemetry traces using GenAI semantic conventions. Enable `github.copilot.chat.otel.enabled`, point at a local OTLP endpoint (e.g., [Aspire Dashboard](https://aspire.dev/dashboard/overview/)), and see `invoke_agent` → `chat` → `execute_tool` span trees from daily development work.
 
-Traditional APM (Application Performance Monitoring) was built for deterministic systems. You trace a request through services, measure latency at each hop, and alert on error rates. It works because the system does the same thing every time.
+## Observability Taxonomy
 
-AI agents break this model. An agent might call an LLM 3 times or 30 times for the same user request. It might invoke tools you didn't know existed. It might succeed at the task but cost 10× more than expected because it took an inefficient reasoning path. None of this fits into a standard APM dashboard.
-
-This post covers what observability means for AI agents — the signals you need, the patterns that work, and the tooling worth adopting.
-
-> **You can try this right now**: VS Code Copilot, OpenAI Codex, and Claude Code all emit OpenTelemetry traces using GenAI semantic conventions today. Settings like `github.copilot.chat.otel.enabled` and a local OTLP endpoint (e.g., the free [Aspire Dashboard](https://aspire.dev/dashboard/overview/) via Docker) are all you need to see real `invoke_agent` → `chat` → `execute_tool` span trees from your daily development workflow.
-
-## The Observability Taxonomy — A Quick Mental Model
-
-Before diving into tools and patterns, worth being precise about what "observability" actually contains. The SRE world breaks it into several distinct capabilities, each answering a different question:
-
-| Capability | Answers | For AI agents, that means… |
-|------------|---------|---------------------------|
+| Capability | Answers | For AI agents |
+|------------|---------|---------------|
 | **Metrics** | What changed? | Token counts, latency distributions, error rates, cost per interaction |
-| **Logs** | What happened? | Full prompt/completion pairs, tool inputs/outputs, guardrail decisions |
+| **Logs** | What happened? | Prompt/completion pairs, tool inputs/outputs, guardrail decisions |
 | **Traces** | Where did it happen? | LLM call → tool invocation → re-planning → response, with causal links |
 | **Monitoring** | Are known failures happening? | Alerts on guardrail spikes, tool failures, cost anomalies |
-| **Observability** | Can we explore unknown failures? | Ask novel questions of production data without predefined dashboards |
+| **Observability** | Can we explore unknown failures? | Ask novel questions without predefined dashboards |
 | **Traceability** | What path did this request take? | Correlation IDs tying a user message to every downstream LLM and tool call |
-| **Diagnosability** | How fast can we find root cause? | Emergent property — the faster you can trace from symptom to source, the better your observability design |
+| **Diagnosability** | How fast can we find root cause? | The faster you trace symptom to source, the better the obs design |
 
-> **What about auditability?** Auditability — reconstructing *who* did *what* and *when* — sits in the **governance** layer (Part 3 of this series). It consumes traceability data from observability but adds identity, policy context, immutability, and retention. This post covers the technical foundation; governance covers what gets built on top.
+> **Auditability** — reconstructing *who* did *what* and *when* — sits in the **governance** layer (Part 3). It consumes traceability data but adds identity, policy context, immutability, and retention.
 
-The rest of this post walks through each of these capabilities in the context of AI agents, starting with the standard that makes them interoperable.
+## The OTel GenAI Standard
 
-## The OTel GenAI Standard — One Convention to Rule Them All
-
-Before diving into signals and tools, a critical development: the industry is converging on **OpenTelemetry GenAI Semantic Conventions** (v1.37+) as the standard vocabulary for LLM and agent observability. This is the work of OTel's [GenAI Special Interest Group (SIG)](https://github.com/open-telemetry/community/blob/main/projects/gen-ai.md), which defines standardized attribute names for traces, metrics, and events across all GenAI systems.
-
-The key namespaces:
+The industry is converging on **OpenTelemetry GenAI Semantic Conventions** (v1.37+) via OTel's [GenAI SIG](https://github.com/open-telemetry/community/blob/main/projects/gen-ai.md).
 
 | Convention | What it covers | Status |
 |-----------|---------------|--------|
 | **Model spans** (`gen_ai.*`) | LLM calls — model name, token counts, temperature, provider | Development (widely adopted) |
-| **Agent application** (`gen_ai.agent.*`) | Agent workflows — planning steps, tool calls, task execution | Draft, based on Google's AI Agent whitepaper |
-| **Agent framework** | Common convention across frameworks (LangGraph, CrewAI, AutoGen, IBM Bee, PydanticAI, etc.) | In progress ([issue #1530](https://github.com/open-telemetry/semantic-conventions/issues/1530)) |
+| **Agent application** (`gen_ai.agent.*`) | Agent workflows — planning, tool calls, task execution | Draft (Google AI Agent whitepaper) |
+| **Agent framework** | Common convention across frameworks (LangGraph, CrewAI, AutoGen, IBM Bee, PydanticAI) | In progress ([#1530](https://github.com/open-telemetry/semantic-conventions/issues/1530)) |
 
-> **Application vs Framework**: The GenAI SIG distinguishes between an *agent application* (an individual AI entity performing tasks autonomously) and an *agent framework* (the infrastructure for building agents — LangGraph, CrewAI, AutoGen, Semantic Kernel, IBM Bee, PydanticAI, etc.). The application convention is already drafted; the framework convention is the next priority, ensuring every framework can emit standardised telemetry while allowing vendor-specific extensions.
+> **Application vs Framework**: The GenAI SIG distinguishes an *agent application* (individual AI entity performing tasks autonomously) from an *agent framework* (infrastructure for building agents). The application convention is drafted; the framework convention is next priority.
 
-The SIG's scope goes beyond conventions: it's also building instrumentation coverage for agents and models in Python and other languages. If you want to follow or contribute, join the [`#otel-genai-instrumentation`](https://slack.cncf.io) channel on CNCF Slack or attend a [GenAI SIG meeting](https://github.com/open-telemetry/community/blob/main/projects/gen-ai.md#meeting-times).
+Instrument with OTel GenAI conventions and telemetry is portable across Datadog, Langfuse, Phoenix, Agenta, Dynatrace, Grafana — any OTLP-speaking backend.
 
-Why this matters: if you instrument with OTel GenAI conventions, your telemetry is portable across **Datadog, Langfuse, Phoenix, Agenta, Dynatrace, Grafana** — any backend that speaks OTLP. No vendor lock-in. 
+Major providers already adopt this:
+- **Datadog LLM Observability** — native OTel GenAI spans (v1.37+) since Dec 2025
+- **AWS Bedrock AgentCore** — OTel-compatible traces via ADOT
+- **Microsoft Foundry** — `microsoft-opentelemetry` distro with GenAI conventions; co-developed multi-agent conventions with Cisco Outshift
+- **Traceloop** (OpenLLMetry) — [donating instrumentation](https://github.com/open-telemetry/community/issues/2571) to OTel
 
-Major providers have already adopted this:
-- **Datadog LLM Observability** natively ingests OTel GenAI spans (v1.37+) as of December 2025
-- **AWS Bedrock AgentCore** emits OTel-compatible traces via AWS Distro for OpenTelemetry
-- **Microsoft Foundry** uses a `microsoft-opentelemetry` distro with GenAI conventions and has co-developed multi-agent semantic conventions with Cisco Outshift
-- **Traceloop** (maintainers of OpenLLMetry) is [donating their instrumentation](https://github.com/open-telemetry/community/issues/2571) to the OTel project
-
-OpenInference (Arize's OTel extension) adds LLM-specific attributes on top of OTel — if you send OpenInference spans to a non-Arize backend, those extra attributes become custom attributes. The industry direction is toward the OTel-native `gen_ai.*` conventions as the base, with vendor extensions layered on top.
+OpenInference (Arize) adds LLM-specific attributes on top of OTel; industry direction is OTel-native `gen_ai.*` as the base with vendor extensions layered on top.
 
 ## The Three Signals, Reinterpreted
 
-Classic observability rests on three pillars: **logs**, **metrics**, and **traces**. They still apply to AI agents, but the *content* of each signal changes fundamentally.
-
 ### Traces
 
-In a traditional microservice, a trace is a tree of service-to-service RPC calls. For an AI agent, the trace tree gains new node types:
+Traditional trace = tree of service-to-service RPC calls. AI agent trace tree gains new node types (per OTel spec: `plan` wraps the planning LLM call, `execute_tool` wraps tool calls, `chat` wraps inference):
 
 ```
 User Request (span)
 ├── Guardrail: input validation (span)
-├── LLM Call #1: planning (span)
-│   ├── gen_ai.usage.input_tokens: 1240
-│   ├── gen_ai.usage.output_tokens: 87
-│   ├── gen_ai.request.model: "gpt-4o-mini"
-│   └── latency_ms: 1432
-├── Tool Call: search_docs("refund policy") (span)
+├── Plan: task decomposition (plan span)
+│   └── LLM Call: generates plan (chat span)
+│       ├── gen_ai.usage.input_tokens: 1240
+│       ├── gen_ai.usage.output_tokens: 87
+│       ├── gen_ai.request.model: "gpt-4o-mini"
+│       └── latency_ms: 1432
+├── Tool Call: search_docs("refund policy") (execute_tool span)
 │   ├── input: {query: "refund policy", top_k: 5}
 │   ├── output: {results: 3, total_ms: 89}
 │   └── latency_ms: 91
-├── LLM Call #2: final response (span)
+├── LLM Call: final response (chat span)
 │   ├── gen_ai.usage.input_tokens: 2890
 │   ├── gen_ai.usage.output_tokens: 412
 │   ├── gen_ai.request.model: "gpt-4o"
@@ -93,381 +76,275 @@ User Request (span)
 └── Response to user
 ```
 
-The key difference: **spans are dynamic**. You don't know the trace shape ahead of time — the agent decides at runtime which tools to call and how many LLM rounds to execute. Your tracing infrastructure must handle variable-depth, variable-width traces.
+**Spans are dynamic** — you don't know trace shape ahead of time. Agent decides at runtime which tools to call and how many LLM rounds to execute. Tracing infrastructure must handle variable-depth, variable-width traces.
 
-The `gen-ai-agent-spans.md` spec ([link](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md)) defines three distinct agent span types with dedicated `gen_ai.operation.name` values:
+The [`gen-ai-agent-spans.md`](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md) spec defines four span types with `gen_ai.operation.name`:
 
-| Span type | `gen_ai.operation.name` | When to use |
-|-----------|------------------------|-------------|
-| **Invoke agent** (`gen_ai.invoke_agent.internal`) | `invoke_agent` | Individual agent invocation. Span name: `invoke_agent {agent.name}` |
-| **Invoke workflow** (`gen_ai.invoke_workflow.internal`) | `invoke_workflow` | Multi-agent orchestration (e.g., a CrewAI crew). Span name: `invoke_workflow {workflow.name}` |
-| **Plan** (`gen_ai.plan.internal`) | `plan` | Agent planning or task decomposition phase. Span name: `plan {agent.name}` |
+| Span type (Weaver registry key) | `gen_ai.operation.name` | Span kind | When to use |
+|--------------------------------|------------------------|-----------|-------------|
+| **Invoke agent (local)** — `gen_ai.invoke_agent.internal` | `invoke_agent` | `INTERNAL` | In-process agent invocation (LangChain, CrewAI). Span name: `invoke_agent {agent.name}` |
+| **Invoke agent (remote)** — `gen_ai.invoke_agent.client` | `invoke_agent` | `CLIENT` | Remote agent services (OpenAI Assistants, Bedrock Agents). Span name: `invoke_agent {agent.name}` |
+| **Invoke workflow** — `gen_ai.invoke_workflow.internal` | `invoke_workflow` | `INTERNAL` | Multi-agent orchestration (e.g., CrewAI crew). Span name: `invoke_workflow {workflow.name}` |
+| **Plan** — `gen_ai.plan.internal` | `plan` | `INTERNAL` | Agent planning/task decomposition. LLM call that produces the plan is a child span (`chat`); tool spans from plan are siblings under `invoke_agent`. Span name: `plan {agent.name}` |
 
-For framework developers: CrewAI crews that orchestrate multiple agents SHOULD report `invoke_workflow` spans, while Google ADK workflow agents that report `invoke_agent` spans SHOULD NOT report `invoke_workflow` spans since they can't reliably distinguish them.
+CrewAI crews SHOULD report `invoke_workflow`; Google ADK workflow agents that report `invoke_agent` SHOULD NOT report `invoke_workflow` since they can't reliably distinguish them.
 
-**What to capture on every LLM span** (OTel GenAI conventions):
+> **Plan vs standard inference** — The spec says `plan` spans SHOULD be reported only when instrumentation can reliably determine the operation is planning/decomposition, and SHOULD NOT be reported when it can't distinguish planning from generic reasoning. If you're intercepting raw HTTP calls, emit `chat` spans, not `plan`.
+
+**LLM span attributes** (OTel GenAI conventions):
 - `gen_ai.request.model` — model identifier (e.g., `gpt-4o-2024-08-06`)
 - `gen_ai.usage.input_tokens` / `gen_ai.usage.output_tokens`
-- `gen_ai.usage.cache_read.input_tokens` / `gen_ai.usage.cache_creation.input_tokens` — for cached-prompt cost attribution
+- `gen_ai.usage.cache_read.input_tokens` / `gen_ai.usage.cache_creation.input_tokens` — cached-prompt cost attribution
 - `gen_ai.request.temperature` / `gen_ai.request.top_p` / `gen_ai.request.max_tokens`
-- `gen_ai.provider.name` — which cloud/provider served the model (e.g., `openai`, `aws.bedrock`, `azure.ai.openai`, `anthropic`)
+- `gen_ai.provider.name` — cloud/provider (e.g., `openai`, `aws.bedrock`, `azure.ai.openai`, `anthropic`)
 - `gen_ai.operation.name` — operation type: `chat`, `text_completion`, `embeddings`, `generate_content`, `retrieval`
-- `gen_ai.request.seed` / `gen_ai.request.stop_sequences` / `gen_ai.request.frequency_penalty` — when applicable
-- `gen_ai.response.finish_reasons` — array of reasons the model stopped generating
-- `gen_ai.system.instructions` — system prompt (Opt-In, sensitive)
-- `gen_ai.input.messages` / `gen_ai.output.messages` — full prompt/completion (Opt-In, sensitive)
-- `gen_ai.tool.definitions` — tool schemas passed to the model (Opt-In, can be large)
+- `gen_ai.request.seed` / `gen_ai.request.stop_sequences` / `gen_ai.request.frequency_penalty`
+- `gen_ai.response.finish_reasons` — why model stopped generating
+- `gen_ai.system.instructions` — system prompt (Opt-In)
+- `gen_ai.input.messages` / `gen_ai.output.messages` — full prompt/completion (Opt-In)
+- `gen_ai.tool.definitions` — tool schemas passed to model (Opt-In)
 
-For agent-level spans (`invoke_agent`, `invoke_workflow`, `plan`):
-- `gen_ai.agent.name` — human-readable name (e.g., `Math Tutor`)
-- `gen_ai.agent.description` — free-form description (`Helps with math problems`)
-- `gen_ai.agent.version` — semver or date (`1.0.0`, `2025-05-01`)
-- `gen_ai.conversation.id` — session/thread identifier for multi-turn conversations
-- `gen_ai.workflow.name` — for `invoke_workflow` spans, the multi-agent workflow name (e.g., `customer_support_pipeline`)
-- `gen_ai.data_source.id` — for RAG/grounding, the data source identifier
-- `gen_ai.output.type` — what the agent produces: `text`, `json`, `image`, `speech`
+**Agent-level span attributes** (`invoke_agent`, `invoke_workflow`, `plan`):
+- `gen_ai.agent.name` — human-readable name
+- `gen_ai.agent.description` — free-form description
+- `gen_ai.agent.version` — semver or date
+- `gen_ai.conversation.id` — session/thread identifier
+- `gen_ai.workflow.name` — multi-agent workflow name
+- `gen_ai.data_source.id` — RAG/grounding data source identifier
+- `gen_ai.output.type` — what agent produces: `text`, `json`, `image`, `speech`
 
-**Memory operations** also have dedicated convention entries: `create_memory_store`, `delete_memory_store`, `create_memory`, `upsert_memory`, `update_memory`, `delete_memory`, `search_memory` — all as `gen_ai.operation.name` values in the [gen-ai-agent-spans.md](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md) spec, enabling structured tracing of agent memory and persistence layers.
+**Memory operations** ([`gen-ai-agent-spans.md`](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md)): `create_memory_store`, `delete_memory_store`, `create_memory`, `upsert_memory`, `update_memory`, `delete_memory`, `search_memory` — all as `gen_ai.operation.name` values.
 
-**OpenInference** (Arize's OTel extension) adds LLM-aware span attributes on top of OTel's base `gen_ai.*` conventions — things like `llm.span_kind` (values: `LLM`, `TOOL`, `CHAIN`, `AGENT`, `RETRIEVER`). The OTel community is moving toward incorporating these concepts into the official semantic conventions, with agent spans now an active area of standardization.
+**OpenInference** adds `llm.span_kind` (LLM, TOOL, CHAIN, AGENT, RETRIEVER). OTel community is incorporating these into official conventions.
 
 ### Metrics
 
-Standard RED metrics (Rate, Errors, Duration) still matter, but you need a new layer on top. The OTel GenAI conventions define two official metrics that backends can aggregate from span data:
+OTel GenAI conventions define two official metrics:
+- **`gen_ai.client.operation.duration`** — histogram of LLM call latencies (filterable by `gen_ai.request.model`)
+- **`gen_ai.client.token.usage`** — histogram of token consumption (filterable by `gen_ai.token.type`: `input` / `output`)
 
-- **`gen_ai.client.operation.duration`** — histogram of LLM call latencies. Filter by `gen_ai.request.model` to compare model performance.
-- **`gen_ai.client.token.usage`** — histogram of token consumption. Filter by `gen_ai.token.type` to separate `input` from `output` tokens.
-
-In practice, these feed into the operational metrics you care about:
+Operational metrics derived from these:
 
 | Metric | What it measures | Why it matters |
 |--------|-----------------|----------------|
-| **Tokens per request** | Prompt + completion tokens, per request and per agent turn | Cost attribution, anomaly detection (did a prompt suddenly blow up?) |
-| **LLM calls per user request** | Distribution of how many LLM rounds an agent takes | Spot agents going into infinite planning loops |
-| **Tool success rate** | Per-tool error rate, latency distribution | Which tools are flaky? Which are slow? |
-| **Cache hit rate** | For prompt caching, embedding cache, exact-match response cache | ROI of caching infrastructure |
-| **Time to first token (TTFT)** | Latency from request → first response token | Perceived responsiveness for streaming agents |
-| **Rate limit hits** | Count of 429 responses, queue depth | Capacity planning — when do you need to scale or add fallback models? |
-| **Guardrail trigger rate** | How often input/output guardrails fire | Is your content safety working? Is prompt injection increasing? |
-
-A critical metric that's easy to miss: **cost per successful interaction**. An agent that succeeds but costs $0.80 per request is fine for an internal tool but bankrupting for a consumer chatbot. Track cost broken down by model, by tool, and by user tier.
+| **Tokens per request** | Prompt + completion tokens per agent turn | Cost attribution, anomaly detection |
+| **LLM calls per user request** | Distribution of LLM rounds | Spot agents in infinite planning loops |
+| **Tool success rate** | Per-tool error rate, latency distribution | Flaky/slow tools |
+| **Cache hit rate** | Prompt/embedding/cache hit rate | ROI of caching infrastructure |
+| **Time to first token (TTFT)** | Request → first response token | Perceived responsiveness |
+| **Rate limit hits** | 429 count, queue depth | Capacity planning, fallback models |
+| **Guardrail trigger rate** | Input/output guardrail fire rate | Content safety, prompt injection trends |
+| **Cost per successful interaction** | Total cost for completed request | Viability: $0.80/request is fine for internal tools, bankrupting for consumer |
 
 ### Logs
 
-Logs for AI agents need to be *structured* and *queryable* — not just free-text print statements. Every log entry should carry:
-
-- `trace_id` — ties back to the distributed trace
-- `agent_turn` — which conversation turn this belongs to
+Structured and queryable — not free-text. Each entry carries:
+- `trace_id` — ties to distributed trace
+- `agent_turn` — conversation turn number
 - `span_kind` — `LLM`, `TOOL`, `GUARDRAIL`, `EVAL`
-- `decision_context` — what the agent was trying to do (planning, retrieval, response generation)
+- `decision_context` — what agent was trying to do
 
-The log should capture the *full prompt and completion* for offline analysis — but be smart about it. Dumping 10K tokens of chat history into every log line will blow up your logging budget. Common approaches:
-- **Sampling**: Log full prompts for 5% of requests, summary for the rest
-- **Separate store**: Prompts go to blob storage (S3, Azure Blob), only metadata and a blob pointer go to your log aggregator
-- **Evaluation pipeline**: Stream sampled traces to an eval pipeline that scores them and stores only the scores
+Full prompt/completion capture for offline analysis. Approaches to control cost:
+- **Sampling**: full prompts for 5% of requests, summary for rest
+- **Separate store**: prompts to blob storage, metadata+pointer to log aggregator
+- **Evaluation pipeline**: stream sampled traces to eval pipeline, store only scores
 
 ### Events (The Fourth Signal)
 
-Some frameworks (including [IBM's](https://www.ibm.com/think/insights/ai-agent-observability)) distinguish **Events** from Logs as a separate signal category. Events are discrete, semantically meaningful actions the agent takes — not raw log lines but structured records of what happened and why:
+Discrete, semantically meaningful agent actions — structured records, not raw log lines:
 
 | Event type | Example | Why it matters |
 |-----------|---------|----------------|
-| **API call** | Agent calls search API for a query | Track tool usage patterns and cost |
-| **LLM call** | Agent sends prompt to GPT-4o | Record prompt/response for quality analysis |
-| **Failed tool call** | DB query returns connection error | Immediate alert, root cause investigation |
-| **Human handoff** | Agent escalates a refund dispute | Measure agent autonomy rate, find capability gaps |
-| **Guardrail trigger** | Output filter blocks a response | Track safety system effectiveness |
+| **API call** | Agent calls search API | Track tool usage and cost |
+| **LLM call** | Agent sends prompt to GPT-4o | Quality analysis |
+| **Failed tool call** | DB query returns connection error | Alert, root cause |
+| **Human handoff** | Agent escalates refund dispute | Autonomy rate, capability gaps |
+| **Guardrail trigger** | Output filter blocks response | Safety system effectiveness |
 
-In the OTel conventions, events map to the [gen-ai-events.md](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-events.md) spec, which defines structured input and output message schemas (JSON). Events are less granular than spans (no causal parent-child tree) but more structured than free-text logs — a middle ground useful for audit trails and compliance reporting.
+OTel [gen-ai-events.md](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-events.md) defines structured input/output message schemas (JSON). Events are less granular than spans but more structured than free-text logs — useful for audit trails and compliance.
 
 ## The Correlation Problem
 
-The hardest operational problem in agent observability is **end-to-end correlation**. A user sends one message. The agent:
-1. Calls a planning LLM → spawns 3 tool calls in parallel
-2. Each tool call might hit an internal service, a vector DB, and an external API
-3. Results are aggregated and fed to a final LLM for response generation
-4. The response goes through output guardrails before reaching the user
-
-All of this needs to tie back to a single user interaction. The solution is a **correlation ID** (`trace_id`) generated at the entry point (API gateway or agent framework) and propagated through every downstream call via:
+End-to-end correlation: a single user message triggers planning → parallel tool calls → internal services → vector DB → external API → final LLM response → guardrails. All tied to one `trace_id` generated at the entry point and propagated via:
 - HTTP headers (`X-Trace-Id` or W3C `traceparent`)
 - Message queue metadata
-- LLM provider metadata (some providers let you pass a `user` or `metadata` field)
+- LLM provider `user` / `metadata` fields
 
-If your agent framework doesn't propagate trace context automatically, wrap every LLM and tool call in a thin instrumentation layer that injects `trace_id` into the call and extracts it on the other side.
+If the agent framework doesn't propagate automatically, wrap LLM and tool calls in a thin instrumentation layer.
 
 ## Evaluation as Observability
 
-Offline evaluation is not a separate activity — it's a feedback loop that closes the observability cycle. Production traces are gold for evaluation:
+Production traces feed evaluation:
+1. Sample production traces (5-10% traffic) into eval pipeline
+2. Run LLM-as-judge evaluators: relevance, coherence, groundedness, safety
+3. Compare against reference answers when available
+4. Surface regressions — model/prompt change causing score drops?
+5. Alert when groundedness drops below threshold for >10 min
 
-1. **Sample production traces** (5-10% of traffic) into an eval pipeline
-2. **Run LLM-as-judge evaluators** on sampled responses: relevance, coherence, groundedness, safety
-3. **Compare against reference answers** when available (from support ticket resolutions, human agent transcripts)
-4. **Surface regressions** — did a model or prompt change cause scores to drop?
-5. **Feed back into alerts** — if groundedness score drops below threshold for >10 minutes, page on-call
-
-This pattern turns observability from passive ("I can see what happened") to active ("I know when quality degrades"). Tools like Langfuse and Braintrust build this loop natively.
+Tools like Langfuse and Braintrust build this loop natively.
 
 ## Architecture Patterns
 
-There are three ways to instrument an AI agent:
-
 ### 1. In-Process SDK
 
-Your agent code calls `tracer.start_span(...)` directly. Full control, but couples instrumentation to agent code.
+`Agent code → OpenTelemetry SDK → OTLP exporter → Collector`
+Full control, couples instrumentation to agent code. Best for custom frameworks, small teams.
 
-```
-Agent code ──► OpenTelemetry SDK ──► OTLP exporter ──► Collector
-```
+### 2. Proxy/Sidecar
 
-Best for: custom agent frameworks, small teams, maximum flexibility.
-
-### 2. Proxy / Sidecar
-
-A local proxy (e.g., LiteLLM proxy, Langfuse proxy) sits between your agent and the LLM provider. It captures all LLM calls transparently — no code changes needed.
-
-```
-Agent code ──► localhost:4000 (LiteLLM) ──► OpenAI API
-                    │
-                    └──► OpenTelemetry / Langfuse export
-```
-
-Best for: brownfield systems, third-party agent frameworks you can't modify, quick instrumentation without touching agent code.
-
-**Caveat**: A proxy sees LLM calls but not tool calls or internal agent logic. You miss the full trace shape unless you combine proxy traces with in-process spans.
+`Agent code → localhost:4000 (LiteLLM) → OpenAI API`
+No code changes. Captures LLM calls transparently. Best for brownfield systems, third-party frameworks you can't modify.
+**Caveat**: sees LLM calls but not tool calls or internal logic — combine with in-process spans for full traces.
 
 ### 3. Framework-Native Callbacks
 
-Most agent frameworks provide hooks — LangChain has callbacks, Semantic Kernel has filters, AutoGen has middleware. You register observers that fire on each LLM call, tool invocation, and agent turn.
+Agent framework hooks (LangChain callbacks, Semantic Kernel filters, AutoGen middleware). Register observers that fire on each LLM call, tool invocation, and agent turn. Best for framework-aware instrumentation (chain type capture, agent-to-agent handoff).
 
-```
-Agent code ──► Framework Callback ──► Your instrumentation ──► OTLP
-```
+### 4. Baked-in vs OTel Library Instrumentation (from OTel GenAI SIG)
 
-Best for: teams already using an agent framework, wanting framework-aware instrumentation (e.g., LangChain callback captures chain type, AutoGen middleware captures agent-to-agent handoff).
+| Approach | Who provides it | Examples | Trade-off |
+|----------|----------------|---------|-----------|
+| **Baked-in** | Framework maintainers | CrewAI (native OTel) | Simplest adoption; framework bloat, OTel dependency lag |
+| **OTel package** | Community/vendor OTel library | OpenInference, `microsoft-opentelemetry`, Langtrace, `instrumentation-genai` (forthcoming) | Decoupled obs from framework; fragmentation risk |
 
-### A Fourth Perspective: Baked-in vs OTel Library Instrumentation
+Traceloop's OpenLLMetry being donated to OTel moves instrumentation into OTel-owned repos. Long-term goal per OTel blog.
 
-The three patterns above answer *how* to instrument your agent. But there's a related question the OTel GenAI SIG addresses in its [AI Agent Observability blog post](https://opentelemetry.io/blog/2025/ai-agent-observability/): *who provides the instrumentation — the framework maintainers or a separate OTel package?*
-
-**Option A — Baked-in instrumentation**: The agent framework emits OTel telemetry natively. No additional packages required. Example: CrewAI, which ships with built-in OpenTelemetry instrumentation following semantic conventions.
-- ✅ Simplest adoption for end users
-- ❌ Adds bloat for users who don't need observability; risk of OTel dependency lag
-
-**Option B — Instrumentation via OTel packages**: A separate community- or vendor-maintained OTel library auto-instruments the framework. Examples: OpenInference for LlamaIndex, `microsoft-opentelemetry` for LangChain, Langtrace, or the forthcoming OTel-owned `instrumentation-genai` in the Python contrib repo.
-- ✅ Decouples observability from the framework, leverages OTel community maintenance
-- ❌ Risk of fragmentation if contrib packages diverge
-
-The long-term goal (as stated in the OTel blog) is to move instrumentation into OTel-owned repositories — Traceloop's OpenLLMetry is being donated to OTel for this purpose.
-
-**For you as an application developer**: prefer frameworks with baked-in instrumentation when you want zero-setup telemetry. Prefer the OTel-package route when you need control over *which* frameworks to instrument and *where* to send the data.
-
-### Recommendation
-
-Combine all three: use a proxy (like LiteLLM or an AI Gateway) for *every* LLM call (uniform capture across models and providers), framework callbacks for *agent-specific* events (tool calls, reasoning steps, guardrail hits), and the OTel GenAI conventions as the data format. Export everything to the same trace collector with a shared `trace_id`, and send to whichever backend fits your needs — Langfuse for an integrated platform, Datadog for unified infrastructure + AI observability, or Grafana for full DIY.
-
-## The Tooling Landscape at a Glance
-
-The LLM observability ecosystem has matured into a few clear categories:
+## Tooling Landscape
 
 | Category | Tools | Best for |
 |----------|-------|----------|
-| **Open-source platforms** | Langfuse (29k ★, MIT), MLflow (Apache 2.0), Agenta (MIT), Comet Opik (Apache 2.0) | Full observability + eval + prompt management, self-hosted |
-| **Specialized tools** | Phoenix (RAG/drift), Helicone (proxy-based), AgentOps (agent sessions), TruLens (eval-first) | Specific niches — retrieval quality, quick setup, multi-agent session tracking |
-| **Full-stack + LLM** | SigNoz (OTel-native, open-source), Datadog, Grafana | Unified APM + LLM observability in one tool |
-| **Cloud-native platforms** | **AWS**: Bedrock AgentCore + CloudWatch GenAI Observability (GA Oct 2025). **Azure**: Microsoft Foundry Observability (built-in tracing + eval) | Observability integrated into the AI platform itself — no separate tool. Also unifies AI + traditional infrastructure monitoring in one console |
-| **Gateways + obs** | Portkey, LiteLLM proxy | Multi-provider routing with unified logging |
-| **Instrumentation libs** | OpenLIT, OpenLLMetry, Langtrace | Zero/low-code OTel instrumentation, send to any backend |
-| **SaaS platforms** | LangSmith, Braintrust, W&B Weave, Galileo | Managed, opinionated, often framework-specific |
+| **Open-source platforms** | Langfuse (29k ★, MIT), MLflow (Apache 2.0), Agenta (MIT), Comet Opik (Apache 2.0) | Full obs + eval + prompt mgmt, self-hosted |
+| **Specialized tools** | Phoenix (RAG/drift), Helicone (proxy), AgentOps (sessions), TruLens (eval-first) | Niche: retrieval quality, quick setup, session tracking |
+| **Full-stack + LLM** | SigNoz (OTel-native), Datadog, Grafana | Unified APM + LLM obs |
+| **Cloud-native platforms** | AWS: Bedrock AgentCore + CloudWatch GenAI Obs (GA Oct '25). Azure: Foundry Observability | Obs integrated into the AI platform itself |
+| **Gateways + obs** | Portkey, LiteLLM proxy | Multi-provider routing + unified logging |
+| **Instrumentation libs** | OpenLIT, OpenLLMetry, Langtrace | Zero-code OTel instrumentation |
+| **SaaS platforms** | LangSmith, Braintrust, W&B Weave, Galileo | Managed, opinionated, framework-specific |
 
-## Tooling Deep Dive
+## Tool Deep Dives
 
-### Langfuse (open-source, MIT licensed)
-
-The most widely adopted open-source option — **29k GitHub stars**, 10+ billion observations/month, used by 19 of Fortune 50. Acquired by ClickHouse in early 2026. Key facts:
-- Full trace viewer with LLM-specific span rendering (token counts, costs, prompt/completion side-by-side)
-- Built-in evaluation pipeline — attach scores to traces, run LLM-as-judge
-- **Prompt management** — version, deploy, and roll back prompts independently from code
-- **80+ integrations**: every major framework (LangChain, CrewAI, Pydantic AI, Vercel AI SDK, Google ADK, Microsoft Agent Framework), every major model provider, plus gateways (LiteLLM proxy)
-- **Language support**: Python, JS/TS native SDKs, plus Go, Java, **.NET**, Ruby, PHP, Swift via OTel
-- **Self-hosting**: Docker Compose, Kubernetes (Helm), AWS/GCP/Azure (Terraform)
-- **Enterprise**: SOC 2 Type II, ISO 27001, GDPR, HIPAA eligible, EU & US data regions
-- **Agent-friendly**: MCP servers, CLI, coding agent skills for Claude Code, Cursor, Codex
+### Langfuse
+- 29k GitHub stars, MIT, 10B+ obs/month, 19 of Fortune 50
+- Acquired by ClickHouse (early 2026)
+- Full trace viewer with LLM-specific rendering, built-in eval pipeline, prompt management
+- 80+ integrations: LangChain, CrewAI, Pydantic AI, Vercel AI SDK, Google ADK, Microsoft Agent Framework, all major providers, LiteLLM gateway
+- SDKs: Python, JS/TS native; Go, Java, **.NET**, Ruby, PHP, Swift via OTel
+- Self-hosting: Docker Compose, K8s (Helm), AWS/GCP/Azure (Terraform)
+- Enterprise: SOC 2 Type II, ISO 27001, GDPR, HIPAA eligible, EU & US data regions
+- Agent integration: MCP servers, CLI, coding agent skills for Claude Code, Cursor, Codex
 - Free tier: 50k observations/month
 
-**When to choose**: You want an all-in-one platform (observability + evals + prompt management), you value open-source and data portability, and you're running at scale.
-
-### Agenta (open-source, MIT licensed)
-
-A fast-rising OTel-native LLMOps platform combining observability, prompt management, and evaluation:
-- **OTel-native**: uses standard `gen_ai.*` semantic conventions, vendor-neutral
-- **End-to-end workflow**: link prompt versions to traces, run online + offline evals, compare experiments
-- **Cross-functional UI**: designed for engineers, PMs, and domain experts — not just developers
-- SOC 2 Type II compliant, self-hostable
+### Agenta
+- OTel-native, MIT, SOC 2 Type II, self-hostable
+- End-to-end: link prompt versions to traces, online + offline evals, experiment comparison
+- UI designed for engineers, PMs, and domain experts
 - Free tier: 10k traces/month
 
-**When to choose**: You want tight integration between observability and prompt management, and need a UI that non-engineers can work with.
+### Phoenix by Arize
+- Apache 2.0, Jupyter-native
+- Embedding drift detection, retrieval evaluation (NDCG, MRR), trace+span viewer
+- Notebook-first workflow for data scientists
+- Strong for RAG-heavy agents
 
-### Phoenix by Arize (open-source, Apache 2.0)
+### OpenLIT
+- Zero-code OTel auto-instrumentation for OpenAI, Anthropic, Cohere, HuggingFace, Ollama, etc.
+- Auto-captures token counts, latency, costs, model parameters → standard OTel → any OTLP backend
+- Featured in [official OTel blog](https://opentelemetry.io/blog/2024/llm-observability/)
 
-Jupyter-native observability with a focus on embedding analysis and retrieval quality:
-- Trace + span viewer with OpenInference compatibility
-- Embedding drift detection — are your vector embeddings changing over time?
-- Retrieval evaluation — precision/recall for RAG pipelines, built-in NDCG and MRR metrics
-- Notebook-first workflow (good for data scientists)
+### MLflow
+- Apache 2.0, most established ML platform extending into GenAI
+- LLM tracing: prompt versioning, trace replay (reproduce failure sequences), LLM-as-Judge eval
+- Self-hosted or Databricks-managed
+- Native LangChain, LlamaIndex, OpenAI, Anthropic, Hugging Face integrations
 
-**When to choose**: Your agent is heavily RAG-based and you care about retrieval quality, or your team is notebook-oriented.
+### Helicone
+- Proxy-based: change API base URL + auth header → logging
+- 100+ models, no code changes
+- Built-in caching, rate limiting, automatic failover
+- Cost tracking by model/user/feature
+- Not designed for deep agent reasoning — sees LLM calls only
 
-### OpenLIT (open-source OTel auto-instrumentation)
+### SigNoz
+- OTel-native full-stack platform, open-source
+- Correlates LLM traces with infra metrics, K8s pod data, DB queries, microservice traces in one view
+- End-to-end waterfall views for multi-agent workflows
+- Custom dashboards + alerts on any telemetry
+- MCP server exposes telemetry to AI assistants for automated troubleshooting
+- Self-hosted community edition or cloud (30-day trial)
 
-An OTel-native auto-instrumentation library that captures LLM and VectorDB calls without code changes:
-- Drop-in instrumentation for OpenAI, Anthropic, Cohere, HuggingFace, Ollama, and more
-- Auto-captures token counts, latency, costs, and model parameters
-- Emits standard OTel data — send to any OTLP-compatible backend
-- Featured in the [official OTel blog](https://opentelemetry.io/blog/2024/llm-observability/) as a reference implementation
+### Microsoft Foundry (Azure)
+- Built into Azure, powered by Azure Monitor Application Insights
+- Zero-code auto-instrumentation for Microsoft Agent Framework, Semantic Kernel
+- One-line setup for LangChain, LangGraph, OpenAI Agents SDK via `microsoft-opentelemetry` distro
+- Multi-agent conventions co-developed with Cisco Outshift: `execute_task`, `agent_to_agent_interaction`, `agent.state.management`, `agent_planning`, `agent orchestration` spans
+- Pre-built evaluators: general quality, RAG quality, safety/security, agent quality
+- Content Safety APIs with severity scoring (0-7)
+- Security: content recording disabled via `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`
+- Dynatrace and Arize integrations
+- Traces stored in your own Application Insights instance
 
-**When to choose**: You want zero-code instrumentation and already have an OTel collector + backend (Grafana, Jaeger, Datadog).
-
-### MLflow (open-source, Apache 2.0)
-
-The most established ML platform now extends into GenAI observability. MLflow's LLM tracing captures the full agent lifecycle — prompt versioning, trace replay (reproduce exact failure sequences), and LLM-as-a-Judge evaluation — in a single Apache 2.0 platform:
-- **End-to-end GenAI lifecycle**: tracing, evaluation, prompt registry, AI Gateway — not bolted-on features
-- **Trace replay**: reproduce non-deterministic agent failures step-by-step (a feature most tools lack)
-- **Prompt versioning + A/B testing**: track prompt changes alongside traces, compare variants under production traffic
-- **Self-hosted or Databricks-managed**: fits both DIY and managed workflows
-- Natively integrates with LangChain, LlamaIndex, OpenAI, Anthropic, Hugging Face
-
-**When to choose**: You already use MLflow for ML experiments, or you need a single platform spanning classical ML and GenAI observability without maintaining two separate systems.
-
-### Helicone (SaaS, proxy-based)
-
-The canonical proxy-based observability tool. Helicone sits in front of your LLM provider — change your API base URL and add an auth header, and it starts logging every request:
-- **One-minute setup**: no SDK, no code changes beyond the endpoint URL
-- **100+ models** supported across providers, no provider lock-in
-- Built-in **caching, rate limiting, and automatic failover**
-- Cost tracking by model, user, and feature
-- **Not designed for deep agent reasoning analysis** — it sees LLM calls but not tool calls or internal agent logic
-
-**When to choose**: You need basic LLM observability (cost, latency, errors) deployed in under an hour. Pairs well with an agent-level tool for deeper tracing.
-
-### SigNoz (open-source, OTel-native full-stack)
-
-SigNoz is an OTel-native observability platform that unifies LLM monitoring with full application observability. Unlike LLM-only tools, it correlates LLM traces with infrastructure metrics, Kubernetes pod data, database queries, and microservice traces in a single view:
-- **Correlated observability**: jump from an LLM trace to the related system logs, exceptions, and infra metrics in one click
-- **End-to-end waterfall views** of multi-agent workflows: model calls, tool invocations, reasoning steps, failed loops
-- **Custom dashboards + alerts** on any telemetry (token usage by model/user/feature, cost, latency, error rates)
-- **MCP server** exposes telemetry data to AI assistants for automated troubleshooting
-- **Self-hosted** (community edition) or **SigNoz Cloud** (30-day free trial, usage-based pricing)
-
-**When to choose**: You want LLM observability in the same tool as your infrastructure and application monitoring — no separate AI observability silo. Teams already bought into OpenTelemetry will find SigNoz a natural fit.
-
-### Microsoft Foundry (Azure-native, built-in)
-
-If you're on Azure, Foundry is not a tool you add — it's the observability layer baked into the platform. Microsoft Foundry (formerly Azure AI Studio) provides end-to-end GenAI observability through its **Observability → Traces** portal, powered by Azure Monitor Application Insights under the hood:
-- **Native framework tracing**: zero-code auto-instrumentation for Microsoft Agent Framework and Semantic Kernel. One-line setup for LangChain, LangGraph, and OpenAI Agents SDK via the [`microsoft-opentelemetry`](https://pypi.org/project/microsoft-opentelemetry/) distro
-- **Multi-agent semantic conventions** (co-developed with Cisco Outshift): `execute_task`, `agent_to_agent_interaction`, `agent.state.management`, `agent_planning`, `agent orchestration` spans — standardized for multi-agent workflows
-- **OpenInference-compatible**: supports `openinference-*` instrumentation packages, so you can trace any framework that has an OpenInference integration
-- **Built-in evaluation**: pre-built evaluators covering general quality, RAG quality, safety/security, and agent quality — run evaluations directly on traces
-- **Content Safety APIs**: enterprise-grade harm detection with severity scoring (0-7) and detailed flag reasoning
-- **Security controls**: content recording can be disabled in production via `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`; traces stored in your own Application Insights instance with your retention policies
-- **Dynatrace and Arize integrations**: Dynatrace offers a Foundry extension for end-to-end tracing + audit. Arize AX integrates for evaluation-driven experimentation workflows on top of Foundry traces
-
-**When to choose**: You're deploying AI agents on Azure and want observability that's integrated with your cloud infrastructure, IAM, and compliance posture — not a separate third-party tool. The trade-off is Azure lock-in; the upside is zero-infrastructure observability that Just Works with your Azure resources.
-
-### AWS: Bedrock AgentCore + CloudWatch GenAI Observability
-
-AWS's observability story is two-tiered: **AgentCore** (the agent platform) emits OTel telemetry via **AWS Distro for OpenTelemetry (ADOT)**, and **CloudWatch GenAI Observability** (GA since October 2025) provides the dashboards. It's all integrated into the AWS console you already use:
-- **Auto-instrumentation**: ADOT auto-instruments Strands, LangChain, LangGraph, and CrewAI agents. For other frameworks, plug in OpenInference, OpenLLMetry, or OpenLIT
-- **Two pre-built dashboards**: **Model Invocations** (token usage, latency P90/P99, error rates, cost by user/role) and **AgentCore Agents** (performance across Agents, Memory, Built-in Tools, Gateways, Identity components)
-- **AgentCore Evaluations** (Dec 2025): automated quality assessment of AI agent outputs, integrated directly into CloudWatch
-- **End-to-end prompt tracing**: traces flow through models → knowledge bases → guardrails → tools, with X-Ray and W3C `traceparent` support
-- **Session-aware**: propagate `session.id` via OTEL baggage for multi-turn agent conversations
-- **Third-party routing**: set `DISABLE_ADOT_OBSERVABILITY=true` to route traces to Langfuse (official AWS blog post confirms this integration), Datadog, or any OTel backend instead of CloudWatch
-- **Unified infrastructure + AI monitoring**: same CloudWatch you use for EC2, Lambda, and RDS now covers your AI agents — correlate agent latency with database query performance in one view
-
-**When to choose**: You're running production AI agents on AWS and want observability that's already wired into your cloud infrastructure, IAM, and billing — no extra tool to deploy, no separate vendor to manage. The trade-off: you're tied to CloudWatch as your visualization layer (though traces can be exported to third-party tools).
+### AWS: Bedrock AgentCore + CloudWatch GenAI
+- ADOT auto-instruments Strands, LangChain, LangGraph, CrewAI
+- Two pre-built dashboards: Model Invocations (token usage, latency P90/P99, errors, cost) and AgentCore Agents (Agents, Memory, Built-in Tools, Gateways, Identity)
+- AgentCore Evaluations (Dec '25): auto quality assessment integrated into CloudWatch
+- End-to-end prompt tracing through models → knowledge bases → guardrails → tools; X-Ray + W3C `traceparent`
+- Session propagation via `session.id` in OTEL baggage
+- Third-party routing: `DISABLE_ADOT_OBSERVABILITY=true` → Langfuse, Datadog, or any OTel backend
+- Unified infra + AI monitoring in same CloudWatch console
 
 ### DIY with OpenTelemetry
 
-Send OTLP traces to your existing observability stack and build custom dashboards:
+`Agent → OTel SDK + gen_ai conventions → OTel Collector → Grafana Tempo/Mimir/Loki | Datadog | Honeycomb | Jaeger`
 
-```
-Agent → OTel SDK + gen_ai conventions → OTel Collector → Grafana Tempo/Mimir/Loki
-                                                       → Datadog (native OTel GenAI)
-                                                       → Honeycomb / Jaeger / etc.
-```
+Use OTel GenAI Semantic Conventions (v1.37+) as data vocabulary. Add lightweight instrumentation (OpenLIT, OpenLLMetry) for auto-capture of LLM and vector DB calls. Governance policies (redaction, sampling) enforced at OTel Collector level before data leaves network.
 
-Use the OTel GenAI Semantic Conventions (v1.37+) as your data vocabulary, plus a lightweight instrumentation library like OpenLIT or OpenLLMetry to auto-capture LLM and vector DB calls. You get:
-- Unified observability (AI and non-AI services in the same tool)
-- No vendor lock-in — switch backends anytime
-- Leverage existing infrastructure and expertise
-- Governance policies (redaction, sampling) enforced at the OTel Collector level — before data leaves your network
-
-The trade-off: you build your own dashboards, alert rules, and eval integration. Langfuse and Datadog give you much of this out of the box; DIY means more upfront work but maximum flexibility.
-
-For local development and debugging, the [Aspire Dashboard](https://aspire.dev/dashboard/overview/) is a free, open-source OTLP viewer that runs in a single Docker container — especially useful for .NET developers but works with any OTLP source:
-
+Local development: [Aspire Dashboard](https://aspire.dev/dashboard/overview/) — free OTLP viewer, single Docker container, GenAI span visualizer:
 ```sh
 docker run --rm -p 18888:18888 -p 4317:18889 -p 4318:18890 -d --name aspire-dashboard \
     -e ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS=true \
     mcr.microsoft.com/dotnet/aspire-dashboard:latest
 ```
 
-It accepts OTLP at `http://localhost:4318` and provides a built-in trace viewer, metrics explorer, and structured logs page — no cloud account required.
+## Alert Thresholds
 
-## What to Alert On
-
-Not everything that can be measured should trigger a page. Focus alerts on **actionable degradation**:
+Focus on actionable degradation:
 
 | Alert | Threshold (example) | Action |
 |-------|---------------------|--------|
-| Guardrail trigger rate spike | >10% of requests trigger output guardrail (vs baseline 2%) | Roll back recent prompt/model change, investigate |
-| Tool failure rate | >5% error rate on any tool for >5 min | Check downstream service health, circuit-break |
-| Token explosion | p99 token count exceeds 3× rolling average | Agent might be in a reasoning loop — investigate traces |
-| Eval score degradation | Groundedness score drops >0.2 for >15 min | Check if model provider changed something, roll back |
-| Cost anomaly | Cost per 1K requests exceeds 2× daily baseline | Audit for prompt bloat, model routing issues |
-
-Resist the urge to alert on raw latency. Agent requests are inherently variable — a 30-second response might be normal if the agent ran 8 tool calls. Alert on *unexpected* latency, defined as deviation from the agent's own baseline.
-
-## Summary
-
-Observability for AI agents is APM plus:
-- **OTel GenAI conventions** (`gen_ai.*`) — the industry-standard vocabulary for LLM and agent spans, now at v1.37+ and adopted by Datadog, AWS, Langfuse, and others
-- **Agent-aware spans** — not just LLM calls but the full decision graph (planning → tool calls → re-planning → response)
-- **Dynamic trace shapes** that the agent determines at runtime
-- **Correlation IDs** propagated through LLM providers and tool calls
-- **Evaluation pipelines** that close the feedback loop from production to quality measurement — traces become datasets, datasets drive experiments
-- **Cost observability** — token-level cost attribution with cache hit tracking and budget alerts
-
-Start with a proxy (quick win for LLM call visibility), add framework callbacks for agent-level context, adopt the OTel GenAI conventions as your data format, and route to whichever backend fits your stack. The standardization happening now in the OTel GenAI SIG means the tooling choice is secondary to the data format — instrument once, switch backends anytime.
+| Guardrail trigger rate spike | >10% of requests trigger output guardrail (vs 2% baseline) | Roll back prompt/model change |
+| Tool failure rate | >5% error rate on any tool for >5 min | Check downstream service health |
+| Token explosion | p99 token count >3× rolling average | Agent may be in reasoning loop |
+| Eval score degradation | Groundedness score drops >0.2 for >15 min | Check model provider change |
+| Cost anomaly | Cost per 1K requests >2× daily baseline | Audit for prompt bloat, routing issues |
 
 ## References
 
-- [OTel GenAI Semantic Conventions (v1.37+)](https://opentelemetry.io/docs/specs/semconv/gen-ai/) — official standard for GenAI spans, metrics, and agent operations
-- [OTel GenAI Events (gen-ai-events.md)](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-events.md) — structured input/output message schemas for GenAI events
-- [OTel semantic-conventions-genai repo](https://github.com/open-telemetry/semantic-conventions-genai) — source of truth for all GenAI YAML definitions and markdown docs
-- [GenAI Agent Spans (gen-ai-agent-spans.md)](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md) — three span types: invoke agent, invoke workflow, plan; plus memory operations
-- [OTel Blog: AI Agent Observability — Evolving Standards (2025)](https://opentelemetry.io/blog/2025/ai-agent-observability/) — the GenAI SIG's roadmap for agent conventions
-- [OTel Blog: GenAI Observability with OpenTelemetry (2026)](https://opentelemetry.io/blog/2026/genai-observability/) — practical demo using Copilot + Aspire Dashboard; defines official `gen_ai.client.operation.duration` and `gen_ai.client.token.usage` metrics
-- [Aspire Dashboard: GenAI telemetry visualizer](https://aspire.dev/dashboard/explore/#genai-telemetry-visualization) — free OTLP viewer, renders GenAI spans as chat-style conversations
-- [IBM: Why observability is essential for AI agents](https://www.ibm.com/think/insights/ai-agent-observability) — MELT framework (Metrics, Events, Logs, Traces), agent-specific metrics (model drift, response quality), events taxonomy
-- [OTel Issue #1732: Agent Application Semantic Convention](https://github.com/open-telemetry/semantic-conventions/issues/1732) — draft finalized, based on Google's AI Agent whitepaper
-- [OTel Issue #1530: Agent Framework Semantic Convention](https://github.com/open-telemetry/semantic-conventions/issues/1530) — next priority, spanning CrewAI, AutoGen, LangGraph, IBM Bee, PydanticAI and more
-- [Langfuse: open-source LLM engineering platform](https://langfuse.com/) — 29k stars, MIT, ClickHouse-backed
-- [MLflow: GenAI observability + trace replay](https://mlflow.org/genai/observability) — Apache 2.0, full lifecycle platform
-- [Agenta: OTel-native LLMOps platform](https://agenta.ai/) — MIT, SOC 2, integrated prompt management + eval + observability
-- [SigNoz: OTel-native full-stack observability + LLM](https://signoz.io/) — open-source, correlates LLM traces with infra
-- [Helicone: proxy-based LLM observability](https://helicone.ai/) — one-line setup, 100+ models
-- [OpenLIT: OTel-native auto-instrumentation for LLMs & VectorDBs](https://github.com/openlit/openlit)
-- [OpenLLMetry: OTel-based LLM instrumentation by Traceloop](https://github.com/traceloop/openllmetry)
-- [Langtrace: OTel instrumentation for LLM agents](https://github.com/Scale3-Labs/langtrace-python-sdk) — mentioned in the OTel blog as an external instrumentation option
-- [OTel instrumentation-genai (Python contrib)](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation-genai) — the eventual OTel-owned home for GenAI instrumentation
-- [OpenInference: Arize's OTel extension for LLM observability](https://github.com/Arize-ai/openinference)
-- [Phoenix by Arize: AI observability & evaluation](https://github.com/Arize-ai/phoenix)
-- [Microsoft Foundry: Configure tracing for AI agent frameworks](https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-agent-framework) — official docs for LangChain, LangGraph, Semantic Kernel, OpenAI Agents SDK
-- [Microsoft Foundry: Observability concepts for GenAI](https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-agent-concept) — multi-agent semantic conventions, security & privacy
-- [AWS: Bedrock AgentCore Observability with Langfuse](https://aws.amazon.com/blogs/machine-learning/amazon-bedrock-agentcore-observability-with-langfuse/) — official blog confirming the Langfuse + AgentCore integration pattern
-- [AWS: CloudWatch Generative AI observability docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GenAI-observability.html) — pre-built dashboards, prompt tracing, AgentCore agents
-- [AWS: Bedrock AgentCore — Observability configuration](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html) — ADOT setup, third-party routing, session propagation
-- [LiteLLM proxy for LLM call instrumentation](https://docs.litellm.ai/docs/proxy/quick_start)
+- [OTel GenAI Semantic Conventions (v1.37+)](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
+- [OTel GenAI Events (gen-ai-events.md)](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-events.md)
+- [OTel semantic-conventions-genai repo](https://github.com/open-telemetry/semantic-conventions-genai)
+- [GenAI Agent Spans (gen-ai-agent-spans.md)](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md)
+- [OTel Blog: AI Agent Observability — Evolving Standards (2025)](https://opentelemetry.io/blog/2025/ai-agent-observability/)
+- [OTel Blog: GenAI Observability with OpenTelemetry (2026)](https://opentelemetry.io/blog/2026/genai-observability/)
+- [Aspire Dashboard: GenAI telemetry visualizer](https://aspire.dev/dashboard/explore/#genai-telemetry-visualization)
+- [IBM: Why observability is essential for AI agents](https://www.ibm.com/think/insights/ai-agent-observability)
+- [OTel Issue #1732: Agent Application Semantic Convention](https://github.com/open-telemetry/semantic-conventions/issues/1732)
+- [OTel Issue #1530: Agent Framework Semantic Convention](https://github.com/open-telemetry/semantic-conventions/issues/1530)
+- [Langfuse](https://langfuse.com/)
+- [MLflow: GenAI observability](https://mlflow.org/genai/observability)
+- [Agenta](https://agenta.ai/)
+- [SigNoz](https://signoz.io/)
+- [Helicone](https://helicone.ai/)
+- [OpenLIT](https://github.com/openlit/openlit)
+- [OpenLLMetry](https://github.com/traceloop/openllmetry)
+- [Langtrace](https://github.com/Scale3-Labs/langtrace-python-sdk)
+- [OTel instrumentation-genai (Python contrib)](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation-genai)
+- [OpenInference](https://github.com/Arize-ai/openinference)
+- [Phoenix by Arize](https://github.com/Arize-ai/phoenix)
+- [Microsoft Foundry: Trace agent frameworks](https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-agent-framework)
+- [Microsoft Foundry: Observability concepts](https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-agent-concept)
+- [AWS: Bedrock AgentCore + Langfuse integration](https://aws.amazon.com/blogs/machine-learning/amazon-bedrock-agentcore-observability-with-langfuse/)
+- [AWS: CloudWatch GenAI observability](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GenAI-observability.html)
+- [AWS: Bedrock AgentCore observability config](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html)
+- [LiteLLM proxy](https://docs.litellm.ai/docs/proxy/quick_start)
 - [OpenTelemetry for .NET](https://opentelemetry.io/docs/languages/net/)
 - [Datadog LLM Observability + OTel GenAI](https://www.datadoghq.com/blog/llm-otel-semantic-convention/)
