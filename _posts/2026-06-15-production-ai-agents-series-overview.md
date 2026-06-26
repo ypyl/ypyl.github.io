@@ -6,7 +6,7 @@ tags: [ai, llm, observability, safety, governance, agents, production]
 
 Running AI agents in production — where they interact with real users, real data, and make real decisions — requires engineering discipline that goes beyond prototype demos. Three interdependent layers provide the foundation: observability, safety, and governance.
 
-**But are they always necessary?** Each pillar carries real costs and failure modes — observability can consume 20–30% of your infrastructure bill, stacked safety guardrails compound false positives that silently destroy user experience, and governance frameworks frequently become policy theater rather than operational control. The companion note [*The Case Against Premature AI Agent Infrastructure*]({% post_url 2026-06-16-against-ai-agent-infrastructure %}) explores when you might not need these pillars — or whether the task needs an AI agent at all.
+**But are they always necessary?** Each pillar carries real costs and failure modes — cloud ingestion is cheap (~1% of inference), but SaaS tooling and engineering time add up fast; stacked safety guardrails compound false positives that silently destroy user experience; and governance frameworks frequently become policy theater rather than operational control. The companion note [*The Case Against Premature AI Agent Infrastructure*]({% post_url 2026-06-16-against-ai-agent-infrastructure %}) explores when you might not need these pillars — or whether the task needs an AI agent at all.
 
 ## Map
 
@@ -95,7 +95,7 @@ For AI agents, observability means tracking every LLM call (model, tokens, laten
 
 Safety is the runtime control layer — automated guardrails that prevent the agent from causing harm *right now*. This includes content filters on input/output, tool authorization gates (the agent shouldn't call `delete_database()` because a user tricked it), prompt injection defenses, and human-in-the-loop checkpoints for high-risk actions.
 
-Safety depends on observability: guardrails emit events that traces capture. A safety incident that isn't observable is invisible — you don't know it happened, and you can't investigate it.
+Safety depends on observability: in a well-architected system, guardrails emit events that traces capture. A safety incident that isn't observable is invisible — you don't know it happened, and you can't investigate it.
 
 ### Layer 3: Governance (the organizational layer)
 
