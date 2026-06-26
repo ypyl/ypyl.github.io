@@ -55,7 +55,8 @@ Production AI Agent Infrastructure
 │   └── Retrofitting cost — adding governance after 1 year is far more expensive
 │
 └── COSTS
-    ├── Observability tooling + storage (traces, metrics, logs)
+    ├── Cloud ingestion is cheap (~$5/mo for mid-scale; ~1% of inference)
+    ├── Real expense: SaaS tooling (Langfuse, Datadog) + engineering time
     ├── Guardrail latency + false positive triage
     ├── Audit infrastructure + long-term retention
     └── Mitigation: instrument from day one at minimal fidelity

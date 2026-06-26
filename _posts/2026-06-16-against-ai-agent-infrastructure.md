@@ -19,21 +19,24 @@ This note collects the strongest counter-arguments from practitioners and author
    └───────┬───────┘      └───────┬───────┘      └───────┬───────┘
            │                       │                       │
    ┌───────┴────────┐      ┌───────┴────────┐      ┌───────┴────────┐
-   │ Cost 20-30% of │      │ False positive │      │ Policy theater │
-   │ infra bill     │      │ cascade:       │      │ (Grok, NYC     │
-   │ 99% data wasted│      │ 0.9⁵ = 59%     │      │ MyCity)        │
+   │ Cloud ingestion│      │ False positive │      │ Policy theater │
+   │ is ~1% of      │      │ cascade:       │      │ (Grok, NYC     │
+   │ inference cost │      │ 0.9⁵ = 59%     │      │ MyCity)        │
+   │ (Azure example)│      │                │      │                │
    ├────────────────┤      ├────────────────┤      ├────────────────┤
-   │ Over-engineered│      │ Legal exposure │      │ 70% have       │
-   │ for early-stage│      │ from reliance  │      │ policies, but  │
-   │ (PostHog)      │      │ alone (IAPP)   │      │ do they work?  │
+   │ Real cost is   │      │ Legal exposure │      │ 70% have       │
+   │ SaaS tooling + │      │ from reliance  │      │ policies, but  │
+   │ engineering    │      │ alone (IAPP)   │      │ do they work?  │
+   │ time           │      │                │      │                │
    ├────────────────┤      ├────────────────┤      ├────────────────┤
-   │ Root question: │      │ Over-blocking  │      │ Premature      │
-   │ Does task need │      │ → shadow AI    │      │ regulation =   │
-   │ an AI agent at │      │ (Airia)        │      │ paperwork      │
-   │ all?           │      ├────────────────┤      │ (Law & AI Inst)│
-   │                │      │ Prompt         │      │                │
-   │                │      │ injection is   │      │                │
-   │                │      │ unsolved       │      │                │
+   │ Over-engineered│      │ Over-blocking  │      │ Premature      │
+   │ for early-stage│      │ → shadow AI    │      │ regulation =   │
+   │ (PostHog)      │      │ (Airia)        │      │ paperwork      │
+   │                │      ├────────────────┤      │ (Law & AI Inst)│
+   │ Root question: │      │ Prompt         │      │                │
+   │ Does task need │      │ injection is   │      │                │
+   │ an AI agent at │      │ unsolved       │      │                │
+   │ all?           │      │                │      │                │
    └────────────────┘      └────────────────┘      └────────────────┘
            │                       │                       │
            └───────────────────────┼───────────────────────┘
@@ -47,11 +50,39 @@ This note collects the strongest counter-arguments from practitioners and author
 
 ## Observability
 
-### It costs 20–30% of your infrastructure bill
+### Cloud ingestion is cheap — inference dominates everything
 
-Observability spend typically ranges from 20–30% of total infrastructure cost, per Honeycomb's Charity Majors. Agent-based collectors consume CPU and memory on the same nodes as your workloads — reducing resource efficiency to measure resource efficiency. Worse: approximately 1% of collected observability data is ever queried. You pay to store the other 99% just in case.
+The "20–30% of infrastructure cost" rule of thumb comes from traditional microservice monitoring, where compute is the primary line item. For AI agents, **model inference dwarfs everything else**, making observability ingestion a rounding error.
 
-**Sources**: [DevOps.com](https://devops.com/observability-costs-are-too-damn-high/), [Honeycomb](https://www.honeycomb.io/blog/cost-crisis-observability-tooling), [Charity Majors](https://charity.wtf/2021/08/18/how-much-should-my-observability-stack-cost/)
+A concrete example on Azure (US East, June 2026 pricing):
+
+**Scenario: mid-scale multi-agent system**
+- 500 daily active users, 20 conversational turns each
+- 30,000 LLM calls/day across 3 agents (orchestrator, specialist, summarizer)
+- 10,000 RAG calls/day, 15,000 tool calls/day
+- Prompt logging: metadata only (~5 KB per LLM span, no full text)
+
+| Line item | Monthly |
+|-----------|---------|
+| Observability data (6.3 GB ingested) | **$3.00** |
+| 90-day retention surcharge | $0.26 |
+| Alert rules (20) | $2.00 |
+| **Total Azure Monitor** | **~$5/month** |
+| **Inference cost (GPT-4o)** | **~$5,000/month** |
+| Observability as % of inference | **0.1%** |
+
+Even with **full prompt/response logging** (30 KB per call, 10× the data), observability reaches ~$62/month — still ~1% of inference.
+
+At enterprise scale (10K DAU, 500K LLM calls/day, sampled logging), observability stays under $400/month against $75K+ of inference. The ingestion bill simply doesn't move the needle.
+
+The "99% of collected data is never queried" argument from traditional observability also applies differently here. For AI agents, LLM trace data feeds evaluation pipelines, safety audits, and compliance evidence — it's consumed, not idle.
+
+**What CAN make observability expensive:**
+- **SaaS tooling**: Langfuse ($499–2,000/month), Datadog LLM add-on, or dedicated AI observability platforms cost orders of magnitude more than raw Azure ingestion
+- **Engineering time**: instrumenting spans, building dashboards, tuning sampling, investigating incidents — the human cost, not the cloud bill
+- **Full prompt logging at scale with long retention**: a compliance requirement to store every prompt/response for 12 months can reach hundreds of dollars/month, but that's an audit decision, not an observability need
+
+**Sources**: [Azure Monitor pricing](https://azure.microsoft.com/en-us/pricing/details/monitor/) (App Insights ingestion: $2.30/GB US East, first 5 GB free), [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/)
 
 ### It's wildly over-engineered for early-stage AI products
 
