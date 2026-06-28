@@ -8,7 +8,7 @@ series: production-ai-agents
 series_index: 2.5
 ---
 
-> Deep-dive companion to [Part 2: Safety for AI Agents]({% post_url 2026-06-13-safety-for-ai-agents %}). Series overview: [Production AI Agents — Observability, Safety & Governance]({% post_url 2026-06-15-production-ai-agents-series-overview %})
+> Series overview: [Production AI Agents — Observability, Safety & Governance]({% post_url 2026-06-15-production-ai-agents-series-overview %})
 
 Safety isn't a checklist — it's an ongoing adversarial process. Microsoft's own [AI Red Teaming Agent](https://learn.microsoft.com/en-us/azure/foundry/concepts/ai-red-teaming-agent) (built on [PyRIT](https://github.com/microsoft/PyRIT)) formalizes this into a NIST-aligned workflow:
 
