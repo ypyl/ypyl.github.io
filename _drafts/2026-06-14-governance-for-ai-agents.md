@@ -8,7 +8,7 @@ series: production-ai-agents
 series_index: 3
 ---
 
-*Part 3 of a 4-part series on running AI agents in production. Also see: [Observability](/), [Safety](/), and the [series overview](/).*
+*Part 3 of a 4-part series on running AI agents in production. Also see: [Observability]({% post_url 2026-06-12-observability-concepts-signals-ai-agents %}), [Safety]({% post_url 2026-06-13-safety-for-ai-agents %}), and the [series overview]({% post_url 2026-06-15-production-ai-agents-series-overview %}).*
 
 ---
 
@@ -16,7 +16,11 @@ Safety stops the agent from doing something harmful *right now*. Governance ensu
 
 Safety is operational. Governance is organizational.
 
-This post covers the governance layer for AI agents: audit trails, policy enforcement, model lineage, compliance frameworks, and the organizational structures that support them.
+This post covers the governance layer for AI agents: audit trails, policy enforcement, model lineage, compliance frameworks, execution sandboxing, SRE, and the organizational structures that support them.
+
+> **Reference implementation**: Microsoft's open-source [Agent Governance Toolkit](https://github.com/microsoft/agent-governance-toolkit) (AGT, Python/TypeScript/.NET/Go/Rust) is the most comprehensive implementation of the governance stack described in this post. It provides a deterministic policy engine, cryptographic agent identity (SPIFFE/DID/mTLS), execution sandboxing with privilege rings, Merkle-chained audit logs, and formal RFC 2119 specifications backed by 992 conformance tests. Where relevant, I'll reference how AGT approaches each layer — not as endorsement, but as a concrete example of these patterns in production code.
+
+> **Content safety (input/output filtering) is covered in [Part 2: Safety for AI Agents]({% post_url 2026-06-13-safety-for-ai-agents %})** — guardrails, prompt injection defenses, jailbreak protection, and content moderation. This article focuses on the governance layer: policy enforcement, audit, identity, compliance, and organizational controls that sit *above* real-time safety. For the full guardrails tooling landscape (NeMo Guardrails, Guardrails AI, LLM Guard, Lakera Guard, Garak), see that article.
 
 ## Safety vs. Governance — The Distinction
 
@@ -111,6 +115,7 @@ Notice what's hashed, not stored in plaintext: the full prompt and retrieved doc
 ### Storage Requirements
 
 - **Append-only**: Records must be immutable. No updates, no deletes. Use write-once storage (S3 Object Lock, Azure Immutable Blob, append-only ledger DBs).
+- **Tamper-evident**: Beyond append-only storage, cryptographically chain records so any tampering is detectable. AGT uses **Merkle audit chains** — each audit entry includes a hash of the previous entry, creating a verifiable chain. A regulator can validate the entire history without trusting your database.
 - **Retention**: Define retention periods based on your regulatory requirements. GDPR doesn't specify a fixed period but requires proportionality. Financial services often require 7 years. Define a policy and stick to it.
 - **Queryable**: Auditors need to answer questions like "show me all refunds approved above $500 in Q3" without writing custom code. Index on `agent_id`, `decision.action`, `decision.amount`, `timestamp`.
 
@@ -135,6 +140,23 @@ Agent access control is more nuanced than traditional RBAC because permissions a
 | **Tool access** | Which tools the agent is allowed to call for this user | Agent can `lookup_order` for everyone but `approve_refund` only for authenticated users |
 | **Data access** | What data the agent can see | Agent running for user A can only see user A's orders |
 | **Decision authority** | Which decisions auto-execute vs. require approval | Refunds <$50 auto-approve; >$50 queue for human review |
+
+### Agent Identity — "Which Agent Did This?"
+
+User-level RBAC answers "who invoked the agent." But in a multi-agent system where multiple agents share an API key, you also need to answer "which *agent* took this action?" Without cryptographic agent identity, an incident response starts with "an agent did it" — which is not actionable.
+
+Agent identity solutions assign each agent a verifiable credential:
+
+| Approach | Mechanism | Strength |
+|----------|-----------|----------|
+| **API key per agent** | Provision a separate key for each agent instance | Simple; keys can leak |
+| **SPIFFE/X.509** | Short-lived X.509 certificates issued to each agent workload | Industry standard for workload identity (Kubernetes, Istio) |
+| **DID (Decentralized Identifier)** | Self-sovereign identity with Ed25519 keys; agent signs every inter-agent message | No central CA; verifiable without network calls |
+| **mTLS** | Mutual TLS between agents; both sides present certificates | Transport-layer; pairs with SPIFFE |
+
+AGT's AgentMesh implements SPIFFE + DID + mTLS: every agent gets an Ed25519 keypair, every inter-agent message is signed, and trust scores (0–1000) are assigned based on identity verification and behavioral history. A newly discovered agent starts at 500 (Standard); repeated policy violations drive it toward 0 (Untrusted — read-only or blocked).
+
+For most teams, per-agent API keys are a sufficient starting point. Graduate to SPIFFE or DID when you have more than a handful of agents or when agents delegate tasks to each other.
 
 ### Implementing Least-Privilege Tools
 
@@ -250,6 +272,12 @@ Policies are version-controlled (policy changes are auditable just like code cha
 
 The regulatory environment for AI is evolving fast. Key frameworks to be aware of:
 
+### OWASP Top 10 for Agentic Applications (2026)
+
+Before looking at laws, look at the threat landscape. The [OWASP Agentic Security Initiative](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) defines 10 risk categories (ASI01–ASI10) specific to autonomous agents: goal hijacking, tool misuse, identity abuse, supply chain compromise, code execution, context poisoning, insecure inter-agent communication, cascading failures, human trust exploitation, and rogue agents.
+
+This is a practical starting point for threat modeling. Map each risk to a control in your governance stack. AGT ships with a [full mapping](https://github.com/microsoft/agent-governance-toolkit/blob/main/docs/compliance/owasp-agentic-top10-architecture.md) of every ASI risk to concrete mitigations (policy rules, static analysis rules, trust gates, circuit breakers) — useful as a reference even if you're not using the toolkit.
+
 ### EU AI Act
 
 The EU AI Act classifies AI systems into risk tiers:
@@ -277,7 +305,33 @@ No comprehensive federal AI law yet, but:
 | **Incident response plan** | Defines what happens when the agent causes harm — who is notified, how fast, and what remediation looks like |
 | **Transparency notice** | Tells users they're interacting with an AI agent, what it can/can't do, and how to escalate to a human |
 
-## 6. Organizational Governance
+## 6. Execution Sandboxing & SRE
+
+Governance isn't just about *deciding* what an agent can do — it's about *containing* what happens when it does it.
+
+### Privilege Rings for Agent Execution
+
+Traditional OSes use protection rings (Ring 0 kernel, Ring 3 user space). Apply the same model to agents:
+
+| Ring | Access Level | Example |
+|------|-------------|---------|
+| **Ring 0** | Full system access | Agent deployment pipeline, admin override |
+| **Ring 1** | Write access to own domain | Customer support agent modifying tickets |
+| **Ring 2** | Read access across domains | Analytics agent querying across databases |
+| **Ring 3** | Strictly sandboxed | Untrusted third-party agent, user-uploaded agent |
+
+Each ring maps to a container/runtime profile with resource limits, network policies, and filesystem isolation. AGT's Agent Runtime implements this with Docker/gVisor profiles per ring level.
+
+### SRE for Agents
+
+Agents are software systems and need the same reliability engineering as any production service:
+
+- **Kill switch**: A global circuit breaker that halts all agent decisions when anomalies are detected. Not a graceful shutdown — a hard stop. AGT provides this via Agent SRE's termination control.
+- **SLOs & error budgets**: Define acceptable error rates for agent decisions (e.g., "<0.1% of refund decisions overturned"). When the error budget burns down, freeze the agent until root cause is identified.
+- **Chaos testing**: Deliberately inject failures (tool unavailability, slow LLM responses, malformed inputs) to verify the agent degrades gracefully. Run this continuously, not as a one-off.
+- **Circuit breakers**: If a downstream tool returns errors above a threshold, stop calling it. Don't let one failing tool cascade into agent-wide failure.
+
+## 7. Organizational Governance
 
 Who owns AI governance? Without clear ownership, governance falls through the cracks between engineering, legal, and compliance.
 
@@ -302,24 +356,104 @@ Idea → Risk Assessment → Design → [Governance Review Gate] → Build → [
 
 The governance review gate checks: is there a model card? An impact assessment? Defined audit trail? Policy-as-code rules? Without these, the agent doesn't ship.
 
+## Tools Landscape
+
+Governance is a stack, not a single tool. Here's how the major options map to each layer — from open-source building blocks to enterprise platforms.
+
+### Policy Enforcement (The Engine Room)
+
+| Tool | Approach | Best For |
+|------|----------|----------|
+| **[Microsoft Agent Governance Toolkit](https://github.com/microsoft/agent-governance-toolkit)** | Full-stack agent governance kernel — deterministic policy engine, SPIFFE/DID identity, privilege rings, SRE circuit breakers, Merkle audit. Python/TS/.NET/Go/Rust. 992 conformance tests. | Teams running multi-agent systems who need a single governance stack across frameworks (LangChain, AutoGen, CrewAI, OpenAI Agents SDK). MIT licensed. |
+| **[Open Policy Agent](https://www.openpolicyagent.org/)** (OPA) | General-purpose policy engine. Policies written in Rego — a declarative language. Decouples policy decisions from application code. | Teams that already use OPA for infrastructure/K8s and want to extend the same policy language to AI agents. CNCF graduated, 11.9k ★. |
+| **[AWS Cedar](https://www.cedarpolicy.com/)** | Policy language and engine designed for application authorization. Used by AWS Verified Permissions. | Teams on AWS who want managed policy evaluation. Simpler than Rego; designed specifically for authZ (not general-purpose). |
+| **[Bifrost](https://github.com/maximai/bifrost)** (Maxim AI) | Open-source AI gateway. Virtual keys with per-key model access, budgets, rate limits, MCP tool filtering. 11μs overhead. | Teams that need infrastructure-level enforcement at the API gateway layer — govern which models and tools each team/agent can access. Drop-in OpenAI-compatible API. |
+
+### Guardrails (Input/Output Safety)
+
+Content guardrails — prompt injection detection, jailbreak protection, PII scanning, output moderation — are covered in detail in [Part 2: Safety for AI Agents]({% post_url 2026-06-13-safety-for-ai-agents %}). Key tools there include NVIDIA NeMo Guardrails, Guardrails AI, Lakera Guard, LLM Guard, and Llama Guard.
+
+These operate at the *safety* layer (real-time, automated). The tools below operate at the *governance* layer (policy, audit, identity, compliance). The two are complementary — safety guardrails generate the events that governance consumes.
+
+### Compliance & Risk Management
+
+| Tool | Approach | Best For |
+|------|----------|----------|
+| **[Credo AI](https://www.credo.ai/)** | AI governance platform with pre-built policy packs for EU AI Act, NIST AI RMF, ISO 42001, SOC 2. Automated evidence generation, continuous governance loop. | Compliance teams in regulated industries that need audit-ready documentation and risk assessment workflows. |
+| **[IBM Watsonx.governance](https://www.ibm.com/watsonx/governance)** | Integrated risk scoring, bias/fairness monitoring, model lifecycle tracking. Tightly coupled to IBM Cloud. | Organizations already on the IBM ecosystem. |
+| **[OneTrust AI Governance](https://www.onetrust.com/)** | Extends OneTrust's GRC platform to AI: data lineage integration, automated impact assessments, vendor AI oversight. | Privacy/compliance teams in heavily regulated industries (finance, healthcare) that need AI governance integrated with existing GRC. |
+
+### Agent Identity & Access
+
+| Tool | Approach | Best For |
+|------|----------|----------|
+| **[Frontegg Agent IAM](https://frontegg.com/product/agent-iam)** | Extends traditional IAM (RBAC, ReBAC, feature flags) to AI agents as first-class identities. Step-up auth for high-risk actions, PII masking. | SaaS platforms that need to govern AI agent actions on behalf of end tenants. |
+| **[SPIFFE/SPIRE](https://spiffe.io/)** | Workload identity standard (X.509 certificates). Already used in Kubernetes/Istio for service identity — same primitives work for agents. | Teams with existing SPIFFE infrastructure. AGT uses this under the hood. |
+
+### Audit & Observability
+
+These were covered in detail in [Part 1: Observability]({% post_url 2026-06-12-observability-concepts-signals-ai-agents %}). Key platforms to evaluate:
+
+| Tool | Focus |
+|------|-------|
+| **[Langfuse](https://langfuse.com/)** | Open-source LLM observability — traces, evaluations, cost tracking. Can serve as audit store for agent decisions. |
+| **[Braintrust](https://www.braintrust.dev/)** | AI evaluation platform with dataset management, scoring, and experiment tracking. AI-native audit schemas. |
+| **[Arize Phoenix](https://github.com/Arize-AI/phoenix)** | Open-source observability for LLM apps — spans, traces, embeddings drift. |
+
+### How the Pieces Fit Together
+
+No single tool covers everything. A practical stack for a mid-size team running agents in production:
+
+```
+Agent Code
+    │
+    ▼
+┌─────────────────────────────┐
+│  Guardrails → See Part 2    │  ← Content safety: NeMo Guardrails, Lakera, LLM Guard
+├─────────────────────────────┤
+│  Policy Engine (AGT / OPA)  │  ← Action governance: allow/deny tool calls, enforce budgets
+├─────────────────────────────┤
+│  Gateway (Bifrost / AGT)    │  ← Infrastructure enforcement: keys, rate limits, tool filtering
+├─────────────────────────────┤
+│  Identity (SPIFFE / Agent IAM) │ ← Who is this agent? What can it do on whose behalf?
+├─────────────────────────────┤
+│  Audit (Langfuse / AGT)     │  ← Prove what happened
+├─────────────────────────────┤
+│  Compliance (Credo / OneTrust) │ ← Map to regulations, generate evidence
+└─────────────────────────────┘
+```
+
+The tools you pick depend on your stack and maturity. Start with the layer that addresses your most immediate risk, get it working in production, then add the next. Don't try to deploy all of this at once.
+
 ## Summary
 
-Governance is the organizational layer that makes safety provable and auditable:
+Governance is the organizational layer that makes safety provable and auditable. The [Agent Governance Toolkit](https://github.com/microsoft/agent-governance-toolkit) (`pip install agent-governance-toolkit`) provides a production-grade open-source implementation of this entire stack — if you're building agent governance from scratch, start there rather than reinventing each layer.
+
+Core layers:
 
 1. **Audit trail** — immutable, queryable record of every agent decision
-2. **Access control** — least-privilege tools scoped per user session
+2. **Access control** — least-privilege tools scoped per user session, cryptographic agent identity
 3. **Model lineage** — registry tracking every model, prompt, and configuration version
 4. **Policy-as-code** — business rules enforced deterministically, not via prompting
 5. **Compliance artifacts** — model cards, system cards, impact assessments prepared before deployment
+6. **Execution sandboxing** — privilege rings, resource limits, container isolation per agent risk tier
+7. **Organizational governance** — clear ownership, governance gates in the development lifecycle
 
 Start with the audit trail — it's the foundation everything else builds on. If you can't prove what your agent did, you can't govern it.
+
+> The companion article [Safety for AI Agents]({% post_url 2026-06-13-safety-for-ai-agents %}) covers the real-time guardrail layer — prompt injection defenses, tool gates, content filtering, and red-teaming. Governance builds on safety: safety stops the agent from doing harm *now*; governance proves it has *always* operated correctly.
 
 ## References
 
 - [EU AI Act](https://artificialintelligenceact.eu/)
 - [AWS Cedar Policy Language](https://www.cedarpolicy.com/)
-- [Open Policy Agent](https://www.openpolicyagent.org/)
+- [Open Policy Agent](https://www.openpolicyagent.org/) — General-purpose policy engine with Rego language (CNCF graduated)
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 - [MLflow Model Registry](https://mlflow.org/docs/latest/model-registry.html)
 - [Google Model Card Toolkit](https://github.com/google/model-card-toolkit)
 - [Microsoft Responsible AI Standard v2](https://www.microsoft.com/en-us/ai/responsible-ai)
+- [Microsoft Agent Governance Toolkit](https://github.com/microsoft/agent-governance-toolkit) — Policy engine, identity, sandboxing, SRE, and compliance for AI agents (Python/TS/.NET/Go/Rust)
+- [Bifrost by Maxim AI](https://github.com/maximai/bifrost) — Open-source AI gateway with virtual keys, budgets, and MCP tool filtering
+- [Credo AI](https://www.credo.ai/) — AI governance platform with lifecycle compliance and automated evidence
+- [Frontegg Agent IAM](https://frontegg.com/product/agent-iam) — Identity and access management for AI agents
+- [OWASP Top 10 for Agentic Applications (2026)](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) — Threat taxonomy for autonomous AI agents
