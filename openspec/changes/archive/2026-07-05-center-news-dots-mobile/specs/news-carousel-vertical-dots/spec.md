@@ -1,0 +1,1 @@
+No new or modified requirements. This change fixes a CSS implementation bug where the existing `news-carousel-vertical-dots` spec requirement "Horizontal dot layout on mobile" already specifies dots SHALL be centered on mobile viewports. The implementation is being corrected to match the existing spec — no requirement changes.
