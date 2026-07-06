@@ -182,7 +182,7 @@ Agent → OTel SDK + gen_ai conventions → OTel Collector → Grafana Tempo/Mim
                                                      → Honeycomb / Jaeger
 ```
 
-Use OTel GenAI Semantic Conventions (v1.37+) as data vocabulary. Add lightweight instrumentation (OpenLIT, OpenLLMetry) for auto-capture. Governance policies (redaction, sampling) enforced at OTel Collector level before data leaves network.
+Use OTel GenAI Semantic Conventions as the data vocabulary. Add lightweight instrumentation (OpenLIT, OpenLLMetry) for auto-capture. Governance policies (redaction, sampling) enforced at OTel Collector level before data leaves network.
 
 Local development: [Aspire Dashboard](https://aspire.dev/dashboard/overview/) — free OTLP viewer, single Docker container:
 ```sh
@@ -207,7 +207,7 @@ Alert on deviation from the agent's own baseline, not raw values — agent reque
 
 ## References
 
-- [OTel GenAI Semantic Conventions (v1.37+)](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
+- [OTel GenAI Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
 - [Aspire Dashboard: GenAI telemetry visualizer](https://aspire.dev/dashboard/explore/#genai-telemetry-visualization)
 - [Langfuse](https://langfuse.com/)
 - [MLflow: GenAI observability](https://mlflow.org/genai/observability)

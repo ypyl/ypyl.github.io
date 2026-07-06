@@ -21,7 +21,7 @@ Observability for AI Agents
 │
 ├── CAPABILITIES — taxonomy: metrics, logs, traces, monitoring, traceability, diagnosability
 │
-├── STANDARD: OTel GenAI Semantic Conventions (v1.37+)
+├── STANDARD: OTel GenAI Semantic Conventions
 │   ├── Model spans (gen_ai.*) — LLM calls, widely adopted
 │   ├── Agent spans (gen_ai.agent.*) — workflows, drafted
 │   └── Agent framework conventions — in progress
@@ -58,17 +58,16 @@ Observability decomposes into distinct capabilities, each answering a different 
 |------------|---------|---------------|
 | **Metrics** | What changed? | Token counts, latency distributions, error rates, cost per interaction |
 | **Logs** | What happened? | Prompt/completion pairs, tool inputs/outputs, guardrail decisions |
-| **Traces** | Where did it happen? | LLM call → tool invocation → re-planning → response, with causal links |
+| **Traces & Traceability** | Where did it happen, and what path did this request take? | LLM call → tool invocation → response, with correlation IDs tying every step to the user message |
 | **Monitoring** | Are known failures happening? | Alerts on guardrail spikes, tool failures, cost anomalies |
-| **Observability** | Can we explore unknown failures? | Ask novel questions without predefined dashboards |
-| **Traceability** | What path did this request take? | Correlation IDs tying a user message to every downstream LLM and tool call |
+| **Explorability** | Can we investigate novel failures? | Ask new questions without deploying new code or dashboards |
 | **Diagnosability** | How fast can we find root cause? | The faster you trace symptom to source, the better the obs design |
 
 > **Auditability** — reconstructing *who* did *what* and *when* — sits in the **governance** layer. It consumes traceability data but adds identity, policy context, immutability, and retention.
 
 ## The Standard: OTel GenAI Conventions
 
-The industry is converging on **OpenTelemetry GenAI Semantic Conventions** (v1.37+) via OTel's [GenAI SIG](https://github.com/open-telemetry/community/blob/main/projects/gen-ai.md). If you instrument with these conventions, telemetry is portable across Datadog, Langfuse, Phoenix, SigNoz, Grafana — any OTLP-speaking backend.
+The industry is converging on **OpenTelemetry GenAI Semantic Conventions**, maintained in the dedicated [semantic-conventions-genai](https://github.com/open-telemetry/semantic-conventions-genai) repo. If you instrument with these conventions, telemetry is portable across Datadog, Langfuse, Phoenix, SigNoz, Grafana — any OTLP-speaking backend.
 
 | Convention | What it covers | Status |
 |-----------|---------------|--------|
@@ -81,7 +80,7 @@ The industry is converging on **OpenTelemetry GenAI Semantic Conventions** (v1.3
 ### Adoption
 
 Major providers already ship OTel GenAI:
-- **Datadog LLM Observability** — native OTel GenAI spans (v1.37+) since Dec 2025
+- **Datadog LLM Observability** — native OTel GenAI spans since Dec 2025
 - **AWS Bedrock AgentCore** — OTel-compatible traces via ADOT
 - **Microsoft Foundry** — `microsoft-opentelemetry` distro with GenAI conventions; co-developed multi-agent conventions with Cisco Outshift
 - **Traceloop** (OpenLLMetry) — [donating instrumentation](https://github.com/open-telemetry/community/issues/2571) to OTel
@@ -218,7 +217,7 @@ OTel [gen-ai-events.md](https://github.com/open-telemetry/semantic-conventions-g
 
 ## References
 
-- [OTel GenAI Semantic Conventions (v1.37+)](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
+- [OTel GenAI Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
 - [OTel GenAI Events (gen-ai-events.md)](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-events.md)
 - [OTel semantic-conventions-genai repo](https://github.com/open-telemetry/semantic-conventions-genai)
 - [GenAI Agent Spans (gen-ai-agent-spans.md)](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md)
