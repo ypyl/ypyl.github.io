@@ -110,30 +110,6 @@ proposal ──► specs ──► design ──► tasks
 
 ---
 
-# Delta Specs
-
-Describe the **diff**, not the whole world.
-
-```markdown
-## ADDED Requirements
-### Requirement: Two-Factor Authentication
-The system MUST require a second factor during login.
-
-## MODIFIED Requirements
-### Requirement: Session Timeout
-(Previously: 60 minutes → Now: 30 minutes)
-
-## REMOVED Requirements
-### Requirement: Remember Me
-(Deprecated in favor of 2FA)
-```
-
-**On archive:** ADDED → appended, MODIFIED → replaced, REMOVED → deleted.
-
-> **Notes:** This is what makes OpenSpec work for brownfield. You write a small delta describing only what's changing — ADDED, MODIFIED, REMOVED. On archive, main specs update automatically.
-
----
-
 # Step 2: Apply
 
 **`/opsx:apply`** — AI works through tasks, checking them off.
