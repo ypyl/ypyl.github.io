@@ -177,27 +177,6 @@ Change preserved with date stamp. Specs now describe reality.
 
 ---
 
-# Brownfield by Design
-
-```text
-   Other tools                         OpenSpec
-   ═══════════                         ════════════
-
-   "Describe the entire               "Here's what's changing:"
-    system"                                │
-        │                          ┌───────┼───────┐
-        ▼                          ▼       ▼       ▼
-   ┌──────────┐               ADDED    MODIFIED  REMOVED
-   │ 200+ line│
-   │ full spec│               Three small blocks.
-   │ upfront  │               No full rewrite.
-   └──────────┘
-```
-
-> **Notes:** Other spec tools assume greenfield. OpenSpec assumes brownfield: you only describe what's different. ADDED, MODIFIED, REMOVED. That's it. This makes it practical for real-world teams.
-
----
-
 # Specs as Source of Truth
 
 Requirements + scenarios. Testable. No implementation detail.
