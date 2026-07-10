@@ -203,7 +203,18 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MyOptions>>()
 
 ---
 
-## 12. Engineering Practices
+## 12. Testing
+
+Tests describe behavior, not implementation. Name tests as plain English assertions.
+
+- **Good:** `Delivery_with_a_past_date_is_invalid`
+- **Bad:** `IsDeliveryValid_InvalidDate_ReturnsFalse`
+
+Mocking: **FakeItEasy**. Test project: `Project.Tests` alongside `src/`, one file per handler. Never test private methods or use reflection.
+
+---
+
+## 13. Engineering Practices
 
 Enforced at project level. No per-file overrides.
 
@@ -229,7 +240,7 @@ Soft signals — not enforced, but triggers for refactoring.
 
 ---
 
-## 13. Hard Rules
+## 14. Hard Rules
 
 1. One HTTP request = one command or one query.
 2. No business logic in Program.cs.
@@ -244,7 +255,7 @@ Soft signals — not enforced, but triggers for refactoring.
 
 ---
 
-## 14. Mental Model
+## 15. Mental Model
 
 ```
 HTTP Request
