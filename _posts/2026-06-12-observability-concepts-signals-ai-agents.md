@@ -119,7 +119,21 @@ User Request (span)
 
 #### Span Types
 
-The [`gen-ai-agent-spans.md`](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md) spec defines four span types:
+The [`gen-ai-agent-spans.md`](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md) spec defines four agent span types (the full OTel GenAI spec defines 17 `gen_ai.operation.name` values — the remaining cover LLM calls, tool execution, and memory operations in the base GenAI spans spec).
+
+These span types fall into two categories that nest in a parent-child hierarchy:
+
+```
+invoke_agent {agent.name}       ← Agent span: container for the full agent turn
+│
+├── plan {agent.name}           ← Agent span: planning phase
+│   └── chat                    ← LLM span: the model call that produces the plan
+│
+├── execute_tool {tool.name}    ← Tool span: agent acts on the plan
+├── execute_tool {tool.name}    ←   (siblings under invoke_agent)
+│
+└── chat                        ← LLM span: final response generation
+```
 
 | Span type (Weaver registry key) | `gen_ai.operation.name` | Span kind | When to use |
 |--------------------------------|------------------------|-----------|-------------|
