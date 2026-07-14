@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Generated - Korona Gór Polski"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Korona Gór Polski – 28 szczytów</name>
+    <desc>Waypoints for all 28 peaks of the Crown of Polish Mountains (Korona Gór Polski). Source: Wikipedia coordinates.</desc>
+    <author>
+      <name>Klub Zdobywców Korony Gór Polski</name>
+      <link href="https://kgp.info.pl" />
+    </author>
+    <link href="https://kgp.info.pl/wykaz-szczytow/" />
+    <time>2026-07-14T00:00:00Z</time>
+    <keywords>Korona Gór Polski, KGP, Polska, góry, szczyty, hiking, mountains, Poland</keywords>
+  </metadata>
+  <wpt lat="49.179306" lon="20.088444">
+    <name>Rysy (2499 m)</name>
+    <ele>2499</ele>
+    <desc>Tatry – najwyższy szczyt Polski i KGP</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.573333" lon="19.529444">
+    <name>Babia Góra (1725 m)</name>
+    <ele>1725</ele>
+    <desc>Beskid Żywiecki</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.736028" lon="15.739611">
+    <name>Śnieżka (1603 m)</name>
+    <ele>1603</ele>
+    <desc>Karkonosze – najwyższy szczyt Sudetów</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.207004" lon="16.849226">
+    <name>Śnieżnik (1425 m)</name>
+    <ele>1425</ele>
+    <desc>Masyw Śnieżnika</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.074778" lon="22.726750">
+    <name>Tarnica (1346 m)</name>
+    <ele>1346</ele>
+    <desc>Bieszczady Zachodnie</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.542944" lon="20.111556">
+    <name>Turbacz (1310 m)</name>
+    <ele>1310</ele>
+    <desc>Gorce – najwyższy szczyt Gorców</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.449444" lon="20.604444">
+    <name>Radziejowa (1266 m)</name>
+    <ele>1266</ele>
+    <desc>Beskid Sądecki</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.684444" lon="19.030278">
+    <name>Skrzyczne (1257 m)</name>
+    <ele>1257</ele>
+    <desc>Beskid Śląski</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.655194" lon="20.276694">
+    <name>Mogielica (1171 m)</name>
+    <ele>1171</ele>
+    <desc>Beskid Wyspowy</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.850278" lon="15.420000">
+    <name>Wysoka Kopa (1126 m)</name>
+    <ele>1126</ele>
+    <desc>Góry Izerskie – najwyższy szczyt Gór Izerskich</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.244056" lon="16.975889">
+    <name>Rudawiec (1112 m)</name>
+    <ele>1112</ele>
+    <desc>Góry Bialskie</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.353186" lon="16.360719">
+    <name>Orlica (1084 m)</name>
+    <ele>1084</ele>
+    <desc>Góry Orlickie</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.380278" lon="20.555556">
+    <name>Wysoka (1050 m)</name>
+    <ele>1050</ele>
+    <desc>Pieniny – Wysokie Skałki</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.680158" lon="16.485497">
+    <name>Wielka Sowa (1015 m)</name>
+    <ele>1015</ele>
+    <desc>Góry Sowie – wieża widokowa na szczycie</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.428333" lon="21.096111">
+    <name>Lackowa (997 m)</name>
+    <ele>997</ele>
+    <desc>Beskid Niski</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.264433" lon="17.013219">
+    <name>Kowadło (989 m)</name>
+    <ele>989</ele>
+    <desc>Góry Złote</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.252472" lon="16.564722">
+    <name>Jagodna (977 m)</name>
+    <ele>977</ele>
+    <desc>Góry Bystrzyckie</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.808500" lon="15.900250">
+    <name>Skalnik (945 m)</name>
+    <ele>945</ele>
+    <desc>Rudawy Janowickie</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.680833" lon="16.278056">
+    <name>Waligóra (936 m)</name>
+    <ele>936</ele>
+    <desc>Góry Kamienne – krótkie, strome podejście</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.767944" lon="19.160639">
+    <name>Czupel (931 m)</name>
+    <ele>931</ele>
+    <desc>Beskid Mały</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.485833" lon="16.339167">
+    <name>Szczeliniec Wielki (919 m)</name>
+    <ele>919</ele>
+    <desc>Góry Stołowe – płatna trasa turystyczna, skalny labirynt</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="49.766944" lon="20.059722">
+    <name>Lubomir (904 m)</name>
+    <ele>904</ele>
+    <desc>Beskid Makowski – obserwatorium astronomiczne</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.256667" lon="17.428611">
+    <name>Biskupia Kopa (889 m)</name>
+    <ele>889</ele>
+    <desc>Góry Opawskie – granica polsko-czeska</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.779167" lon="16.210278">
+    <name>Chełmiec (850 m)</name>
+    <ele>850</ele>
+    <desc>Góry Wałbrzyskie – wieża widokowa</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.451653" lon="16.753211">
+    <name>Kłodzka Góra (765 m)</name>
+    <ele>765</ele>
+    <desc>Góry Bardzkie</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.943972" lon="15.884667">
+    <name>Skopiec (724 m)</name>
+    <ele>724</ele>
+    <desc>Góry Kaczawskie – cyklamen purpurowy</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.865000" lon="16.708611">
+    <name>Ślęża (718 m)</name>
+    <ele>718</ele>
+    <desc>Masyw Ślęży – dawne miejsce kultu pogańskiego</desc>
+    <sym>Summit</sym>
+  </wpt>
+  <wpt lat="50.890833" lon="20.900833">
+    <name>Łysica (614 m)</name>
+    <ele>614</ele>
+    <desc>Góry Świętokrzyskie – najwyższy szczyt Gór Świętokrzyskich</desc>
+    <sym>Summit</sym>
+  </wpt>
+</gpx>
