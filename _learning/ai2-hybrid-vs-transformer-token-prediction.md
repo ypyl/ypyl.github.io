@@ -1,5 +1,5 @@
 ---
-name: Ai2: Hybrid Models vs Transformers in Token Prediction
+name: "Ai2: Hybrid Models vs Transformers in Token Prediction"
 link: https://allenai.org/blog/hybrid-token-prediction
 date: 2026-06-26
 tags: [2026-06-26, Research Paper, ai, llm, transformer, rnn, hybrid-models, token-prediction, natural-language-processing]
