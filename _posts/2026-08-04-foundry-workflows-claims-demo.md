@@ -168,3 +168,11 @@ But the work does not die with the platform. Everything this demo taught me tran
 If I were to rebuild this today, I would build the same pipeline in Microsoft Agent Framework, keep the same agents and mock backends, and encode the routing logic and HITL checkpoints in code instead of clicking nodes together. It would be more testable, more debuggable, and after this project I would trust it more.
 
 The platform got retired, and the five weeks of issues above show why. The claims pipeline, the three demo scenarios, and the habit of verifying every variable before trusting a branch are staying with me.
+
+## References
+
+- [Azure AI Foundry workflows: concept overview](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/workflow)
+- [Migration guide](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/workflow#migration-guide)
+- [Option 1: Microsoft Agent Framework (recommended)](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/workflow#option-1-microsoft-agent-framework-recommended)
+- [Option 2: Azure Logic Apps](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/workflow#option-2-azure-logic-apps)
+- [Option 3: Connect agents directly with A2A](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/workflow#option-3-connect-agents-directly-with-a2a)
