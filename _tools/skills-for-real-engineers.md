@@ -1,7 +1,7 @@
 ---
 name: Skills for Real Engineers
 link: https://github.com/mattpocock/skills
-category: AI Tool
-tags: [ai, claude-code, agent-skills, prompts, open-source, software-engineering, dev-tool]
-description: A collection of composable agent skills for AI coding assistants covering engineering workflows, testing, debugging, and codebase architecture.
+category: AI Agent Framework
+tags: [agent-skills, ai-agents, claude-code, codex, software-engineering, open-source, skills]
+description: Small, composable skills for AI coding agents covering real engineering workflows, installable as a Claude Code plugin or via skills.sh.
 ---

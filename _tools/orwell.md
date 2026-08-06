@@ -1,7 +1,7 @@
 ---
 name: Orwell
 link: https://github.com/newapologydevelopment/orwell
-category: AI Tool
-tags: [skills, agent-skills, prompt-engineering, writing, text-processing]
-description: AI writing skill that checks prose against George Orwell's six rules for clear, plain English.
+category: AI Agent Framework
+tags: [writing, agent-skills, ai-agents, claude-code, prompt-engineering, open-source]
+description: Plain-English writing skill for AI coding agents based on George Orwell's rules, covering drafting, rewriting, and format-matched output.
 ---
