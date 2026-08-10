@@ -77,6 +77,16 @@ A finishes quickly and queues a message for B, but B cannot run until the barrie
 
 ---
 
+## Is This Just Breadth-First Search?
+
+It looks like it — execution moves through the graph in synchronous waves, layer by layer from the inputs, just like BFS. But the models differ in three ways:
+
+- **BFS layers by *shortest* distance; supersteps layer by *longest* path.** A join node runs only when *all* of its predecessors finished. BFS would visit it as soon as the *first* predecessor reached it. The barrier forces joins to wait for the slowest branch.
+- **BFS is a traversal algorithm; supersteps are an execution model.** BFS produces a visitation order. The superstep model exists for concurrency, determinism, and checkpointing — nothing is being searched.
+- **BFS is a single pass; Pregel is iterative.** Vertices can be re-activated by messages, so cyclic computations run for many supersteps. BFS assumes a static, once-visited graph.
+
+The accurate mental model: **synchronous execution by topological depth, where the number of supersteps equals the critical path length in hops.** Within a wave, everything runs in parallel; across waves, the barrier serializes. That ordering coincides with BFS only in the special case of a single-source graph with no joins.
+
 ## Design Guidance
 
 **If you need independent parallel paths that do not block each other, consolidate sequential steps into a single executor.** Instead of chaining step1 → step2 → step3, combine that logic into one executor. Both parallel paths then complete within a single superstep, and the slow path no longer serializes the fast one.

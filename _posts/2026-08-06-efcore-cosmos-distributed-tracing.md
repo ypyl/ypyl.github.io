@@ -106,35 +106,34 @@ public sealed class CosmosTracingObserver : IObserver<DiagnosticListener>, IObse
         var operation = pair.Key[(pair.Key.LastIndexOf('.') + 1)..];
         var activity = Source.StartActivity(ActivityKind.Client);
         if (activity is null) return; // no listener registered for this source, no-op
-
-        activity.DisplayName = $"cosmos.{operation}";
-        activity.AddTag("db.system", "cosmos");
-        activity.AddTag("db.operation", operation);
-
-        switch (pair.Value)
+        try
         {
-            case CosmosQueryExecutedEventData e:
-                activity.AddTag("db.cosmosdb.container", e.ContainerId);
-                activity.AddTag("db.statement", e.QuerySql); // gated on e.LogSensitiveData
-                activity.AddTag("db.cosmosdb.request_charge", e.RequestCharge);
-                activity.SetEndTime(activity.StartTimeUtc + e.Elapsed);
-                break;
-            case CosmosItemCommandExecutedEventData e:
-                activity.AddTag("db.cosmosdb.container", e.ContainerId);
-                activity.AddTag("db.cosmosdb.id", e.ResourceId);
-                activity.AddTag("db.cosmosdb.request_charge", e.RequestCharge);
-                activity.SetEndTime(activity.StartTimeUtc + e.Elapsed);
-                break;
-            case CosmosTransactionalBatchExecutedEventData e:
-                activity.AddTag("db.cosmosdb.container", e.ContainerId);
-                activity.AddTag("db.cosmosdb.request_charge", e.RequestCharge);
-                activity.SetEndTime(activity.StartTimeUtc + e.Elapsed);
-                break;
-            default:
-                return; // not a Cosmos execution event
-        }
+            activity.DisplayName = $"cosmos.{operation}";
+            activity.AddTag("db.system", "cosmos");
+            activity.AddTag("db.operation", operation);
 
-        activity.Stop();
+            switch (pair.Value)
+            {
+                case CosmosQueryExecutedEventData e:
+                    activity.AddTag("db.cosmosdb.container", e.ContainerId);
+                    activity.AddTag("db.statement", e.QuerySql); // gated on e.LogSensitiveData
+                    activity.AddTag("db.cosmosdb.request_charge", e.RequestCharge);
+                    activity.SetEndTime(activity.StartTimeUtc + e.Elapsed);
+                    break;
+                case CosmosItemCommandExecutedEventData e:
+                    activity.AddTag("db.cosmosdb.container", e.ContainerId);
+                    activity.AddTag("db.cosmosdb.id", e.ResourceId);
+                    activity.AddTag("db.cosmosdb.request_charge", e.RequestCharge);
+                    activity.SetEndTime(activity.StartTimeUtc + e.Elapsed);
+                    break;
+                default:
+                    return; // not a Cosmos execution event
+            }
+        }
+        finally
+        {
+            activity.Stop();
+        }
     }
 
     public void OnError(Exception error) { }
