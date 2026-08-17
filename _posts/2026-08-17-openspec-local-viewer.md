@@ -20,6 +20,4 @@ A small side project: [OpenSpec Local Viewer](https://github.com/ypyl/openspec-v
 
 - Browsers without File System Access API fall back to a one-shot folder read — degrades gracefully, loses live updates.
 - Live monitoring is Chrome/Edge only; the fallback covers the rest.
-- Because everything is one file, every fix is a one-commit change — bump the version in the header, push to `master`, and GitHub Pages rebuilds.
-
 A note more than a tool: the whole app is small enough to read top to bottom in one sitting, which is the point. Keep the tooling for a spec-change workflow as close to the artifacts as the workflow itself.
