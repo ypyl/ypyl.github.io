@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Anthropic Brings Mythos 5 to Claude Security and Launches $35M Defender Fund"
-date: 2026-08-19
+date: 2026-08-23
 tags: news
 categories: news
 ---

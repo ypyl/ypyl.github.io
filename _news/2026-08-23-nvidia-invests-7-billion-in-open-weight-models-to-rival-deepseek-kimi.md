@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Nvidia Puts $7 Billion Behind Open-Weight Models to Rival DeepSeek and Kimi"
-date: 2026-08-19
+date: 2026-08-23
 tags: news
 categories: news
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "CEPR Study: AI Homework Help Boosts Grades but Hurts Exam Scores"
-date: 2026-08-19
+date: 2026-08-23
 tags: news
 categories: news
 ---
