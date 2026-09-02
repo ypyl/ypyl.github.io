@@ -84,10 +84,10 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
   <path d="M 780 364 V 442" fill="none" stroke="#504e49" stroke-width="1.5"/>
   <path d="M 776 442 L 780 448 L 784 442" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Loop 1: validated state update back to Execution State (right channel, avoids Action) -->
-  <path d="M 860 248 H 900 V 400 H 192 V 272" fill="none" stroke="#1B365D" stroke-width="1.5"/>
-  <path d="M 186 272 L 192 264 L 198 272" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="544" y="424" text-anchor="middle" font-size="14" fill="#1B365D">validated update, state survives</text>
+  <!-- Loop 1: validated state update back to Execution State (right channel, enters from the left edge to avoid crossing Observation) -->
+  <path d="M 860 248 H 900 V 400 H 64 V 232 H 80" fill="none" stroke="#1B365D" stroke-width="1.5"/>
+  <path d="M 74 228 L 80 232 L 74 236" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="480" y="424" text-anchor="middle" font-size="14" fill="#1B365D">validated update, state survives</text>
 
   <!-- Loop 2: next observation back to Observation -->
   <path d="M 780 512 V 552 H 128 V 372" fill="none" stroke="#504e49" stroke-width="1.5"/>
