@@ -12,7 +12,7 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
 
 {::nomarkdown}
 <figure>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" role="img" style="width:100%;height:auto" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 964 600" role="img" style="width:100%;height:auto" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
   <title>SKILL.state execution cycle</title>
   <desc>At each step the model reads only the skill spec, the execution state, and the latest observation. After a validated state update, the reasoning trace is discarded and only the updated state survives.</desc>
   <defs>
@@ -20,12 +20,12 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
       <circle cx="1" cy="1" r="0.9" fill="#E3E2DC"/>
     </pattern>
   </defs>
-  <rect width="920" height="600" fill="#f5f4ed"/>
-  <rect width="920" height="600" fill="url(#dots)" opacity="0.55"/>
+  <rect width="964" height="600" fill="#f5f4ed"/>
+  <rect width="964" height="600" fill="url(#dots)" opacity="0.55"/>
 
   <text x="80" y="40" fill="#1B365D" font-size="14" font-weight="600" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" letter-spacing="3">FIGURE  1</text>
   <text x="200" y="40" fill="#504e49" font-size="14" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" letter-spacing="3">SKILL.STATE EXECUTION CYCLE</text>
-  <line x1="80" y1="52" x2="920" y2="52" stroke="#1B365D" stroke-width="0.8"/>
+  <line x1="80" y1="52" x2="884" y2="52" stroke="#1B365D" stroke-width="0.8"/>
 
   <!-- Input nodes -->
   <rect x="80" y="100" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
@@ -96,6 +96,8 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
 </svg>
 </figure>
 {:/nomarkdown}
+
+**How to read it**: The three boxes on the left are the whole prompt at every step: the skill file, a small JSON working memory, and the latest event. The right column is what the model gives back: reasoning (dashed, thrown away once the patch validates), a state patch (ink blue, the path that persists, looping back into execution state), and one action (olive) that runs against the environment. Only the arrows that come back are the ones that last.
 
 The result: a bounded prompt footprint and token cost that grows linearly with execution length, not quadratically. No stale observations, no obsolete reasoning, no reconstructing world state from accumulated text.
 
