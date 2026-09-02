@@ -85,13 +85,13 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
   <path d="M 776 442 L 780 448 L 784 442" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- Loop 1: validated state update back to Execution State (right channel, enters from the left edge to avoid crossing Observation) -->
-  <path d="M 860 248 H 900 V 400 H 64 V 232 H 80" fill="none" stroke="#1B365D" stroke-width="1.5"/>
+  <path d="M 860 232 H 900 V 400 H 64 V 232 H 80" fill="none" stroke="#1B365D" stroke-width="1.5"/>
   <path d="M 74 228 L 80 232 L 74 236" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <text x="480" y="424" text-anchor="middle" font-size="14" fill="#1B365D">validated update, state survives</text>
 
   <!-- Loop 2: next observation back to Observation -->
-  <path d="M 780 512 V 552 H 128 V 372" fill="none" stroke="#504e49" stroke-width="1.5"/>
-  <path d="M 122 372 L 128 364 L 134 372" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 780 512 V 552 H 160 V 372" fill="none" stroke="#504e49" stroke-width="1.5"/>
+  <path d="M 154 372 L 160 364 L 166 372" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <text x="452" y="572" text-anchor="middle" font-size="14" fill="#504e49">next observation</text>
 </svg>
 </figure>
