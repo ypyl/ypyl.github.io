@@ -37,8 +37,8 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
   <text x="160" y="250" text-anchor="middle" font-size="14" fill="#6b6a64">structured, persists</text>
 
   <rect x="80" y="300" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
-  <text x="160" y="330" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Latest Observation</text>
-  <text x="160" y="350" text-anchor="middle" font-size="14" fill="#6b6a64">current one only</text>
+  <text x="160" y="330" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Observation</text>
+  <text x="160" y="350" text-anchor="middle" font-size="14" fill="#6b6a64">latest one only</text>
 
   <!-- LLM -->
   <rect x="400" y="96" width="160" height="272" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
@@ -49,20 +49,20 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
   <g opacity="0.65">
     <rect x="700" y="100" width="160" height="64" rx="6" fill="#faf9f5" stroke="#6b6a64" stroke-width="1.5" stroke-dasharray="6 4"/>
     <text x="780" y="130" text-anchor="middle" font-size="18" font-weight="600" fill="#6b6a64" text-decoration="line-through">Reasoning Trace</text>
-    <text x="780" y="150" text-anchor="middle" font-size="14" fill="#6b6a64">discarded after each step</text>
+    <text x="780" y="150" text-anchor="middle" font-size="14" fill="#6b6a64">discarded each step</text>
   </g>
 
   <rect x="700" y="200" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
   <text x="780" y="230" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">State Patch</text>
-  <text x="780" y="250" text-anchor="middle" font-size="14" fill="#6b6a64">validated by the runtime</text>
+  <text x="780" y="250" text-anchor="middle" font-size="14" fill="#6b6a64">validated by runtime</text>
 
   <rect x="700" y="300" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
   <text x="780" y="330" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Action</text>
-  <text x="780" y="350" text-anchor="middle" font-size="14" fill="#6b6a64">one step executed</text>
+  <text x="780" y="350" text-anchor="middle" font-size="14" fill="#6b6a64">one action</text>
 
-  <rect x="700" y="440" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
-  <text x="780" y="470" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Environment</text>
-  <text x="780" y="490" text-anchor="middle" font-size="14" fill="#6b6a64">returns the next observation</text>
+  <rect x="700" y="448" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
+  <text x="780" y="478" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Environment</text>
+  <text x="780" y="498" text-anchor="middle" font-size="14" fill="#6b6a64">emits observations</text>
 
   <!-- Inputs to LLM -->
   <path d="M 240 132 H 400" fill="none" stroke="#504e49" stroke-width="1.5"/>
@@ -81,18 +81,18 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
   <path d="M 694 328 L 700 332 L 694 336" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- Action to environment -->
-  <path d="M 780 364 V 440" fill="none" stroke="#504e49" stroke-width="1.5"/>
-  <path d="M 776 434 L 780 440 L 784 434" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 780 364 V 442" fill="none" stroke="#504e49" stroke-width="1.5"/>
+  <path d="M 776 442 L 780 448 L 784 442" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Loop 1: validated state update back to Execution State -->
-  <path d="M 720 264 V 420 H 160 V 272" fill="none" stroke="#1B365D" stroke-width="1.5"/>
-  <path d="M 154 272 L 160 264 L 166 272" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="440" y="436" text-anchor="middle" font-size="14" fill="#1B365D">validated update, state survives</text>
+  <!-- Loop 1: validated state update back to Execution State (right channel, avoids Action) -->
+  <path d="M 860 248 H 900 V 400 H 192 V 272" fill="none" stroke="#1B365D" stroke-width="1.5"/>
+  <path d="M 186 272 L 192 264 L 198 272" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="544" y="424" text-anchor="middle" font-size="14" fill="#1B365D">validated update, state survives</text>
 
-  <!-- Loop 2: next observation back to Latest Observation -->
-  <path d="M 780 504 V 560 H 160 V 372" fill="none" stroke="#504e49" stroke-width="1.5"/>
-  <path d="M 154 372 L 160 364 L 166 372" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="460" y="572" text-anchor="middle" font-size="14" fill="#504e49">next observation</text>
+  <!-- Loop 2: next observation back to Observation -->
+  <path d="M 780 512 V 552 H 128 V 372" fill="none" stroke="#504e49" stroke-width="1.5"/>
+  <path d="M 122 372 L 128 364 L 134 372" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="452" y="572" text-anchor="middle" font-size="14" fill="#504e49">next observation</text>
 </svg>
 </figure>
 {:/nomarkdown}
