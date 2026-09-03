@@ -241,11 +241,33 @@ strong, b {
   fill: var(--text-muted);
 }
 
-/* GitHub icon in nav */
-.github-icon {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
+/* GitHub button (matches theme-toggle) */
+.github-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin-left: var(--space-md);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.github-btn:hover {
+  color: var(--brand);
+  border-color: var(--brand);
+  background-color: var(--surface);
+}
+
+.github-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 @media screen and (max-width: 600px) {
@@ -797,6 +819,15 @@ ul li::marker {
     top: 10px;
     right: 55px;
     margin-top: 0;
+  }
+
+  .github-btn {
+    float: none;
+    position: absolute;
+    top: 10px;
+    right: 97px;
+    margin-top: 0;
+    margin-left: 0;
   }
 }
 
