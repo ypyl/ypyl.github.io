@@ -1,4 +1,4 @@
-## ADDED Requirements
+## MODIFIED Requirements
 
 ### Requirement: Header navigation shows GitHub link
 The site header SHALL display a GitHub link in the navigation bar, positioned after the dynamically-generated page links, that points to the user's GitHub profile. The link SHALL render as an inline SVG icon (GitHub octocat logo), not as text.
