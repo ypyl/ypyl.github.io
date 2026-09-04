@@ -256,8 +256,7 @@ strong, b {
   cursor: pointer;
   color: var(--text-muted);
   transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-  float: right;
-  margin-top: 10px;
+  vertical-align: middle;
 }
 
 .github-btn:hover {
@@ -810,25 +809,20 @@ ul li::marker {
 
 /* Position toggle next to nav on desktop */
 .theme-toggle {
-  float: right;
-  margin-top: 10px;
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 600px) {
   .theme-toggle {
-    float: none;
     position: absolute;
     top: 10px;
     right: 55px;
-    margin-top: 0;
   }
 
   .github-btn {
-    float: none;
     position: absolute;
     top: 10px;
     right: 97px;
-    margin-top: 0;
     margin-left: 0;
   }
 }
