@@ -12,7 +12,7 @@ An agent running a long procedure shouldn't be rereading its own transcript at e
 
 {::nomarkdown}
 <figure>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 964 600" role="img" style="width:100%;height:auto" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="24 0 916 600" role="img" style="width:100%;height:auto" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
   <title>SKILL.state execution cycle</title>
   <desc>At each step the model reads only the skill spec, the execution state, and the latest observation. After a validated state update, the reasoning trace is discarded and only the updated state survives.</desc>
   <defs>
