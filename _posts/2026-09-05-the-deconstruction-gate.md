@@ -87,11 +87,11 @@ The gate report is the artifact you hand over. It is a brief, a filter, and a co
 
   <rect x="40" y="232" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.5"/>
   <text x="120" y="262" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">TRUTHS</text>
-  <text x="120" y="282" text-anchor="middle" font-size="14" fill="#6b6a64">drafted with AI · judged by you</text>
+  <text x="120" y="282" text-anchor="middle" font-size="14" fill="#6b6a64">AI drafts · you judge</text>
 
   <rect x="40" y="344" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
   <text x="120" y="374" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">BRIEF</text>
-  <text x="120" y="394" text-anchor="middle" font-size="14" fill="#6b6a64">gate report · locked by you</text>
+  <text x="120" y="394" text-anchor="middle" font-size="14" fill="#6b6a64">gate report · you lock</text>
 
   <rect x="520" y="120" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1.5"/>
   <text x="600" y="150" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">DECISION</text>
