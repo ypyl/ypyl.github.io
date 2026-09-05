@@ -120,11 +120,11 @@ The gate report is the artifact you hand over. It is a brief, a filter, and a co
 
   <path d="M 224 264 H 672" fill="none" stroke="#1B365D" stroke-width="1.5"/>
   <path d="M 664 260 L 672 264 L 664 268" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="448" y="248" text-anchor="middle" font-size="13" fill="#1B365D">truths are the filter</text>
+  <text x="448" y="248" text-anchor="middle" font-size="14" fill="#1B365D">truths are the filter</text>
 
   <path d="M 832 264 H 956 V 152 H 840" fill="none" stroke="#1B365D" stroke-width="1.5"/>
   <path d="M 840 146 L 832 152 L 840 158" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="894" y="208" text-anchor="middle" font-size="13" fill="#1B365D">iterate candidates</text>
+  <text x="894" y="208" text-anchor="middle" font-size="14" fill="#1B365D">iterate candidates</text>
 </svg>
 </figure>
 {:/nomarkdown}
