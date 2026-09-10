@@ -8,6 +8,14 @@
 
   <p>{{ include.resource.description }}</p>
 
+  {% if include.resource.references %}
+    <ul class="resource-references">
+      {% for ref in include.resource.references %}
+        <li><a href="{{ ref.link }}" target="_blank">{{ ref.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
   <div class="tags">
     {% for tag in include.resource.tags %}
       <span class="tag">{{ tag }}</span>

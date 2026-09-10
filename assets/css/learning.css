@@ -102,3 +102,20 @@
   font-size: 0.9375rem;
   line-height: 1.5;
 }
+
+.resource-references {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.resource-references li {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.resource-references a {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--brand);
+}
