@@ -40,6 +40,7 @@
   /* Borders */
   --border:      #e8e6dc;
   --border-soft: #e5e3d8;
+  --rule:        #a5a49c;  /* divider hairline: warm gray, visible on parchment */
 
   /* Tag tints (solid hex, never rgba) */
   --tag-bg:      #E4ECF5;
@@ -72,6 +73,7 @@
   --link:           var(--brand);
   --link-hover:     var(--dark-warm);
   --border-color:   var(--border);
+  --rule-color:     var(--rule);
   --code-bg:        var(--ivory);
 }
 
@@ -89,6 +91,7 @@
   --link-hover:     #e8e6dc;
   --border-color:   #40403c;
   --border-soft:    #383834;
+  --rule-color:     #54524c;
   --code-bg:        #252523;
   --tag-bg:         #1f3350;
   --tag-bg-light:   #1a2d47;
@@ -539,7 +542,7 @@ table tr:nth-child(even) {
 hr {
   margin: var(--space-2xl) 0;
   border: 0;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--rule-color);
 }
 
 /* --------------------------------------------------------------------------
@@ -1053,6 +1056,15 @@ ul li::marker {
 /* --------------------------------------------------------------------------
    16. Task Lists
    -------------------------------------------------------------------------- */
+
+.task-list,
+.task-list-item {
+  list-style: none;
+}
+
+.task-list {
+  padding-left: var(--space-lg);
+}
 
 .task-list-item-checkbox {
   appearance: none;
