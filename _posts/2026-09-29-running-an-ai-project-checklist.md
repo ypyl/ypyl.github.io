@@ -6,7 +6,7 @@ categories: ai
 tags: [ai, llm, architecture, project-delivery, evaluation, guardrails, governance]
 ---
 
-A **gated checklist** for running an AI project end to end: 11 phases in five lifecycle stages, each phase ending in a **gate** with an explicit pass condition. This checklist has 333 items, 59 of them conditional, and 36 artifacts. The phases and the artifact list are the least interesting part. What matters is the sequence, because sequencing mistakes are free to fix on day one and a rewrite on day forty.
+A **gated checklist** for running an AI project end to end: 11 phases in five lifecycle stages, each phase ending in a **gate** with an explicit pass condition. This checklist has 333 items, 56 carrying an `[If ...]` condition, and 36 artifacts. The phases and the artifact list are the least interesting part. What matters is the sequence, because sequencing mistakes are free to fix on day one and a rewrite on day forty.
 
 AI projects rarely fail at the model. They fail at the order things get built. Two orderings carry most of the value: **controls are designed before the request path is built**, and **the eval suite gates the build**. Everything else in the checklist is detail hanging off those two, plus a scaling rule: match the artifact set to the consequence of a wrong call, and to how many people are actually involved.
 

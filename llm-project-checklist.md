@@ -36,10 +36,10 @@ Vendor names appear as examples and traps, not as requirements.
 - [Phase 1: Discovery](#phase-1-discovery)
 
 **Planning**
-- [Phase 2: Feasibility and sizing](#phase-2-feasibility-and-sizing)
-- [Phase 3: Architecture and pattern design](#phase-3-architecture-and-pattern-design)
+- [Phase 2: Feasibility and sizing](#phase-2-feasibility-and-sizing-per-use-case)
+- [Phase 3: Architecture and pattern design](#phase-3-architecture-and-pattern-design-per-use-case)
 - [Phase 4: Safety, controls, and fairness](#phase-4-safety-controls-and-fairness)
-- [Phase 5: Evaluation](#phase-5-evaluation)
+- [Phase 5: Evaluation](#phase-5-evaluation-per-use-case)
 
 **Implementation**
 - [Phase 6: Integration, reliability, and enterprise readiness](#phase-6-integration-reliability-and-enterprise-readiness)
@@ -68,7 +68,7 @@ Vendor names appear as examples and traps, not as requirements.
 - [ ] Name the candidate business metric that will judge the project (baseline confirmed in Phase 1).
 - [ ] Name what "done" means to the sponsor, in business terms.
 - [ ] Classify the engagement: net-new build, extension of an existing system, or audit.
-- [ ] Confirm partner/account context: partner tier, procurement commitments, cloud agreements.
+- [ ] Confirm commercial context: procurement commitments, cloud agreements, and any reseller or partner arrangement that constrains the delivery route.
 - [ ] Note the data classes involved: public, internal, confidential, regulated (PHI, PII, financial).
 - [ ] List governing obligations early: HIPAA, GDPR, FedRAMP, privilege, data residency, internal policy.
 - [ ] Sanity-check the premise: is a deterministic or existing-system solution cheaper, safer, or more auditable? Raise it now if so.
@@ -167,7 +167,7 @@ non-LLM solution.
 - [ ] Build the token budget per request as a **distribution**, not an average.
 - [ ] Model the model-tier cost (input and output priced separately).
 - [ ] `[If long, stable prefix]` Model prompt caching, including write cost and TTL.
-- [ ] `[If async SLA permits]` Model the Batch API and check BAA coverage if regulated.
+- [ ] `[If async SLA permits]` Model asynchronous batch submission, and confirm regulated-data coverage of the async route (for example a business associate agreement under HIPAA).
 - [ ] Project monthly cost against the ceiling.
 - [ ] Include eval and judge call cost, and human-review labor cost, in the model.
 - [ ] Model latency at **p95**, not median.
@@ -504,7 +504,7 @@ Everything that must exist before launch: the team's readiness to run AI-assiste
 that AI-assisted work is trustworthy, and the monitoring that decides what happens when a signal
 moves. All of it ships with the launch, not after it.
 
-### Team readiness at launch (delivery team) [If the delivery team uses AI-assisted development]
+### Team readiness at launch [If AI-assisted development is used]
 
 - [ ] Define the review discipline per workflow stage: writing, reviewing, debugging.
 - [ ] Build the verification checklist: correctness, security, maintainability, human understanding.
@@ -544,7 +544,7 @@ moves. All of it ships with the launch, not after it.
 - [ ] `[If risk warrants]` Launch to a canary or limited subset before full traffic.
 - [ ] Confirm the model version is pinned and recorded.
 - [ ] Confirm monitoring owners and the escalation path are active.
-- [ ] Record the launch date, model version, and configuration.
+- [ ] Record the launch date, model version, and configuration in the decision log (#11) and the architecture document (#26), rather than creating a new file. The gate does not pass without the record.
 
 **Gate:** the system is live with controls, logging, and owners in place.
 
@@ -624,8 +624,10 @@ architecture-specific failures. Produce them in that order, or merge them into o
 project is small. Boundary conditions are finalized in Phase 3, after owner assignment; the load-bearing
 condition identified in Phase 2 travels in the feasibility memo.
 
-Each row is one file to produce, numbered to match. A scaffold per document is useful, and this page
-lists them so you can see the shape before you write one.
+Each row is one file to produce. The numbers are stable identifiers carried over from the original
+template set, so they are not in strict order; the Phase column is the order to produce them in.
+Phase 9 adds no document of its own: the launch record goes into the decision log (#11) and the
+architecture document (#26).
 
 | # | Document | Phase | Required when |
 |---|----------|-------|---------------|
@@ -672,7 +674,7 @@ lists them so you can see the shape before you write one.
 
 | Condition | What changes |
 |-----------|--------------|
-| **Regulated** (HIPAA, GDPR, FedRAMP, privilege) | Compliance rules routes first; control register; scheduled checkpoints; BAA/DPA per configuration |
+| **Regulated** (HIPAA, GDPR, FedRAMP, privilege) | Compliance rules routes first; control register; scheduled checkpoints; business associate or data processing agreement per configuration |
 | **PHI or PII** | Minimum-necessary data; redaction before the call and before logging; log scope; retention controls |
 | **Data residency** | Explicit region pinning at the integration layer; verify logs, caches, monitoring, retention |
 | **Retrieval** | Screen retrieved content; monitor precision and recall; never use for live state |
