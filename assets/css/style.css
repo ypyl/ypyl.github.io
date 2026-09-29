@@ -1066,6 +1066,13 @@ ul li::marker {
   padding-left: var(--space-lg);
 }
 
+/* hanging indent: the checkbox column is 16px box + 8px gap, so wrapped
+   lines in long items align under the text instead of under the checkbox */
+.task-list-item {
+  padding-left: var(--space-lg);
+  text-indent: calc(-1 * var(--space-lg));
+}
+
 .task-list-item-checkbox {
   appearance: none;
   width: 16px;
