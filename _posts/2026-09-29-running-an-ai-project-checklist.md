@@ -58,33 +58,30 @@ AI projects rarely fail at the model. They fail at the order things get built. T
     <line x1="160" y1="452" x2="160" y2="480" stroke="#1B365D" stroke-width="1"/>
     <path d="M154 476 L160 484 L166 476" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
 
-    <!-- Focal annotations at the Planning to Implementation boundary -->
-    <rect x="560" y="212" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.5"/>
-    <text x="640" y="242" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Controls first</text>
-    <text x="640" y="262" text-anchor="middle" font-size="14" fill="#6b6a64">design 4, build 6</text>
+    <!-- Focal annotations, aligned with the row each one qualifies -->
+    <rect x="560" y="196" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.5"/>
+    <text x="640" y="226" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Controls first</text>
+    <text x="640" y="246" text-anchor="middle" font-size="14" fill="#6b6a64">design 4, build 6</text>
 
-    <rect x="560" y="300" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.5"/>
-    <text x="640" y="330" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Eval gates build</text>
-    <text x="640" y="350" text-anchor="middle" font-size="14" fill="#6b6a64">no code past 5</text>
+    <rect x="560" y="292" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.5"/>
+    <text x="640" y="322" text-anchor="middle" font-size="18" font-weight="600" fill="#141413">Eval gates build</text>
+    <text x="640" y="342" text-anchor="middle" font-size="14" fill="#6b6a64">no code past 5</text>
 
-    <path d="M240 228 L400 228 L400 244 L552 244" fill="none" stroke="#1B365D" stroke-width="1"/>
-    <path d="M546 238 L552 244 L546 250" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
-
-    <path d="M240 324 L480 324 L480 332 L552 332" fill="none" stroke="#1B365D" stroke-width="1"/>
-    <path d="M546 326 L552 332 L546 338" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="240" y1="228" x2="560" y2="228" stroke="#504e49" stroke-width="1"/>
+    <line x1="240" y1="324" x2="560" y2="324" stroke="#504e49" stroke-width="1"/>
 
     <!-- Outcome loop -->
-    <path d="M240 516 L904 516 L904 132 L244 132" fill="none" stroke="#504e49" stroke-width="1" stroke-dasharray="6 4"/>
-    <path d="M238 126 L244 132 L238 138" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
-    <rect x="740" y="110" width="140" height="22" fill="#f5f4ed"/>
-    <text x="746" y="126" font-size="14" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" fill="#6b6a64">before metric reused</text>
+    <path d="M240 516 L904 516 L904 132 L240 132" fill="none" stroke="#504e49" stroke-width="1" stroke-dasharray="6 4"/>
+    <path d="M246 126 L240 132 L246 138" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="740" y="100" width="140" height="20" fill="#f5f4ed"/>
+    <text x="746" y="116" font-size="14" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" fill="#6b6a64">before metric reused</text>
 
     <text x="80" y="588" font-size="14" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" fill="#6b6a64">11 PHASES · 11 GATES · 36 ARTIFACTS</text>
   </svg>
 </figure>
 {:/nomarkdown}
 
-**How to read it**: the left column is the order you actually do the work, and the two ink-blue boxes are the only decisions in the figure that are expensive to reverse. Both of them sit at the Planning to Implementation boundary, which is the point: by the time you reach Implementation, the shape of the guarded path and the definition of "passing" are already fixed. The dashed line is the third thing people skip, the outcome metric returning to the baseline you captured in the first stage. Skip it and you finish the project with no way to say what it changed.
+**How to read it**: the left column is the order you actually do the work, and the two ink-blue boxes are the only decisions in the figure that are expensive to reverse. Both of them govern the same transition, Planning into Implementation, which is the point: by the time you reach Implementation, the shape of the guarded path and the definition of "passing" are already fixed. The dashed line is the third thing people skip, the outcome metric returning to the baseline you captured in the first stage. Skip it and you finish the project with no way to say what it changed.
 
 ## The spine
 
