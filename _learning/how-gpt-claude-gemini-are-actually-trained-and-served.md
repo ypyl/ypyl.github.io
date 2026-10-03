@@ -7,3 +7,4 @@ description: Blackboard lecture on how frontier LLMs like GPT, Claude, and Gemin
 references:
   - name: Full transcript with timestamps
     link: https://gist.github.com/dwarkeshsp/79100f0fdeed69d76241903bb0604dbe
+---
