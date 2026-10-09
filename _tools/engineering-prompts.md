@@ -2,6 +2,6 @@
 name: Engineering Prompts
 link: https://github.com/keploy/engineering-prompts
 category: Programming
-tags: [ai, prompts, software-engineering]
+tags: [ai, prompts, software-engineering, stale]
 description: A curated collection of AI prompts for software engineers to automate tasks, debug, and generate tests.
 ---
