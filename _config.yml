@@ -4,6 +4,11 @@ baseurl: ""
 url: "https://ypyl.github.io/"
 theme: minima
 
+# Header nav links (paths to pages in the repo root)
+header_pages:
+  - learning.md
+  - tools.md
+
 # Author info (used in footer)
 author: Yauhen Pyl
 email: yauhen.pyl@gmail.com
