@@ -19,10 +19,11 @@ The graph below is the whole process for that model. Each tab is one flow: deplo
   frame.addEventListener("load", function () {
     var doc = frame.contentDocument;
     if (!doc || !doc.body) return;
+    var content = doc.querySelector(".wrap") || doc.body;
     function fit() {
-      frame.style.height = Math.max(480, doc.documentElement.scrollHeight) + "px";
+      frame.style.height = Math.max(480, content.scrollHeight) + "px";
     }
-    if (window.ResizeObserver) new ResizeObserver(fit).observe(doc.body);
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(content);
     fit();
   });
 })();
