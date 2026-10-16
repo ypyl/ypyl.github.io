@@ -1,0 +1,2586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release flows</title>
+<style>
+  :root {
+    --bg:#f6f7f9;
+    --surface:#ffffff;
+    --ink:#0f172a;
+    --muted:#64748b;
+    --line:#e2e8f0;
+    --rail:#cbd5e1;
+    --brand:#2563eb;
+    --brand-soft:#dbeafe;
+    --p1:#0f766e;
+    --p1-soft:#ccfbf1;
+    --p2:#b45309;
+    --p2-soft:#fef3c7;
+    --fail:#dc2626;
+    --tag:#475569;
+    --tag-soft:#e2e8f0;
+    --env:#6d28d9;
+    --env-soft:#ede9fe;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:15px;
+    line-height:1.5;
+  }
+  .wrap { max-width:1200px; margin:0 auto; padding:24px 12px 60px; }
+  header.page { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+  header.page a { color:var(--brand); text-decoration:none; }
+  header.page a:hover { text-decoration:underline; }
+  .kicker { font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .tabs { display:flex; gap:8px; flex-wrap:wrap; }
+  .tab {
+    font-family:var(--sans); font-size:13px; font-weight:700; color:var(--muted);
+    background:transparent; border:1px solid var(--line); border-radius:12px;
+    padding:6px 14px; cursor:pointer;
+  }
+  .tab:hover { color:var(--brand); border-color:var(--brand); }
+  .tab.active { color:#ffffff; background:var(--brand); border-color:var(--brand); }
+  .flow[hidden] { display:none; }
+  .flow-empty { padding:24px; color:var(--muted); }
+
+  /* The start page: a decision tree that shows every branch at once. The
+     connectors are one SVG behind the HTML cards, the same split the commit
+     graphs use. The tree is wider than the page, so it scrolls sideways. */
+  .decider { overflow-x:auto; padding-bottom:8px; }
+  .tree { position:relative; }
+  .treelines { position:absolute; left:0; top:0; overflow:visible; pointer-events:none; z-index:1; }
+  .tree-node {
+    position:absolute; z-index:2; width:210px;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px;
+  }
+  .tree-node .decide-q { font-size:15px; font-weight:700; margin:0; }
+  .tree-node.terminal { border-color:var(--brand); background:#f5f9ff; }
+  .tree-node.terminal .decide-q { font-size:17px; margin-bottom:6px; }
+  .flow-badge {
+    display:block; margin-bottom:8px;
+    font-family:var(--mono); font-size:10px; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--brand);
+  }
+  .tree-node .decide-goal { font-size:13px; color:var(--muted); margin:0 0 10px; }
+  .tree-node .decide-go {
+    font:inherit; font-size:13px; font-weight:700; width:100%; cursor:pointer;
+    background:var(--brand); border:1px solid var(--brand); color:#ffffff;
+    border-radius:9px; padding:9px 12px;
+  }
+  .tree-node .decide-go:hover { background:#1d4ed8; border-color:#1d4ed8; }
+  .tree-edge-label {
+    position:absolute; z-index:3; transform:translate(-50%,-50%);
+    max-width:180px; text-align:center;
+    font-size:12px; font-weight:600; line-height:1.35; color:var(--ink);
+    background:var(--bg); border:1px solid var(--line); border-radius:8px;
+    padding:3px 8px;
+  }
+
+  .panel {
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .panel-head {
+    display:flex; align-items:center; gap:10px;
+    padding:12px 16px; border-bottom:1px solid var(--line);
+  }
+  .panel-head h2 { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0; font-weight:700; }
+  .panel-head .hint { margin-left:auto; color:var(--muted); font-size:12px; }
+
+  /* Commit graph */
+  .commits { position:relative; padding:6px 0; }
+  .graphlines { position:absolute; left:0; top:0; pointer-events:none; z-index:2; overflow:visible; }
+  .cols {
+    display:grid;
+    grid-template-columns:96px 1fr 250px 108px 72px;
+    column-gap:10px;
+    padding:16px 12px 9px 0;
+  }
+  .cols .head-cell {
+    font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); font-weight:700;
+    border-bottom:1px solid var(--line); padding-bottom:6px;
+  }
+  .cols .head-cell.right { text-align:right; }
+
+  .commit {
+    display:grid;
+    grid-template-columns:96px 1fr 250px 108px 72px;
+    align-items:center;
+    column-gap:10px;
+    padding:12px 12px 12px 0;
+  }
+  .commit:hover { background:#f8fafc; }
+  .rail { align-self:stretch; }
+
+  .commit.selected { position:relative; background:#eff6ff; }
+  .commit.wip { opacity:.6; }
+  .commit.p2row .msg .subject { color:var(--muted); }
+  .commit.p2row .who { color:var(--muted); }
+
+  .frame {
+    position:absolute; left:102px; right:10px; top:2px; bottom:2px;
+    border:2px solid var(--brand); border-radius:10px; pointer-events:none;
+  }
+  .frame-legend {
+    position:absolute; top:-9px; left:16px; padding:0 8px;
+    background:#eff6ff; color:var(--brand);
+    font-family:var(--mono); font-size:10px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
+  }
+
+  .frame.failed { border-color:var(--fail); }
+  .frame.failed .frame-legend { color:var(--fail); }
+
+  .fieldbox {
+    position:relative; display:inline-block; margin-top:12px;
+    border:2px solid var(--brand); border-radius:10px;
+    padding:12px 12px 8px; min-width:240px;
+  }
+  /* The tag box sits in the commit column. It keeps to that column, and its
+     minimum width fits the longest legend so the top border never cuts the label. */
+  .fieldbox.wide { min-width:210px; max-width:100%; }
+  .fieldbox.failed { border-color:var(--fail); }
+  .fieldbox.failed .fieldbox-legend { color:var(--fail); }
+  .fieldbox-legend {
+    position:absolute; top:0; left:12px; transform:translateY(-50%);
+    padding:0 6px; background:#eff6ff; color:var(--brand);
+    font-family:var(--mono); font-size:10px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; white-space:nowrap;
+  }
+
+  .msg { min-width:0; }
+  .msg .subject { font-weight:600; }
+  .commit.selected .msg .subject { color:var(--brand); }
+  .commit.selected.tagged .msg .subject { color:var(--ink); }
+  .commit.branch .msg .subject { color:var(--p1); }
+  .commit.fixbranch .msg .subject { color:var(--fail); }
+  .commit.devfixbranch .msg .subject { color:var(--fail); }
+  .commit.qafixbranch .msg .subject { color:var(--fail); }
+  .badges { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+  .pill {
+    font-family:var(--mono); font-size:11px; font-weight:600;
+    padding:2px 8px; border-radius:999px; white-space:nowrap;
+    background:var(--tag-soft); color:var(--tag);
+  }
+  .pill.p1 { background:var(--p1-soft); color:var(--p1); }
+  .pill.p2 { background:var(--p2-soft); color:var(--p2); }
+  .pill.p1.release { background:var(--p1); color:#ffffff; }
+  .pill.p2.release { background:var(--p2); color:#ffffff; }
+  .pill.planned {
+    background:transparent; color:var(--p1);
+    border:1px dashed var(--p1);
+  }
+  .pill.planned.approved { border-style:solid; }
+  .pill.planned.approved::before { content:"\2713\00a0"; }
+  .pill.ghost {
+    background:transparent; color:var(--muted);
+    border:1px dashed var(--rail); font-weight:500;
+  }
+  .envcell { display:flex; flex-wrap:wrap; gap:6px; }
+  .envchip {
+    display:inline-flex; align-items:center; gap:5px;
+    font-family:var(--mono); font-size:10px; font-weight:700;
+    letter-spacing:.06em; text-transform:uppercase;
+    padding:3px 8px; border-radius:6px;
+    background:transparent; border:1px solid currentColor;
+  }
+  .envchip.p1 { color:var(--p1); }
+  .envchip.p2 { color:var(--p2); }
+  .envchip.filled.p1 { background:var(--p1); color:#ffffff; }
+  .envchip.filled.p2 { background:var(--p2); color:#ffffff; }
+  .envchip::before {
+    content:""; width:6px; height:6px; border-radius:50%; background:currentColor;
+  }
+
+  .who { text-align:right; white-space:nowrap; }
+  .who .date { display:block; color:var(--muted); font-size:12px; }
+  .sha { font-family:var(--mono); font-size:12px; color:var(--muted); text-align:right; }
+
+  .legend {
+    display:flex; gap:18px; flex-wrap:wrap;
+    padding:12px 16px; border-top:1px solid var(--line);
+    font-size:12px; color:var(--muted);
+  }
+  .legend span { display:inline-flex; align-items:center; gap:7px; }
+  .legend .swatchline {
+    display:inline-block; width:16px; height:0; border-top:2px solid var(--p1);
+  }
+  .legend .swatchline.rel { border-top-color:#7c3aed; }
+  .legend .swatchline.fail { border-top-color:var(--fail); }
+
+  .goal {
+    display:flex; gap:12px; align-items:baseline; flex-wrap:wrap;
+    padding:14px 16px; margin-bottom:16px;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+  }
+  .goal-label {
+    font-family:var(--mono); font-size:10px; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--brand);
+  }
+  .goal-text { margin:0; font-weight:600; }
+
+  .layout {
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:12px;
+    align-items:start;
+  }
+  /* The commit panel stays in view while the long step list scrolls past it, and
+     scrolls inside itself when the commit list is taller than the viewport. */
+  .main { min-width:0; position:sticky; top:16px; max-height:calc(100vh - 32px); overflow-y:auto; }
+  @media (max-width:1120px) {
+    .layout { grid-template-columns:1fr; }
+    .main { position:static; max-height:none; overflow:visible; }
+  }
+
+
+  .stepper { list-style:none; margin:0; padding:16px; }
+  /* Three columns: the trunk rail, the failed-branch rail, and the text. A
+     branch step puts its pill in the middle column, so the failed branch is its
+     own column and every title starts at the same place. */
+  .stepper li {
+    position:relative; display:grid;
+    grid-template-columns:28px 32px 1fr;
+    column-gap:10px; align-items:start;
+    padding-bottom:20px; cursor:pointer;
+  }
+  .stepper li:last-child { padding-bottom:0; }
+  .stepper li::before {
+    content:""; position:absolute; left:13px; top:30px; bottom:0; width:2px;
+    background:var(--line);
+  }
+  /* The trunk rail runs through a branch row too, so the trunk stays whole. */
+  .stepper li.branch::before { top:0; }
+  .stepper li:last-child::before { display:none; }
+  .stepper .bubble {
+    grid-column:1; width:28px; height:28px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:12px; font-weight:700;
+    background:#f1f5f9; color:var(--muted); border:1px solid var(--line);
+    position:relative; z-index:1;
+  }
+  .stepper .title { grid-column:3; font-size:13px; font-weight:600; padding-top:4px; }
+  .stepper li:hover .title { color:var(--brand); }
+  .stepper li.active .bubble { background:var(--brand); color:#ffffff; border-color:var(--brand); }
+  .stepper li.active .title { color:var(--brand); }
+  .stepper li.done .bubble { background:var(--brand); color:#ffffff; border-color:var(--brand); }
+  .stepper li.conn::before { background:var(--brand); }
+  /* A branch step puts its pill in the failed-branch column. */
+  .stepper li.branch .bubble {
+    grid-column:2; width:auto; min-width:26px; height:22px;
+    padding:0 7px; border-radius:999px; font-size:10px;
+    background:#fef2f2; color:var(--fail); border:1px dashed var(--fail);
+  }
+  .stepper li.branch .title { font-size:12px; font-weight:500; color:var(--muted); padding-top:2px; }
+  .stepper li.branch-more .bubble { font-size:13px; line-height:1; padding-bottom:2px; }
+  /* The failed-branch rail. It runs in the middle column, and the pills cover
+     the part behind them, so only the gaps between pills show the line. */
+  .stepper li.branch::after {
+    content:""; position:absolute; left:53px; top:22px; bottom:0; width:0;
+    border-left:2px dashed var(--fail);
+  }
+  /* The fork: a connector from the trunk rail into the first branch step. */
+  .stepper li:not(.branch) + .branch .bubble::before {
+    content:""; position:absolute; left:-24px; top:50%; width:24px;
+    border-top:2px dashed var(--fail);
+  }
+  /* The rejoin: the last branch step connects back to the trunk rail. */
+  .stepper li.branch.branch-end::after { display:none; }
+  .stepper li.branch.branch-end .bubble::after {
+    content:""; position:absolute; left:-24px; top:50%; width:24px;
+    border-top:2px dashed var(--fail);
+  }
+  .stepper li.branch.active .bubble { background:var(--fail); color:#ffffff; border-style:solid; }
+  .stepper li.branch.active .title { color:var(--fail); }
+  /* A completed branch step is filled, like a completed main step, and the rail
+     through it is solid. */
+  .stepper li.branch.done .bubble { background:var(--fail); color:#ffffff; border-style:solid; }
+  .stepper li.branch.done::after { border-left-style:solid; }
+  .stepper code { font-family:var(--mono); font-size:12px; }
+
+  /* Jargon tooltips. A dotted term explains itself on hover. One floating
+     element serves every term, and the glossary lives in the script below. */
+  .term { border-bottom:1px dashed var(--brand); cursor:help; }
+  .term:hover { background:var(--brand-soft); }
+  .tip {
+    position:absolute; z-index:60; max-width:300px;
+    background:var(--ink); color:#f8fafc;
+    font-size:12.5px; line-height:1.45;
+    padding:8px 10px; border-radius:8px;
+    box-shadow:0 8px 24px rgba(15,23,42,.28);
+    pointer-events:none; opacity:0; transition:opacity .12s ease;
+  }
+  .tip.show { opacity:1; }
+  .tip::after {
+    content:""; position:absolute; left:50%; bottom:-4px; width:9px; height:9px;
+    background:var(--ink); transform:translateX(-50%) rotate(45deg);
+  }
+  .tip.below::after { bottom:auto; top:-4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <nav class="tabs">
+      <button type="button" class="tab" data-flow="start">Choose a flow</button>
+      <button type="button" class="tab" data-flow="normal-release">Normal release</button>
+      <button type="button" class="tab" data-flow="roll-back">Roll back</button>
+      <button type="button" class="tab" data-flow="deploy-to-dev">Deploy to DEV</button>
+      <button type="button" class="tab" data-flow="hotfix-from-trunk">Hotfix from trunk</button>
+      <button type="button" class="tab" data-flow="hotfix-from-tag">Hotfix from tag</button>
+    </nav>
+  </header>
+
+  <section class="flow" data-flow="start">
+  <div class="goal">
+    <span class="goal-label">Start</span>
+    <p class="goal-text">Follow the tree to the flow that fits the situation. Every branch is shown; open the flow at the end of it.</p>
+  </div>
+
+  <div class="decider">
+    <div class="tree" id="flow-tree">
+      <svg class="treelines" id="tree-lines" aria-hidden="true"></svg>
+    </div>
+  </div>
+  </section>
+
+  <section class="flow" data-flow="normal-release">
+  <div class="goal">
+    <span class="goal-label">Goal</span>
+    <p class="goal-text">Release product1 1.5.0 from the trunk, without shipping product2's unfinished work.</p>
+  </div>
+
+  <div class="layout">
+    <aside class="panel">
+      <div class="panel-head"><h2>Release steps</h2></div>
+      <ol class="stepper">
+        <li data-step="1"><span class="bubble">1</span><span class="title">An operator queues <code>bump</code>, which creates the rc tag</span></li>
+        <li data-step="2"><span class="bubble">2</span><span class="title">An operator queues <code>deploy</code>, which builds and deploys to QA</span></li>
+        <li data-step="3"><span class="bubble">3</span><span class="title">An operator checks the release on QA</span></li>
+        <li data-step="3.1" class="branch" data-branch="3"><span class="bubble">3.1</span><span class="title">An operator finds a bug on QA</span></li>
+        <li class="branch branch-more" data-branch="3"><span class="bubble">&#8942;</span></li>
+        <li data-step="3.2" class="branch branch-mid" data-branch="3"><span class="bubble">3.2</span><span class="title">An operator makes a fix branch from the trunk and commits the fix</span></li>
+        <li data-step="3.3" class="branch branch-mid" data-branch="3"><span class="bubble">3.3</span><span class="title">The pull request is merged, and <code>ci</code> validates the fix</span></li>
+        <li data-step="3.4" class="branch branch-mid" data-branch="3"><span class="bubble">3.4</span><span class="title">An operator queues <code>bump</code>, which continues the rc line</span></li>
+        <li data-step="3.5" class="branch branch-mid" data-branch="3"><span class="bubble">3.5</span><span class="title">An operator queues <code>deploy</code>, which builds and deploys the fix to QA</span></li>
+        <li data-step="3.6" class="branch branch-end" data-branch="3"><span class="bubble">3.6</span><span class="title">The operator confirms the fix on QA</span></li>
+        <li data-step="4"><span class="bubble">4</span><span class="title">An operator queues <code>release</code> for product1, which derives the final version</span></li>
+        <li data-step="5"><span class="bubble">5</span><span class="title">The approver approves the release</span></li>
+        <li data-step="6"><span class="bubble">6</span><span class="title"><code>release</code> creates the final tag and promotes the candidate</span></li>
+        <li data-step="7"><span class="bubble">7</span><span class="title">An operator confirms the release on Production</span></li>
+      </ol>
+    </aside>
+
+    <div class="main">
+      <section class="panel">
+        <div class="cols">
+          <div></div>
+          <div class="head-cell">Commit</div>
+          <div class="head-cell">Environments</div>
+          <div class="head-cell right">Author</div>
+          <div class="head-cell right">SHA</div>
+        </div>
+        <div class="commits" id="commits"></div>
+        <div class="legend">
+          <span><span class="pill p1">product1-v1.5.0-rc</span> product1 stage tag</span>
+          <span><span class="pill p2">product2-v3.1.0-rc</span> product2 stage tag</span>
+          <span><span class="pill p1 planned">product1-v1.5.0</span> planned version, no tag yet</span>
+          <span><span class="pill p1 release">product1-v1.5.0</span> filled tag means released</span>
+          <span><span class="envchip p1 filled">product1 &middot; QA</span> environment validated and confirmed</span>
+          <span><span class="envchip p1">product1 &middot; Production</span> environment deployed, not validated yet</span>
+          <span><span class="swatchline"></span> feature branch, squashed into the candidate commit</span>
+        </div>
+      </section>
+    </div>
+  </div>
+  </section>
+
+  <section class="flow" data-flow="roll-back" hidden>
+    <div class="goal">
+      <span class="goal-label">Goal</span>
+      <p class="goal-text">Put the previous release back on production, without writing code and without making a release.</p>
+    </div>
+
+    <div class="layout">
+      <aside class="panel">
+        <div class="panel-head"><h2>Rollback steps</h2></div>
+        <ol class="stepper">
+          <li data-step="1"><span class="bubble">1</span><span class="title">An operator finds an issue on production</span></li>
+          <li data-step="2"><span class="bubble">2</span><span class="title">An operator queues <code>deploy</code> with the tag of the previous release</span></li>
+          <li data-step="3"><span class="bubble">3</span><span class="title">The rollback is confirmed on production</span></li>
+        </ol>
+      </aside>
+
+      <div class="main">
+        <section class="panel">
+          <div class="cols">
+            <div></div>
+            <div class="head-cell">Commit</div>
+            <div class="head-cell">Environments</div>
+            <div class="head-cell right">Author</div>
+            <div class="head-cell right">SHA</div>
+          </div>
+          <div class="commits"></div>
+          <div class="legend">
+            <span><span class="pill p1 release">product1-v1.5.0</span> the broken release</span>
+            <span><span class="pill p1 release">product1-v1.4.2</span> the previous release, deployed again</span>
+            <span><span class="envchip p1 filled">product1 &middot; Production</span> environment validated and confirmed</span>
+            <span><span class="envchip p1">product1 &middot; Production</span> environment deployed, not validated yet</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow" data-flow="deploy-to-dev" hidden>
+    <div class="goal">
+      <span class="goal-label">Goal</span>
+      <p class="goal-text">Put a beta tag on DEV and check it, without making a release.</p>
+    </div>
+
+    <div class="layout">
+      <aside class="panel">
+        <div class="panel-head"><h2>Deploy steps</h2></div>
+        <ol class="stepper">
+          <li data-step="1"><span class="bubble">1</span><span class="title">A feature branch is ready to merge</span></li>
+          <li data-step="2"><span class="bubble">2</span><span class="title"><code>ci</code> validates the trunk</span></li>
+          <li data-step="2.1" class="branch" data-branch="2"><span class="bubble">2.1</span><span class="title"><code>ci</code> fails on the trunk</span></li>
+          <li class="branch branch-more" data-branch="2"><span class="bubble">&#8942;</span></li>
+          <li data-step="2.2" class="branch branch-mid" data-branch="2"><span class="bubble">2.2</span><span class="title">An operator makes a fix branch from the trunk and commits the fix</span></li>
+          <li data-step="2.3" class="branch branch-end" data-branch="2"><span class="bubble">2.3</span><span class="title">The pull request is merged, and <code>ci</code> validates the fix</span></li>
+          <li data-step="3"><span class="bubble">3</span><span class="title">An operator queues <code>bump</code>, which creates the beta tag</span></li>
+          <li data-step="4"><span class="bubble">4</span><span class="title">An operator queues <code>deploy</code>, which builds and deploys to DEV</span></li>
+          <li data-step="5"><span class="bubble">5</span><span class="title">An operator checks the release on DEV</span></li>
+          <li data-step="5.1" class="branch" data-branch="5"><span class="bubble">5.1</span><span class="title">The operator finds an issue on DEV</span></li>
+          <li class="branch branch-more" data-branch="5"><span class="bubble">&#8942;</span></li>
+          <li data-step="5.2" class="branch branch-mid" data-branch="5"><span class="bubble">5.2</span><span class="title">An operator makes a fix branch from the trunk and commits the fix</span></li>
+          <li data-step="5.3" class="branch branch-mid" data-branch="5"><span class="bubble">5.3</span><span class="title">The pull request is merged, and <code>ci</code> validates the fix</span></li>
+          <li data-step="5.4" class="branch branch-mid" data-branch="5"><span class="bubble">5.4</span><span class="title">An operator queues <code>bump</code>, which continues the beta line</span></li>
+          <li data-step="5.5" class="branch branch-mid" data-branch="5"><span class="bubble">5.5</span><span class="title">An operator queues <code>deploy</code>, which builds and deploys the fix to DEV</span></li>
+          <li data-step="5.6" class="branch branch-end" data-branch="5"><span class="bubble">5.6</span><span class="title">The operator confirms the fix on DEV</span></li>
+        </ol>
+      </aside>
+
+      <div class="main">
+        <section class="panel">
+          <div class="cols">
+            <div></div>
+            <div class="head-cell">Commit</div>
+            <div class="head-cell">Environments</div>
+            <div class="head-cell right">Author</div>
+            <div class="head-cell right">SHA</div>
+          </div>
+          <div class="commits"></div>
+          <div class="legend">
+            <span><span class="pill p1">product1-v1.5.0-beta</span> product1 beta tag</span>
+            <span><span class="envchip p1 filled">product1 &middot; DEV</span> environment validated and confirmed</span>
+            <span><span class="envchip p1">product1 &middot; DEV</span> environment deployed, not validated yet</span>
+            <span><span class="swatchline fail"></span> fix branch, squashed into the trunk</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow" data-flow="hotfix-from-trunk" hidden>
+    <div class="goal">
+      <span class="goal-label">Goal</span>
+      <p class="goal-text">Fix a broken release from the trunk, without shipping unfinished work.</p>
+    </div>
+
+    <div class="layout">
+      <aside class="panel">
+        <div class="panel-head"><h2>Hotfix steps</h2></div>
+        <ol class="stepper">
+          <li data-step="1"><span class="bubble">1</span><span class="title">An operator finds an issue on production</span></li>
+          <li data-step="2"><span class="bubble">2</span><span class="title">An operator makes a hotfix branch from the trunk and commits the fix</span></li>
+          <li data-step="3"><span class="bubble">3</span><span class="title">The pull request is merged, and <code>ci</code> validates every product</span></li>
+          <li data-step="4"><span class="bubble">4</span><span class="title">An operator queues <code>bump</code>, which creates the patch candidate tag</span></li>
+          <li data-step="5"><span class="bubble">5</span><span class="title">An operator queues <code>deploy</code>, which builds and deploys to QA</span></li>
+          <li data-step="6"><span class="bubble">6</span><span class="title">An operator checks the fix on QA</span></li>
+          <li data-step="6.1" class="branch" data-branch="6"><span class="bubble">6.1</span><span class="title">An operator finds another issue on QA</span></li>
+          <li class="branch branch-more" data-branch="6"><span class="bubble">&#8942;</span></li>
+          <li data-step="6.2" class="branch branch-mid" data-branch="6"><span class="bubble">6.2</span><span class="title">An operator makes a fix branch from the trunk and commits the fix</span></li>
+          <li data-step="6.3" class="branch branch-mid" data-branch="6"><span class="bubble">6.3</span><span class="title">The pull request is merged, and <code>ci</code> validates the fix</span></li>
+          <li data-step="6.4" class="branch branch-mid" data-branch="6"><span class="bubble">6.4</span><span class="title">An operator queues <code>bump</code>, which continues the rc line</span></li>
+          <li data-step="6.5" class="branch branch-mid" data-branch="6"><span class="bubble">6.5</span><span class="title">An operator queues <code>deploy</code>, which builds and deploys the fix to QA</span></li>
+          <li data-step="6.6" class="branch branch-end" data-branch="6"><span class="bubble">6.6</span><span class="title">The operator confirms the fix on QA</span></li>
+          <li data-step="7"><span class="bubble">7</span><span class="title">An operator queues <code>release</code>, which derives the final version</span></li>
+          <li data-step="8"><span class="bubble">8</span><span class="title">The approver approves the release</span></li>
+          <li data-step="9"><span class="bubble">9</span><span class="title"><code>release</code> tags and promotes</span></li>
+          <li data-step="10"><span class="bubble">10</span><span class="title">An operator confirms the release on Production</span></li>
+        </ol>
+      </aside>
+
+      <div class="main">
+        <section class="panel">
+          <div class="cols">
+            <div></div>
+            <div class="head-cell">Commit</div>
+            <div class="head-cell">Environments</div>
+            <div class="head-cell right">Author</div>
+            <div class="head-cell right">SHA</div>
+          </div>
+          <div class="commits"></div>
+          <div class="legend">
+            <span><span class="pill p1">product1-v1.5.1-rc</span> patch candidate tag</span>
+            <span><span class="pill p1 planned">product1-v1.5.1</span> planned version, no tag yet</span>
+            <span><span class="pill p1 release">product1-v1.5.1</span> filled tag means released</span>
+            <span><span class="envchip p1 filled">product1 &middot; QA</span> environment validated and confirmed</span>
+            <span><span class="envchip p1">product1 &middot; Production</span> environment deployed, not validated yet</span>
+            <span><span class="swatchline"></span> hotfix branch, squashed into the trunk</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow" data-flow="hotfix-from-tag" hidden>
+    <div class="goal">
+      <span class="goal-label">Goal</span>
+      <p class="goal-text">Fix a broken release from its tag, without shipping the trunk work that must not reach customers.</p>
+    </div>
+
+    <div class="layout">
+      <aside class="panel">
+        <div class="panel-head"><h2>Hotfix steps</h2></div>
+        <ol class="stepper">
+          <li data-step="1"><span class="bubble">1</span><span class="title">An operator finds an issue on production</span></li>
+          <li data-step="2"><span class="bubble">2</span><span class="title">An operator makes a fix branch from the trunk and commits the fix</span></li>
+          <li data-step="3"><span class="bubble">3</span><span class="title">The pull request is merged, and <code>ci</code> validates the fix on the trunk</span></li>
+          <li data-step="4"><span class="bubble">4</span><span class="title">An operator makes a release branch from the released tag and cherry-picks the fix onto it</span></li>
+          <li data-step="5"><span class="bubble">5</span><span class="title">An operator queues <code>bump</code>, which creates the patch candidate tag on the release branch</span></li>
+          <li data-step="6"><span class="bubble">6</span><span class="title">An operator queues <code>deploy</code>, which builds and deploys to QA</span></li>
+          <li data-step="7"><span class="bubble">7</span><span class="title">An operator checks the fix on QA</span></li>
+          <li data-step="7.1" class="branch" data-branch="7"><span class="bubble">7.1</span><span class="title">An operator finds an issue on QA</span></li>
+          <li class="branch branch-more" data-branch="7"><span class="bubble">&#8942;</span></li>
+          <li data-step="7.2" class="branch branch-mid" data-branch="7"><span class="bubble">7.2</span><span class="title">An operator makes a fix branch from the trunk and commits the fix</span></li>
+          <li data-step="7.3" class="branch branch-mid" data-branch="7"><span class="bubble">7.3</span><span class="title">The pull request is merged, and <code>ci</code> validates the fix on the trunk</span></li>
+          <li data-step="7.4" class="branch branch-mid" data-branch="7"><span class="bubble">7.4</span><span class="title">An operator cherry-picks the fix onto the release branch</span></li>
+          <li data-step="7.5" class="branch branch-mid" data-branch="7"><span class="bubble">7.5</span><span class="title">An operator queues <code>bump</code>, which continues the rc line</span></li>
+          <li data-step="7.6" class="branch branch-mid" data-branch="7"><span class="bubble">7.6</span><span class="title">An operator queues <code>deploy</code>, which builds and deploys the fix to QA</span></li>
+          <li data-step="7.7" class="branch branch-end" data-branch="7"><span class="bubble">7.7</span><span class="title">The operator confirms the fix on QA</span></li>
+          <li data-step="8"><span class="bubble">8</span><span class="title">An operator queues <code>release</code>, which derives the final version</span></li>
+          <li data-step="9"><span class="bubble">9</span><span class="title">The approver approves the release</span></li>
+          <li data-step="10"><span class="bubble">10</span><span class="title"><code>release</code> tags and promotes</span></li>
+          <li data-step="11"><span class="bubble">11</span><span class="title">An operator confirms the release on Production</span></li>
+          <li data-step="12"><span class="bubble">12</span><span class="title">An operator deletes the release branch</span></li>
+        </ol>
+      </aside>
+
+      <div class="main">
+        <section class="panel">
+          <div class="cols">
+            <div></div>
+            <div class="head-cell">Commit</div>
+            <div class="head-cell">Environments</div>
+            <div class="head-cell right">Author</div>
+            <div class="head-cell right">SHA</div>
+          </div>
+          <div class="commits"></div>
+          <div class="legend">
+            <span><span class="pill p1">product1-v1.5.1-rc</span> patch candidate tag</span>
+            <span><span class="pill p1 planned">product1-v1.5.1</span> planned version, no tag yet</span>
+            <span><span class="pill p1 release">product1-v1.5.1</span> filled tag means released</span>
+            <span><span class="envchip p1 filled">product1 &middot; QA</span> environment validated and confirmed</span>
+            <span><span class="envchip p1">product1 &middot; Production</span> environment deployed, not validated yet</span>
+            <span><span class="swatchline rel"></span> release branch, cut from the released tag</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var allCommits = [
+    { sha: "d4e5f6a", subject: "fix(product1): correct the export filters", author: "Priya Nair", date: "2026-10-09 11:20", qaFixSquash: true, tags: [], envs: [] },
+    { sha: "e5f6a7b", subject: "fix(product1): guard the export filters", author: "Priya Nair", date: "2026-10-09 10:45", qaFixBranch: true, tags: [], envs: [] },
+    { sha: "a1b2c3d", subject: "feat(product1): add export endpoint", author: "Priya Nair", date: "2026-10-07 17:45", squash: true, qaFixFork: true, tags: [], envs: [] },
+    { sha: "b2c3d4e", subject: "feat(product2): add dashboard filters", author: "Marco Rossi", date: "2026-10-07 16:20", tags: [], envs: [] },
+    { sha: "9f8e7d6", subject: "feat(product1): add export filters", author: "Priya Nair", date: "2026-09-28 14:02", fork: true, envs: [
+      { product: "product1", environment: "QA" },
+      { product: "product1", environment: "Production" }
+    ], tags: [
+      { name: "product1-v1.4.2-beta", kind: "p1" },
+      { name: "product1-v1.4.2-rc", kind: "p1" },
+      { name: "product1-v1.4.2", kind: "p1", release: true }
+    ] },
+    { sha: "8e7d6c5", subject: "docs(product1): document the export API", author: "Priya Nair", date: "2026-09-24 10:05", tags: [], envs: [] },
+    { sha: "8f7e6d5", subject: "feat(product2): add dashboard charts", author: "Marco Rossi", date: "2026-09-22 10:15", tags: [{ name: "product2-v3.1.0-beta", kind: "p2" }], envs: [
+      { product: "product2", environment: "DEV" }
+    ] },
+    { sha: "7c6b5a4", subject: "feat(product2): add dashboard skeleton", author: "Marco Rossi", date: "2026-09-20 09:40", envs: [
+      { product: "product2", environment: "QA" },
+      { product: "product2", environment: "Production" }
+    ], tags: [
+      { name: "product2-v3.0.1-beta", kind: "p2" },
+      { name: "product2-v3.0.1-rc", kind: "p2" },
+      { name: "product2-v3.0.1", kind: "p2", release: true }
+    ] },
+    { sha: "6b5a493", subject: "feat(product1): add import endpoint", author: "Priya Nair", date: "2026-09-18 10:40", tags: [], envs: [] }
+  ];
+
+  var container = document.getElementById("commits");
+  var stepperEl = document.querySelector(".stepper");
+  var stepItems = stepperEl ? Array.prototype.slice.call(stepperEl.querySelectorAll("li[data-step]")) : [];
+  var stepLabels = stepItems.map(function (li) { return li.getAttribute("data-step"); });
+  var totalSteps = stepLabels.length;
+  // A label is a number for a step on the main line and a dotted number for a
+  // branch step, for example 2.1. The state logic compares the numeric value.
+  function stepValue(label) { return parseFloat(label); }
+  var currentStep = (function () {
+    var f = /[?&]flow=([^&]+)/.exec(location.search);
+    var flow = f ? decodeURIComponent(f[1]) : "normal-release";
+    if (flow !== "normal-release") return stepLabels[0];
+    var m = /[?&]step=([^&]+)/.exec(location.search);
+    var label = m ? decodeURIComponent(m[1]) : "";
+    return stepLabels.indexOf(label) >= 0 ? label : stepLabels[0];
+  })();
+  var railW = 96;
+  var devX = 17, featX = 49, fixX = 81;
+  var devColor = "#cbd5e1", featColor = "#0f766e", fixColor = "#dc2626";
+  var brand = "#2563eb", brandSoft = "#dbeafe";
+  // Each branch: the fork it starts from, the commits on it, and the squash commit
+  // it merges into on the trunk.
+  var branchDefs = [
+    { fork: "qaFixFork", tip: "qaFixBranch", squash: "qaFixSquash", x: featX, color: fixColor }
+  ];
+
+  function commitsForStep(label) {
+    var step = stepValue(label);
+    var list = allCommits.slice();
+    // The QA-failure fix. Its commits show only on 3.2 to 3.6.
+    var onQaFixPath = label === "3.2" || label === "3.3" || label === "3.4" || label === "3.5" || label === "3.6";
+    if (!onQaFixPath) {
+      list = list.filter(function (c) { return !c.qaFixBranch && !c.qaFixSquash; });
+    }
+    if (label === "3.2") {
+      list = list.filter(function (c) { return !c.qaFixSquash; });
+    }
+    // The trunk tip is the newest squash commit present. The candidate carries the
+    // rc tag. On the QA fix the candidate is the commit QA tested, and the fix is
+    // a new commit after it.
+    var tip = null;
+    list.forEach(function (c) {
+      if (!tip && (c.squash || c.qaFixSquash)) tip = c.sha;
+    });
+    var candidate = onQaFixPath ? "a1b2c3d" : tip;
+
+    // At 3.2 the artifact is the fix branch commit, not the trunk tip.
+    var selected = tip;
+    if (label === "3.2") {
+      var fix = list.filter(function (c) { return c.qaFixBranch; })[0];
+      if (fix) selected = fix.sha;
+    }
+
+    return list.map(function (c) {
+      var copy = Object.assign({}, c);
+      copy.selected = c.sha === selected;
+      copy.tags = (c.tags || []).map(function (t) { return Object.assign({}, t); });
+      copy.envs = (c.envs || []).map(function (e) { return Object.assign({}, e); });
+
+      if (c.sha === candidate) {
+        if (step >= 1) copy.tags.push({ name: "product1-v1.5.0-rc", kind: "p1" });
+        if (step >= 4) copy.tags.push({
+          name: "product1-v1.5.0", kind: "p1",
+          planned: step < 6, approved: step >= 5, release: step >= 6
+        });
+        if (step >= 2) copy.envs.push({ product: "product1", environment: "QA", validated: step >= 3 });
+        if (step >= 6) copy.envs.push({ product: "product1", environment: "Production", validated: step >= 7 });
+      }
+      // The QA fix continues the rc line on the fix commit, and QA is redeployed
+      // with it before the check repeats.
+      if (onQaFixPath && c.sha === tip) {
+        if (step >= 3.4) copy.tags.push({ name: "product1-v1.5.0-rc.1", kind: "p1" });
+        if (step >= 3.5) copy.envs.push({ product: "product1", environment: "QA", validated: step >= 3.6 });
+      }
+      if (copy.fork) {
+        if (step >= 2) copy.envs = copy.envs.filter(function (e) {
+          return !(e.product === "product1" && e.environment === "QA");
+        });
+        if (step >= 6) copy.envs = copy.envs.filter(function (e) {
+          return !(e.product === "product1" && e.environment === "Production");
+        });
+      }
+      return copy;
+    });
+  }
+
+  function focusForStep(label) {
+    var step = stepValue(label);
+    if (label === "3.1" || label === "3.2" || label === "3.3") return "commit";
+    if (step === 1 || step === 4 || step === 5 || label === "3.4") return "tag";
+    return "env";
+  }
+
+  function commitLegendForStep(label) {
+    if (label === "3.1") return "an operator finds a bug on this rc tag";
+    if (label === "3.2") return "a fix branch is created from the trunk";
+    if (label === "3.3") return "the fix is merged into the trunk";
+    return "the release candidate commit \u00b7 validated by the ci pipeline";
+  }
+
+  function tagLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 4) return "added by the release pipeline";
+    if (step === 5) return "approved by the approver";
+    return "added by the bump pipeline";
+  }
+
+  function envLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 3 || label === "3.6") return "confirmed by an operator";
+    if (step === 6) return "promoted to production";
+    if (step === 7) return "confirmed on production";
+    return "deployed by the deploy pipeline";
+  }
+
+  // A branch step is part of a failure path, so the frame over its artifact is red.
+  function branchFrame() { return currentStep.indexOf(".") >= 0 ? " failed" : ""; }
+
+  function buildHtml(commits) {
+    var html = "";
+    commits.forEach(function (c) {
+      var classes = "commit";
+      if (c.selected) classes += " selected";
+      if (c.wip) classes += " wip";
+      if (c.branch) classes += " branch";
+      if (c.fixBranch) classes += " fixbranch";
+      if (c.devFixBranch) classes += " devfixbranch";
+      if (c.qaFixBranch) classes += " qafixbranch";
+      if (c.subject.indexOf("(product2)") >= 0) classes += " p2row";
+
+      var badges = (c.tags || []).map(function (t) {
+        var cls = "pill " + t.kind;
+        if (t.planned) cls += " planned" + (t.approved ? " approved" : "");
+        else if (t.release) cls += " release";
+        return '<span class="' + cls + '">' + t.name + '</span>';
+      }).join("");
+      var focus = c.selected ? focusForStep(currentStep) : "";
+      if (c.selected && focus !== "commit") classes += " tagged";
+
+      var badgesHtml = "";
+      if (c.selected && focus === "commit") {
+        badgesHtml = badges
+          ? '<div class="badges">' + badges + '</div>'
+          : '<div class="badges"><span class="pill ghost">no tag yet</span></div>';
+      } else if (c.selected && focus === "tag") {
+        badgesHtml = '<div class="fieldbox wide' + branchFrame() + '">' +
+          '<span class="fieldbox-legend">' + tagLegendForStep(currentStep) + '</span>' +
+          '<div class="badges">' + badges + '</div></div>';
+      } else if (badges) {
+        badgesHtml = '<div class="badges">' + badges + '</div>';
+      }
+
+      var envs = (c.envs || []).map(function (e) {
+        var k = e.product === "product1" ? "p1" : "p2";
+        var filled = e.validated !== false ? " filled" : "";
+        return '<span class="envchip ' + k + filled + '">' + e.product + ' &middot; ' + e.environment + '</span>';
+      }).join("");
+
+      var envsHtml;
+      if (c.selected && focus === "env") {
+        envsHtml = '<div class="fieldbox' + branchFrame() + '">' +
+          '<span class="fieldbox-legend">' + envLegendForStep(currentStep) + '</span>' +
+          '<div class="envcell">' + envs + '</div></div>';
+      } else {
+        envsHtml = '<div class="envcell">' + envs + '</div>';
+      }
+
+      var frame = (c.selected && focus === "commit")
+        ? '<div class="frame' + branchFrame() + '">' +
+          '<span class="frame-legend">' + commitLegendForStep(currentStep) + '</span></div>'
+        : "";
+
+      html +=
+        '<div class="' + classes + '">' +
+          '<div class="rail"></div>' +
+          '<div class="msg"><div class="subject">' + c.subject + '</div>' + badgesHtml + '</div>' +
+          envsHtml +
+          '<div class="who">' + c.author + '<span class="date">' + c.date + '</span></div>' +
+          '<div class="sha">' + c.sha + '</div>' +
+          frame +
+        '</div>';
+    });
+    return html;
+  }
+
+  function drawGraph(commits) {
+    var rows = Array.prototype.slice.call(container.querySelectorAll(".commit"));
+    if (!rows.length) return;
+
+    var rect = container.getBoundingClientRect();
+    var centers = rows.map(function (r) {
+      var rr = r.getBoundingClientRect();
+      return rr.top - rect.top + rr.height / 2;
+    });
+    var height = container.offsetHeight;
+    var width = railW;
+
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "graphlines");
+    svg.setAttribute("width", String(width));
+    svg.setAttribute("height", String(height));
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+
+    var parts = [];
+
+    parts.push('<line x1="' + devX + '" y1="' + centers[0] + '" x2="' + devX + '" y2="' +
+      centers[centers.length - 1] + '" stroke="' + devColor + '" stroke-width="2"/>');
+
+    branchDefs.forEach(function (def) {
+      var fork = -1, squash = -1, tip = -1;
+      commits.forEach(function (c, i) {
+        if (c[def.fork]) fork = i;
+        if (c[def.squash]) squash = i;
+        if (c[def.tip] && tip === -1) tip = i;
+      });
+      if (fork < 0 || tip < 0) return;
+
+      var fy = centers[fork], ty = centers[tip], R = 8;
+      var solid = "M" + devX + "," + fy +
+        " L" + (def.x - R) + "," + fy +
+        " A" + R + "," + R + " 0 0 0 " + def.x + "," + (fy - R) +
+        " L" + def.x + "," + ty;
+      parts.push('<path d="' + solid + '" fill="none" stroke="' + def.color + '" stroke-width="2"/>');
+
+      if (squash < 0) return;
+      var sy = centers[squash], R2 = 8;
+      var dashed = "M" + def.x + "," + ty +
+        " L" + def.x + "," + (sy + R2) +
+        " A" + R2 + "," + R2 + " 0 0 0 " + (def.x - R2) + "," + sy +
+        " L" + devX + "," + sy;
+      parts.push('<path d="' + dashed + '" fill="none" stroke="' + def.color + '" stroke-width="2" ' +
+        'stroke-dasharray="4 4" opacity="0.55"/>');
+    });
+
+    rows.forEach(function (r, i) {
+      var c = commits[i];
+      var x = devX, stroke = devColor;
+      branchDefs.forEach(function (def) {
+        if (c[def.tip]) { x = def.x; stroke = def.color; }
+      });
+      if (c.selected) {
+        parts.push('<circle cx="' + x + '" cy="' + centers[i] + '" r="11" fill="none" stroke="' +
+          brandSoft + '" stroke-width="5"/>');
+        stroke = brand;
+      }
+      parts.push('<circle cx="' + x + '" cy="' + centers[i] + '" r="7" fill="#ffffff" stroke="' +
+        stroke + '" stroke-width="3"/>');
+    });
+
+    svg.innerHTML = parts.join("");
+    container.appendChild(svg);
+  }
+
+  // Each tab is one flow. Only the active flow is shown, and the URL names it.
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var flows = Array.prototype.slice.call(document.querySelectorAll(".flow"));
+  var flowNames = tabs.map(function (t) { return t.getAttribute("data-flow"); });
+  var currentFlow = (function () {
+    var m = /[?&]flow=([^&]+)/.exec(location.search);
+    var name = m ? decodeURIComponent(m[1]) : "";
+    return flowNames.indexOf(name) >= 0 ? name : flowNames[0];
+  })();
+
+  function selectFlow(name) {
+    currentFlow = name;
+    tabs.forEach(function (t) { t.classList.toggle("active", t.getAttribute("data-flow") === name); });
+    flows.forEach(function (f) { f.hidden = f.getAttribute("data-flow") !== name; });
+    var link = document.querySelector(".flowdoc");
+    if (link) {
+      link.hidden = name === "start";
+      link.setAttribute("href", name + ".md");
+    }
+    if (name === "normal-release") render();
+    var renderer = name === "hotfix-from-trunk" ? window.renderHotfix : name === "hotfix-from-tag" ? window.renderHotfixTag : name === "deploy-to-dev" ? window.renderDeployToDev : name === "roll-back" ? window.renderRollBack : null;
+    if (typeof renderer === "function") renderer();
+    if (name === "start" && typeof window.renderFlowTree === "function") window.renderFlowTree();
+    updateUrl();
+  }
+
+  function updateUrl() {
+    if (!window.history || !history.replaceState) return;
+    // The start page has no flow; the address is the bare page.
+    if (currentFlow === "start") {
+      history.replaceState(null, "", location.pathname);
+      return;
+    }
+    // The hotfix flow owns its own URL and its own step.
+    if (currentFlow !== "normal-release") return;
+    history.replaceState(null, "", location.pathname + "?flow=normal-release&step=" + encodeURIComponent(currentStep));
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      currentFlow = t.getAttribute("data-flow");
+      selectFlow(currentFlow);
+      updateUrl();
+    });
+  });
+
+  function render() {
+    var commits = commitsForStep(currentStep);
+    container.innerHTML = buildHtml(commits);
+    drawGraph(commits);
+    var idx = stepLabels.indexOf(currentStep);
+    var onBranch = stepLabels[idx].indexOf(".") >= 0;
+    var currentBranch = onBranch ? stepLabels[idx].split(".")[0] : "";
+    updateUrl();
+    // A branch collapses to its first and last step. It expands while the flow sits
+    // on one of its own steps, so 2.1, 2.2, 2.3, and 2.4 are all reachable.
+    stepItems.forEach(function (li) {
+      if (!li.classList.contains("branch-mid")) return;
+      li.style.display = currentBranch === li.getAttribute("data-branch") ? "" : "none";
+    });
+    [].forEach.call(stepperEl.querySelectorAll(".branch-more"), function (li) {
+      var branch = li.getAttribute("data-branch");
+      var last = -1;
+      stepLabels.forEach(function (l, i) {
+        if (l.indexOf(branch + ".") === 0) last = i;
+      });
+      // The placeholder carries the trunk rail across the collapsed steps, so it
+      // takes the same colour as the rest of that rail once the branch is passed.
+      li.classList.toggle("conn", idx > last);
+      li.style.display = currentBranch === branch ? "none" : "";
+    });
+    // The trunk rail between a branch point and the next step is grey while the
+    // flow sits on that failed branch, because the flow did not go straight on.
+    var branchPoint = onBranch ? stepLabels.indexOf(currentBranch) : -1;
+    stepItems.forEach(function (li, i) {
+      // A branch step is done while the flow sits on a later step of the same
+      // branch, so 2.2 marks 2.1 done and 2.4 marks 2.1, 2.2, and 2.3 done. A
+      // branch the flow did not take is not done.
+      var isBranch = li.classList.contains("branch");
+      var passed = i < idx;
+      var conn = passed && !(onBranch && i >= branchPoint);
+      var sameBranch = isBranch && stepLabels[i].split(".")[0] === currentBranch;
+      var done = passed && (!isBranch || sameBranch);
+      li.classList.toggle("active", i === idx);
+      li.classList.toggle("passed", passed);
+      li.classList.toggle("conn", conn);
+      li.classList.toggle("done", done);
+      var bubble = li.querySelector(".bubble");
+      if (bubble) bubble.textContent = done ? "\u2713" : stepLabels[i];
+    });
+  }
+
+  if (stepperEl) {
+    stepperEl.addEventListener("click", function (e) {
+      var li = e.target.closest("li");
+      if (!li) return;
+      var label = li.getAttribute("data-step");
+      // A collapsed branch: clicking the dots opens it at its first hidden step.
+      if (!label && li.classList.contains("branch-more")) {
+        var branch = li.getAttribute("data-branch");
+        label = stepLabels.filter(function (l) { return l.indexOf(branch + ".") === 0; })[1];
+      }
+      if (!label || stepLabels.indexOf(label) < 0) return;
+      currentStep = label;
+      render();
+    });
+  }
+
+  function go(delta) {
+    var idx = stepLabels.indexOf(currentStep);
+    var target = idx + delta;
+    if (target < 0 || target >= totalSteps) return;
+    currentStep = stepLabels[target];
+    render();
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (currentFlow !== "normal-release") return;
+    if (e.key === "ArrowLeft") go(-1);
+    if (e.key === "ArrowRight") go(1);
+  });
+
+  window.addEventListener("resize", render);
+
+  selectFlow(currentFlow);
+})();
+
+// The start page: a decision tree that shows every branch at once. The layout is
+// computed from TREE, the edges are drawn from EDGES, and a terminal opens its
+// flow by clicking the matching tab, so the tab stays the single place that
+// changes flow. The render runs once and only while the start page is visible,
+// because a hidden node measures as zero.
+(function () {
+  var root = document.querySelector('.flow[data-flow="start"]');
+  if (!root) return;
+  var tree = root.querySelector("#flow-tree");
+  var lines = root.querySelector("#tree-lines");
+  if (!tree || !lines) return;
+
+  var QUESTIONS = {
+    root: "Is something broken in production right now?",
+    watch: "Was that release inside the product's watch window?",
+    critical: "Is this a critical fix to a version that is already released?",
+    changed: "Have the product's built paths changed on the trunk since the release tag?",
+    destination: "Where does this work need to go?"
+  };
+  var TERMINALS = {
+    rollback: { flow: "roll-back", title: "Roll back", goal: "Put the previous release back on production, without writing code and without making a release.", open: "Open the roll back flow" },
+    "hotfix-trunk": { flow: "hotfix-from-trunk", title: "Hotfix from trunk", goal: "Fix a released version when nothing the product is built from has changed since its release.", open: "Open the hotfix from trunk flow" },
+    "hotfix-tag": { flow: "hotfix-from-tag", title: "Hotfix from tag", goal: "Fix a released version when the trunk has moved ahead of the release and those changes must not reach customers.", open: "Open the hotfix from tag flow" },
+    dev: { flow: "deploy-to-dev", title: "Deploy to DEV", goal: "Check a feature on the DEV environment. It runs a beta tag, makes no final tag, and leaves production untouched.", open: "Open the deploy to DEV flow" },
+    release: { flow: "normal-release", title: "Normal release", goal: "Ship new work from the trunk. The flow starts at the release candidate, runs QA, and then production.", open: "Open the normal release flow" }
+  };
+  // Children drive the layout. A node appears once here even when more than one
+  // question reaches it.
+  var TREE = {
+    root: ["watch", "critical"],
+    watch: ["rollback"],
+    critical: ["changed", "destination"],
+    changed: ["hotfix-trunk", "hotfix-tag"],
+    destination: ["dev", "release"]
+  };
+  var EDGES = [
+    { from: "root", to: "watch", label: "Yes, a released product is failing" },
+    { from: "root", to: "critical", label: "No, new work or a reported bug" },
+    { from: "watch", to: "rollback", label: "Yes, inside the window, so it is a bad release" },
+    { from: "watch", to: "critical", label: "No, after the window, so it is a new incident" },
+    { from: "critical", to: "changed", label: "Yes" },
+    { from: "critical", to: "destination", label: "No, ordinary work" },
+    { from: "changed", to: "hotfix-trunk", label: "No, the trunk still matches the release" },
+    { from: "changed", to: "hotfix-tag", label: "Yes, unreleased changes sit in the built paths" },
+    { from: "destination", to: "dev", label: "Only onto DEV, so an operator can check it" },
+    { from: "destination", to: "release", label: "Through QA and on to production" }
+  ];
+
+  var NODE_W = 210;
+  var PITCH = 230;
+  var GAP = 104;
+  var PAD = 16;
+
+  function svgEl(tag) { return document.createElementNS("http://www.w3.org/2000/svg", tag); }
+  function isTerminal(id) { return !!TERMINALS[id]; }
+
+  function build() {
+    var ids = Object.keys(QUESTIONS).concat(Object.keys(TERMINALS));
+    var depth = {};
+    var leaves = [];
+    (function walk(id, d) {
+      if (depth[id] === undefined) depth[id] = d;
+      var kids = TREE[id] || [];
+      if (!kids.length) { leaves.push(id); return; }
+      kids.forEach(function (k) { walk(k, d + 1); });
+    })("root", 0);
+
+    // Leaves take a slot each, internal nodes centre over their children.
+    var center = {};
+    leaves.forEach(function (id, i) { center[id] = i * PITCH; });
+    ids.slice().sort(function (a, b) { return depth[b] - depth[a]; }).forEach(function (id) {
+      var kids = TREE[id] || [];
+      if (!kids.length) return;
+      var sum = 0;
+      kids.forEach(function (k) { sum += center[k]; });
+      center[id] = sum / kids.length;
+    });
+
+    var minLeft = Infinity, maxRight = -Infinity;
+    ids.forEach(function (id) { minLeft = Math.min(minLeft, center[id] - NODE_W / 2); });
+    var shift = PAD - minLeft;
+    ids.forEach(function (id) {
+      center[id] += shift;
+      maxRight = Math.max(maxRight, center[id] + NODE_W / 2);
+    });
+
+    var nodes = {};
+    ids.forEach(function (id) {
+      var el = document.createElement("div");
+      el.className = "tree-node" + (isTerminal(id) ? " terminal" : "");
+      if (isTerminal(id)) {
+        var t = TERMINALS[id];
+        el.innerHTML = '<span class="flow-badge">Result</span><p class="decide-q"></p><p class="decide-goal"></p><button type="button" class="decide-go"></button>';
+        el.querySelector(".decide-q").textContent = t.title;
+        el.querySelector(".decide-goal").textContent = t.goal;
+        var button = el.querySelector(".decide-go");
+        button.textContent = t.open;
+        button.setAttribute("data-flow", t.flow);
+      } else {
+        el.innerHTML = '<p class="decide-q"></p>';
+        el.querySelector(".decide-q").textContent = QUESTIONS[id];
+      }
+      el.style.left = (center[id] - NODE_W / 2) + "px";
+      tree.appendChild(el);
+      nodes[id] = el;
+    });
+
+    var box = {};
+    ids.forEach(function (id) {
+      box[id] = { w: nodes[id].offsetWidth, h: nodes[id].offsetHeight };
+    });
+
+    var maxDepth = 0;
+    ids.forEach(function (id) { maxDepth = Math.max(maxDepth, depth[id]); });
+    var rowH = [];
+    for (var r = 0; r <= maxDepth; r++) rowH[r] = 0;
+    ids.forEach(function (id) { rowH[depth[id]] = Math.max(rowH[depth[id]], box[id].h); });
+    var rowTop = [], y = 0;
+    for (var r2 = 0; r2 <= maxDepth; r2++) { rowTop[r2] = y; y += rowH[r2] + GAP; }
+    var totalH = y - GAP;
+
+    ids.forEach(function (id) {
+      var top = rowTop[depth[id]] + (rowH[depth[id]] - box[id].h) / 2;
+      nodes[id].style.top = top + "px";
+      box[id].left = center[id] - box[id].w / 2;
+      box[id].top = top;
+      box[id].cx = center[id];
+      box[id].cy = top + box[id].h / 2;
+      box[id].bottom = top + box[id].h;
+      box[id].right = box[id].left + box[id].w;
+    });
+
+    var totalW = maxRight + PAD;
+    tree.style.width = totalW + "px";
+    tree.style.height = totalH + "px";
+    lines.setAttribute("width", totalW);
+    lines.setAttribute("height", totalH);
+    lines.setAttribute("viewBox", "0 0 " + totalW + " " + totalH);
+
+    var incoming = {};
+    EDGES.forEach(function (e) { incoming[e.to] = (incoming[e.to] || 0) + 1; });
+    // Sibling edges meet the labelled row close together, because a parent is
+    // centred over its children. Spread their labels down the gap instead.
+    var siblings = {};
+    EDGES.forEach(function (e) {
+      if (depth[e.from] === depth[e.to]) return;
+      siblings[e.from] = (siblings[e.from] || 0) + 1;
+    });
+    var siblingAt = {};
+    var seen = {};
+    EDGES.forEach(function (e) {
+      var sameRow = depth[e.from] === depth[e.to];
+      var from, to;
+      if (sameRow) {
+        from = { x: box[e.from].right, y: box[e.from].cy };
+        to = { x: box[e.to].left, y: box[e.to].cy };
+      } else {
+        var i = seen[e.to] || 0;
+        seen[e.to] = i + 1;
+        var off = (i - (incoming[e.to] - 1) / 2) * 26;
+        from = { x: box[e.from].cx, y: box[e.from].bottom };
+        to = { x: box[e.to].cx + off, y: box[e.to].top };
+      }
+      var midY = (from.y + to.y) / 2;
+      var path = svgEl("path");
+      path.setAttribute("d", "M" + from.x + " " + from.y + " C" + from.x + " " + midY + " " + to.x + " " + midY + " " + to.x + " " + to.y);
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "var(--rail)");
+      path.setAttribute("stroke-width", "2");
+      lines.appendChild(path);
+
+      var dot = svgEl("circle");
+      dot.setAttribute("cx", to.x);
+      dot.setAttribute("cy", to.y);
+      dot.setAttribute("r", "3");
+      dot.setAttribute("fill", "var(--brand)");
+      lines.appendChild(dot);
+
+      if (e.label) {
+        var labelY = midY;
+        if (!sameRow) {
+          var s = siblingAt[e.from] || 0;
+          siblingAt[e.from] = s + 1;
+          labelY = midY + (s - (siblings[e.from] - 1) / 2) * 46;
+        }
+        var tag = document.createElement("span");
+        tag.className = "tree-edge-label";
+        tag.textContent = e.label;
+        tag.style.left = ((from.x + to.x) / 2) + "px";
+        tag.style.top = labelY + "px";
+        tree.appendChild(tag);
+      }
+    });
+  }
+
+  var rendered = false;
+  window.renderFlowTree = function () {
+    if (rendered || root.hidden) return;
+    rendered = true;
+    build();
+  };
+  window.renderFlowTree();
+
+  tree.addEventListener("click", function (e) {
+    var button = e.target.closest ? e.target.closest(".decide-go") : null;
+    if (!button) return;
+    var tab = document.querySelector('.tab[data-flow="' + button.getAttribute("data-flow") + '"]');
+    if (tab) tab.click();
+  });
+})();
+
+// Hotfix from trunk. Its own steps, commits, and graph, sharing the page styles.
+(function () {
+  var root = document.querySelector('.flow[data-flow="hotfix-from-trunk"]');
+  if (!root) return;
+  var allCommits = [
+    { sha: "b7c8d9e", subject: "fix(product1): correct the export paging", author: "Priya Nair", date: "2026-10-11 09:10", hfixQaSquash: true, tags: [], envs: [] },
+    { sha: "a6b7c8d", subject: "fix(product1): guard the export paging", author: "Priya Nair", date: "2026-10-11 08:30", hfixQaBranch: true, tags: [], envs: [] },
+    { sha: "h4d5e6f", subject: "fix(product1): correct the export endpoint", author: "Priya Nair", date: "2026-10-10 15:20", hfixSquash: true, hfixQaFork: true, tags: [], envs: [] },
+    { sha: "g3c4d5e", subject: "fix(product1): guard the export endpoint", author: "Priya Nair", date: "2026-10-10 14:05", hfixBranch: true, tags: [], envs: [] },
+    { sha: "f2b3c4d", subject: "feat(product2): add dashboard settings", author: "Marco Rossi", date: "2026-10-08 11:00", hfixFork: true, tags: [], envs: [] },
+    { sha: "e1a2b3c", subject: "feat(product1): add export endpoint", author: "Priya Nair", date: "2026-10-02 17:30", tags: [{ name: "product1-v1.5.0", kind: "p1", release: true }], envs: [{ product: "product1", environment: "Production" }] },
+    { sha: "d0e1f2a", subject: "feat(product2): add dashboard charts", author: "Marco Rossi", date: "2026-09-30 10:15", tags: [], envs: [] },
+    { sha: "c9b8a7d", subject: "feat(product1): add audit log", author: "Priya Nair", date: "2026-09-28 09:20", tags: [{ name: "product1-v1.4.2", kind: "p1", release: true }], envs: [] }
+  ];
+  var container = root.querySelector(".commits");
+  var stepperEl = root.querySelector(".stepper");
+  var stepItems = stepperEl ? Array.prototype.slice.call(stepperEl.querySelectorAll("li[data-step]")) : [];
+  var stepLabels = stepItems.map(function (li) { return li.getAttribute("data-step"); });
+  var totalSteps = stepLabels.length;
+  var railW = 96, devX = 17, branchX = 49;
+  var devColor = "#cbd5e1", branchColor = "#0f766e", failColor = "#dc2626";
+  var brand = "#2563eb", brandSoft = "#dbeafe";
+  var branchDefs = [
+    { fork: "hfixFork", tip: "hfixBranch", squash: "hfixSquash", x: branchX, color: branchColor },
+    { fork: "hfixQaFork", tip: "hfixQaBranch", squash: "hfixQaSquash", x: branchX, color: failColor }
+  ];
+  var currentStep = (function () {
+    var f = /[?&]flow=([^&]+)/.exec(location.search);
+    var flow = f ? decodeURIComponent(f[1]) : "";
+    if (flow !== "hotfix-from-trunk") return stepLabels[0];
+    var m = /[?&]step=([^&]+)/.exec(location.search);
+    var label = m ? decodeURIComponent(m[1]) : "";
+    return stepLabels.indexOf(label) >= 0 ? label : stepLabels[0];
+  })();
+  function stepValue(label) { return parseFloat(label); }
+
+  function commitsForStep(label) {
+    var step = stepValue(label);
+    var list = allCommits.slice();
+    // Step 1 is the report. The fix branch appears at step 2 and is merged at 3.
+    if (step < 2) {
+      list = list.filter(function (c) { return !c.hfixBranch && !c.hfixSquash; });
+    }
+    if (step < 3) {
+      list = list.filter(function (c) { return !c.hfixSquash; });
+    }
+    if (step >= 4) {
+      list = list.filter(function (c) { return !c.hfixBranch; });
+    }
+    // The second fix shows only when QA finds another issue, at 6.2 to 6.6.
+    var onQaFix = label === "6.2" || label === "6.3" || label === "6.4" || label === "6.5" || label === "6.6";
+    if (!onQaFix) {
+      list = list.filter(function (c) { return !c.hfixQaBranch && !c.hfixQaSquash; });
+    }
+    if (label === "6.2") {
+      list = list.filter(function (c) { return !c.hfixQaSquash; });
+    }
+    var tip = null;
+    list.forEach(function (c) {
+      if (!tip && (c.hfixSquash || c.hfixQaSquash)) tip = c.sha;
+    });
+    // The candidate QA tested carries the first rc tag. On the QA fix the new tag
+    // continues the line on the fix commit, and the candidate keeps its own tag.
+    var candidate = onQaFix ? "h4d5e6f" : tip;
+    var selected = tip;
+    if (step === 1) {
+      selected = "e1a2b3c";
+    } else if (step < 3) {
+      var branch = list.filter(function (c) { return c.hfixBranch; })[0];
+      if (branch) selected = branch.sha;
+    } else if (label === "6.2") {
+      var qaBranch = list.filter(function (c) { return c.hfixQaBranch; })[0];
+      if (qaBranch) selected = qaBranch.sha;
+    }
+    return list.map(function (c) {
+      var copy = Object.assign({}, c);
+      copy.selected = c.sha === selected;
+      copy.tags = (c.tags || []).map(function (t) { return Object.assign({}, t); });
+      copy.envs = (c.envs || []).map(function (e) { return Object.assign({}, e); });
+      if (c.sha === candidate) {
+        if (step >= 4) copy.tags.push({ name: "product1-v1.5.1-rc", kind: "p1" });
+        if (step >= 5) copy.envs.push({ product: "product1", environment: "QA", validated: step >= 6 });
+      }
+      if (onQaFix && c.sha === tip) {
+        if (step >= 6.4) copy.tags.push({ name: "product1-v1.5.1-rc.1", kind: "p1" });
+        if (step >= 6.5) copy.envs.push({ product: "product1", environment: "QA", validated: step >= 6.6 });
+      }
+      if (c.sha === tip) {
+        if (step >= 7) copy.tags.push({
+          name: "product1-v1.5.1", kind: "p1",
+          planned: step < 9, approved: step >= 8, release: step >= 9
+        });
+        if (step >= 9) copy.envs.push({ product: "product1", environment: "Production", validated: step >= 10 });
+      }
+      // Production runs the released 1.5.0 until the patch is promoted.
+      if (step >= 9 && c.sha === "e1a2b3c") {
+        copy.envs = copy.envs.filter(function (e) { return e.environment !== "Production"; });
+      }
+      return copy;
+    });
+  }
+
+  function focusForStep(label) {
+    var step = stepValue(label);
+    if (step <= 3) return "commit";
+    if (label === "6.1" || label === "6.2" || label === "6.3") return "commit";
+    if (step === 4 || step === 7 || step === 8 || label === "6.4") return "tag";
+    return "env";
+  }
+
+  function commitLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 1) return "an operator finds an issue on production";
+    if (step === 2) return "a hotfix branch is made from the trunk";
+    if (step === 3) return "the fix is merged into the trunk";
+    if (label === "6.1") return "an operator finds another issue on QA";
+    if (label === "6.2") return "an operator makes a fix branch from the trunk and commits the fix";
+    if (label === "6.3") return "the pull request is merged, and ci validates the fix";
+    return "the commit the fix produced";
+  }
+
+  function tagLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 7) return "added by the release pipeline";
+    if (step === 8) return "approved by the approver";
+    return "added by the bump pipeline";
+  }
+
+  function envLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 6 || label === "6.6") return "confirmed by an operator";
+    if (step === 9) return "promoted to production";
+    if (step === 10) return "confirmed on production";
+    return "deployed by the deploy pipeline";
+  }
+
+  // Step 1 and every branch step are a failure, so their frame is red.
+  function frameClass() { return (stepValue(currentStep) === 1 || currentStep.indexOf(".") >= 0) ? " failed" : ""; }
+
+  function buildHtml(commits) {
+    var html = "";
+    commits.forEach(function (c) {
+      var classes = "commit";
+      if (c.selected) classes += " selected";
+      if (c.hfixBranch) classes += " branch";
+      if (c.hfixQaBranch) classes += " fixbranch";
+      if (c.subject.indexOf("(product2)") >= 0) classes += " p2row";
+
+      var badges = (c.tags || []).map(function (t) {
+        var cls = "pill " + t.kind;
+        if (t.planned) cls += " planned" + (t.approved ? " approved" : "");
+        else if (t.release) cls += " release";
+        return '<span class="' + cls + '">' + t.name + '</span>';
+      }).join("");
+      var focus = c.selected ? focusForStep(currentStep) : "";
+      if (c.selected && focus !== "commit") classes += " tagged";
+
+      var badgesHtml = "";
+      if (c.selected && focus === "commit") {
+        badgesHtml = badges
+          ? '<div class="badges">' + badges + '</div>'
+          : '<div class="badges"><span class="pill ghost">no tag yet</span></div>';
+      } else if (c.selected && focus === "tag") {
+        badgesHtml = '<div class="fieldbox wide">' +
+          '<span class="fieldbox-legend">' + tagLegendForStep(currentStep) + '</span>' +
+          '<div class="badges">' + badges + '</div></div>';
+      } else if (badges) {
+        badgesHtml = '<div class="badges">' + badges + '</div>';
+      }
+
+      var envs = (c.envs || []).map(function (e) {
+        var k = e.product === "product1" ? "p1" : "p2";
+        var filled = e.validated !== false ? " filled" : "";
+        return '<span class="envchip ' + k + filled + '">' + e.product + ' &middot; ' + e.environment + '</span>';
+      }).join("");
+
+      var envsHtml;
+      if (c.selected && focus === "env") {
+        envsHtml = '<div class="fieldbox">' +
+          '<span class="fieldbox-legend">' + envLegendForStep(currentStep) + '</span>' +
+          '<div class="envcell">' + envs + '</div></div>';
+      } else {
+        envsHtml = '<div class="envcell">' + envs + '</div>';
+      }
+
+      var frame = (c.selected && focus === "commit")
+        ? '<div class="frame' + frameClass() + '"><span class="frame-legend">' + commitLegendForStep(currentStep) + '</span></div>'
+        : "";
+
+      html +=
+        '<div class="' + classes + '">' +
+          '<div class="rail"></div>' +
+          '<div class="msg"><div class="subject">' + c.subject + '</div>' + badgesHtml + '</div>' +
+          envsHtml +
+          '<div class="who">' + c.author + '<span class="date">' + c.date + '</span></div>' +
+          '<div class="sha">' + c.sha + '</div>' +
+          frame +
+        '</div>';
+    });
+    return html;
+  }
+
+  function drawGraph(commits) {
+    var rows = Array.prototype.slice.call(container.querySelectorAll(".commit"));
+    if (!rows.length) return;
+    var rect = container.getBoundingClientRect();
+    var centers = rows.map(function (r) {
+      var rr = r.getBoundingClientRect();
+      return rr.top - rect.top + rr.height / 2;
+    });
+    var height = container.offsetHeight;
+    var width = railW;
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "graphlines");
+    svg.setAttribute("width", String(width));
+    svg.setAttribute("height", String(height));
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    var parts = [];
+    parts.push('<line x1="' + devX + '" y1="' + centers[0] + '" x2="' + devX + '" y2="' +
+      centers[centers.length - 1] + '" stroke="' + devColor + '" stroke-width="2"/>');
+    branchDefs.forEach(function (def) {
+      var fork = -1, squash = -1, tip = -1;
+      commits.forEach(function (c, i) {
+        if (c[def.fork]) fork = i;
+        if (c[def.squash]) squash = i;
+        if (c[def.tip] && tip === -1) tip = i;
+      });
+      if (fork < 0 || tip < 0) return;
+      var fy = centers[fork], ty = centers[tip], R = 8;
+      var solid = "M" + devX + "," + fy +
+        " L" + (def.x - R) + "," + fy +
+        " A" + R + "," + R + " 0 0 0 " + def.x + "," + (fy - R) +
+        " L" + def.x + "," + ty;
+      parts.push('<path d="' + solid + '" fill="none" stroke="' + def.color + '" stroke-width="2"/>');
+      if (squash < 0) return;
+      var sy = centers[squash], R2 = 8;
+      var dashed = "M" + def.x + "," + ty +
+        " L" + def.x + "," + (sy + R2) +
+        " A" + R2 + "," + R2 + " 0 0 0 " + (def.x - R2) + "," + sy +
+        " L" + devX + "," + sy;
+      parts.push('<path d="' + dashed + '" fill="none" stroke="' + def.color + '" stroke-width="2" stroke-dasharray="4 4" opacity="0.55"/>');
+    });
+    rows.forEach(function (r, i) {
+      var c = commits[i];
+      var x = devX, stroke = devColor;
+      branchDefs.forEach(function (def) {
+        if (c[def.tip]) { x = def.x; stroke = def.color; }
+      });
+      if (c.selected) {
+        parts.push('<circle cx="' + x + '" cy="' + centers[i] + '" r="11" fill="none" stroke="' + brandSoft + '" stroke-width="5"/>');
+        stroke = brand;
+      }
+      parts.push('<circle cx="' + x + '" cy="' + centers[i] + '" r="7" fill="#ffffff" stroke="' + stroke + '" stroke-width="3"/>');
+    });
+    svg.innerHTML = parts.join("");
+    container.appendChild(svg);
+  }
+
+  function persist() {
+    if (window.history && history.replaceState) {
+      history.replaceState(null, "", location.pathname + "?flow=hotfix-from-trunk&step=" + encodeURIComponent(currentStep));
+    }
+  }
+
+  function render() {
+    var commits = commitsForStep(currentStep);
+    container.innerHTML = buildHtml(commits);
+    drawGraph(commits);
+    var idx = stepLabels.indexOf(currentStep);
+    var onBranch = stepLabels[idx].indexOf(".") >= 0;
+    var currentBranch = onBranch ? stepLabels[idx].split(".")[0] : "";
+    persist();
+    // A branch collapses to its first and last step, and expands while the flow
+    // sits on one of its own steps.
+    stepItems.forEach(function (li) {
+      if (!li.classList.contains("branch-mid")) return;
+      li.style.display = currentBranch === li.getAttribute("data-branch") ? "" : "none";
+    });
+    [].forEach.call(stepperEl.querySelectorAll(".branch-more"), function (li) {
+      var branch = li.getAttribute("data-branch");
+      var last = -1;
+      stepLabels.forEach(function (l, i) {
+        if (l.indexOf(branch + ".") === 0) last = i;
+      });
+      li.classList.toggle("conn", idx > last);
+      li.style.display = currentBranch === branch ? "none" : "";
+    });
+    var branchPoint = onBranch ? stepLabels.indexOf(currentBranch) : -1;
+    stepItems.forEach(function (li, i) {
+      var isBranch = li.classList.contains("branch");
+      var passed = i < idx;
+      var conn = passed && !(onBranch && i >= branchPoint);
+      var sameBranch = isBranch && stepLabels[i].split(".")[0] === currentBranch;
+      var done = passed && (!isBranch || sameBranch);
+      li.classList.toggle("active", i === idx);
+      li.classList.toggle("passed", passed);
+      li.classList.toggle("conn", conn);
+      li.classList.toggle("done", done);
+      var bubble = li.querySelector(".bubble");
+      if (bubble) bubble.textContent = done ? "\u2713" : stepLabels[i];
+    });
+  }
+
+  function go(delta) {
+    var idx = stepLabels.indexOf(currentStep);
+    var target = idx + delta;
+    if (target < 0 || target >= totalSteps) return;
+    currentStep = stepLabels[target];
+    render();
+  }
+
+  function isActive() {
+    var tab = document.querySelector('.tab[data-flow="hotfix-from-trunk"]');
+    return tab && tab.classList.contains("active");
+  }
+
+  if (stepperEl) {
+    stepperEl.addEventListener("click", function (e) {
+      var li = e.target.closest("li");
+      if (!li) return;
+      var label = li.getAttribute("data-step");
+      if (!label || stepLabels.indexOf(label) < 0) return;
+      currentStep = label;
+      render();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (!isActive()) return;
+    if (e.key === "ArrowLeft") go(-1);
+    if (e.key === "ArrowRight") go(1);
+  });
+
+  window.addEventListener("resize", function () { if (isActive()) render(); });
+
+  window.renderHotfix = render;
+  if (isActive()) render();
+})();
+
+// Hotfix from tag. A release branch is cut from the released tag and the fix is
+// cherry-picked onto it, so the trunk work that must not ship stays out.
+(function () {
+  var root = document.querySelector('.flow[data-flow="hotfix-from-tag"]');
+  if (!root) return;
+  var allCommits = [
+    { sha: "a0b1c2d", subject: "fix(product1): correct the export paging", author: "Priya Nair", date: "2026-10-13 14:00", tPick: true, tQaPick: true, tags: [], envs: [] },
+    { sha: "f9a0b1c", subject: "fix(product1): correct the export paging", author: "Priya Nair", date: "2026-10-13 11:00", tQaFixSquash: true, tags: [], envs: [] },
+    { sha: "e8f9a0b", subject: "fix(product1): guard the export paging", author: "Priya Nair", date: "2026-10-13 10:00", tQaFixBranch: true, tags: [], envs: [] },
+    { sha: "d7e8f9a", subject: "fix(product1): correct the export endpoint", author: "Priya Nair", date: "2026-10-12 14:00", tPick: true, tags: [], envs: [] },
+    { sha: "c6d7e8f", subject: "fix(product1): correct the export endpoint", author: "Priya Nair", date: "2026-10-12 11:20", tFixSquash: true, tQaFixFork: true, tags: [], envs: [] },
+    { sha: "b5c6d7e", subject: "fix(product1): guard the export endpoint", author: "Priya Nair", date: "2026-10-12 10:05", tFixBranch: true, tags: [], envs: [] },
+    { sha: "93a4b5c", subject: "feat(product1): add dark mode", author: "Priya Nair", date: "2026-10-11 16:40", tFixFork: true, tags: [], envs: [] },
+    { sha: "a4b5c6d", subject: "feat(product1): add export endpoint", author: "Priya Nair", date: "2026-10-02 17:30", tRelFork: true, tags: [{ name: "product1-v1.5.0", kind: "p1", release: true }], envs: [{ product: "product1", environment: "Production" }] },
+    { sha: "8293a4b", subject: "feat(product2): add dashboard charts", author: "Marco Rossi", date: "2026-09-30 10:15", tags: [], envs: [] }
+  ];
+  var container = root.querySelector(".commits");
+  var stepperEl = root.querySelector(".stepper");
+  var stepItems = stepperEl ? Array.prototype.slice.call(stepperEl.querySelectorAll("li[data-step]")) : [];
+  var stepLabels = stepItems.map(function (li) { return li.getAttribute("data-step"); });
+  var totalSteps = stepLabels.length;
+  var railW = 96, devX = 17, branchX = 49, fixX = 81;
+  var devColor = "#cbd5e1", branchColor = "#0f766e", relColor = "#7c3aed", failColor = "#dc2626";
+  var brand = "#2563eb", brandSoft = "#dbeafe";
+  var branchDefs = [
+    { fork: "tFixFork", tip: "tFixBranch", squash: "tFixSquash", x: branchX, color: branchColor },
+    { fork: "tRelFork", tip: "tPick", squash: null, x: branchX, color: relColor },
+    { fork: "tQaFixFork", tip: "tQaFixBranch", squash: "tQaFixSquash", x: fixX, color: failColor }
+  ];
+  var currentStep = (function () {
+    var f = /[?&]flow=([^&]+)/.exec(location.search);
+    var flow = f ? decodeURIComponent(f[1]) : "";
+    if (flow !== "hotfix-from-tag") return stepLabels[0];
+    var m = /[?&]step=([^&]+)/.exec(location.search);
+    var label = m ? decodeURIComponent(m[1]) : "";
+    return stepLabels.indexOf(label) >= 0 ? label : stepLabels[0];
+  })();
+  function stepValue(label) { return parseFloat(label); }
+
+  function commitsForStep(label) {
+    var step = stepValue(label);
+    var list = allCommits.slice();
+    // The fix branch appears at step 2 and is merged into the trunk at step 3.
+    if (step < 2) {
+      list = list.filter(function (c) { return !c.tFixBranch && !c.tFixSquash; });
+    }
+    if (step < 3) {
+      list = list.filter(function (c) { return !c.tFixSquash; });
+    }
+    if (step >= 4) {
+      list = list.filter(function (c) { return !c.tFixBranch; });
+    }
+    // The release branch and its cherry-pick appear at step 4.
+    if (step < 4) {
+      list = list.filter(function (c) { return !c.tPick; });
+    }
+    // The QA fix shows only when QA finds an issue, at 7.2 to 7.7.
+    var onQaFix = label === "7.2" || label === "7.3" || label === "7.4" || label === "7.5" || label === "7.6" || label === "7.7";
+    if (!onQaFix) {
+      list = list.filter(function (c) { return !c.tQaFixBranch && !c.tQaFixSquash && !c.tQaPick; });
+    }
+    if (label === "7.2") {
+      list = list.filter(function (c) { return !c.tQaFixSquash; });
+    }
+    if (step >= 7.4) {
+      list = list.filter(function (c) { return !c.tQaFixBranch; });
+    }
+    if (label === "7.2" || label === "7.3") {
+      list = list.filter(function (c) { return !c.tQaPick; });
+    }
+    var tip = null;
+    list.forEach(function (c) {
+      if (!tip && (c.tPick || c.tFixSquash)) tip = c.sha;
+    });
+    // On the QA fix the release candidate is the cherry-pick QA tested, and the
+    // second cherry-pick continues the line on top of it.
+    var candidate = onQaFix ? "d7e8f9a" : tip;
+    var selected = tip;
+    if (step === 1) {
+      selected = "a4b5c6d";
+    } else if (step === 2) {
+      var fix = list.filter(function (c) { return c.tFixBranch; })[0];
+      if (fix) selected = fix.sha;
+    } else if (label === "7.2") {
+      var qaFix = list.filter(function (c) { return c.tQaFixBranch; })[0];
+      if (qaFix) selected = qaFix.sha;
+    } else if (label === "7.3") {
+      selected = "f9a0b1c";
+    }
+    return list.map(function (c) {
+      var copy = Object.assign({}, c);
+      copy.selected = c.sha === selected;
+      copy.tags = (c.tags || []).map(function (t) { return Object.assign({}, t); });
+      copy.envs = (c.envs || []).map(function (e) { return Object.assign({}, e); });
+      if (c.sha === candidate) {
+        if (step >= 5) copy.tags.push({ name: "product1-v1.5.1-rc", kind: "p1" });
+        if (step >= 6) copy.envs.push({ product: "product1", environment: "QA", validated: step >= 7 });
+      }
+      if (onQaFix && c.sha === tip) {
+        if (step >= 7.5) copy.tags.push({ name: "product1-v1.5.1-rc.1", kind: "p1" });
+        if (step >= 7.6) copy.envs.push({ product: "product1", environment: "QA", validated: step >= 7.7 });
+      }
+      if (c.sha === tip) {
+        if (step >= 8) copy.tags.push({
+          name: "product1-v1.5.1", kind: "p1",
+          planned: step < 10, approved: step >= 9, release: step >= 10
+        });
+        if (step >= 10) copy.envs.push({ product: "product1", environment: "Production", validated: step >= 11 });
+      }
+      // Production runs the released 1.5.0 until the patch is promoted.
+      if (step >= 10 && c.sha === "a4b5c6d") {
+        copy.envs = copy.envs.filter(function (e) { return e.environment !== "Production"; });
+      }
+      return copy;
+    });
+  }
+
+  function focusForStep(label) {
+    var step = stepValue(label);
+    if (step <= 4) return "commit";
+    if (label === "7.1" || label === "7.2" || label === "7.3" || label === "7.4") return "commit";
+    if (step === 5 || step === 8 || step === 9 || label === "7.5") return "tag";
+    return "env";
+  }
+
+  function commitLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 1) return "an operator finds an issue on production";
+    if (step === 2) return "an operator makes a fix branch from the trunk and commits the fix";
+    if (step === 3) return "the pull request is merged, and ci validates the fix on the trunk";
+    if (step === 4) return "a release branch is cut from the released tag and the fix is cherry-picked onto it";
+    if (label === "7.1") return "an operator finds an issue on QA";
+    if (label === "7.2") return "an operator makes a fix branch from the trunk and commits the fix";
+    if (label === "7.3") return "the pull request is merged, and ci validates the fix on the trunk";
+    if (label === "7.4") return "the fix is cherry-picked onto the release branch";
+    return "the commit the fix produced";
+  }
+
+  function tagLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 8) return "added by the release pipeline";
+    if (step === 9) return "approved by the approver";
+    return "added by the bump pipeline";
+  }
+
+  function envLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 7 || label === "7.7") return "confirmed by an operator";
+    if (step === 10) return "promoted to production";
+    if (step >= 11) return "confirmed on production";
+    return "deployed by the deploy pipeline";
+  }
+
+  function frameClass() { return (stepValue(currentStep) === 1 || currentStep.indexOf(".") >= 0) ? " failed" : ""; }
+
+  function buildHtml(commits) {
+    var html = "";
+    commits.forEach(function (c) {
+      var classes = "commit";
+      if (c.selected) classes += " selected";
+      if (c.tFixBranch) classes += " branch";
+      if (c.tQaFixBranch) classes += " fixbranch";
+      if (c.subject.indexOf("(product2)") >= 0) classes += " p2row";
+
+      var badges = (c.tags || []).map(function (t) {
+        var cls = "pill " + t.kind;
+        if (t.planned) cls += " planned" + (t.approved ? " approved" : "");
+        else if (t.release) cls += " release";
+        return '<span class="' + cls + '">' + t.name + '</span>';
+      }).join("");
+      var focus = c.selected ? focusForStep(currentStep) : "";
+      if (c.selected && focus !== "commit") classes += " tagged";
+
+      var badgesHtml = "";
+      if (c.selected && focus === "commit") {
+        badgesHtml = badges
+          ? '<div class="badges">' + badges + '</div>'
+          : '<div class="badges"><span class="pill ghost">no tag yet</span></div>';
+      } else if (c.selected && focus === "tag") {
+        badgesHtml = '<div class="fieldbox wide">' +
+          '<span class="fieldbox-legend">' + tagLegendForStep(currentStep) + '</span>' +
+          '<div class="badges">' + badges + '</div></div>';
+      } else if (badges) {
+        badgesHtml = '<div class="badges">' + badges + '</div>';
+      }
+
+      var envs = (c.envs || []).map(function (e) {
+        var k = e.product === "product1" ? "p1" : "p2";
+        var filled = e.validated !== false ? " filled" : "";
+        return '<span class="envchip ' + k + filled + '">' + e.product + ' &middot; ' + e.environment + '</span>';
+      }).join("");
+
+      var envsHtml;
+      if (c.selected && focus === "env") {
+        envsHtml = '<div class="fieldbox">' +
+          '<span class="fieldbox-legend">' + envLegendForStep(currentStep) + '</span>' +
+          '<div class="envcell">' + envs + '</div></div>';
+      } else {
+        envsHtml = '<div class="envcell">' + envs + '</div>';
+      }
+
+      var frame = (c.selected && focus === "commit")
+        ? '<div class="frame' + frameClass() + '"><span class="frame-legend">' + commitLegendForStep(currentStep) + '</span></div>'
+        : "";
+
+      html +=
+        '<div class="' + classes + '">' +
+          '<div class="rail"></div>' +
+          '<div class="msg"><div class="subject">' + c.subject + '</div>' + badgesHtml + '</div>' +
+          envsHtml +
+          '<div class="who">' + c.author + '<span class="date">' + c.date + '</span></div>' +
+          '<div class="sha">' + c.sha + '</div>' +
+          frame +
+        '</div>';
+    });
+    return html;
+  }
+
+  function drawGraph(commits) {
+    var rows = Array.prototype.slice.call(container.querySelectorAll(".commit"));
+    if (!rows.length) return;
+    var rect = container.getBoundingClientRect();
+    var centers = rows.map(function (r) {
+      var rr = r.getBoundingClientRect();
+      return rr.top - rect.top + rr.height / 2;
+    });
+    var height = container.offsetHeight;
+    var width = railW;
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "graphlines");
+    svg.setAttribute("width", String(width));
+    svg.setAttribute("height", String(height));
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    var parts = [];
+    parts.push('<line x1="' + devX + '" y1="' + centers[0] + '" x2="' + devX + '" y2="' +
+      centers[centers.length - 1] + '" stroke="' + devColor + '" stroke-width="2"/>');
+    branchDefs.forEach(function (def) {
+      var fork = -1, squash = -1, tip = -1;
+      commits.forEach(function (c, i) {
+        if (c[def.fork]) fork = i;
+        if (c[def.squash]) squash = i;
+        if (c[def.tip] && tip === -1) tip = i;
+      });
+      if (fork < 0 || tip < 0) return;
+      var fy = centers[fork], ty = centers[tip], R = 8;
+      var solid = "M" + devX + "," + fy +
+        " L" + (def.x - R) + "," + fy +
+        " A" + R + "," + R + " 0 0 0 " + def.x + "," + (fy - R) +
+        " L" + def.x + "," + ty;
+      parts.push('<path d="' + solid + '" fill="none" stroke="' + def.color + '" stroke-width="2"/>');
+      if (squash < 0) return;
+      var sy = centers[squash], R2 = 8;
+      var dashed = "M" + def.x + "," + ty +
+        " L" + def.x + "," + (sy + R2) +
+        " A" + R2 + "," + R2 + " 0 0 0 " + (def.x - R2) + "," + sy +
+        " L" + devX + "," + sy;
+      parts.push('<path d="' + dashed + '" fill="none" stroke="' + def.color + '" stroke-width="2" stroke-dasharray="4 4" opacity="0.55"/>');
+    });
+    rows.forEach(function (r, i) {
+      var c = commits[i];
+      var x = devX, stroke = devColor;
+      branchDefs.forEach(function (def) {
+        if (c[def.tip]) { x = def.x; stroke = def.color; }
+      });
+      if (c.selected) {
+        parts.push('<circle cx="' + x + '" cy="' + centers[i] + '" r="11" fill="none" stroke="' + brandSoft + '" stroke-width="5"/>');
+        stroke = brand;
+      }
+      parts.push('<circle cx="' + x + '" cy="' + centers[i] + '" r="7" fill="#ffffff" stroke="' + stroke + '" stroke-width="3"/>');
+    });
+    svg.innerHTML = parts.join("");
+    container.appendChild(svg);
+  }
+
+  function persist() {
+    if (window.history && history.replaceState) {
+      history.replaceState(null, "", location.pathname + "?flow=hotfix-from-tag&step=" + encodeURIComponent(currentStep));
+    }
+  }
+
+  function render() {
+    var commits = commitsForStep(currentStep);
+    container.innerHTML = buildHtml(commits);
+    drawGraph(commits);
+    var idx = stepLabels.indexOf(currentStep);
+    var onBranch = stepLabels[idx].indexOf(".") >= 0;
+    var currentBranch = onBranch ? stepLabels[idx].split(".")[0] : "";
+    persist();
+    stepItems.forEach(function (li) {
+      if (!li.classList.contains("branch-mid")) return;
+      li.style.display = currentBranch === li.getAttribute("data-branch") ? "" : "none";
+    });
+    [].forEach.call(stepperEl.querySelectorAll(".branch-more"), function (li) {
+      var branch = li.getAttribute("data-branch");
+      var last = -1;
+      stepLabels.forEach(function (l, i) {
+        if (l.indexOf(branch + ".") === 0) last = i;
+      });
+      li.classList.toggle("conn", idx > last);
+      li.style.display = currentBranch === branch ? "none" : "";
+    });
+    var branchPoint = onBranch ? stepLabels.indexOf(currentBranch) : -1;
+    stepItems.forEach(function (li, i) {
+      var isBranch = li.classList.contains("branch");
+      var passed = i < idx;
+      var conn = passed && !(onBranch && i >= branchPoint);
+      var sameBranch = isBranch && stepLabels[i].split(".")[0] === currentBranch;
+      var done = passed && (!isBranch || sameBranch);
+      li.classList.toggle("active", i === idx);
+      li.classList.toggle("passed", passed);
+      li.classList.toggle("conn", conn);
+      li.classList.toggle("done", done);
+      var bubble = li.querySelector(".bubble");
+      if (bubble) bubble.textContent = done ? "\u2713" : stepLabels[i];
+    });
+  }
+
+  function go(delta) {
+    var idx = stepLabels.indexOf(currentStep);
+    var target = idx + delta;
+    if (target < 0 || target >= totalSteps) return;
+    currentStep = stepLabels[target];
+    render();
+  }
+
+  function isActive() {
+    var tab = document.querySelector('.tab[data-flow="hotfix-from-tag"]');
+    return tab && tab.classList.contains("active");
+  }
+
+  if (stepperEl) {
+    stepperEl.addEventListener("click", function (e) {
+      var li = e.target.closest("li");
+      if (!li) return;
+      var label = li.getAttribute("data-step");
+      if (!label || stepLabels.indexOf(label) < 0) return;
+      currentStep = label;
+      render();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (!isActive()) return;
+    if (e.key === "ArrowLeft") go(-1);
+    if (e.key === "ArrowRight") go(1);
+  });
+
+  window.addEventListener("resize", function () { if (isActive()) render(); });
+
+  window.renderHotfixTag = render;
+  if (isActive()) render();
+})();
+
+// Deploy to DEV. A beta tag is put on DEV and checked, and no release is made.
+(function () {
+  var root = document.querySelector('.flow[data-flow="deploy-to-dev"]');
+  if (!root) return;
+  var allCommits = [
+    { sha: "b6c7d8e", subject: "fix(product1): correct the export endpoint response", author: "Priya Nair", date: "2026-10-08 15:30", devFixSquash: true, tags: [], envs: [] },
+    { sha: "c7d8e9f", subject: "fix(product1): guard the export endpoint response", author: "Priya Nair", date: "2026-10-08 14:00", devFixBranch: true, tags: [], envs: [] },
+    { sha: "c3d4e5f", subject: "fix(product1): correct the export endpoint", author: "Priya Nair", date: "2026-10-08 09:15", fixSquash: true, tags: [], envs: [] },
+    { sha: "f1a2b3c", subject: "fix(product1): guard the export paging", author: "Priya Nair", date: "2026-10-08 08:40", fixBranch: true, tags: [], envs: [] },
+    { sha: "a1b2c3d", subject: "feat(product1): add export endpoint", author: "Priya Nair", date: "2026-10-07 17:45", squash: true, fixFork: true, devFixFork: true, tags: [], envs: [] },
+    { sha: "b2c3d4e", subject: "feat(product2): add dashboard filters", author: "Marco Rossi", date: "2026-10-07 16:20", tags: [], envs: [] },
+    { sha: "d0e1f2a", subject: "feat(product1): add export endpoint paging", author: "Priya Nair", date: "2026-10-05 14:10", branch: true, tags: [], envs: [] },
+    { sha: "e1f2a3b", subject: "feat(product1): add export endpoint skeleton", author: "Priya Nair", date: "2026-10-04 11:30", branch: true, tags: [], envs: [] },
+    { sha: "9f8e7d6", subject: "feat(product1): add export filters", author: "Priya Nair", date: "2026-09-28 14:02", fork: true, tags: [
+      { name: "product1-v1.4.2-beta", kind: "p1" },
+      { name: "product1-v1.4.2-rc", kind: "p1" },
+      { name: "product1-v1.4.2", kind: "p1", release: true }
+    ], envs: [
+      { product: "product1", environment: "Production" }
+    ] }
+  ];
+  var container = root.querySelector(".commits");
+  var stepperEl = root.querySelector(".stepper");
+  var stepItems = stepperEl ? Array.prototype.slice.call(stepperEl.querySelectorAll("li[data-step]")) : [];
+  var stepLabels = stepItems.map(function (li) { return li.getAttribute("data-step"); });
+  var totalSteps = stepLabels.length;
+  var railW = 96, devX = 17, featX = 49, fixX = 81;
+  var devColor = "#cbd5e1", featColor = "#0f766e", fixColor = "#dc2626";
+  var brand = "#2563eb", brandSoft = "#dbeafe";
+  var branchDefs = [
+    { fork: "fork", tip: "branch", squash: "squash", x: featX, color: featColor },
+    { fork: "fixFork", tip: "fixBranch", squash: "fixSquash", x: fixX, color: fixColor },
+    { fork: "devFixFork", tip: "devFixBranch", squash: "devFixSquash", x: fixX, color: fixColor }
+  ];
+  var currentStep = (function () {
+    var f = /[?&]flow=([^&]+)/.exec(location.search);
+    var flow = f ? decodeURIComponent(f[1]) : "";
+    if (flow !== "deploy-to-dev") return stepLabels[0];
+    var m = /[?&]step=([^&]+)/.exec(location.search);
+    var label = m ? decodeURIComponent(m[1]) : "";
+    return stepLabels.indexOf(label) >= 0 ? label : stepLabels[0];
+  })();
+  function stepValue(label) { return parseFloat(label); }
+
+  function commitsForStep(label) {
+    var step = stepValue(label);
+    var list = allCommits.slice();
+    if (step <= 1) {
+      list = list.filter(function (c) { return !c.squash && !c.fixSquash; });
+    }
+    // The ci-failure fix is its own branch. Its commits show only on 2.2 and 2.3.
+    var onFixPath = label === "2.2" || label === "2.3";
+    if (!onFixPath) {
+      list = list.filter(function (c) { return !c.fixBranch && !c.fixSquash; });
+    }
+    if (label === "2.2") {
+      list = list.filter(function (c) { return !c.fixSquash; });
+    }
+    if (step >= 3) {
+      list = list.filter(function (c) { return !c.branch; });
+    }
+    // The DEV-failure fix shows only on 5.2 to 5.6.
+    var onDevFix = label === "5.2" || label === "5.3" || label === "5.4" || label === "5.5" || label === "5.6";
+    if (!onDevFix) {
+      list = list.filter(function (c) { return !c.devFixBranch && !c.devFixSquash; });
+    }
+    if (label === "5.2") {
+      list = list.filter(function (c) { return !c.devFixSquash; });
+    }
+    if (step >= 5.4) {
+      list = list.filter(function (c) { return !c.devFixBranch; });
+    }
+    var tip = null;
+    list.forEach(function (c) {
+      if (!tip && (c.squash || c.fixSquash || c.devFixSquash)) tip = c.sha;
+    });
+    var candidate = onDevFix ? "a1b2c3d" : tip;
+    var selected = tip;
+    if (label === "2.2" || label === "5.2") {
+      var branch = list.filter(function (c) { return c.fixBranch || c.devFixBranch; })[0];
+      if (branch) selected = branch.sha;
+    }
+    return list.map(function (c) {
+      var copy = Object.assign({}, c);
+      copy.selected = c.sha === selected;
+      copy.tags = (c.tags || []).map(function (t) { return Object.assign({}, t); });
+      copy.envs = (c.envs || []).map(function (e) { return Object.assign({}, e); });
+      if (c.sha === candidate) {
+        if (step >= 3) copy.tags.push({ name: "product1-v1.5.0-beta", kind: "p1" });
+        if (step >= 4) copy.envs.push({ product: "product1", environment: "DEV", validated: step >= 5 });
+      }
+      // The fix continues the beta line on the fix commit, and DEV is redeployed
+      // with it before the check repeats.
+      if (onDevFix && c.sha === tip) {
+        if (step >= 5.4) copy.tags.push({ name: "product1-v1.5.0-beta.1", kind: "p1" });
+        if (step >= 5.5) copy.envs.push({ product: "product1", environment: "DEV", validated: step >= 5.6 });
+      }
+      return copy;
+    });
+  }
+
+  function focusForStep(label) {
+    var step = stepValue(label);
+    if (step <= 2) return "commit";
+    if (label === "2.1" || label === "2.2" || label === "2.3") return "commit";
+    if (label === "5.1" || label === "5.2" || label === "5.3") return "commit";
+    if (step === 3 || label === "5.4") return "tag";
+    return "env";
+  }
+
+  function commitLegendForStep(label) {
+    if (label === "2.1") return "the ci pipeline failed on this commit";
+    if (label === "2.2") return "a fix branch is created from the trunk";
+    if (label === "2.3") return "the fix is merged into the trunk";
+    if (label === "5.1") return "an operator finds an issue on this beta tag";
+    if (label === "5.2") return "a fix branch is created from the trunk";
+    if (label === "5.3") return "the fix is merged into the trunk";
+    return "the release candidate commit \u00b7 validated by the ci pipeline";
+  }
+
+  function tagLegendForStep() { return "added by the bump pipeline"; }
+
+  function envLegendForStep(label) {
+    var step = stepValue(label);
+    if (step === 5 || label === "5.6") return "confirmed by an operator";
+    return "deployed by the deploy pipeline";
+  }
+
+  function frameClass() { return currentStep.indexOf(".") >= 0 ? " failed" : ""; }
+
+  function buildHtml(commits) {
+    var html = "";
+    commits.forEach(function (c) {
+      var classes = "commit";
+      if (c.selected) classes += " selected";
+      if (c.branch) classes += " branch";
+      if (c.devFixBranch) classes += " fixbranch";
+      if (c.subject.indexOf("(product2)") >= 0) classes += " p2row";
+
+      var badges = (c.tags || []).map(function (t) {
+        var cls = "pill " + t.kind;
+        if (t.planned) cls += " planned" + (t.approved ? " approved" : "");
+        else if (t.release) cls += " release";
+        return '<span class="' + cls + '">' + t.name + '</span>';
+      }).join("");
+      var focus = c.selected ? focusForStep(currentStep) : "";
+      if (c.selected && focus !== "commit") classes += " tagged";
+
+      var badgesHtml = "";
+      if (c.selected && focus === "commit") {
+        badgesHtml = badges
+          ? '<div class="badges">' + badges + '</div>'
+          : '<div class="badges"><span class="pill ghost">no tag yet</span></div>';
+      } else if (c.selected && focus === "tag") {
+        badgesHtml = '<div class="fieldbox wide">' +
+          '<span class="fieldbox-legend">' + tagLegendForStep(currentStep) + '</span>' +
+          '<div class="badges">' + badges + '</div></div>';
+      } else if (badges) {
+        badgesHtml = '<div class="badges">' + badges + '</div>';
+      }
+
+      var envs = (c.envs || []).map(function (e) {
+        var k = e.product === "product1" ? "p1" : "p2";
+        var filled = e.validated !== false ? " filled" : "";
+        return '<span class="envchip ' + k + filled + '">' + e.product + ' &middot; ' + e.environment + '</span>';
+      }).join("");
+
+      var envsHtml;
+      if (c.selected && focus === "env") {
+        envsHtml = '<div class="fieldbox">' +
+          '<span class="fieldbox-legend">' + envLegendForStep(currentStep) + '</span>' +
+          '<div class="envcell">' + envs + '</div></div>';
+      } else {
+        envsHtml = '<div class="envcell">' + envs + '</div>';
+      }
+
+      var frame = (c.selected && focus === "commit")
+        ? '<div class="frame' + frameClass() + '"><span class="frame-legend">' + commitLegendForStep(currentStep) + '</span></div>'
+        : "";
+
+      html +=
+        '<div class="' + classes + '">' +
+          '<div class="rail"></div>' +
+          '<div class="msg"><div class="subject">' + c.subject + '</div>' + badgesHtml + '</div>' +
+          envsHtml +
+          '<div class="who">' + c.author + '<span class="date">' + c.date + '</span></div>' +
+          '<div class="sha">' + c.sha + '</div>' +
+          frame +
+        '</div>';
+    });
+    return html;
+  }
+
+  function drawGraph(commits) {
+    var rows = Array.prototype.slice.call(container.querySelectorAll(".commit"));
+    if (!rows.length) return;
+    var rect = container.getBoundingClientRect();
+    var centers = rows.map(function (r) {
+      var rr = r.getBoundingClientRect();
+      return rr.top - rect.top + rr.height / 2;
+    });
+    var height = container.offsetHeight;
+    var width = railW;
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "graphlines");
+    svg.setAttribute("width", String(width));
+    svg.setAttribute("height", String(height));
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    var parts = [];
+    parts.push('<line x1="' + devX + '" y1="' + centers[0] + '" x2="' + devX + '" y2="' +
+      centers[centers.length - 1] + '" stroke="' + devColor + '" stroke-width="2"/>');
+    branchDefs.forEach(function (def) {
+      var fork = -1, squash = -1, tip = -1;
+      commits.forEach(function (c, i) {
+        if (c[def.fork]) fork = i;
+        if (c[def.squash]) squash = i;
+        if (c[def.tip] && tip === -1) tip = i;
+      });
+      if (fork < 0 || tip < 0) return;
+      var fy = centers[fork], ty = centers[tip], R = 8;
+      var solid = "M" + devX + "," + fy +
+        " L" + (def.x - R) + "," + fy +
+        " A" + R + "," + R + " 0 0 0 " + def.x + "," + (fy - R) +
+        " L" + def.x + "," + ty;
+      parts.push('<path d="' + solid + '" fill="none" stroke="' + def.color + '" stroke-width="2"/>');
+      if (squash < 0) return;
+      var sy = centers[squash], R2 = 8;
+      var dashed = "M" + def.x + "," + ty +
+        " L" + def.x + "," + (sy + R2) +
+        " A" + R2 + "," + R2 + " 0 0 0 " + (def.x - R2) + "," + sy +
+        " L" + devX + "," + sy;
+      parts.push('<path d="' + dashed + '" fill="none" stroke="' + def.color + '" stroke-width="2" stroke-dasharray="4 4" opacity="0.55"/>');
+    });
+    rows.forEach(function (r, i) {
+      var c = commits[i];
+      var x = devX, stroke = devColor;
+      branchDefs.forEach(function (def) {
+        if (c[def.tip]) { x = def.x; stroke = def.color; }
+      });
+      if (c.selected) {
+        parts.push('<circle cx="' + x + '" cy="' + centers[i] + '" r="11" fill="none" stroke="' + brandSoft + '" stroke-width="5"/>');
+        stroke = brand;
+      }
+      parts.push('<circle cx="' + x + '" cy="' + centers[i] + '" r="7" fill="#ffffff" stroke="' + stroke + '" stroke-width="3"/>');
+    });
+    svg.innerHTML = parts.join("");
+    container.appendChild(svg);
+  }
+
+  function persist() {
+    if (window.history && history.replaceState) {
+      history.replaceState(null, "", location.pathname + "?flow=deploy-to-dev&step=" + encodeURIComponent(currentStep));
+    }
+  }
+
+  function render() {
+    var commits = commitsForStep(currentStep);
+    container.innerHTML = buildHtml(commits);
+    drawGraph(commits);
+    var idx = stepLabels.indexOf(currentStep);
+    var onBranch = stepLabels[idx].indexOf(".") >= 0;
+    var currentBranch = onBranch ? stepLabels[idx].split(".")[0] : "";
+    persist();
+    stepItems.forEach(function (li) {
+      if (!li.classList.contains("branch-mid")) return;
+      li.style.display = currentBranch === li.getAttribute("data-branch") ? "" : "none";
+    });
+    [].forEach.call(stepperEl.querySelectorAll(".branch-more"), function (li) {
+      var branch = li.getAttribute("data-branch");
+      var last = -1;
+      stepLabels.forEach(function (l, i) {
+        if (l.indexOf(branch + ".") === 0) last = i;
+      });
+      li.classList.toggle("conn", idx > last);
+      li.style.display = currentBranch === branch ? "none" : "";
+    });
+    var branchPoint = onBranch ? stepLabels.indexOf(currentBranch) : -1;
+    stepItems.forEach(function (li, i) {
+      var isBranch = li.classList.contains("branch");
+      var passed = i < idx;
+      var conn = passed && !(onBranch && i >= branchPoint);
+      var sameBranch = isBranch && stepLabels[i].split(".")[0] === currentBranch;
+      var done = passed && (!isBranch || sameBranch);
+      li.classList.toggle("active", i === idx);
+      li.classList.toggle("passed", passed);
+      li.classList.toggle("conn", conn);
+      li.classList.toggle("done", done);
+      var bubble = li.querySelector(".bubble");
+      if (bubble) bubble.textContent = done ? "\u2713" : stepLabels[i];
+    });
+  }
+
+  function go(delta) {
+    var idx = stepLabels.indexOf(currentStep);
+    var target = idx + delta;
+    if (target < 0 || target >= totalSteps) return;
+    currentStep = stepLabels[target];
+    render();
+  }
+
+  function isActive() {
+    var tab = document.querySelector('.tab[data-flow="deploy-to-dev"]');
+    return tab && tab.classList.contains("active");
+  }
+
+  if (stepperEl) {
+    stepperEl.addEventListener("click", function (e) {
+      var li = e.target.closest("li");
+      if (!li) return;
+      var label = li.getAttribute("data-step");
+      if (!label || stepLabels.indexOf(label) < 0) return;
+      currentStep = label;
+      render();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (!isActive()) return;
+    if (e.key === "ArrowLeft") go(-1);
+    if (e.key === "ArrowRight") go(1);
+  });
+
+  window.addEventListener("resize", function () { if (isActive()) render(); });
+
+  window.renderDeployToDev = render;
+  if (isActive()) render();
+})();
+
+// Roll back. Production runs the previous release again. Nothing is written.
+(function () {
+  var root = document.querySelector('.flow[data-flow="roll-back"]');
+  if (!root) return;
+  var allCommits = [
+    { sha: "a1b2c3d", subject: "feat(product1): add export endpoint", author: "Priya Nair", date: "2026-10-07 17:45", tags: [
+      { name: "product1-v1.5.0-rc", kind: "p1" },
+      { name: "product1-v1.5.0", kind: "p1", release: true }
+    ], envs: [
+      { product: "product1", environment: "Production" }
+    ] },
+    { sha: "b2c3d4e", subject: "feat(product2): add dashboard filters", author: "Marco Rossi", date: "2026-10-07 16:20", tags: [], envs: [] },
+    { sha: "9f8e7d6", subject: "feat(product1): add export filters", author: "Priya Nair", date: "2026-09-28 14:02", tags: [
+      { name: "product1-v1.4.2-beta", kind: "p1" },
+      { name: "product1-v1.4.2-rc", kind: "p1" },
+      { name: "product1-v1.4.2", kind: "p1", release: true }
+    ], envs: [] }
+  ];
+  var container = root.querySelector(".commits");
+  var stepperEl = root.querySelector(".stepper");
+  var stepItems = stepperEl ? Array.prototype.slice.call(stepperEl.querySelectorAll("li[data-step]")) : [];
+  var stepLabels = stepItems.map(function (li) { return li.getAttribute("data-step"); });
+  var totalSteps = stepLabels.length;
+  var railW = 96, devX = 17;
+  var devColor = "#cbd5e1";
+  var brand = "#2563eb", brandSoft = "#dbeafe";
+  var branchDefs = [];
+  var currentStep = (function () {
+    var f = /[?&]flow=([^&]+)/.exec(location.search);
+    var flow = f ? decodeURIComponent(f[1]) : "";
+    if (flow !== "roll-back") return stepLabels[0];
+    var m = /[?&]step=([^&]+)/.exec(location.search);
+    var label = m ? decodeURIComponent(m[1]) : "";
+    return stepLabels.indexOf(label) >= 0 ? label : stepLabels[0];
+  })();
+  function stepValue(label) { return parseFloat(label); }
+
+  function commitsForStep(label) {
+    var step = stepValue(label);
+    // The broken release is in production until the rollback. From step 2 the
+    // previous release takes over, and an operator confirms it at step 3.
+    var selected = step === 1 ? "a1b2c3d" : "9f8e7d6";
+    return allCommits.map(function (c) {
+      var copy = Object.assign({}, c);
+      copy.selected = c.sha === selected;
+      copy.tags = (c.tags || []).map(function (t) { return Object.assign({}, t); });
+      copy.envs = (c.envs || []).map(function (e) { return Object.assign({}, e); });
+      if (c.sha === "a1b2c3d" && step >= 2) {
+        copy.envs = copy.envs.filter(function (e) { return e.environment !== "Production"; });
+      }
+      if (c.sha === "9f8e7d6" && step >= 2) {
+        copy.envs.push({ product: "product1", environment: "Production", validated: step >= 3 });
+      }
+      return copy;
+    });
+  }
+
+  function focusForStep(label) { return stepValue(label) === 1 ? "commit" : "env"; }
+
+  function commitLegendForStep(label) {
+    if (label === "1") return "an operator finds an issue on this release";
+    return "the released commit";
+  }
+
+  function tagLegendForStep() { return "added by the release pipeline"; }
+
+  function envLegendForStep(label) {
+    return stepValue(label) === 3 ? "confirmed on production" : "deployed by the deploy pipeline";
+  }
+
+  function buildHtml(commits) {
+    var html = "";
+    commits.forEach(function (c) {
+      var classes = "commit";
+      if (c.selected) classes += " selected";
+      if (c.subject.indexOf("(product2)") >= 0) classes += " p2row";
+
+      var badges = (c.tags || []).map(function (t) {
+        var cls = "pill " + t.kind;
+        if (t.planned) cls += " planned" + (t.approved ? " approved" : "");
+        else if (t.release) cls += " release";
+        return '<span class="' + cls + '">' + t.name + '</span>';
+      }).join("");
+      var focus = c.selected ? focusForStep(currentStep) : "";
+      if (c.selected && focus !== "commit") classes += " tagged";
+
+      var badgesHtml = "";
+      if (c.selected && focus === "commit") {
+        badgesHtml = badges
+          ? '<div class="badges">' + badges + '</div>'
+          : '<div class="badges"><span class="pill ghost">no tag yet</span></div>';
+      } else if (c.selected && focus === "tag") {
+        badgesHtml = '<div class="fieldbox wide">' +
+          '<span class="fieldbox-legend">' + tagLegendForStep(currentStep) + '</span>' +
+          '<div class="badges">' + badges + '</div></div>';
+      } else if (badges) {
+        badgesHtml = '<div class="badges">' + badges + '</div>';
+      }
+
+      var envs = (c.envs || []).map(function (e) {
+        var k = e.product === "product1" ? "p1" : "p2";
+        var filled = e.validated !== false ? " filled" : "";
+        return '<span class="envchip ' + k + filled + '">' + e.product + ' &middot; ' + e.environment + '</span>';
+      }).join("");
+
+      var envsHtml;
+      if (c.selected && focus === "env") {
+        envsHtml = '<div class="fieldbox">' +
+          '<span class="fieldbox-legend">' + envLegendForStep(currentStep) + '</span>' +
+          '<div class="envcell">' + envs + '</div></div>';
+      } else {
+        envsHtml = '<div class="envcell">' + envs + '</div>';
+      }
+
+      var frame = (c.selected && focus === "commit")
+        ? '<div class="frame"><span class="frame-legend">' + commitLegendForStep(currentStep) + '</span></div>'
+        : "";
+
+      html +=
+        '<div class="' + classes + '">' +
+          '<div class="rail"></div>' +
+          '<div class="msg"><div class="subject">' + c.subject + '</div>' + badgesHtml + '</div>' +
+          envsHtml +
+          '<div class="who">' + c.author + '<span class="date">' + c.date + '</span></div>' +
+          '<div class="sha">' + c.sha + '</div>' +
+          frame +
+        '</div>';
+    });
+    return html;
+  }
+
+  function drawGraph(commits) {
+    var rows = Array.prototype.slice.call(container.querySelectorAll(".commit"));
+    if (!rows.length) return;
+    var rect = container.getBoundingClientRect();
+    var centers = rows.map(function (r) {
+      var rr = r.getBoundingClientRect();
+      return rr.top - rect.top + rr.height / 2;
+    });
+    var height = container.offsetHeight;
+    var width = railW;
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "graphlines");
+    svg.setAttribute("width", String(width));
+    svg.setAttribute("height", String(height));
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    var parts = [];
+    parts.push('<line x1="' + devX + '" y1="' + centers[0] + '" x2="' + devX + '" y2="' +
+      centers[centers.length - 1] + '" stroke="' + devColor + '" stroke-width="2"/>');
+    rows.forEach(function (r, i) {
+      var c = commits[i];
+      var stroke = devColor;
+      if (c.selected) {
+        parts.push('<circle cx="' + devX + '" cy="' + centers[i] + '" r="11" fill="none" stroke="' +
+          brandSoft + '" stroke-width="5"/>');
+        stroke = brand;
+      }
+      parts.push('<circle cx="' + devX + '" cy="' + centers[i] + '" r="7" fill="#ffffff" stroke="' +
+        stroke + '" stroke-width="3"/>');
+    });
+    svg.innerHTML = parts.join("");
+    container.appendChild(svg);
+  }
+
+  function persist() {
+    if (window.history && history.replaceState) {
+      history.replaceState(null, "", location.pathname + "?flow=roll-back&step=" + encodeURIComponent(currentStep));
+    }
+  }
+
+  function render() {
+    var commits = commitsForStep(currentStep);
+    container.innerHTML = buildHtml(commits);
+    drawGraph(commits);
+    var idx = stepLabels.indexOf(currentStep);
+    persist();
+    stepItems.forEach(function (li, i) {
+      li.classList.toggle("active", i === idx);
+      li.classList.toggle("passed", i < idx);
+      li.classList.toggle("conn", i < idx);
+      li.classList.toggle("done", i < idx);
+      var bubble = li.querySelector(".bubble");
+      if (bubble) bubble.textContent = i < idx ? "\u2713" : stepLabels[i];
+    });
+  }
+
+  function go(delta) {
+    var idx = stepLabels.indexOf(currentStep);
+    var target = idx + delta;
+    if (target < 0 || target >= totalSteps) return;
+    currentStep = stepLabels[target];
+    render();
+  }
+
+  function isActive() {
+    var tab = document.querySelector('.tab[data-flow="roll-back"]');
+    return tab && tab.classList.contains("active");
+  }
+
+  if (stepperEl) {
+    stepperEl.addEventListener("click", function (e) {
+      var li = e.target.closest("li");
+      if (!li) return;
+      var label = li.getAttribute("data-step");
+      if (!label || stepLabels.indexOf(label) < 0) return;
+      currentStep = label;
+      render();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (!isActive()) return;
+    if (e.key === "ArrowLeft") go(-1);
+    if (e.key === "ArrowRight") go(1);
+  });
+
+  window.addEventListener("resize", function () { if (isActive()) render(); });
+
+  window.renderRollBack = render;
+  if (isActive()) render();
+})();
+</script>
+<script>
+// Jargon tooltips. Every term in the glossary gets a dotted underline and a
+// definition on hover. The glossary is the single place to edit; the terms are
+// wrapped at load time, so the step titles and legends stay plain HTML.
+(function () {
+  var GLOSSARY = [
+    { p: /\breported bugs?\b/i, def: "A defect a customer or a monitor reports against a released version. If it is critical, it needs a hotfix; otherwise it is ordinary work." },
+    { p: /\bcritical fix(?:es)?\b/i, def: "A fix to a released version that is urgent enough to ship on its own, through a hotfix flow, instead of waiting for the next normal release." },
+    { p: /\bunreleased (?:changes?|code|work)\b/i, def: "Work on the trunk that no release tag names yet. When a product's built paths carry it, a hotfix starts from the tag so the changes stay out of production." },
+    { p: /\bwatch window\b/i, def: "The period after a release during which a failure of the product's health signal counts as a bad release, so the roll back is the response. After the window the failure is a new incident. The window is a property of the product." },
+    { p: /\brelease branch(?:es)?\b/i, def: "A branch cut from a released tag, to carry a hotfix without the trunk's other work." },
+    { p: /\bpull requests?\b/i, def: "The reviewed merge of a branch into the trunk. ci validates it before the merge." },
+    { p: /\bcherry-picks?\b|\bcherry-picked\b/i, def: "Copying one commit onto another branch, so a fix reaches a release branch without the rest of the trunk." },
+    { p: /\bproduction\b/i, def: "The live environment. Only a release reaches it, and only after the approval." },
+    { p: /\bstage tags?\b/i, def: "A pre-release tag that names an increment: beta for DEV, rc for QA." },
+    { p: /\bcandidates?\b/i, def: "The commit and version that QA tested and that the release names." },
+    { p: /\bapprovers?\b/i, def: "The person who approves the production environment in Azure Pipelines. Production is gated on that approval." },
+    { p: /\boperators?\b/i, def: "Whoever performs a step: a person or an agent. A step reads the same either way, and the word grants no authority. The production approval stays a person's decision." },
+    { p: /\breleased\b/i, def: "Already shipped to production. A filled tag in the graph names it." },
+    { p: /\bdeployed\b/i, def: "Placed on an environment by the deploy run, and not confirmed yet." },
+    { p: /\breleases?\b/i, def: "Taking a candidate to production. The release run derives the final version, waits for the approval, creates the final tag, and promotes it." },
+    { p: /\bpromotes?\b|\bpromoted\b/i, def: "Making the approved candidate live on production, once the final tag exists." },
+    { p: /\bdeploys?\b/i, def: "Placing a tag on an environment. The deploy run builds that environment's artifact if the commit has none." },
+    { p: /\bsquash(?:es|ed)?\b/i, def: "Combining a branch's commits into one commit when the pull request merges." },
+    { p: /\btrunk\b/i, def: "The one long-lived branch, dev. Every change lands here first." },
+    { p: /\bqueues?\b|\bqueued\b/i, def: "Starting a run by hand in Azure Pipelines. Nothing deploys automatically, and a merge starts no deployment." },
+    { p: /\bbetas?\b/i, def: "The pre-release stage that names a DEV build." },
+    { p: /\bbumps?\b/i, def: "The queued run that creates a pre-release stage tag, such as product1-v1.5.0-rc. It deploys nothing." },
+    { p: /\bDEV\b/i, def: "The development environment, fed by a beta tag." },
+    { p: /\bQA\b/i, def: "The QA environment, fed by an rc tag. QA tests that candidate before the release." },
+    { p: /\brc\b/i, def: "The release candidate. QA tests this stage tag before a production release." },
+    { p: /\bci\b/i, def: "The validation run. It builds and tests on every push and pull request, and publishes no artifact." }
+  ];
+
+  // Longest keys sit first, so "release branch" wins over "release".
+  var combined = new RegExp("(" + GLOSSARY.map(function (g) { return g.p.source; }).join("|") + ")", "gi");
+
+  function defFor(text) {
+    for (var i = 0; i < GLOSSARY.length; i++) {
+      if (GLOSSARY[i].p.test(text)) return GLOSSARY[i].def;
+    }
+    return "";
+  }
+
+  function wrapTextNode(node) {
+    var text = node.nodeValue;
+    if (!/\w/.test(text)) return;
+    var parent = node.parentElement;
+    if (parent && parent.closest(".term, .tip, .pill, .envchip, .bubble")) return;
+    combined.lastIndex = 0;
+    var m, last = 0, frag = null;
+    while ((m = combined.exec(text))) {
+      if (!frag) frag = document.createDocumentFragment();
+      if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+      var span = document.createElement("span");
+      span.className = "term";
+      span.setAttribute("data-def", defFor(m[0]));
+      span.textContent = m[0];
+      frag.appendChild(span);
+      last = m.index + m[0].length;
+      if (combined.lastIndex === m.index) combined.lastIndex++;
+    }
+    if (!frag) return;
+    if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  }
+
+  function annotate(root) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(wrapTextNode);
+  }
+
+  [].forEach.call(
+    document.querySelectorAll(".goal-text, .stepper .title, .legend > span, .decide-q, .decide-goal, .tree-edge-label"),
+    annotate
+  );
+
+  var tip = document.createElement("div");
+  tip.className = "tip";
+  document.body.appendChild(tip);
+
+  function show(el) {
+    var def = el.getAttribute("data-def");
+    if (!def) return;
+    tip.textContent = def;
+    tip.classList.add("show");
+    tip.classList.remove("below");
+    var r = el.getBoundingClientRect();
+    var tw = tip.offsetWidth, th = tip.offsetHeight, pad = 8;
+    var left = window.scrollX + r.left + r.width / 2 - tw / 2;
+    var maxLeft = window.scrollX + document.documentElement.clientWidth - tw - pad;
+    left = Math.max(window.scrollX + pad, Math.min(left, maxLeft));
+    var top = window.scrollY + r.top - th - pad;
+    if (r.top - th - pad < 0) {
+      top = window.scrollY + r.bottom + pad;
+      tip.classList.add("below");
+    }
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+
+  function hide() { tip.classList.remove("show"); }
+
+  function termOf(e) {
+    return e.target.closest ? e.target.closest(".term") : null;
+  }
+
+  document.addEventListener("mouseover", function (e) { var el = termOf(e); if (el) show(el); });
+  document.addEventListener("mouseout", function (e) { var el = termOf(e); if (el) hide(); });
+  document.addEventListener("focusin", function (e) { var el = termOf(e); if (el) show(el); });
+  document.addEventListener("focusout", hide);
+})();
+</script>
+</body>
+</html>
