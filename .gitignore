@@ -4,3 +4,5 @@ genai-design-guidelines/
 .pi/
 .opencode/
 nul
+_site/
+.jekyll-cache/

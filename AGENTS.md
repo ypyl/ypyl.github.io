@@ -2,7 +2,12 @@
 
 ## Repository Overview
 
-Jekyll blog published to GitHub Pages at `https://ypyl.github.io/`. No build tooling needed locally — GitHub Pages auto-builds on push.
+Jekyll blog published to GitHub Pages at `https://ypyl.github.io/`. GitHub Pages builds on push to `master`.
+
+Pages, layouts, and collections are wired by hand, so a new content type takes more than a folder:
+
+- Root pages: `index.md` (home), `tools.md`, `learning.md`, `apps.md`. Each one picks a layout.
+- `_config.yml` registers every collection (`output: false` for card collections) and lists the nav pages under `header_pages`. A collection is invisible until it is registered there and given a root page.
 
 ## Design
 
@@ -16,7 +21,7 @@ Key Kami constraints applied here:
 - **Tags**: three tiers — default (`--tag-bg: #E4ECF5`), lightest (`--tag-bg-light: #EEF2F7`), and gradient. Solid hex only, never rgba.
 - **Shadows**: whisper shadow (`0 4px 24px rgba(0,0,0,0.05)`) or ring (`0 0 0 1px var(--border)`), never hard drop shadows.
 
-Design tokens are defined in `assets/css/style.css` (section 2, Design Tokens). All custom CSS in `tools.css` and inline styles must use Kami tokens.
+Design tokens are defined in `assets/css/style.css` (section 2, Design Tokens). Every custom stylesheet in `assets/css/` (`tools.css`, `learning.css`, `apps.css`, `presentation.css`) and all inline styles must use Kami tokens, never raw values.
 
 ## Diagrams
 
@@ -57,13 +62,13 @@ Content follows the **[Kami anti-patterns reference](https://github.com/tw93/Kam
 
 ## Content Structure
 
-- `_posts/` — Blog posts. Filename format: `YYYY-MM-DD-title.md`
-- `_news/` — Short news entries (Jekyll collection, `output: true`). Displayed as cards on the main page. Filename format: `YYYY-MM-DD-title.md`. Reference the source.
-- `_tools/` — Tool reference cards (Jekyll collection, `output: false`, not rendered as pages). Browse at `/tools/`
-- `_learning/` — Learning resource cards (Jekyll collection, `output: false`, not rendered as pages). Browse at `/learning/`
-- `_apps/` — Apps built by me (Jekyll collection, `output: false`, not rendered as pages). Browse at `/apps/`
-- `_presentations/` — Reveal.js slide decks (Jekyll collection, `output: true`). Paired with a blog post by matching filename slug. Uses `layout: presentation`. Browse at `/present/<slug>/`
-- `_drafts/` — Unpublished drafts
+- `_posts/` — Blog posts. Filename format `YYYY-MM-DD-title.md`. Layout: `post`.
+- `_news/` — Short news entries (Jekyll collection, `output: true`). Filename format `YYYY-MM-DD-title.md`. Rendered as cards on the home page; reference the source.
+- `_tools/` — Tool reference cards (Jekyll collection, `output: false`). Rendered by `tools.md` through `_layouts/tools.html`; browse at `/tools/`.
+- `_learning/` — Learning resource cards (Jekyll collection, `output: false`). Rendered by `learning.md` through `_layouts/learning.html`; browse at `/learning/`.
+- `_apps/` — Apps built by me (Jekyll collection, `output: false`). Rendered by `apps.md` through `_layouts/apps.html`; browse at `/apps/`.
+- `_presentations/` — Reveal.js slide decks (Jekyll collection, `output: true`). Paired with a post by matching filename slug (without the date prefix). Layout: `presentation`; browse at `/present/<slug>/`.
+- `_drafts/` — Unpublished drafts. Not rendered.
 
 ## Frontmatter Conventions
 
@@ -176,7 +181,19 @@ Create new tags freely when they describe a meaningful aspect of the content (e.
 
 ## Layouts
 
-Site uses the `minima` theme. Custom layouts in `_layouts/`.
+The `minima` theme supplies the base; overrides live in `_layouts/`.
+
+| Layout | Used by |
+|--------|---------|
+| `default` | Every page: head, header nav, footer, scroll-to-top. |
+| `home` | `index.md`: news carousel and the post list. |
+| `post` | `_posts/` and `_news/`. |
+| `presentation` | `_presentations/`: Reveal.js deck. |
+| `tools` | `tools.md`: categories plus search. |
+| `learning` | `learning.md`: searchable resource cards. |
+| `apps` | `apps.md`: app cards ordered by `order`. |
+
+Card markup lives in one include per collection: `_includes/tool-item.html`, `learning-item.html`, `app-item.html`.
 
 ## Local Validation with wslc
 
@@ -209,14 +226,20 @@ wslc run -d --name jekyll-preview \
 ```bash
 wslc logs jekyll-preview      # build output
 wslc rm -f jekyll-preview     # stop and remove
-rm -rf _site .jekyll-cache    # always clean up build artifacts
+rm -rf _site .jekyll-cache    # remove build artifacts
 ```
 
 - `--force_polling` is required. The bind mount does not deliver inotify events, so without it the server misses your edits.
 - The first run pulls the `jekyll/jekyll:4` image.
 - The build prints Sass `lighten()` deprecation warnings from the `minima` theme. They are not errors. Treat the build as failed only on a real error or a non-zero exit.
-- `_site/` and `.jekyll-cache/` are not in `.gitignore`. Delete them before committing so they cannot be staged by accident.
+- `_site/` and `.jekyll-cache/` are gitignored.
 
-## GitHub Pages
+## Publishing
 
-Site builds automatically on push to `master`. No local Jekyll build required.
+Push to `master`. GitHub Pages rebuilds and the change is live in about a minute; confirm the URL returns 200 rather than trusting the push alone.
+
+```bash
+git push github master
+```
+
+`master` tracks the `github` remote. A `nas` remote also exists; GitHub Pages does not use it.
