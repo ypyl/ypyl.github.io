@@ -1,0 +1,84 @@
+/* ==========================================================================
+   My Apps Page — Kami Design System
+   ========================================================================== */
+
+.app-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--whisper);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.app:hover {
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.app-domain {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-sm);
+}
+
+.app-domain:hover {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.app-name {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.app-name a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.app-name a:hover {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.app-desc {
+  margin: 0 0 var(--space-md) 0;
+  color: var(--text-tertiary);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.app .tags {
+  margin-bottom: var(--space-md);
+}
+
+.app-source {
+  margin-top: auto;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.app-source:hover {
+  color: var(--brand-light);
+  text-decoration: none;
+}

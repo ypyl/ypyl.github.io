@@ -8,6 +8,7 @@ theme: minima
 header_pages:
   - learning.md
   - tools.md
+  - apps.md
 
 # Author info (used in footer)
 author: Yauhen Pyl
@@ -21,6 +22,8 @@ exclude:
   - README.md
 
 collections:
+  apps:
+    output: false
   tools:
     output: false
   learning:

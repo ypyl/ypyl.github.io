@@ -61,6 +61,7 @@ Content follows the **[Kami anti-patterns reference](https://github.com/tw93/Kam
 - `_news/` — Short news entries (Jekyll collection, `output: true`). Displayed as cards on the main page. Filename format: `YYYY-MM-DD-title.md`. Reference the source.
 - `_tools/` — Tool reference cards (Jekyll collection, `output: false`, not rendered as pages). Browse at `/tools/`
 - `_learning/` — Learning resource cards (Jekyll collection, `output: false`, not rendered as pages). Browse at `/learning/`
+- `_apps/` — Apps built by me (Jekyll collection, `output: false`, not rendered as pages). Browse at `/apps/`
 - `_presentations/` — Reveal.js slide decks (Jekyll collection, `output: true`). Paired with a blog post by matching filename slug. Uses `layout: presentation`. Browse at `/present/<slug>/`
 - `_drafts/` — Unpublished drafts
 
@@ -96,6 +97,18 @@ link: https://github.com/...
 category: Category
 tags: [tag1, tag2]
 description: One-line description.
+---
+```
+
+**Apps** (`_apps/`):
+```yaml
+---
+name: App Name
+link: https://live-app-url/
+repo: https://github.com/...   # optional
+order: 1                       # display order, ascending
+tags: [tag1, tag2]
+description: One or two sentences on what the app does.
 ---
 ```
 
@@ -157,6 +170,7 @@ Create new tags freely when they describe a meaningful aspect of the content (e.
 - **New news**: Create `YYYY-MM-DD-title.md` in `_news/` with `layout: post`, `title`, and `date` frontmatter. No `categories` or `tags` needed — the collection itself identifies the content type. Keep short and reference the source.
 - **New tool**: Create `*.md` in `_tools/` with the tool frontmatter. Choose from valid tool categories above and follow tag guidelines.
 - **New learning resource**: Create `*.md` in `_learning/` with the learning resource frontmatter. Choose from valid learning resource categories above and follow tag guidelines.
+- **New app**: Create `*.md` in `_apps/` with the app frontmatter (`link` is the live app, `repo` the source). Follow tag guidelines.
 - **New presentation**: Create `<post-slug>.md` in `_presentations/` with `layout: presentation`. The filename must match the companion post's slug (without date prefix). Use `---` separators for slide breaks. **Code blocks**: specify a language identifier on fenced code blocks (e.g., ```` ```bash ````, ```` ```typescript ````). Jekyll's Kramdown invokes Rouge to pre-highlight language-tagged blocks, but a JS bridge in the presentation layout strips the Rouge spans and passes the language hint to Reveal.js's highlight.js plugin, which applies the monokai theme.
 - **Draft**: Place in `_drafts/` (not rendered)
 

@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+<div class="apps-page">
+  {% assign apps_sorted = site.apps | sort: "order" %}
+
+  <ul class="app-list">
+    {% for app in apps_sorted %}
+      {% include app-item.html app=app %}
+    {% endfor %}
+  </ul>
+</div>

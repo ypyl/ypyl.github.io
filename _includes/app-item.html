@@ -1,0 +1,21 @@
+<li class="app">
+  <a class="app-domain" href="{{ include.app.link }}" target="_blank" rel="noopener">
+    {{ include.app.link | remove_first: "https://" | remove_first: "http://" | split: "/" | first }}
+  </a>
+
+  <h3 class="app-name">
+    <a href="{{ include.app.link }}" target="_blank" rel="noopener">{{ include.app.name }}</a>
+  </h3>
+
+  <p class="app-desc">{{ include.app.description }}</p>
+
+  <div class="tags">
+    {% for tag in include.app.tags %}
+      <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+
+  {% if include.app.repo %}
+    <a class="app-source" href="{{ include.app.repo }}" target="_blank" rel="noopener">Source &rarr;</a>
+  {% endif %}
+</li>
