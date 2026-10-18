@@ -178,6 +178,45 @@ Create new tags freely when they describe a meaningful aspect of the content (e.
 
 Site uses the `minima` theme. Custom layouts in `_layouts/`.
 
+## Local Validation with wslc
+
+Use the Windows Subsystem for Linux Container CLI (`wslc`) to check a change before pushing. Docker Desktop is not involved and its daemon does not need to be running. Run these from the repo root in Git Bash.
+
+`MSYS_NO_PATHCONV=1` stops Git Bash from rewriting the container path, and `$(pwd -W)` gives the Windows path that `wslc` needs for the bind mount.
+
+**Build check.** Fails on a Liquid or YAML error:
+
+```bash
+export MSYS_NO_PATHCONV=1
+wslc run --rm \
+  -v "$(pwd -W):/srv/jekyll" \
+  -w /srv/jekyll \
+  jekyll/jekyll:4 jekyll build --trace
+```
+
+**Preview server** at http://localhost:4000:
+
+```bash
+export MSYS_NO_PATHCONV=1
+wslc run -d --name jekyll-preview \
+  -p 4000:4000 \
+  -v "$(pwd -W):/srv/jekyll" \
+  -w /srv/jekyll \
+  jekyll/jekyll:4 jekyll serve \
+  --host 0.0.0.0 --port 4000 --force_polling --disable-disk-cache
+```
+
+```bash
+wslc logs jekyll-preview      # build output
+wslc rm -f jekyll-preview     # stop and remove
+rm -rf _site .jekyll-cache    # always clean up build artifacts
+```
+
+- `--force_polling` is required. The bind mount does not deliver inotify events, so without it the server misses your edits.
+- The first run pulls the `jekyll/jekyll:4` image.
+- The build prints Sass `lighten()` deprecation warnings from the `minima` theme. They are not errors. Treat the build as failed only on a real error or a non-zero exit.
+- `_site/` and `.jekyll-cache/` are not in `.gitignore`. Delete them before committing so they cannot be staged by accident.
+
 ## GitHub Pages
 
-Site builds automatically on push to `main`. No local Jekyll build required.
+Site builds automatically on push to `master`. No local Jekyll build required.
