@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Releases Economic Scenario Explorer Modeling AI's Impact on US Economy by 2030"
 date: 2026-09-09
-tags: news
 categories: news
 ---
 

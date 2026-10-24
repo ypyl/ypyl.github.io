@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Rolls Out GPT-6 with Intelligent UI to ChatGPT"
 date: 2026-10-09
-tags: news
 categories: news
 ---
 

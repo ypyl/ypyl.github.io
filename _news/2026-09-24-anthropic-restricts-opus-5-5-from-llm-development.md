@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Restricts Opus 5.5 from Assisting with LLM Development"
 date: 2026-09-24
-tags: news
 categories: news
 ---
 

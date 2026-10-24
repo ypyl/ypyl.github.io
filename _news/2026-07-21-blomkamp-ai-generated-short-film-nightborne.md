@@ -2,7 +2,6 @@
 layout: post
 title: "Neill Blomkamp Releases AI-Generated Short Film 'Nightborne' Entirely Created with Seedance 2.0"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

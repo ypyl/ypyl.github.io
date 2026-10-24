@@ -2,7 +2,6 @@
 layout: post
 title: "Stanford and NVIDIA Open-Source CLM-8B, an Open Rival to Jev"
 date: 2026-10-21
-tags: [news]
 categories: news
 ---
 

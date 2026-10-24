@@ -2,7 +2,6 @@
 layout: post
 title: "Epoch AI: Cost of Equal AI Quality Drops ~13x Per Year"
 date: 2026-09-23
-tags: news
 categories: news
 ---
 

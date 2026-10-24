@@ -2,7 +2,6 @@
 layout: post
 title: "Apollo Economist Warns AI Agents Could Trigger an Agentic Bank Run"
 date: 2026-09-28
-tags: news
 categories: news
 ---
 

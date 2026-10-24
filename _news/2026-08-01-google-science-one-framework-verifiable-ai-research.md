@@ -2,7 +2,6 @@
 layout: post
 title: "Google Introduces Science One — A Framework for Verifiable AI Research"
 date: 2026-08-01
-tags: news
 categories: news
 ---
 

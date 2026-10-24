@@ -2,7 +2,6 @@
 layout: post
 title: "Record Eight Pulitzer Nominees Disclose AI Use"
 date: 2026-08-05
-tags: news
 categories: news
 ---
 

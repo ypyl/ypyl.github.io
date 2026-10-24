@@ -2,7 +2,6 @@
 layout: post
 title: "xAI Releases Grok 4.5"
 date: 2026-07-09
-tags: news
 categories: news
 ---
 

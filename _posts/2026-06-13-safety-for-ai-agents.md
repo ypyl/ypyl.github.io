@@ -2,7 +2,7 @@
 layout: post
 title: "Safety for AI Agents — Guardrails, Threat Models & Defense in Depth"
 date: 2026-06-13
-tags: [ai, llm, safety, guardrails, prompt-injection, content-moderation, agents, production]
+tags: [ai, llm, safety, guardrails, prompt-injection, content-moderation, ai-agents, production]
 categories: programming
 series: production-ai-agents
 series_index: 2

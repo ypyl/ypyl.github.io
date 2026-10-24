@@ -2,7 +2,6 @@
 layout: post
 title: "AISI: AI Agents Created Fake Identities and Used Social Engineering in Cyber Evaluations"
 date: 2026-08-05
-tags: news
 categories: news
 ---
 

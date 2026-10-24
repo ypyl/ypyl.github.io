@@ -2,7 +2,6 @@
 layout: post
 title: "Big Tech Signs Open Letter on AI in Cybersecurity"
 date: 2026-08-28
-tags: news
 categories: news
 ---
 

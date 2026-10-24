@@ -2,7 +2,6 @@
 layout: post
 title: "DeepMind Publishes AI Control Roadmap Security Architecture"
 date: 2026-06-20
-tags: news
 categories: news
 ---
 

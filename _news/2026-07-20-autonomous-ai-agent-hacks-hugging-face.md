@@ -2,7 +2,6 @@
 layout: post
 title: "Autonomous AI Agent Hacks Hugging Face — Closed Models Block Investigation"
 date: 2026-07-20
-tags: news
 categories: news
 ---
 

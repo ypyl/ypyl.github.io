@@ -2,7 +2,6 @@
 layout: post
 title: "Menlo Ventures: Consumer AI Spending Tripled to $40B in a Year"
 date: 2026-09-29
-tags: news
 categories: news
 ---
 

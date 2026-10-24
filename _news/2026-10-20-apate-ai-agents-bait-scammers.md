@@ -2,7 +2,6 @@
 layout: post
 title: "Apate Sends AI Agents Undercover to Bait Scammers and Harvest Fraud Data"
 date: 2026-10-20
-tags: [news]
 categories: news
 ---
 

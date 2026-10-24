@@ -2,7 +2,6 @@
 layout: post
 title: "CME Plans AI Compute Futures Launch for October 5"
 date: 2026-08-23
-tags: news
 categories: news
 ---
 

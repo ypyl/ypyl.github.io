@@ -2,7 +2,6 @@
 layout: post
 title: "OpenRouter Picks TypeSafe's Jev to Route Model Selection"
 date: 2026-09-29
-tags: news
 categories: news
 ---
 

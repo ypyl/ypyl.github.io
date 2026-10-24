@@ -2,7 +2,6 @@
 layout: post
 title: "Austria Lobbies EU to Host Anthropic as AI Geopolitics Intensify"
 date: 2026-06-29
-tags: news
 categories: news
 ---
 

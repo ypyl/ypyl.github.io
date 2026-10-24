@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Launches GPT-6 Astra with Strong Benchmark Results"
 date: 2026-09-03
-tags: news
 categories: news
 ---
 

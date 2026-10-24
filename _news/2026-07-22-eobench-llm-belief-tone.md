@@ -2,7 +2,6 @@
 layout: post
 title: "EoBench: How Tone and Confidence Shape LLM Susceptibility to Falsehoods"
 date: 2026-07-22
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "METR Analysis Reveals 1,200-Agent Swarm Behind Hugging Face Incident"
 date: 2026-08-27
-tags: news
 categories: news
 ---
 

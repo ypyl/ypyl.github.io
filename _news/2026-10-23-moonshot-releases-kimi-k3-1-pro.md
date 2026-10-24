@@ -2,7 +2,6 @@
 layout: post
 title: "Moonshot Releases Kimi K3.1 Pro With 1M Context, Weights Due by November 4"
 date: 2026-10-23
-tags: [news]
 categories: news
 ---
 

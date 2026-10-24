@@ -2,7 +2,6 @@
 layout: post
 title: "Meta Releases Muse Wonder Models for Agentic Tasks"
 date: 2026-10-12
-tags: news
 categories: news
 ---
 

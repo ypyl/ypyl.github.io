@@ -2,7 +2,6 @@
 layout: post
 title: "Superintelligence Labs Releases Muse Spark 1.1, a Multimodal Agent Model"
 date: 2026-07-10
-tags: news
 categories: news
 ---
 

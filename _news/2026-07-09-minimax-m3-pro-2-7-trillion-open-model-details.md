@@ -2,7 +2,6 @@
 layout: post
 title: "MiniMax Prepares China's Largest Open Model at 2.7 Trillion Parameters"
 date: 2026-07-09
-tags: news
 categories: news
 ---
 

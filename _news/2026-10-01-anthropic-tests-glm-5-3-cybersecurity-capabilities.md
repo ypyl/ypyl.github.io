@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Finds Chinese GLM-5.3 Nears Closed Models on Cybersecurity Tasks"
 date: 2026-10-01
-tags: news
 categories: news
 ---
 

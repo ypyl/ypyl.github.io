@@ -1,7 +1,7 @@
 <li class="tool"
     data-tool-name="{{ include.tool.name | downcase }}"
     data-tool-desc="{{ include.tool.description | downcase }}"
-    data-tool-tags="{% for tag in include.tool.tags %}{{ tag | downcase }} {% endfor %}">
+    data-tool-tags="{% for tag in include.tool.tags %}{% assign parts = tag | split: '-' %}{% if parts.size == 3 and parts[0].size == 4 and parts[1].size == 2 and parts[2].size == 2 %}{% else %}{{ tag | downcase }} {% endif %}{% endfor %}">
   <a href="{{ include.tool.link }}" target="_blank">
     {{ include.tool.name }}
   </a>
@@ -10,7 +10,14 @@
 
   <div class="tags">
     {% for tag in include.tool.tags %}
+      {%- assign parts = tag | split: '-' -%}
+      {%- assign is_date = false -%}
+      {%- if parts.size == 3 and parts[0].size == 4 and parts[1].size == 2 and parts[2].size == 2 -%}
+        {%- assign is_date = true -%}
+      {%- endif -%}
+      {%- unless is_date %}
       <span class="tag">{{ tag }}</span>
+      {%- endunless %}
     {% endfor %}
   </div>
 </li>

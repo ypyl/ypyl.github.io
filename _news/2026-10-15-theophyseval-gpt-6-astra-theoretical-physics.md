@@ -2,7 +2,6 @@
 layout: post
 title: "Physicists Marked GPT-6 Astra Answers Wrong, Then Found Errors in Their Own Solutions"
 date: 2026-10-15
-tags: news
 categories: news
 ---
 

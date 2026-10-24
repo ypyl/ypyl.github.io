@@ -2,7 +2,6 @@
 layout: post
 title: "Google Rebrands NotebookLM to Gemini Notebook with Built-In Code Execution"
 date: 2026-07-17
-tags: news
 categories: news
 ---
 

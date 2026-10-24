@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Builds Negotiating Agents That Act for Users"
 date: 2026-10-20
-tags: [news]
 categories: news
 ---
 

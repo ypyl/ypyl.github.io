@@ -89,7 +89,7 @@ categories: category-name
 name: Tool Name
 link: https://github.com/...
 category: Category
-tags: [tag1, tag2]
+tags: [YYYY-MM-DD, tag1, tag2]   # first tag is the date the card was added
 description: One-line description.
 ---
 ```
@@ -99,11 +99,13 @@ description: One-line description.
 ---
 name: Resource Name
 link: https://github.com/...
-category: Category
-tags: [tag1, tag2]
+category: Category      # required: Book, Course, Curated List, Guide, Research Paper, Tutorial
+tags: [YYYY-MM-DD, tag1, tag2]   # first tag is the date the record was added
 description: One-line description.
 ---
 ```
+
+`category` is the only place a learning resource records what it is. Never repeat it as a tag.
 
 **Apps** (`_apps/`):
 ```yaml
@@ -112,7 +114,7 @@ name: App Name
 link: https://live-app-url/
 repo: https://github.com/...   # optional
 order: 1                       # display order, ascending
-tags: [tag1, tag2]
+tags: [YYYY-MM-DD, tag1, tag2] # first tag is the date the card was added
 description: One or two sentences on what the app does.
 ---
 ```
@@ -143,6 +145,7 @@ New categories can be added when a tool doesn't fit any existing one — keep th
 | Project Management | PM and planning tools |
 | Search | Search engines and tools |
 | Security | Security tools, privacy, governance |
+| Simulation | Monte Carlo / scenario simulators and forecasting engines |
 | UI Component | UI component libraries and frameworks |
 
 ### Valid Learning Resource Categories
@@ -162,19 +165,61 @@ New categories can be added when a tool doesn't fit any existing one — keep th
 
 Create new tags freely when they describe a meaningful aspect of the content (e.g., a technology, domain, or capability).
 
-- Use lowercase, hyphenated tags (e.g., `machine-learning`, `web-scraping`)
-- Do not include dates — they belong in the filename/frontmatter `date` field
-- Avoid vague qualifiers like `fast`, `lightweight`, `scalable`, `free`
-- Prefer canonical forms: `llm` over `large-language-models`, `rag` over `retrieval-augmented-generation`, `nlp` over `natural-language-processing`
-- Keep tags to 3–8 meaningful keywords
-- Common tags include: `open-source`, `ai`, `python`, `typescript`, `react`, `javascript`, `rust`, `go`, `dotnet`
+- Use lowercase, hyphenated tags (e.g., `machine-learning`, `web-scraping`). Spaces, underscores, capitals, and `.`/`#` prefixes are not allowed.
+- **The first tag of a card record is the date it was added** (`YYYY-MM-DD`), e.g. `tags: [2026-06-09, rag, python, llm]`. It records when the entry entered the collection, so an old card stays distinguishable from a new one. When the frontmatter has a `date` field, the tag must equal it. All tools, learning resources, and apps carry one; the older tool and app cards were backfilled from their git add-date. Card includes hide this tag from the visible tag chips and from the search index (`_includes/tool-item.html`, `learning-item.html`, `app-item.html` keep only non-date tags).
+- Tags otherwise describe the subject only. Never put metadata in them: no collection name (`news`), and for learning resources no resource type (`book`, `course`, `curated-list`, `guide`, `research-paper`, `tutorial`) because that is the job of `category`.
+- `stale` is the only status tag. Use it on a tool whose upstream repo is archived, deleted, or has gone quiet for over a year.
+- Avoid vague qualifiers like `fast`, `lightweight`, `scalable`, `free`, and empty labels like `useful`, `links`, `general`, `todo`.
+- Keep tags to 3–8 meaningful keywords. More than 8 means the classification is too fine to filter on.
+
+**One canonical spelling per concept.** These aliases were reconciled in October 2026 and must not reappear:
+
+| Canonical | Rejected variants |
+|-----------|-------------------|
+| `ai-agents` | `agents`, `agent`, `agentic`, `agentic-ai`, `llm-agents`, `agent-framework`, `agent-runtime` |
+| `csharp` | `c#` |
+| `dotnet` | `.net`, `net`, `.NET` |
+| `go` | `golang` |
+| `real-time` | `realtime` |
+| `nlp` | `natural-language-processing` |
+| `llm` | `language-model` |
+| `prompt-engineering` | `prompting`, `prompts`, `meta-prompting` |
+| `spec-driven-development` | `sdd`, `spdd` |
+| `developer-tool` | `dev-tool`, `developer-tools` |
+| `ui-library` | `uikit`, `ui-component`, `uicomponents`, `components` |
+| `orchestration` | `agent-orchestration` |
+| `plugin` | `plugins`, `agent-plugin` |
+| `diagrams` | `diagramming` |
+| `aspnet` | `asp`, `asp-net-core` |
+| `ef-core` | `ef` |
+| `cosmos-db` | `cosmosDB` |
+| `influxdb` | `indluxdb` |
+| `opentelemetry` | `open-telemetry` |
+| `react-query` | `tanstack-query` |
+| `testing` | `test` |
+| `mocking` | `mock` |
+| `desktop-application` | `desktop` |
+| `mathematics` | `math` |
+
+- Common tags include: `open-source`, `ai`, `python`, `typescript`, `react`, `javascript`, `rust`, `go`, `dotnet`, `llm`, `ai-agents`
+
+Before pushing a content change, check the frontmatter with:
+
+```bash
+# capitals or underscores inside tags (must be empty)
+grep -rh '^tags:' _tools _learning _apps _posts | grep -E '[A-Z]|_'
+# tags that are not a YAML array (must be empty)
+grep -rn '^tags: [^[]' _tools _learning _apps _posts
+# card records missing the add-date tag (must be empty)
+for f in _tools/*.md _learning/*.md _apps/*.md; do grep -qE '^tags: \[[0-9]{4}-[0-9]{2}-[0-9]{2},' "$f" || echo "no date tag: $f"; done
+```
 
 ## Adding Content
 
 - **New post**: Create `YYYY-MM-DD-descriptive-title.md` in `_posts/`
 - **New news**: Create `YYYY-MM-DD-title.md` in `_news/` with `layout: post`, `title`, and `date` frontmatter. No `categories` or `tags` needed — the collection itself identifies the content type. Keep short and reference the source.
 - **New tool**: Create `*.md` in `_tools/` with the tool frontmatter. Choose from valid tool categories above and follow tag guidelines.
-- **New learning resource**: Create `*.md` in `_learning/` with the learning resource frontmatter. Choose from valid learning resource categories above and follow tag guidelines.
+- **New learning resource**: Create `*.md` in `_learning/` with the learning resource frontmatter, including `category` from the valid categories above. Follow tag guidelines.
 - **New app**: Create `*.md` in `_apps/` with the app frontmatter (`link` is the live app, `repo` the source). Follow tag guidelines.
 - **New presentation**: Create `<post-slug>.md` in `_presentations/` with `layout: presentation`. The filename must match the companion post's slug (without date prefix). Use `---` separators for slide breaks. **Code blocks**: specify a language identifier on fenced code blocks (e.g., ```` ```bash ````, ```` ```typescript ````). Jekyll's Kramdown invokes Rouge to pre-highlight language-tagged blocks, but a JS bridge in the presentation layout strips the Rouge spans and passes the language hint to Reveal.js's highlight.js plugin, which applies the monokai theme.
 - **Draft**: Place in `_drafts/` (not rendered)

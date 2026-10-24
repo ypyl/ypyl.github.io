@@ -2,6 +2,6 @@
 name: Physics Sims
 link: https://github.com/gemsjohn/physics-sims
 category: Data & Visualization
-tags: [visualization, education, html, open-source, stale]
+tags: [2026-05-04, visualization, education, html, open-source, stale]
 description: Interactive HTML physics simulations covering planetary orbits, general relativity, Earth's magnetic field, and atomic models.
 ---

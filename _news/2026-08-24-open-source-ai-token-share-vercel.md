@@ -2,7 +2,6 @@
 layout: post
 title: "Open-Source Models Now Handle 62% of Vercel Token Consumption"
 date: 2026-08-24
-tags: news
 categories: news
 ---
 

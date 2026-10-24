@@ -2,7 +2,6 @@
 layout: post
 title: "Google Releases Gemini 3.8 Flash and Gemini 3.8 Flash Cyber"
 date: 2026-09-02
-tags: news
 categories: news
 ---
 

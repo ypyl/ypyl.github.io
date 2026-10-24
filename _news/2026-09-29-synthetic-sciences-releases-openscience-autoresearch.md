@@ -2,7 +2,6 @@
 layout: post
 title: "Synthetic Sciences Releases OpenScience with Autonomous Experiment Mode"
 date: 2026-09-29
-tags: news
 categories: news
 ---
 

@@ -1,8 +1,9 @@
 ---
 name: 11 Free AI and Machine Learning Books
 link: https://cs.nyu.edu/~mohri/mlbook/
+category: Curated List
 date: 2026-10-22
-tags: [2026-10-22, Curated List, book, machine-learning, deep-learning, reinforcement-learning, multi-agent, probabilistic-models]
+tags: [2026-10-22, machine-learning, deep-learning, reinforcement-learning, multi-agent, probabilistic-models]
 description: Eleven free machine learning and AI textbooks covering classic learning theory, deep learning, reinforcement learning, multi-agent systems, fairness and probabilistic methods
 references:
   - name: Foundations of Machine Learning

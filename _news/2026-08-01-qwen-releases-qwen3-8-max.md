@@ -2,7 +2,6 @@
 layout: post
 title: "Qwen Releases Qwen3.8-Max with 2.4 Trillion Parameters for Autonomous Coding"
 date: 2026-08-01
-tags: news
 categories: news
 ---
 

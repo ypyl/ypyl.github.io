@@ -2,7 +2,6 @@
 layout: post
 title: "Moonshot Pauses Kimi K3 Subscriptions Due to Compute Shortage, Splits into Two Tiers"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

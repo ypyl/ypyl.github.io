@@ -2,7 +2,6 @@
 layout: post
 title: "Claude Opus 5.5 Writes Noticeably Cleaner Prose"
 date: 2026-09-28
-tags: news
 categories: news
 ---
 

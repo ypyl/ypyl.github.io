@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Updates API Pricing for GPT-5.6 Family and Cyber Model"
 date: 2026-08-23
-tags: news
 categories: news
 ---
 

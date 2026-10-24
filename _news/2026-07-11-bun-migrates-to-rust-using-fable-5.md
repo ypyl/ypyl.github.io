@@ -2,7 +2,6 @@
 layout: post
 title: "Bun Migrates to Rust Using Fable 5"
 date: 2026-07-11
-tags: news
 categories: news
 ---
 

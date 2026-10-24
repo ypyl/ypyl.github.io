@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI IPO Delayed to 2027 as Company Focuses on Self-Learning AI"
 date: 2026-06-10
-tags: news
 categories: news
 ---
 

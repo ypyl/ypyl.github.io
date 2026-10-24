@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Decodes AI Planning Beyond CoT with J-Space"
 date: 2026-07-07
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "SpaceX Shows Investors Prototype of Elon Musk's AI Smartphone"
 date: 2026-07-02
-tags: news
 categories: news
 ---
 

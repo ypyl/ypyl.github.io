@@ -2,7 +2,6 @@
 layout: post
 title: "Apple Launches Third-Gen Foundation Models with 20B On-Device AFM 3 Core Advanced"
 date: 2026-06-09
-tags: news
 categories: news
 ---
 

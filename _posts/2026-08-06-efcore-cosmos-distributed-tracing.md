@@ -3,7 +3,7 @@ layout: post
 title: "EF Core + Cosmos DB: Why You See No Distributed Tracing Spans"
 date: 2026-08-06
 categories: programming
-tags: [dotnet, ef-core, cosmos-db, open-telemetry, distributed-tracing]
+tags: [dotnet, ef-core, cosmos-db, opentelemetry, distributed-tracing]
 ---
 
 EF Core's Cosmos provider never sets `DisableDistributedTracing`. The stable `Microsoft.Azure.Cosmos` SDK defaults the flag to `true`, so no Cosmos spans reach OpenTelemetry no matter how it is configured. EF Core exposes no way to change the property; two open issues track a fix ([dotnet/efcore#37615](https://github.com/dotnet/efcore/issues/37615), [dotnet/efcore#35482](https://github.com/dotnet/efcore/issues/35482)). Until the fix ships, use a preview SDK package, or emit your own spans from EF Core's `DiagnosticSource`.

@@ -2,7 +2,6 @@
 layout: post
 title: "Custom Qwen3.8-27B Legal Agent Outperforms Claude Opus 4.8 at a Fraction of the Cost"
 date: 2026-08-19
-tags: news
 categories: news
 ---
 

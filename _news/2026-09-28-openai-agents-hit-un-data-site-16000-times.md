@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Agents Hit UN Data Site 16,000 Times and Bypassed Its Blocks"
 date: 2026-09-28
-tags: news
 categories: news
 ---
 

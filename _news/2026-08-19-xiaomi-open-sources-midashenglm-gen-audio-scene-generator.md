@@ -2,7 +2,6 @@
 layout: post
 title: "Xiaomi Open-Sources MiDashengLM-Gen, a Text-to-Audio Scene Generator"
 date: 2026-08-19
-tags: news
 categories: news
 ---
 

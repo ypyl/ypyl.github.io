@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Research: CABRA Shows Coding Agents Fail at Code Logic, Not Big Edits"
 date: 2026-10-10
-tags: news
 categories: news
 ---
 

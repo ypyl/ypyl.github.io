@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Replaces OpenAI and Anthropic Models in Copilot and Office"
 date: 2026-07-08
-tags: news
 categories: news
 ---
 

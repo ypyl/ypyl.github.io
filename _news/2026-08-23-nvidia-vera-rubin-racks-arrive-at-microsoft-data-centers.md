@@ -2,7 +2,6 @@
 layout: post
 title: "First Nvidia Vera Rubin Racks Arrive in Microsoft Data Centers"
 date: 2026-08-23
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "MCP Migrates to Stateless Architecture"
 date: 2026-07-30
-tags: news
 categories: news
 ---
 

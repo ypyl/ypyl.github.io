@@ -2,7 +2,6 @@
 layout: post
 title: "Tencent Open-Sources Hy-Nomas, an Interactive Video World Model That Runs on One RTX 4090"
 date: 2026-10-23
-tags: [news]
 categories: news
 ---
 

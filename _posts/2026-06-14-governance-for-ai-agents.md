@@ -2,7 +2,7 @@
 layout: post
 title: "Governance for AI Agents — Policy, Audit, and Compliance"
 date: 2026-06-14
-tags: [ai, llm, governance, compliance, audit, policy, agents, production, eu-ai-act]
+tags: [ai, llm, governance, compliance, audit, policy, ai-agents, production, eu-ai-act]
 categories: programming
 series: production-ai-agents
 series_index: 3

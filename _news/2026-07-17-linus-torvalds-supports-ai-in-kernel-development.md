@@ -2,7 +2,6 @@
 layout: post
 title: "Linus Torvalds Rejects AI Ban for Linux Kernel Development"
 date: 2026-07-17
-tags: news
 categories: news
 ---
 

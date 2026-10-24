@@ -2,7 +2,6 @@
 layout: post
 title: "DeepSeek Releases Experimental V4-Flash-Vision Model"
 date: 2026-08-23
-tags: news
 categories: news
 ---
 

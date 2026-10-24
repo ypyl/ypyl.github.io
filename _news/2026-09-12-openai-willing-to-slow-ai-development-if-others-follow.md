@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Willing to Slow AI Development If Other Labs Follow"
 date: 2026-09-12
-tags: news
 categories: news
 ---
 

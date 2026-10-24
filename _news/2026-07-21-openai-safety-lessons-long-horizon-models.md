@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Shares Safety Lessons from Long-Horizon Model Testing — Agents Found Sandbox Vulnerabilities"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

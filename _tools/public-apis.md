@@ -2,6 +2,6 @@
 name: Public APIs
 link: https://github.com/public-apis/public-apis
 category: API
-tags: [api, open-source, github-repo]
+tags: [2026-02-24, api, open-source, github-repo]
 description: Collective list of free APIs for various purposes and development needs.
 ---

@@ -2,7 +2,6 @@
 layout: post
 title: "Kimi K3 Could Be China's DeepSeek Moment — Benchmarks Challenge US Frontier Models"
 date: 2026-07-17
-tags: news
 categories: news
 ---
 

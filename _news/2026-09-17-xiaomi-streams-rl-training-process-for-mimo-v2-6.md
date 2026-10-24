@@ -2,7 +2,6 @@
 layout: post
 title: "Xiaomi Streams RL Training Process for MiMo-V2.6 Models"
 date: 2026-09-17
-tags: news
 categories: news
 ---
 

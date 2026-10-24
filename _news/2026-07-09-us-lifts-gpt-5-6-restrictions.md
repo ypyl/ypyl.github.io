@@ -2,7 +2,6 @@
 layout: post
 title: "US Lifts Restrictions on GPT-5.6 Release"
 date: 2026-07-09
-tags: news
 categories: news
 ---
 

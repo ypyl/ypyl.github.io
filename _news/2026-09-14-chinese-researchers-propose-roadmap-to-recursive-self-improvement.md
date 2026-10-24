@@ -2,7 +2,6 @@
 layout: post
 title: "Chinese Researchers Publish 75-Page Roadmap to Recursive Self-Improvement"
 date: 2026-09-14
-tags: news
 categories: news
 ---
 

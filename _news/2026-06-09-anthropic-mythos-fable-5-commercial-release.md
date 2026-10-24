@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic to Launch Commercial Mythos Line with Fable 5"
 date: 2026-06-09
-tags: news
 categories: news
 ---
 

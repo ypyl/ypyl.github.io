@@ -2,7 +2,6 @@
 layout: post
 title: "Google Research Maps Complete Fruit Fly Brain and Nervous System"
 date: 2026-09-03
-tags: news
 categories: news
 ---
 

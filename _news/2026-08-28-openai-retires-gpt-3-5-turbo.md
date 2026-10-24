@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Officially Retires GPT-3.5 Turbo"
 date: 2026-08-28
-tags: news
 categories: news
 ---
 

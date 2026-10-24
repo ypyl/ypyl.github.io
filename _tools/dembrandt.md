@@ -2,6 +2,6 @@
 name: Dembrandt
 link: https://dembrandt.com
 category: Automation
-tags: [design, automation, javascript, open-source]
+tags: [2026-02-13, design, automation, javascript, open-source]
 description: Extract any website's design system into tokens including logo, colors, typography, and borders with one command.
 ---

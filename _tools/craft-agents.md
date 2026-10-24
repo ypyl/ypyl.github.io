@@ -2,6 +2,6 @@
 name: Craft Agents
 link: https://github.com/craft-ai-agents/craft-agents-oss
 category: AI Agent Framework
-tags: [ai-agents, automation, open-source, typescript]
+tags: [2026-03-16, ai-agents, automation, open-source, typescript]
 description: Tool for effective multitasking and API connection with a document-centric workflow in a fluid UI.
 ---

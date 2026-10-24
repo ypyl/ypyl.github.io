@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Lets Enterprise Clients Keep Request Logs in Their Own Cloud"
 date: 2026-08-23
-tags: news
 categories: news
 ---
 

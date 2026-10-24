@@ -2,7 +2,6 @@
 layout: post
 title: "Time Magazine Serves Hidden Ads to AI Bots"
 date: 2026-08-06
-tags: news
 categories: news
 ---
 

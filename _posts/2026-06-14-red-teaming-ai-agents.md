@@ -2,7 +2,7 @@
 layout: post
 title: "Red-Teaming AI Agents — Attack Surfaces, Strategies & Metrics"
 date: 2026-06-14
-tags: [ai, llm, red-teaming, safety, prompt-injection, agents, production, pyrit, garak]
+tags: [ai, llm, red-teaming, safety, prompt-injection, ai-agents, production, pyrit, garak]
 categories: programming
 series: production-ai-agents
 series_index: 2.5

@@ -2,7 +2,6 @@
 layout: post
 title: "Meta Plans to Rent Out Its AI Compute Clusters"
 date: 2026-07-02
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Study Finds Claude Code Uses 4.7x More Overhead Tokens Than OpenCode for the Same Task"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

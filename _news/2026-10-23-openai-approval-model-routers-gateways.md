@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Will Require Approval for Model Routers and AI Gateways"
 date: 2026-10-23
-tags: [news]
 categories: news
 ---
 

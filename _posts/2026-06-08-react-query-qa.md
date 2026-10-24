@@ -2,7 +2,7 @@
 layout: post
 title: "React Query Q&A: Patterns for Lists, Filters, Pagination, and More"
 date: 2026-06-08
-tags: [react, react-query, tanstack-query, pagination, typescript, frontend, javascript, state-management]
+tags: [react, react-query, pagination, typescript, frontend, javascript, state-management]
 categories: programming
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Mistral Releases Timestral, a CPU-First Time Series Forecasting Family"
 date: 2026-10-20
-tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "MemT-1.0-Nano Keeps Long-Term Memory in Model State Instead of Context"
 date: 2026-10-21
-tags: [news]
 categories: news
 ---
 

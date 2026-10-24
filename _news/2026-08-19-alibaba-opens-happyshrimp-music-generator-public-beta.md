@@ -2,7 +2,6 @@
 layout: post
 title: "Alibaba Opens HappyShrimp Music Generator to Public Beta"
 date: 2026-08-19
-tags: news
 categories: news
 ---
 

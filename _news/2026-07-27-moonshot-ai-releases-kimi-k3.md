@@ -2,7 +2,6 @@
 layout: post
 title: "Moonshot AI Releases Kimi K3 with 2.8 Trillion Open Weights"
 date: 2026-07-27
-tags: news
 categories: news
 ---
 

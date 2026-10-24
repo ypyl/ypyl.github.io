@@ -2,7 +2,6 @@
 layout: post
 title: "GPTZero Finds AI-Generated Hallucinations in PwC Audit Reports"
 date: 2026-07-30
-tags: news
 categories: news
 ---
 

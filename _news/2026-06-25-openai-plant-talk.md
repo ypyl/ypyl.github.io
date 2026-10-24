@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Launches Plant Talk — Let Your Houseplant Chat with ChatGPT"
 date: 2026-06-25
-tags: news
 categories: news
 ---
 

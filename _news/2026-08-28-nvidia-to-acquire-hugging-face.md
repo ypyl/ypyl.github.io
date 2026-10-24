@@ -2,7 +2,6 @@
 layout: post
 title: "Nvidia to Acquire Hugging Face for $12.9 Billion"
 date: 2026-08-28
-tags: news
 categories: news
 ---
 

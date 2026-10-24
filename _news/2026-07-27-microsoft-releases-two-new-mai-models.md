@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Releases Two New MAI Models for Image Generation and Speech"
 date: 2026-07-27
-tags: news
 categories: news
 ---
 

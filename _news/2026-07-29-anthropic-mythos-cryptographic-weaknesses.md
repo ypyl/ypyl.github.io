@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic's Mythos Finds Mathematical Weaknesses in Cryptographic Algorithms"
 date: 2026-07-29
-tags: news
 categories: news
 ---
 

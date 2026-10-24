@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Introduces ID Verification for Personal Claude Accounts"
 date: 2026-06-16
-tags: news
 categories: news
 ---
 

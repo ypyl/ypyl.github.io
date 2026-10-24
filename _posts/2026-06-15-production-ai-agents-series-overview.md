@@ -1,7 +1,7 @@
 ---
 title: "Production AI Agents — Observability, Safety & Governance"
 date: 2026-06-15
-tags: [ai, llm, observability, safety, governance, agents, production]
+tags: [ai, llm, observability, safety, governance, ai-agents, production]
 ---
 
 Running AI agents in production — where they interact with real users, real data, and make real decisions — requires engineering discipline that goes beyond prototype demos. Three interdependent layers provide the foundation: observability, safety, and governance.

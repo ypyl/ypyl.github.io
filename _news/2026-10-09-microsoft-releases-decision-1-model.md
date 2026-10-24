@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Releases Decision-1, a Model That Only Makes Decisions"
 date: 2026-10-09
-tags: news
 categories: news
 ---
 

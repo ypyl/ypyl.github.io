@@ -2,7 +2,6 @@
 layout: post
 title: "Thinking Machines Lab Releases Inkling — Their First Open-Weights Multimodal Model"
 date: 2026-07-15
-tags: news
 categories: news
 ---
 

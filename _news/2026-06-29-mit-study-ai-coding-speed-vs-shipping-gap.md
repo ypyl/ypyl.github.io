@@ -2,7 +2,6 @@
 layout: post
 title: "MIT Study Reveals the AI Coding Paradox: More Code, Not More Product"
 date: 2026-06-29
-tags: news
 categories: news
 ---
 

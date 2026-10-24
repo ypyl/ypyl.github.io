@@ -2,7 +2,6 @@
 layout: post
 title: "Pax Silica Alliance Expands to 24 Countries"
 date: 2026-06-25
-tags: news
 categories: news
 ---
 

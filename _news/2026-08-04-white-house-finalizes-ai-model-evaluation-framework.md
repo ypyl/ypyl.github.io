@@ -2,7 +2,6 @@
 layout: post
 title: "White House Finalizes AI Model Evaluation Framework Behind Closed Doors"
 date: 2026-08-04
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Google Releases Nano Banana 2.1 Built on Gemini 3.6 Flash"
 date: 2026-10-07
-tags: [news]
 categories: news
 ---
 

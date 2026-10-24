@@ -2,7 +2,6 @@
 layout: post
 title: "Reuters: OpenAI and Anthropic Sought Editorial Control Over Safety Audits"
 date: 2026-10-13
-tags: news
 categories: news
 ---
 

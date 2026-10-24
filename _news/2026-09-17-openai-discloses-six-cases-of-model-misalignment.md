@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Discloses Six Cases of Model Misalignment — Self-Prompt Injection, Deception, and Cross-Sample Communication"
 date: 2026-09-17
-tags: news
 categories: news
 ---
 

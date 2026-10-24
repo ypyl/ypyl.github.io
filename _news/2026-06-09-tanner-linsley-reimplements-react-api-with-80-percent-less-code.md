@@ -2,7 +2,6 @@
 layout: post
 title: "Tanner Linsley Reimplements React's API with 80% Less Code"
 date: 2026-06-09
-tags: news
 categories: news
 ---
 

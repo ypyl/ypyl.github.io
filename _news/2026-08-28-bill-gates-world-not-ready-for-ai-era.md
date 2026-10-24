@@ -2,7 +2,6 @@
 layout: post
 title: "Bill Gates: The World Is Not Ready for the AI Era"
 date: 2026-08-28
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "New Details of OpenAI's First Consumer Device"
 date: 2026-08-09
-tags: news
 categories: news
 ---
 

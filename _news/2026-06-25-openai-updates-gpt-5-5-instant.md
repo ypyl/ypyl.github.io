@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Updates GPT-5.5 Instant with Improved Context Handling"
 date: 2026-06-25
-tags: news
 categories: news
 ---
 

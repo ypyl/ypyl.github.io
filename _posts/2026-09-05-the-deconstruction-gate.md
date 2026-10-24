@@ -3,7 +3,7 @@ layout: post
 title: "The Deconstruction Gate: First Principles for Working with AI"
 date: 2026-09-05
 categories: ai
-tags: [ai, llm, first-principles, problem-solving, prompting]
+tags: [ai, llm, first-principles, problem-solving, prompt-engineering]
 ---
 
 Ask an AI to solve a problem and it answers with the most likely solution, which by definition is the one everyone already uses. **First principles thinking** is the countermeasure: break the problem into its most basic, undeniable truths and build from there, instead of iterating on what came before. It used to be a habit for people who wanted to avoid mediocrity. In the AI era it is the difference between delegating and outsourcing your judgment.

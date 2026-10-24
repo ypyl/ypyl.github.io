@@ -2,7 +2,6 @@
 layout: post
 title: "China Completes 1GW AI Data Center With Zero Nvidia Chips — All Domestic Accelerators"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

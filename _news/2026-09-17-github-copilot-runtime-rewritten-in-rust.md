@@ -2,7 +2,6 @@
 layout: post
 title: "GitHub Rewrites Copilot Runtime in Rust Using Copilot Itself"
 date: 2026-09-17
-tags: news
 categories: news
 ---
 

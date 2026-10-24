@@ -2,7 +2,6 @@
 layout: post
 title: "Google Reportedly Developing 'Frozen v2' AI Chip with Gemini Architecture Embedded in Silicon"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

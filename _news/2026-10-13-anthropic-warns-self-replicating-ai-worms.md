@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Warns Self-Replicating AI Worms Are Close"
 date: 2026-10-13
-tags: news
 categories: news
 ---
 

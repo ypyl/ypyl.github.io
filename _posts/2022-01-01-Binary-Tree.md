@@ -2,7 +2,7 @@
 layout: post
 title: Binary tree
 date: 2022-01-01
-tags: [algorithm, binary, tree, structure]
+tags: [algorithms, binary, tree, structure]
 categories: programming
 ---
 

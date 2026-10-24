@@ -2,7 +2,6 @@
 layout: post
 title: "Zhipu AI Releases GLM-5.2 with 1M Token Context Window"
 date: 2026-06-16
-tags: news
 categories: news
 ---
 

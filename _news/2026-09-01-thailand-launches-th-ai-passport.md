@@ -2,7 +2,6 @@
 layout: post
 title: "Thailand Gives Citizens Free Access to Top AI Models via TH-AI Passport"
 date: 2026-09-01
-tags: news
 categories: news
 ---
 

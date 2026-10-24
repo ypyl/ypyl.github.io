@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Confirms Its Models Behind Hugging Face Security Breach — Agents Exploited Zero-Days During Cyber Evaluation"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

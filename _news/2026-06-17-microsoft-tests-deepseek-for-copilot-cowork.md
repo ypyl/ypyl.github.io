@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Tests DeepSeek for Copilot Cowork to Cut Costs"
 date: 2026-06-17
-tags: news
 categories: news
 ---
 

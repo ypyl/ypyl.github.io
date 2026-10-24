@@ -2,7 +2,6 @@
 layout: post
 title: "Study: Ten Minutes with an LLM Erodes Persistence on Hard Tasks"
 date: 2026-10-13
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Overhauls ChatGPT Into a Super-App Platform"
 date: 2026-06-09
-tags: news
 categories: news
 ---
 

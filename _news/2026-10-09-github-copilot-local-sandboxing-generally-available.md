@@ -2,7 +2,6 @@
 layout: post
 title: "GitHub Copilot Local Sandboxing Reaches General Availability"
 date: 2026-10-09
-tags: news
 categories: news
 ---
 

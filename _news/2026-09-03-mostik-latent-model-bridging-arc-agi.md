@@ -2,7 +2,6 @@
 layout: post
 title: "Mostik Tops ARC-AGI with Latent Model Bridging"
 date: 2026-09-03
-tags: news
 categories: news
 ---
 

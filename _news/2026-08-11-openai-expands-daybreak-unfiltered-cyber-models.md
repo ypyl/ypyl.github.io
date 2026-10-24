@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Opens Unfiltered Models to Cybersecurity Professionals via Expanded Daybreak Program"
 date: 2026-08-11
-tags: news
 categories: news
 ---
 

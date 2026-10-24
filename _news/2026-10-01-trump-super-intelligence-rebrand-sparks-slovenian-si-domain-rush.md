@@ -2,7 +2,6 @@
 layout: post
 title: "Trump's Super Intelligence Rebrand Sparks Rush for Slovenian .si Domains"
 date: 2026-10-01
-tags: news
 categories: news
 ---
 

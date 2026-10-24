@@ -2,7 +2,6 @@
 layout: post
 title: "OpenCode Console Breach Leaks User API Keys"
 date: 2026-10-20
-tags: [news]
 categories: news
 ---
 

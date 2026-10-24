@@ -2,6 +2,6 @@
 name: screenpipe
 link: https://github.com/screenpipe/screenpipe
 category: AI Agent Framework
-tags: [rust, typescript, ai, mcp, local-ai, open-source]
+tags: [2026-05-03, rust, typescript, ai, mcp, local-ai, open-source]
 description: 24/7 local screen & mic recording with AI-powered search and agents that work based on what you do.
 ---

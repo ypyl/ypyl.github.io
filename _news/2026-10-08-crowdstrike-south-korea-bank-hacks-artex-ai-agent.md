@@ -2,7 +2,6 @@
 layout: post
 title: "CrowdStrike Links South Korean Bank Hacks to AI Pentest Agent ARTEX"
 date: 2026-10-08
-tags: news
 categories: news
 ---
 

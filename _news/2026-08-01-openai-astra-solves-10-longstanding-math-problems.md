@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI's Astra Solves 10 Longstanding Math Problems"
 date: 2026-08-01
-tags: news
 categories: news
 ---
 

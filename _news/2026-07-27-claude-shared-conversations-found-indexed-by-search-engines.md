@@ -2,7 +2,6 @@
 layout: post
 title: "Claude Shared Conversations Found Indexed by Search Engines"
 date: 2026-07-27
-tags: news
 categories: news
 ---
 

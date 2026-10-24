@@ -2,7 +2,6 @@
 layout: post
 title: "Stanford + MIT: Meta-Harness Optimization Boosts LLM Performance Up to 6x"
 date: 2026-09-13
-tags: news
 categories: news
 ---
 

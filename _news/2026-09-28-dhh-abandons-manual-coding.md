@@ -2,7 +2,6 @@
 layout: post
 title: "DHH Abandons Manual Coding After 25 Years"
 date: 2026-09-28
-tags: news
 categories: news
 ---
 

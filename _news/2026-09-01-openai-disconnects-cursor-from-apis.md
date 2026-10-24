@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Disconnects Cursor from Its APIs After SpaceX Acquisition"
 date: 2026-09-01
-tags: news
 categories: news
 ---
 

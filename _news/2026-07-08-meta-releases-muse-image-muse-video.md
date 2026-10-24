@@ -2,7 +2,6 @@
 layout: post
 title: "Meta Releases Image Generator and Video Model Preview"
 date: 2026-07-08
-tags: news
 categories: news
 ---
 

@@ -2,6 +2,6 @@
 name: likec4
 link: https://github.com/likec4/likec4
 category: Programming
-tags: [diagramming, software-architecture, collaboration]
+tags: [2026-03-14, diagrams, software-architecture, collaboration]
 description: Visualize, collaborate on, and evolve software architecture with live diagrams generated from code.
 ---

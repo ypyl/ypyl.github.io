@@ -2,7 +2,7 @@
 layout: post
 title: "The Superstep Execution Model in Agent Framework Workflows"
 date: 2026-08-06
-tags: [agent-framework, workflows, concurrency, pregel, ai-agents, architecture]
+tags: [ai-agents, workflows, concurrency, pregel, architecture]
 categories: ai
 ---
 

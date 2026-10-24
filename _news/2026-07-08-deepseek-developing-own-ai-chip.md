@@ -2,7 +2,6 @@
 layout: post
 title: "DeepSeek Assembles Team to Build Its Own AI Chip"
 date: 2026-07-08
-tags: news
 categories: news
 ---
 

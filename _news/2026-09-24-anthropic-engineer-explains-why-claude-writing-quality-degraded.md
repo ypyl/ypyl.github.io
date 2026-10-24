@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Engineer Explains Why Claude's Writing Quality Degraded"
 date: 2026-09-24
-tags: news
 categories: news
 ---
 

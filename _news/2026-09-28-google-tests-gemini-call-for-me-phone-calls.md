@@ -2,7 +2,6 @@
 layout: post
 title: "Google Tests Gemini Call for Me, Letting the Agent Phone Businesses for You"
 date: 2026-09-28
-tags: news
 categories: news
 ---
 

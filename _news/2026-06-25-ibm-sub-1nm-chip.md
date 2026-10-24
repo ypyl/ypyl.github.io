@@ -2,7 +2,6 @@
 layout: post
 title: "IBM Unveils World's First Sub-1 Nanometer Chip Technology — 0.7nm Nanostack"
 date: 2026-06-25
-tags: news
 categories: news
 ---
 

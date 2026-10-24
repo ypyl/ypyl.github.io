@@ -2,7 +2,6 @@
 layout: post
 title: "AI Boom Drives San Francisco Cost of Living to New Highs"
 date: 2026-07-02
-tags: news
 categories: news
 ---
 

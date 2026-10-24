@@ -2,7 +2,6 @@
 layout: post
 title: "Meta Opens the Weights of Muse Spark, Its Largest Model Yet"
 date: 2026-10-15
-tags: news
 categories: news
 ---
 

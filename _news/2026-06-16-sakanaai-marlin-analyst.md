@@ -2,7 +2,6 @@
 layout: post
 title: "SakanaAI Launches Marlin AI Analyst Agent"
 date: 2026-06-16
-tags: news
 categories: news
 ---
 

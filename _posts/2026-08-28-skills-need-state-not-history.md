@@ -3,7 +3,7 @@ layout: post
 title: "Skills Need State, Not History"
 date: 2026-08-28
 categories: ai
-tags: [llm-agents, agent-runtime, execution-state, procedural-skills, context-management]
+tags: [ai-agents, execution-state, procedural-skills, context-management]
 ---
 
 An agent running a long procedure shouldn't be rereading its own transcript at every step.

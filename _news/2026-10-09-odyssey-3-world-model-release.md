@@ -2,7 +2,6 @@
 layout: post
 title: "Odyssey Releases Odyssey-3, a Real-Time Foundation World Model"
 date: 2026-10-09
-tags: news
 categories: news
 ---
 

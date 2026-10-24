@@ -2,7 +2,6 @@
 layout: post
 title: "Axios: Unvetted AI Agents Are Operating Inside US Bank Accounts"
 date: 2026-10-23
-tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "OpenSpec Overview — Spec-Driven Development with AI"
 date: 2026-07-10
-tags: [openspec, sdd, spec-driven-development, ai-coding, developer-tools]
+tags: [openspec, spec-driven-development, ai-coding, developer-tool]
 categories: programming
 ---
 

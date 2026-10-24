@@ -2,7 +2,6 @@
 layout: post
 title: "AI-Designed 'Phantom Twist' Drone Spins at 25 RPS, Becoming Nearly Invisible in Flight"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

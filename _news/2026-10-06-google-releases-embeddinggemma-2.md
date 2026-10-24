@@ -2,7 +2,6 @@
 layout: post
 title: "Google Releases EmbeddingGemma 2 for On-Device Multimodal Search"
 date: 2026-10-06
-tags: [news]
 categories: news
 ---
 

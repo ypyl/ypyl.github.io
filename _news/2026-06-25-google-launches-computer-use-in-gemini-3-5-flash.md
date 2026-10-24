@@ -2,7 +2,6 @@
 layout: post
 title: "Google Launches Computer Use in Gemini 3.5 Flash API"
 date: 2026-06-25
-tags: news
 categories: news
 ---
 

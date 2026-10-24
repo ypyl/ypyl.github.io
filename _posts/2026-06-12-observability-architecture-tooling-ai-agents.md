@@ -2,7 +2,7 @@
 layout: post
 title: "Observability for AI Agents — Architecture, Tooling & Alerting"
 date: 2026-06-12
-tags: [ai, llm, observability, opentelemetry, tracing, agents, production, langfuse]
+tags: [ai, llm, observability, opentelemetry, tracing, ai-agents, production, langfuse]
 categories: programming
 series: production-ai-agents
 ---

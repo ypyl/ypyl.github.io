@@ -2,7 +2,6 @@
 layout: post
 title: "The Token Economy Flips: When Hiring a Human Becomes Cheaper Than Feeding AI"
 date: 2026-07-15
-tags: news
 categories: news
 ---
 

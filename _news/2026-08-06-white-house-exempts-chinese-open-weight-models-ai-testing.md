@@ -2,7 +2,6 @@
 layout: post
 title: "White House Exempts Chinese Open-Weight Models from Mandatory AI Testing"
 date: 2026-08-06
-tags: news
 categories: news
 ---
 

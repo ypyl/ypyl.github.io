@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Claims Solution to Navier-Stokes Millennium Prize Problem"
 date: 2026-09-08
-tags: news
 categories: news
 ---
 

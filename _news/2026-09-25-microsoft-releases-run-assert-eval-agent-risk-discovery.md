@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Open-Sources run-assert-eval for AI Agent Risk Discovery"
 date: 2026-09-25
-tags: news
 categories: news
 ---
 

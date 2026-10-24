@@ -2,7 +2,6 @@
 layout: post
 title: "Tencent Releases Hy4-Preview, 770B Open-Weight MoE Model"
 date: 2026-08-28
-tags: news
 categories: news
 ---
 

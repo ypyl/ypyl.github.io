@@ -1,7 +1,8 @@
 ---
 name: Flix
 link: https://github.com/okalachev/flix
+date: 2026-10-11
 category: Tutorial
-tags: [esp32, drone, robotics, embedded, firmware, simulation, python]
+tags: [2026-10-11, esp32, drone, robotics, embedded, firmware, simulation, python]
 description: Open-source ESP32 quadcopter project with Arduino firmware, Gazebo simulation, and a Python library for scripted flights.
 ---

@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Slows Model Development Over Cyber Capabilities"
 date: 2026-08-19
-tags: news
 categories: news
 ---
 

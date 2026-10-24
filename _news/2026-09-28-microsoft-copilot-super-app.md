@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Launches Copilot as a Super App with Three Tabs"
 date: 2026-09-28
-tags: news
 categories: news
 ---
 

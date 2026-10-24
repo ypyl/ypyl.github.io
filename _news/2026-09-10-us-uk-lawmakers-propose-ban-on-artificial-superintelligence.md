@@ -2,7 +2,6 @@
 layout: post
 title: "US and UK Lawmakers Propose Ban on Artificial Superintelligence"
 date: 2026-09-10
-tags: news
 categories: news
 ---
 

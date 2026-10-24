@@ -2,7 +2,6 @@
 layout: post
 title: "Google Cloud Publishes Reference Architecture for Multi-Tenant AI Agents"
 date: 2026-06-29
-tags: news
 categories: news
 ---
 

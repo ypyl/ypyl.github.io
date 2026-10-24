@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI's Decisions API Returns a Choice, Not a Paragraph"
 date: 2026-09-30
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Qwen3.8-Flash Now Run Locally via Unsloth GGUF"
 date: 2026-08-26
-tags: news
 categories: news
 ---
 

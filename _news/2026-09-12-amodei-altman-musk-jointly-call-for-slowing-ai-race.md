@@ -2,7 +2,6 @@
 layout: post
 title: "Amodei, Altman, and Musk Simultaneously Call for Slowing the AI Race"
 date: 2026-09-12
-tags: news
 categories: news
 ---
 

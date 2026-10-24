@@ -2,7 +2,6 @@
 layout: post
 title: "WSL Containers Reaches General Availability"
 date: 2026-09-30
-tags: news
 categories: news
 ---
 

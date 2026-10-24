@@ -2,7 +2,6 @@
 layout: post
 title: "Spacex Acquires Cursor Maker Anysphere in $60B Deal"
 date: 2026-06-17
-tags: news
 categories: news
 ---
 

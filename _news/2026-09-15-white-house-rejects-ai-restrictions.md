@@ -2,7 +2,6 @@
 layout: post
 title: "White House Rejects AI Restrictions to Preserve U.S. Competitive Edge"
 date: 2026-09-15
-tags: news
 categories: news
 ---
 

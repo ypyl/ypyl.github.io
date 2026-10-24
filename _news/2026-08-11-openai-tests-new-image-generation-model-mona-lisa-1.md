@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Quietly Tests New Image Generation Model 'Mona Lisa 1' on Arena"
 date: 2026-08-11
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Discloses Year-Long Gap in Biosecurity Filtering"
 date: 2026-08-19
-tags: news
 categories: news
 ---
 

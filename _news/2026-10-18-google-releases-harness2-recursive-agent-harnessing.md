@@ -2,7 +2,6 @@
 layout: post
 title: "Google Releases Harness² for Recursive Agent Harnessing"
 date: 2026-10-18
-tags: [news]
 categories: news
 ---
 

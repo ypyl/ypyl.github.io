@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic to Mark All Claude Outputs Under EU AI Act Transparency Code"
 date: 2026-08-11
-tags: news
 categories: news
 ---
 

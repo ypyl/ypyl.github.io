@@ -2,7 +2,6 @@
 layout: post
 title: "PrismML Releases Bonsai 27B — Extreme Compression for Local AI"
 date: 2026-07-16
-tags: news
 categories: news
 ---
 

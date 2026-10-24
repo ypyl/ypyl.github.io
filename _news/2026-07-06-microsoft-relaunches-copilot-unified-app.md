@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Relaunches Copilot as a Unified App with Paid Agent Features"
 date: 2026-07-06
-tags: news
 categories: news
 ---
 

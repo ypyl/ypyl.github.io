@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft to Scale Maia to Multi-Gigawatt Inference Deployments"
 date: 2026-10-12
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft and Anthropic Increasingly Turn to AMD AI Accelerators, Challenging Nvidia's Grip"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "DeepMind and Singapore's GovTech Build On-Device Gemma Scam Detector"
 date: 2026-10-19
-tags: news
 categories: news
 ---
 

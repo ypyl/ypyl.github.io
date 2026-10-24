@@ -2,7 +2,6 @@
 layout: post
 title: "Goldman Sachs: AI Agent Token Usage Could Surge 24x by 2030"
 date: 2026-07-13
-tags: news
 categories: news
 ---
 

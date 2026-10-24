@@ -2,7 +2,6 @@
 layout: post
 title: "Google Develops Open Knowledge Format for AI Agent Context"
 date: 2026-06-16
-tags: news
 categories: news
 ---
 

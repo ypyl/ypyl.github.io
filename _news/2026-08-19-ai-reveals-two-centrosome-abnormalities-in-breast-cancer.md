@@ -2,7 +2,6 @@
 layout: post
 title: "AI Reveals That a Century-Old Cancer Anomaly Is Actually Two Distinct Defects"
 date: 2026-08-19
-tags: news
 categories: news
 ---
 

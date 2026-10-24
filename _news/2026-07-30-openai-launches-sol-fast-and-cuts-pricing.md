@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Launches Sol Fast Mode and Cuts API Pricing"
 date: 2026-07-30
-tags: news
 categories: news
 ---
 

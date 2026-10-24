@@ -2,7 +2,6 @@
 layout: post
 title: "The Information Reveals Astra's Recurrent Depth Architecture and Hidden Reasoning Concerns"
 date: 2026-09-02
-tags: news
 categories: news
 ---
 

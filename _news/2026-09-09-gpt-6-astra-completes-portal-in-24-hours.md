@@ -2,7 +2,6 @@
 layout: post
 title: "GPT-6 Astra Completes Portal in 24 Hours Autonomously"
 date: 2026-09-09
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Berlin Police to Launch Public AI Video Surveillance"
 date: 2026-08-05
-tags: news
 categories: news
 ---
 

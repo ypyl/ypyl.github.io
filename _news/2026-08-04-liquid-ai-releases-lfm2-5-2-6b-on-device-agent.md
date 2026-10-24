@@ -2,7 +2,6 @@
 layout: post
 title: "Liquid AI Releases LFM2.5-2.6B: On-Device Agentic Model for Phones"
 date: 2026-08-04
-tags: news
 categories: news
 ---
 

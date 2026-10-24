@@ -2,7 +2,6 @@
 layout: post
 title: "AI Labs Train Staff in Counterintelligence Against Bribes, Spies and Honey Traps"
 date: 2026-10-16
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Ox Alpha Stealth Model Revealed as New Zai GLM"
 date: 2026-08-26
-tags: news
 categories: news
 ---
 

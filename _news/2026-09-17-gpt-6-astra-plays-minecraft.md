@@ -2,7 +2,6 @@
 layout: post
 title: "GPT-6 Astra Plays Minecraft for 141 Hours, Loses Everything to a Creeper"
 date: 2026-09-17
-tags: news
 categories: news
 ---
 

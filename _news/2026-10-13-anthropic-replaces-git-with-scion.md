@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Replaces Git With Its Own Version Control System, Scion"
 date: 2026-10-13
-tags: news
 categories: news
 ---
 

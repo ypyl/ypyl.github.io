@@ -2,7 +2,6 @@
 layout: post
 title: "Apple Sues OpenAI for Trade Secret Theft in Blockbuster Case"
 date: 2026-07-13
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "General-Purpose LLMs Outperform Specialised Clinical AI Tools, Nature Medicine Study Finds"
 date: 2026-06-13
-tags: news
 categories: news
 ---
 

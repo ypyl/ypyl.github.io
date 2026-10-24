@@ -2,7 +2,6 @@
 layout: post
 title: "AI Generates a Quarter of Text Content on Social Media"
 date: 2026-07-11
-tags: news
 categories: news
 ---
 

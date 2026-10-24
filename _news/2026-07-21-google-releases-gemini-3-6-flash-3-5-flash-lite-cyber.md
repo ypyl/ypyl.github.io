@@ -2,7 +2,6 @@
 layout: post
 title: "Google Expands Gemini Family With 3.6 Flash, 3.5 Flash-Lite, and Cyber-Security Model"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

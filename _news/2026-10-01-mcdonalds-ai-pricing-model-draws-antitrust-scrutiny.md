@@ -2,7 +2,6 @@
 layout: post
 title: "McDonald's AI Pricing Model Draws Antitrust Scrutiny"
 date: 2026-10-01
-tags: news
 categories: news
 ---
 

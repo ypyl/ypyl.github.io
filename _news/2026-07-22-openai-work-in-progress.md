@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Launches Work, in Progress — A Library of Real-World ChatGPT and Codex Use Cases"
 date: 2026-07-22
-tags: news
 categories: news
 ---
 

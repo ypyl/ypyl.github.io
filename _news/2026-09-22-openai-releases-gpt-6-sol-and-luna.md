@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Releases GPT-6 Sol and GPT-6 Luna"
 date: 2026-09-22
-tags: news
 categories: news
 ---
 

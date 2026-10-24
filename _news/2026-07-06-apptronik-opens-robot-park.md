@@ -2,7 +2,6 @@
 layout: post
 title: "Apptronik Opens Robot Park — an 8,000 sq m Data Factory for Humanoid Training"
 date: 2026-07-06
-tags: news
 categories: news
 ---
 

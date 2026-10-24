@@ -2,7 +2,6 @@
 layout: post
 title: "FANUC and Google Announce AI Welding Agent for Industrial Robots"
 date: 2026-10-14
-tags: news
 categories: news
 ---
 

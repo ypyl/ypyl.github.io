@@ -2,7 +2,6 @@
 layout: post
 title: "US Lead Over China in AI Narrows to 3% After DeepSeek V4.1 Flash"
 date: 2026-10-07
-tags: [news]
 categories: news
 ---
 

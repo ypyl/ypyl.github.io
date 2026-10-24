@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Previews GPT-5.6 Sol"
 date: 2026-06-26
-tags: news
 categories: news
 ---
 

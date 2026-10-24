@@ -2,7 +2,7 @@
 layout: post
 title: "Agent Middleware vs. Chat Middleware in Microsoft Agent Framework"
 date: 2026-07-22
-tags: [agent-framework, middleware, python, dotnet, go, ai-agents]
+tags: [ai-agents, middleware, python, dotnet, go]
 categories: ai
 ---
 

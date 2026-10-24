@@ -2,7 +2,6 @@
 layout: post
 title: "Xiaomi Releases Open-Source AI Agent MiMo Code"
 date: 2026-06-13
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "State of AI Report 2026: AI Building AI, Physical AI, and Escalating Cyber Risk"
 date: 2026-10-09
-tags: news
 categories: news
 ---
 

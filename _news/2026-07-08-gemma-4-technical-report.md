@@ -2,7 +2,6 @@
 layout: post
 title: "Google Releases Gemma 4 Technical Report"
 date: 2026-07-08
-tags: news
 categories: news
 ---
 

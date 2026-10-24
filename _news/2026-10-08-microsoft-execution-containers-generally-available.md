@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Execution Containers Reach General Availability"
 date: 2026-10-08
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "MiniMax Announces M3.1 Flash: Three Times Faster at a Third of the Cost"
 date: 2026-10-19
-tags: news
 categories: news
 ---
 

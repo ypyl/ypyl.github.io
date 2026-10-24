@@ -2,7 +2,6 @@
 layout: post
 title: "ChatGPT Ads Passes $1B Annualized Revenue in Under 200 Days"
 date: 2026-09-01
-tags: news
 categories: news
 ---
 

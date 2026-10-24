@@ -2,7 +2,7 @@
 layout: post
 title: "OpenSpec Local Viewer — A Single-File, Local-First Viewer for OpenSpec Artifacts"
 date: 2026-08-17
-tags: [openspec, local-first, html5, developer-tools]
+tags: [openspec, local-first, html5, developer-tool]
 categories: programming
 ---
 

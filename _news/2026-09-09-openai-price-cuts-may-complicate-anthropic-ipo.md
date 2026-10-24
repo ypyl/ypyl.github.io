@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Price Cuts Could Complicate Anthropic's IPO Pitch"
 date: 2026-09-09
-tags: news
 categories: news
 ---
 

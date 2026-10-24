@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Reverses Agent SDK Pay-As-You-Go Plan"
 date: 2026-06-17
-tags: news
 categories: news
 ---
 

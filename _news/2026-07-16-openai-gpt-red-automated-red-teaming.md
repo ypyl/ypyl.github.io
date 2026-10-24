@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Builds GPT-Red — An AI That Finds Vulnerabilities in Its Own Models"
 date: 2026-07-16
-tags: news
 categories: news
 ---
 

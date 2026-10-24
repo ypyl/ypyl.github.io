@@ -2,7 +2,6 @@
 layout: post
 title: "Microsoft Puts Hybrid Intelligence at the Center of Windows and Surface"
 date: 2026-10-09
-tags: news
 categories: news
 ---
 

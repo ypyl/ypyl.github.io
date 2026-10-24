@@ -2,7 +2,6 @@
 layout: post
 title: "Terence Tao Warns of a Crisis in Mathematics Driven by AI"
 date: 2026-07-27
-tags: news
 categories: news
 ---
 

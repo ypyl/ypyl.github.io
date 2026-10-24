@@ -2,7 +2,6 @@
 layout: post
 title: "EU Designates ChatGPT as a Very Large Online Platform Under DSA"
 date: 2026-09-01
-tags: news
 categories: news
 ---
 

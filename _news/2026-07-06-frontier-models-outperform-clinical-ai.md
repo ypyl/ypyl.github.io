@@ -2,7 +2,6 @@
 layout: post
 title: "Frontier Models Outperform Specialized Clinical AI in Head-to-Head Study"
 date: 2026-07-06
-tags: news
 categories: news
 ---
 

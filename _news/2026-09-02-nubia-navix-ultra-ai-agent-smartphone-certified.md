@@ -2,7 +2,6 @@
 layout: post
 title: "China Certifies First AI Agent Smartphone Without App Store"
 date: 2026-09-02
-tags: news
 categories: news
 ---
 

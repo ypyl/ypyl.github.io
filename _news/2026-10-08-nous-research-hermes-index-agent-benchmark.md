@@ -2,7 +2,6 @@
 layout: post
 title: "Nous Research Launches Hermes Index for Agent Cost and Performance"
 date: 2026-10-08
-tags: news
 categories: news
 ---
 

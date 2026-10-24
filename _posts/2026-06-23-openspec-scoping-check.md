@@ -2,7 +2,7 @@
 layout: post
 title: "OpenSpec Scoping: One Change or Many?"
 date: 2026-06-23
-tags: [openspec, sdd, ai-coding, spec-driven-development]
+tags: [openspec, spec-driven-development, ai-coding]
 categories: ai
 ---
 

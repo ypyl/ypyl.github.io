@@ -2,7 +2,6 @@
 layout: post
 title: "US Congress Bill Proposes Emergency Kill Switch for AI Systems"
 date: 2026-07-25
-tags: news
 categories: news
 ---
 

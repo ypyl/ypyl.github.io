@@ -2,7 +2,6 @@
 layout: post
 title: "Google Introduces TurboQuant for Extreme AI Compression"
 date: 2026-03-24
-tags: news
 categories: news
 ---
 

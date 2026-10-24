@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Publishes Detailed API Guide for GPT-6 Astra"
 date: 2026-09-05
-tags: [openai, gpt-6, astra, api, agents]
+tags: [openai, gpt-6, astra, api, ai-agents]
 categories: news
 ---
 

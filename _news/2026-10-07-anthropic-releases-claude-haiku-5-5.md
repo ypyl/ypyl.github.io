@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Releases Claude Haiku 5.5, Its Fastest and Cheapest Small Model"
 date: 2026-10-07
-tags: [news]
 categories: news
 ---
 

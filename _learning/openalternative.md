@@ -1,7 +1,8 @@
 ---
 name: OpenAlternative
-link: https://github.com/piotrkulpinski/open-source-alternatives
+link: https://github.com/piotrkulpinski/open-source-alternatives
+date: 2026-09-25
 category: Curated List
-tags: [curated-list, open-source, developer-resources, resources]
+tags: [2026-09-25, open-source, developer-resources, resources]
 description: Curated directory of open source alternatives to proprietary software.
 ---

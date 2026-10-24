@@ -2,7 +2,6 @@
 layout: post
 title: "Big Tech Security Spending Surges as AI Backlash Drives Threats Against Executives"
 date: 2026-07-17
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Alibaba to Open Source SAIL — Its CUDA Alternative for Zhenwu AI Accelerators"
 date: 2026-07-21
-tags: news
 categories: news
 ---
 

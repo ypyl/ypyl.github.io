@@ -2,7 +2,6 @@
 layout: post
 title: "Hugging Face Releases Multi-Harness RL for Training Models Inside Coding Agents"
 date: 2026-10-07
-tags: [news]
 categories: news
 ---
 

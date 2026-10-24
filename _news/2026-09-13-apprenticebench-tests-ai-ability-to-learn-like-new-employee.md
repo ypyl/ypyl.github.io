@@ -2,7 +2,6 @@
 layout: post
 title: "ApprenticeBench Tests AI's Ability to Learn and Work Like a New Employee"
 date: 2026-09-13
-tags: news
 categories: news
 ---
 

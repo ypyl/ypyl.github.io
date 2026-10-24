@@ -1,7 +1,7 @@
 ---
 title: "The Case Against Premature AI Agent Infrastructure"
 date: 2026-06-16
-tags: [ai, llm, observability, safety, governance, agents, production]
+tags: [ai, llm, observability, safety, governance, ai-agents, production]
 ---
 
 Observability, safety, and governance are necessary for production AI agents — eventually. But the industry pushes them as universal requirements from day one, ignoring the very real costs, failure modes, and trade-offs involved.

@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Deploys Automated Researchers to Fix Model Alignment Failures"
 date: 2026-08-28
-tags: news
 categories: news
 ---
 

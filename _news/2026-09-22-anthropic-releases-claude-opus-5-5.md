@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Releases Claude Opus 5.5"
 date: 2026-09-22
-tags: news
 categories: news
 ---
 

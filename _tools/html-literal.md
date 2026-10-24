@@ -2,6 +2,6 @@
 name: HTML literal
 link: https://github.com/jsebrech/html-literal
 category: UI Component
-tags: [html, javascript, vanilla-web, web-components, web, ui-library, stale]
+tags: [2026-08-06, html, javascript, vanilla-web, web-components, web, ui-library, stale]
 description: Minimal html tagged template function that automatically encodes entities, with helpers to control encoding in vanilla web projects.
 ---

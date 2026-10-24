@@ -2,7 +2,6 @@
 layout: post
 title: "Cohere Launches First Open-Source Coding Model North Mini Code"
 date: 2026-06-09
-tags: news
 categories: news
 ---
 

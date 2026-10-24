@@ -2,7 +2,6 @@
 layout: post
 title: "Character.AI Files for Bankruptcy and Seeks a Buyer"
 date: 2026-10-14
-tags: news
 categories: news
 ---
 

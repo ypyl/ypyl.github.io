@@ -2,7 +2,6 @@
 layout: post
 title: "Claude Code Makes Auto Mode Default"
 date: 2026-08-11
-tags: news
 categories: news
 ---
 

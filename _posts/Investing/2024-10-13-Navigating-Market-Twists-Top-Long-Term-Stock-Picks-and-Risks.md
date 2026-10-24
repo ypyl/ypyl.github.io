@@ -3,7 +3,7 @@ layout: post
 title: Navigating Market Twists - Market News Highlights and Risks
 date: 2024-10-13
 
-tags: [investing, stock-market, market-analysis, tech-sector, labor-market, Google, Boeing, DeepMind, labor-strikes, monopolies, AI-sector, financial-advice, stock-recommendations, buy-hold-sell, US-economy, tech-monopolies, Nobel-Prize, Google-Meta]
+tags: [investing, stock-market, market-analysis, tech-sector, labor-market, google, boeing, deepmind, labor-strikes, monopolies, ai-sector, financial-advice, stock-recommendations, buy-hold-sell, us-economy, tech-monopolies, nobel-prize, google-meta]
 categories: investing
 ---
 

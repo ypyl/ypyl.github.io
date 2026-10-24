@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Designates Astra as First Model with Critical Cyber Capabilities"
 date: 2026-09-01
-tags: news
 categories: news
 ---
 

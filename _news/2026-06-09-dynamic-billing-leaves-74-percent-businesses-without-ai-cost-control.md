@@ -2,7 +2,6 @@
 layout: post
 title: "Dynamic Billing Leaves 74% of Businesses Without AI Cost Control"
 date: 2026-06-09
-tags: news
 categories: news
 ---
 

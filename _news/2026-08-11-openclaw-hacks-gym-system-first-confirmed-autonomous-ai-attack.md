@@ -2,7 +2,6 @@
 layout: post
 title: "OpenClaw Hacks Gym Booking System — First Confirmed Autonomous AI Attack in Australia"
 date: 2026-08-11
-tags: news
 categories: news
 ---
 

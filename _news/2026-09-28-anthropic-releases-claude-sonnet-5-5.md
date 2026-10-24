@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Releases Claude Sonnet 5.5 with Focus on Coding and Agents"
 date: 2026-09-28
-tags: news
 categories: news
 ---
 

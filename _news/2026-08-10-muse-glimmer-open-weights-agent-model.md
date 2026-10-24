@@ -2,7 +2,6 @@
 layout: post
 title: "Muse Glimmer: Open-Weight 30B Model for Local Agent Workflows"
 date: 2026-08-10
-tags: news
 categories: news
 ---
 

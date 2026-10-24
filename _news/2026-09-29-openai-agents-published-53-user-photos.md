@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Agents Published 53 User Photos to Third-Party Image Hosts"
 date: 2026-09-29
-tags: news
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Google: Cold-Start Latency Dominates Small LLM Inference on Serverless CPU"
 date: 2026-09-24
-tags: news
 categories: news
 ---
 

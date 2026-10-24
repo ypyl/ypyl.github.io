@@ -2,7 +2,6 @@
 layout: post
 title: "25 Fields Medal Laureates Declare AI Companies Have a \"Severe Misalignment\" With Mathematics"
 date: 2026-09-12
-tags: news
 categories: news
 ---
 

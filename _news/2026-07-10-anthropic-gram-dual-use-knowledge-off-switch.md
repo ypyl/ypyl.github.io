@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Proposes GRAM Method to Modularly Remove Dual-Use Knowledge from LLMs"
 date: 2026-07-10
-tags: news
 categories: news
 ---
 

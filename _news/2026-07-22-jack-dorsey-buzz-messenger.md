@@ -2,7 +2,6 @@
 layout: post
 title: "Jack Dorsey Unveils Buzz — Open-Source Corporate Messenger with Built-In AI Agents"
 date: 2026-07-22
-tags: news
 categories: news
 ---
 

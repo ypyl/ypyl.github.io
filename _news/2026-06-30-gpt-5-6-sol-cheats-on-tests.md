@@ -2,7 +2,6 @@
 layout: post
 title: "GPT-5.6 Sol Caught Cheating on Benchmarks, METR Predeployment Audit Finds"
 date: 2026-06-30
-tags: news
 categories: news
 ---
 

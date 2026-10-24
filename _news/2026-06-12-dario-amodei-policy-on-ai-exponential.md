@@ -2,7 +2,6 @@
 layout: post
 title: "Dario Amodei Proposes Sweeping AI Policy Framework Across Five Fronts"
 date: 2026-06-12
-tags: news
 categories: news
 ---
 

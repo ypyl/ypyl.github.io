@@ -2,7 +2,6 @@
 layout: post
 title: "Websites Start Blocking AI Agents Acting for Users"
 date: 2026-10-20
-tags: [news]
 categories: news
 ---
 

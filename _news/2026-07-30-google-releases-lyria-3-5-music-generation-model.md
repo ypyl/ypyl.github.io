@@ -2,7 +2,6 @@
 layout: post
 title: "Google Releases Lyria 3.5 Music Generation Model"
 date: 2026-07-30
-tags: news
 categories: news
 ---
 

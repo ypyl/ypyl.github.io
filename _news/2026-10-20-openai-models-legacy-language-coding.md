@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Models Jump Sharply on COBOL, Fortran and Visual Basic Coding"
 date: 2026-10-20
-tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Z.ai Open-Sources GLM-5.3 Weights for Agentic Coding and Cybersecurity"
 date: 2026-08-28
-tags: news
 categories: news
 ---
 

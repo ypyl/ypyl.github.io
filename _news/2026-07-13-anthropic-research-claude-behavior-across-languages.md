@@ -2,7 +2,6 @@
 layout: post
 title: "Anthropic Research Reveals How Claude's Behavior Shifts Across Languages"
 date: 2026-07-13
-tags: news
 categories: news
 ---
 

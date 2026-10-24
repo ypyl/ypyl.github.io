@@ -2,7 +2,6 @@
 layout: post
 title: "OpenAI Publishes 722 Mathematics Papers From an Internal Model"
 date: 2026-10-07
-tags: [news]
 categories: news
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "DeepSeek Upgrades V4-Flash with 0731 Checkpoint: Major Gains from Re-Post-Training"
 date: 2026-08-03
-tags: [deepseek, llm, ai, open-source, coding, agentic-ai]
+tags: [deepseek, llm, ai, open-source, coding, ai-agents]
 categories: news
 ---
 

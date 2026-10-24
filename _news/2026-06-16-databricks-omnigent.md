@@ -2,7 +2,6 @@
 layout: post
 title: "Databricks Open-Sources Omnigent, a Meta-Harness for AI Agents"
 date: 2026-06-16
-tags: news
 categories: news
 ---
 
