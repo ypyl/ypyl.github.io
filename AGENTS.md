@@ -102,10 +102,13 @@ link: https://github.com/...
 category: Category      # required: Book, Course, Curated List, Guide, Research Paper, Tutorial
 tags: [YYYY-MM-DD, tag1, tag2]   # first tag is the date the record was added
 description: One-line description.
+completed: YYYY-MM-DD   # optional: set when finished, moves the card to the Archive section
 ---
 ```
 
 `category` is the only place a learning resource records what it is. Never repeat it as a tag.
+
+On `/learning/`, cards without `completed` are listed first; cards with it move into the **Archive** section at the bottom, sorted newest first and labelled "Finished Mon YYYY". Archive cards still match the search box.
 
 **Apps** (`_apps/`):
 ```yaml

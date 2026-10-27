@@ -8,6 +8,10 @@
 
   <p>{{ include.resource.description }}</p>
 
+  {% if include.resource.completed %}
+    <p class="resource-completed">Finished {{ include.resource.completed | date: "%b %Y" }}</p>
+  {% endif %}
+
   {% if include.resource.references %}
     <ul class="resource-references">
       {% for ref in include.resource.references %}

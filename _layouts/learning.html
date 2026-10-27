@@ -16,10 +16,12 @@ layout: default
   </div>
 
   {% assign resources_sorted = site.learning | sort: "date" | reverse %}
+  {% assign active_resources = resources_sorted | where_exp: "resource", "resource.completed == nil" %}
+  {% assign archived_resources = resources_sorted | where_exp: "resource", "resource.completed" | sort: "completed" | reverse %}
 
   <div id="resources-list">
     <ul class="resource-list">
-      {% for resource in resources_sorted %}
+      {% for resource in active_resources %}
         {% include learning-item.html resource=resource %}
       {% endfor %}
     </ul>
@@ -29,11 +31,24 @@ layout: default
     <p>No resources match your search.</p>
   </div>
 
+  {% if archived_resources.size > 0 %}
+    <section id="resources-archive" class="archive-section">
+      <h2>Archive</h2>
+      <p class="archive-section-note">Resources I have finished.</p>
+      <ul class="resource-list resource-list-archive">
+        {% for resource in archived_resources %}
+          {% include learning-item.html resource=resource %}
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
   <script>
     (function() {
       var input = document.getElementById('resources-search-input');
       var listContainer = document.getElementById('resources-list');
       var noResults = document.getElementById('resources-no-results');
+      var archive = document.getElementById('resources-archive');
 
       if (!input || !listContainer) return;
 
@@ -41,7 +56,7 @@ layout: default
 
       function filterResources() {
         var query = input.value.trim().toLowerCase();
-        var resources = listContainer.querySelectorAll('.resource');
+        var resources = document.querySelectorAll('.resources-page .resource');
         var anyVisible = false;
 
         resources.forEach(function(resource) {
@@ -61,6 +76,14 @@ layout: default
         });
 
         noResults.style.display = anyVisible ? 'none' : 'block';
+
+        if (archive) {
+          var archiveVisible = false;
+          archive.querySelectorAll('.resource').forEach(function(resource) {
+            if (resource.style.display !== 'none') archiveVisible = true;
+          });
+          archive.style.display = archiveVisible ? '' : 'none';
+        }
 
         if (clearBtn) {
           clearBtn.style.display = query === '' ? 'none' : 'inline-block';

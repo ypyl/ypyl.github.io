@@ -119,3 +119,40 @@
   font-weight: 400;
   color: var(--brand);
 }
+
+/* Archive — finished resources, kept below the active list */
+.archive-section {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-color);
+}
+
+.archive-section h2 {
+  margin: 0 0 var(--space-sm) 0;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.archive-section-note {
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.resource-list-archive .resource {
+  background: transparent;
+  box-shadow: none;
+  opacity: 0.75;
+}
+
+.resource-list-archive .resource:hover {
+  opacity: 1;
+}
+
+.resource-completed {
+  margin: var(--space-sm) 0 var(--space-md) 0;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
