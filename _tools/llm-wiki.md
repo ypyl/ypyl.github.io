@@ -2,6 +2,6 @@
 name: llm-wiki
 link: https://github.com/nvk/llm-wiki
 category: AI Tool
-tags: [2026-06-14, ai, ai-agents, llm, multi-agent, research, claude-code, knowledge-base, python]
+tags: [2026-06-14, ai, ai-agents, llm, multi-agent, claude-code, knowledge-base, python]
 description: Plugin for AI coding agents that builds LLM-compiled knowledge bases through parallel multi-agent research, thesis-driven investigation, and wiki compilation.
 ---
