@@ -128,17 +128,11 @@
 }
 
 .archive-section h2 {
-  margin: 0 0 var(--space-sm) 0;
+  margin: 0 0 var(--space-lg) 0;
   font-family: var(--serif);
   font-size: 1.25rem;
   font-weight: 500;
   color: var(--text);
-}
-
-.archive-section-note {
-  margin: 0 0 var(--space-lg) 0;
-  color: var(--text-muted);
-  font-size: 0.9375rem;
 }
 
 .resource-list-archive .resource {

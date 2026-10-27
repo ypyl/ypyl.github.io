@@ -34,7 +34,6 @@ layout: default
   {% if archived_resources.size > 0 %}
     <section id="resources-archive" class="archive-section">
       <h2>Archive</h2>
-      <p class="archive-section-note">Resources I have finished.</p>
       <ul class="resource-list resource-list-archive">
         {% for resource in archived_resources %}
           {% include learning-item.html resource=resource %}
