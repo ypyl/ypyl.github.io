@@ -5,4 +5,5 @@ category: Course
 date: 2026-06-09
 tags: [2026-06-09, learning, data-science, python, education, machine-learning, statistics]
 description: Harvard online course teaching Python for data science, covering Pandas, NumPy, Matplotlib, SKLearn, regression, classification, and ML fundamentals.
+completed: 2026-10-27
 ---
