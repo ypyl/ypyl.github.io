@@ -5,4 +5,5 @@ category: Research Paper
 date: 2026-06-18
 tags: [2026-06-18, ai-agents, agent-architecture, llm, typescript, software-engineering, open-source]
 description: Comprehensive architectural analysis of Claude Code's agentic coding tool, comparing its design principles, permission system, context management, and extensibility with the OpenClaw system.
+completed: 2026-10-27
 ---
