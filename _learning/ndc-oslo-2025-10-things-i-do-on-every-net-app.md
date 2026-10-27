@@ -5,4 +5,5 @@ category: Guide
 date: 2026-07-06
 tags: [2026-07-06, dotnet, aspnet, best-practices, conference, development]
 description: Slides and session resources from Scott Sauber's NDC Oslo talk covering ten practical practices he applies to every .NET application.
+completed: 2026-10-27
 ---
