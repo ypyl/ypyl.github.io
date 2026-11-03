@@ -5,4 +5,5 @@ category: Guide
 date: 2026-10-22
 tags: [2026-10-22, ai-agents, generative-ui, protocol, typescript, dotnet, python]
 description: Spec and reference for the Agent-User Interaction protocol, with a JSON Schema, generated SDKs and an event stream linking agents to apps
+completed: 2026-11-03
 ---
