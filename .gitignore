@@ -2,6 +2,7 @@ repomix-output.xml
 genai-design-guidelines/
 .playwright-cli/
 .pi/
+.dsh/
 .opencode/
 nul
 _site/
