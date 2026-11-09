@@ -6,3 +6,6 @@ genai-design-guidelines/
 nul
 _site/
 .jekyll-cache/
+
+# agent scratch space
+.tmp/
