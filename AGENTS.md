@@ -247,6 +247,8 @@ Card markup lives in one include per collection: `_includes/tool-item.html`, `le
 
 Use the Windows Subsystem for Linux Container CLI (`wslc`) to check a change before pushing. Docker Desktop is not involved and its daemon does not need to be running. Run these from the repo root in Git Bash.
 
+**Ask the user for permission before running any `wslc` command.** The CLI reaches the WSL service through a named pipe, which the DSH sandbox blocks in `read-only` and `workspace-write` mode: the command fails with `E_ACCESSDENIED`. `wslc --version` still answers, so a successful version check does not prove the service is reachable. Approval covers the single escalated command, so a build check, `wslc logs`, and `wslc rm -f` are three separate requests. When the user would rather not be asked repeatedly, they can move the session to full access.
+
 `MSYS_NO_PATHCONV=1` stops Git Bash from rewriting the container path, and `$(pwd -W)` gives the Windows path that `wslc` needs for the bind mount.
 
 **Build check.** Fails on a Liquid or YAML error:
@@ -283,6 +285,8 @@ rm -rf _site .jekyll-cache    # remove build artifacts
 - `_site/` and `.jekyll-cache/` are gitignored.
 
 ## Publishing
+
+**Build the change with `wslc` first, and ask for permission before running it.** A Liquid or YAML error caught locally costs one approval; caught after a push it costs a Pages run and a follow-up commit. Run the build check from the section above against the working tree, read the output, and only then commit and push. Do not treat "not pushed yet" as a reason to skip the check, and do not describe a change as verified when only the live page was inspected after the fact.
 
 Push to `master`. GitHub Pages rebuilds and the change is live in about a minute; confirm the URL returns 200 rather than trusting the push alone.
 
