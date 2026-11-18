@@ -6,24 +6,26 @@ categories: programming
 tags: [dotnet, csharp, architecture, plugin, testing]
 ---
 
-The paper behind this is 83 pages. The runtime it describes fits in **771 lines of C# across 14 files**, with 28 tests passing in under a second. I rebuilt it to answer two questions: can a component undo what it did, and does the system notice when the thing it depends on changes. Both work, and neither of them was the hard part.
+Composition theory is comfortable with code that is known at compile time: imports, interfaces, function calls. The interesting case is the opposite one, a component that arrives after deployment, runs for a while, and leaves. Two things have to hold for that to be safe. The system must be able to reverse what the component did, and it must react when whatever the component depended on changes.
 
-What fought back was unloading code, which the CLR resists. What .NET gave back was a check the paper never has: the inverse a component hands over is never verified there, and here it can be made to fail a test.
+The paper I spent a day on, "A Programming Paradigm for Spatiotemporal Composability", calls those **temporal** and **spatial** composability, and proves the two carry from a single component to a whole interleaved system.
 
-This is a work note on a project called `cordis-sharp`, built around "A Programming Paradigm for Spatiotemporal Composability" (arXiv 2608.25512) and its TypeScript implementation, Cordis. Not a tutorial, and not a framework. The question was which parts survive translation, and the answers came out uneven enough to be worth writing down.
+I do not learn design from proofs, so I rebuilt it. `cordis-sharp` is that rebuild: a small C# core, a demo, and tests, in the spirit of the paper's TypeScript implementation, Cordis. The goal was never a framework. It was to find the point where the idea stops being theory and starts being code, and then to find where the translation breaks.
 
-## The design collapsed instead of growing
+The result is **771 lines across 14 files**, with 28 tests passing in under a second. Undoing what a component did, resolving what it depends on, and tearing both down in the right order are ordinary engineering, and all three worked on the first serious attempt. Unloading code is the part that does not fit, because the CLR resists it at every step. And one thing turned out better here than in the paper: its guarantees rest on an obligation nobody enforces, and in .NET a test can enforce it.
 
-The published reference is 1,820 lines of TypeScript core, carrying Koishi and its 4,000-odd plugins. Reading it first was the right order of work, because the port then became a series of small decisions instead of a translation exercise.
+This is a work note, not a tutorial. What follows is what the port cost, what I would reuse, where the guarantee stops, and the one experiment I would run before trusting any of it in production.
 
-Four decisions carried almost all of the weight:
+## The core is smaller than the paper
+
+Reading the reference implementation first was the right order of work. At 1,820 lines of TypeScript core it carries Koishi and its 4,000-odd plugins, and once that was in my head the port became a handful of decisions rather than a translation exercise:
 
 - **Interfaces are keys.** A component declares `IReadOnlySet<Type>`, so a missing declaration is a compile error and key collision is an assembly-identity question rather than a string comparison.
-- **`ctx.Get<T>()` is explicit.** The reference resolves `ctx[name]` through a `Proxy` get trap, and that trap is the only device in the design with no clean C# equivalent. A source generator could recover the ergonomics later. It changes nothing about the guarantees.
-- **Undo runs sequentially, last in first out.** The shipped package starts its disposers in reverse order and then awaits them concurrently. Sequential is slower and far easier to reason about, and there is no benchmark forcing the faster choice.
-- **A missing dependency parks the component.** It does not throw, and it does not get retried on a timer.
+- **`ctx.Get<T>()` is explicit.** The reference resolves `ctx[name]` through a `Proxy` get trap, the only device in the design with no clean C# equivalent.
+- **Undo runs sequentially, last in first out.** The shipped package starts its disposers in reverse and then awaits them concurrently, which is faster and much harder to reason about.
+- **A missing dependency parks the component.** It does not throw, and it is not retried on a timer.
 
-None of those are clever. That is the finding: the paradigm's difficulty is in the metatheory, not in the code.
+None of those are clever. That is the finding: the difficulty lives in the metatheory, not in the code.
 
 ## Teardown is where the money is
 
