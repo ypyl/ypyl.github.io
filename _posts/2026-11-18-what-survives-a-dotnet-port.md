@@ -118,6 +118,7 @@ I would take this piece into a codebase that has none of the rest. It is a handf
   <text x="224" y="281" fill="#141413" font-size="13">binding provided</text>
 
   <line x1="185" y1="277" x2="185" y2="157" stroke="#1B365D" stroke-width="1"/>
+  <line x1="185" y1="157" x2="210" y2="157" stroke="#1B365D" stroke-width="1"/>
   <line x1="185" y1="217" x2="210" y2="217" stroke="#1B365D" stroke-width="1"/>
   <line x1="185" y1="277" x2="210" y2="277" stroke="#1B365D" stroke-width="1"/>
   <path d="M 197 150 L 210 157 L 197 164" fill="none" stroke="#1B365D" stroke-width="1"/>
@@ -125,9 +126,7 @@ I would take this piece into a codebase that has none of the rest. It is a handf
   <text x="100" y="330" fill="#504e49" font-size="10" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" letter-spacing="2">INVERSES RUN IN REVERSE ORDER</text>
 
   <line x1="600" y1="88" x2="600" y2="358" stroke="#6b6a64" stroke-width="1" stroke-dasharray="6 6"/>
-  <text x="600" y="384" fill="#6b6a64" font-size="10" text-anchor="middle" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" letter-spacing="2">THE BOUNDARY</text>
-
-  <text x="490" y="126" fill="#6b6a64" font-size="10" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" letter-spacing="2">NO INVERSE</text>
+  <text x="600" y="384" fill="#6b6a64" font-size="10" text-anchor="middle" font-family="'JetBrains Mono','SF Mono','Fira Code',Consolas,Monaco,monospace" letter-spacing="2">THE BOUNDARY, NO INVERSE</text>
 
   <line x1="470" y1="157" x2="650" y2="157" stroke="#504e49" stroke-width="1"/>
   <path d="M 641 150 L 650 157 L 641 164" fill="none" stroke="#504e49" stroke-width="1"/>
