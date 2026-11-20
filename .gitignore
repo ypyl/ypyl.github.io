@@ -10,3 +10,10 @@ _site/
 
 # agent scratch space
 .tmp/
+
+# wrangler state and worker secrets, never the deployed ones
+.wrangler/
+.dev.vars
+.dev.vars.*
+# …except the empty template, which is meant to be committed
+!_workers/.dev.vars.example

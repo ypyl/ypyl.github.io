@@ -16,6 +16,10 @@
   <link rel="stylesheet" href="{{ "/assets/css/tools.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "/assets/css/learning.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "/assets/css/apps.css" | relative_url }}">
+  {%- if page.quotes or (site.quotes.tickers and page.layout != 'presentation') -%}
+  <link rel="stylesheet" href="{{ "/assets/css/quotes.css" | relative_url }}">
+  <script defer src="{{ "/assets/js/quotes.js" | relative_url }}"></script>
+  {%- endif -%}
   {%- if page.layout == 'presentation' -%}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" id="reveal-theme-light">

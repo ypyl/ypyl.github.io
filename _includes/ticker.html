@@ -1,0 +1,43 @@
+{%- comment -%}
+  Fixed quote bar, modelled on Mantine's Marquee (Marquee.module.css): the track
+  holds two copies of the list and translates by one copy width, so the loop has
+  no seam and no scrollbar. It always scrolls, like Mantine's pauseOnHover=false
+  default; set quotes.respect_reduced_motion to stop it for readers who ask.
+
+  No prices are rendered here. Every number comes from assets/js/quotes.js, which
+  fetches site.quotes.endpoint; the bar stays `hidden` until the first successful
+  response, and hides again if the request fails. Nothing is cached in the page.
+
+  List entries come from site.quotes.tickers in _config.yml, either a symbol or
+  {symbol, name}. The Worker's DEFAULT_TICKERS allowlist must cover every symbol.
+{%- endcomment -%}
+{%- assign tickers = site.quotes.tickers -%}
+{%- if tickers and tickers.size > 0 and site.quotes.endpoint -%}
+<aside class="ticker"
+         style="--ticker-duration: {{ site.quotes.ticker_duration_seconds | default: 40 }}s"
+         data-quotes
+         data-endpoint="{{ site.quotes.endpoint }}"
+         data-refresh="{{ site.quotes.refresh_seconds | default: 60 }}"
+         data-ticker
+         {%- if site.quotes.respect_reduced_motion %}data-respect-reduced-motion{% endif %}
+         aria-label="AI company quotes"
+         hidden>
+  <div class="ticker-track">
+    {%- for pass in (1..2) -%}
+    <ul class="ticker-list"{% if pass == 2 %} aria-hidden="true"{% endif %}>
+      {%- for entry in tickers -%}
+        {%- assign symbol = entry.symbol | default: entry -%}
+        <li class="ticker-item" data-quote data-symbol="{{ symbol | escape }}">
+          <span class="ticker-symbol">{{ symbol | escape }}</span>
+          {%- if entry.name %}
+          <span class="ticker-name">{{ entry.name | escape }}</span>
+          {%- endif %}
+          <span class="ticker-price" data-quote-price></span>
+          <span class="quote-change" data-quote-change></span>
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- endfor -%}
+  </div>
+</aside>
+{%- endif -%}

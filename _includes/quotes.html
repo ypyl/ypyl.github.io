@@ -1,0 +1,43 @@
+{%- comment -%}
+  Quote strip for a single post. A post opts in with frontmatter, either symbols
+  or {symbol, name}:
+
+    quotes: [NVDA, MSFT]
+    quotes:
+      - symbol: NVDA
+        name: NVIDIA
+
+  Values are fetched by assets/js/quotes.js from site.quotes.endpoint. The strip is
+  rendered `hidden` and only revealed when a response arrives, so a failing request
+  shows no numbers at all rather than numbers that might be hours old.
+{%- endcomment -%}
+{%- if page.quotes and page.quotes.size > 0 and site.quotes.endpoint -%}
+<section class="quotes"
+         data-quotes
+         data-endpoint="{{ site.quotes.endpoint }}"
+         data-refresh="{{ site.quotes.refresh_seconds | default: 60 }}"
+         aria-label="Quotes"
+         hidden>
+  <div class="quotes-bar">
+    <span class="quotes-label">Quotes</span>
+    <span class="quotes-status" data-quotes-status role="status" aria-live="polite"></span>
+  </div>
+  <ul class="quotes-list">
+    {%- for entry in page.quotes -%}
+      {%- assign symbol = entry.symbol | default: entry -%}
+      <li class="quote" data-quote data-symbol="{{ symbol | escape }}">
+        <span class="quote-name">{{ entry.name | default: symbol | escape }}</span>
+        <span class="quote-ticker">{{ symbol | escape }}</span>
+        <span class="quote-price" data-quote-price></span>
+        <span class="quote-change" data-quote-change></span>
+      </li>
+    {%- endfor -%}
+  </ul>
+  <p class="quotes-note">
+    {{ site.quotes.delay_note | default: "Prices are indicative, not a trading feed." }}
+    {%- if site.quotes.provider %}
+    Live prices via <a href="{{ site.quotes.provider_url | default: '#' }}" rel="nofollow noopener">{{ site.quotes.provider }}</a>.
+    {%- endif %}
+  </p>
+</section>
+{%- endif -%}

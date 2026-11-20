@@ -14,6 +14,41 @@ header_pages:
 author: Yauhen Pyl
 email: yauhen.pyl@gmail.com
 
+# Live quotes (_includes/quotes.html, assets/js/quotes.js). A post opts in with
+# `quotes: [NVDA, MSFT]` in frontmatter. Nothing is rendered without endpoint: the
+# bar and the strip start hidden, and stay hidden if a request fails, so the site
+# never shows a price it did not just fetch.
+quotes:
+  endpoint: "https://blog-quotes.yauhenpylgithubio.workers.dev/"
+  refresh_seconds: 300
+  # Fixed status bar at the bottom of every page. AI-related names only, by design.
+  # Nothing here is a price: every number is fetched at runtime, and the bar hides
+  # itself when that fetch fails. Adding a name here means adding it to
+  # DEFAULT_TICKERS in _workers/quotes-proxy.js too, otherwise the Worker drops it.
+  tickers:
+    - {symbol: NVDA, name: NVIDIA}
+    - {symbol: ANT, name: Anthropic}
+    - {symbol: MSFT, name: Microsoft}
+    - {symbol: GOOGL, name: Alphabet}
+    - {symbol: AMZN, name: Amazon}
+    - {symbol: META, name: Meta}
+    - {symbol: AMD, name: AMD}
+    - {symbol: AVGO, name: Broadcom}
+    - {symbol: TSM, name: TSMC}
+    - {symbol: PLTR, name: Palantir}
+    - {symbol: ORCL, name: Oracle}
+    - {symbol: ARM, name: Arm}
+    - {symbol: SMCI, name: Supermicro}
+  # Seconds for one full pass of the list. Higher is slower: 40 gave about 76 px/s
+  # at 13 names, 120 gives about 25 px/s.
+  ticker_duration_seconds: 120
+  # true: stop the animation for readers with "reduce motion" enabled. Off by
+  # default, matching Mantine's Marquee, which always scrolls.
+  respect_reduced_motion: false
+  provider: "Finnhub"
+  provider_url: "https://finnhub.io/"
+  delay_note: "Prices are indicative, refreshed every five minutes while the page is open, and hidden when they cannot be fetched. Not a trading feed and not investment advice."
+
 github_username: ypyl
 linkedin_username: yauhenpyl
 exclude:

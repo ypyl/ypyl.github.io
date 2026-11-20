@@ -1150,7 +1150,7 @@ ul li::marker {
 
 .affix-wrapper {
   position: fixed;
-  bottom: var(--space-lg);
+  bottom: calc(var(--ticker-height, 0px) + var(--space-lg));
   right: var(--space-lg);
   z-index: 100;
   transform-origin: bottom right;
@@ -1190,7 +1190,7 @@ ul li::marker {
 
 @media screen and (max-width: 600px) {
   .affix-wrapper {
-    bottom: var(--space-md);
+    bottom: calc(var(--ticker-height, 0px) + var(--space-md));
     right: var(--space-md);
   }
 

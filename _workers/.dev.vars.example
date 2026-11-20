@@ -1,0 +1,4 @@
+# Local dev secrets for the quote proxy. Copy to .dev.vars (gitignored) and fill in.
+# Never commit the filled file, and never put these values in _config.yml or the site JS.
+QUOTES_API_KEY=your_finnhub_token
+ALLOWED_ORIGIN=http://localhost:4000

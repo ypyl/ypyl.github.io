@@ -1,0 +1,297 @@
+/* --------------------------------------------------------------------------
+   Live quotes strip (_includes/quotes.html). Kami tokens only: parchment and
+   ivory surfaces, one ink-blue accent, warm grays, whisper shadow or ring.
+   Direction is carried by the arrow and the weight, never by a second color.
+   Colours use the applied tokens (--surface, --text, --border-color ...) so the
+   strip follows the site's dark theme without a second palette.
+   -------------------------------------------------------------------------- */
+
+.quotes {
+  margin: 2rem 0;
+  padding: 1rem 1.1rem 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: var(--whisper);
+  font-family: var(--sans);
+}
+
+.quotes-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.quotes-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.quotes-status {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+
+
+.quotes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.quote {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas:
+    "name  price change"
+    "ticker price change";
+  gap: 0 0.75rem;
+  align-items: baseline;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.quote:last-child {
+  border-bottom: 0;
+}
+
+.quote-name {
+  grid-area: name;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quote-ticker {
+  grid-area: ticker;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.quote-price {
+  grid-area: price;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.quote-change {
+  grid-area: change;
+  min-width: 4.6rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.quote-change.is-up {
+  color: var(--text-secondary);
+}
+
+.quote-change.is-up::before {
+  content: "\25B2\00A0";
+  font-size: 0.7em;
+}
+
+.quote-change.is-down {
+  color: var(--text-muted);
+}
+
+.quote-change.is-down::before {
+  content: "\25BC\00A0";
+  font-size: 0.7em;
+}
+
+.quotes-note {
+  margin: 0.7rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.quotes-note a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.quotes-note a:hover {
+  border-bottom-color: var(--link);
+}
+
+@media (max-width: 480px) {
+  .quote {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "name   price"
+      "ticker change";
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Fixed quote bar (_includes/ticker.html), present on every page as a status bar.
+
+   Follows Mantine's Marquee mechanism (Marquee.module.css): the track holds
+   repeat() copies of the list, each `flex-shrink: 0`, and the animation
+   translates by exactly one copy width. The root clips with `overflow: hidden`,
+   so there is never a scrollbar, and the animation always runs: pauseOnHover is
+   false there by default and it is false here too.
+
+   Two deliberate differences: no gradient fade edges (Kami bans gradients) and
+   no second copy of the colour palette (applied tokens only).
+   -------------------------------------------------------------------------- */
+
+:root {
+  --ticker-height: 34px;
+  --ticker-duration: 40s;
+  --ticker-repeat: 2;
+}
+
+body.ticker-visible {
+  padding-bottom: var(--ticker-height);
+}
+
+.ticker[hidden],
+.quotes[hidden] {
+  display: none;
+}
+
+.ticker {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 95;
+  height: var(--ticker-height);
+  display: flex;
+  overflow: hidden;
+  overscroll-behavior: none;
+  scrollbar-width: none;
+  border-top: 1px solid var(--border-color);
+  background: var(--surface);
+  font-family: var(--sans);
+  line-height: 1;
+}
+
+.ticker::-webkit-scrollbar {
+  display: none;
+}
+
+.ticker-track {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  width: max-content;
+  min-width: 100%;
+  animation-name: ticker-scroll;
+  animation-duration: var(--ticker-duration, 40s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.ticker-list {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 100%;
+  padding: 0 1.15rem;
+  border-right: 1px solid var(--border-soft);
+  white-space: nowrap;
+}
+
+.ticker-symbol {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: var(--brand);
+}
+
+.ticker-name {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+}
+
+.ticker-price {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.ticker-item .quote-change {
+  min-width: 0;
+  font-size: 0.78rem;
+}
+
+/* One copy width. With --ticker-repeat: 2 this is -50%, which is the same thing
+   Mantine expresses as -100% / repeat. */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% / var(--ticker-repeat, 2))); }
+}
+
+/* Opt-in only: set quotes.respect_reduced_motion in _config.yml to stop the
+   animation for readers who ask for less motion. Off by default, because the bar
+   is a status bar and a frozen one reads as broken. No scrollbar either way. */
+@media (prefers-reduced-motion: reduce) {
+  .ticker[data-respect-reduced-motion] .ticker-track {
+    animation: none;
+    transform: none;
+  }
+  .ticker[data-respect-reduced-motion] .ticker-list[aria-hidden="true"] {
+    display: none;
+  }
+  .ticker[data-respect-reduced-motion] .ticker-list {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --ticker-height: 30px;
+  }
+  .ticker-item {
+    padding: 0 0.85rem;
+  }
+  .ticker-name {
+    display: none;
+  }
+}
+
+@media print {
+  .ticker {
+    display: none;
+  }
+  body.ticker-visible {
+    padding-bottom: 0;
+  }
+}
