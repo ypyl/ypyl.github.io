@@ -209,13 +209,11 @@ Create new tags freely when they describe a meaningful aspect of the content (e.
 Before pushing a content change, check the frontmatter with:
 
 ```bash
-# capitals or underscores inside tags (must be empty)
-grep -rh '^tags:' _tools _learning _apps _posts | grep -E '[A-Z]|_'
-# tags that are not a YAML array (must be empty)
-grep -rn '^tags: [^[]' _tools _learning _apps _posts
-# card records missing the add-date tag (must be empty)
-for f in _tools/*.md _learning/*.md _apps/*.md; do grep -qE '^tags: \[[0-9]{4}-[0-9]{2}-[0-9]{2},' "$f" || echo "no date tag: $f"; done
+python scripts/check-frontmatter.py          # _news, _tools, _learning, _apps
+python scripts/check-frontmatter.py _posts   # any collection, on request
 ```
+
+It parses every frontmatter block with a real YAML parser, so it catches what the build only warns about: Jekyll prints `YAML Exception reading ...` for a broken block and still exits 0. The usual cause is an unquoted value containing `: `, which breaks the mapping. The script also enforces the tag rules below: YAML array format, lowercase hyphenated tags, the add-date as the first tag on cards, and a valid `category` on learning resources that is not repeated as a tag. It needs PyYAML, and it prints every problem it finds before exiting non-zero.
 
 ## Adding Content
 
@@ -286,7 +284,7 @@ rm -rf _site .jekyll-cache    # remove build artifacts
 
 ## Publishing
 
-**Build the change with `wslc` first.** A Liquid or YAML error caught locally costs one command; caught after a push it costs a Pages run and a follow-up commit. Run the build check from the section above against the working tree, read the output, and only then commit and push. Do not treat "not pushed yet" as a reason to skip the check, and do not describe a change as verified when only the live page was inspected after the fact.
+**Validate the frontmatter and build the change with `wslc` first.** A Liquid or YAML error caught locally costs one command; caught after a push it costs a Pages run and a follow-up commit. Run `python scripts/check-frontmatter.py`, then the build check from the section above, against the working tree, read the output, and only then commit and push. Do not treat "not pushed yet" as a reason to skip the check, and do not describe a change as verified when only the live page was inspected after the fact. Grep the build output for `YAML Exception`: the command exits 0 even when a file failed to parse.
 
 Push to `master`. GitHub Pages rebuilds and the change is live in about a minute; confirm the URL returns 200 rather than trusting the push alone.
 
