@@ -5,4 +5,5 @@ category: Guide
 date: 2026-06-13
 tags: [2026-06-13, ai, coding-agent, open-source, llm, xiaomi, terminal-tool, long-horizon]
 description: Technical deep-dive into MiMo Code, Xiaomi's open-source terminal-based coding agent designed for long-horizon automated programming tasks with infinite logical sessions and four-level memory architecture
+completed: 2026-11-21
 ---
