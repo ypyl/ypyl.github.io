@@ -13,11 +13,15 @@
   {% endif %}
 
   {% if include.resource.references %}
+    {%- assign refs = include.resource.references -%}
     <ul class="resource-references">
-      {% for ref in include.resource.references %}
+      {% for ref in refs limit: 4 %}
         <li><a href="{{ ref.link }}" target="_blank">{{ ref.name }}</a></li>
       {% endfor %}
     </ul>
+    {%- if refs.size > 4 %}
+      <p class="resource-references-more">+{{ refs.size | minus: 4 }} more</p>
+    {%- endif %}
   {% endif %}
 
   <div class="tags">

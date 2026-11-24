@@ -102,6 +102,12 @@
   color: var(--text-tertiary);
   font-size: 0.9375rem;
   line-height: 1.5;
+  /* Four lines is the most a card gets; longer text ends in an ellipsis
+     instead of stretching the card and the whole grid row with it. */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .resource-references {
@@ -119,6 +125,16 @@
   font-size: 0.875rem;
   font-weight: 400;
   color: var(--brand);
+}
+
+/* Tail of a reference list that was cut at four entries. Unclamped, because it
+   is one short line, and muted, because it is a note rather than a link. */
+.resource-references-more {
+  margin: calc(-1 * var(--space-sm)) 0 var(--space-md) 0;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  -webkit-line-clamp: unset;
+  display: block;
 }
 
 /* Archive — finished resources, kept below the active list */
