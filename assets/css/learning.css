@@ -63,6 +63,7 @@
 
 .resource-list {
   list-style: none;
+  margin-left: 0;   /* override minima's ul margin, let the grid fill the column */
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
