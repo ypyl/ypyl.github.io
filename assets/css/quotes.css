@@ -162,6 +162,7 @@
   --ticker-height: 34px;
   --ticker-duration: 40s;
   --ticker-repeat: 2;
+  --ticker-width: 900px;   /* same content width as .wrapper */
 }
 
 body.ticker-visible {
@@ -178,13 +179,16 @@ body.ticker-visible {
   left: 0;
   right: 0;
   bottom: 0;
+  margin-inline: auto;
+  max-width: var(--ticker-width);
   z-index: 95;
   height: var(--ticker-height);
   display: flex;
   overflow: hidden;
   overscroll-behavior: none;
   scrollbar-width: none;
-  border-top: 1px solid var(--border-color);
+  border: 1px solid var(--border-color);
+  border-bottom: none;
   background: var(--surface);
   font-family: var(--sans);
   line-height: 1;
